@@ -6,6 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2ba73eb409.js" crossorigin="anonymous"></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -39,6 +41,97 @@
             </div>
             </div>
     </header>
+
+    <!-- Informações sobre o anúncio -->
+    <div class="nav-tab">
+        <div class="tab-content" id="myTabContent">
+            <form class="o-formulario">
+                <div class="form-group">
+                    <label for="inputTitle"><i class="fa fa-bullhorn"></i> Título</label>
+                    <input type="text" class="form-control" id="inputTitle" placeholder="Titulo do anúncio">
+                </div>
+                <div class="form-group">
+                    <label for="inputObject"><i class="fa fa-cube"></i> Objeto</label>
+                    <input type="text" class="form-control" id="inputObject" placeholder="Nome do objeto">
+                </div>
+
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputCategory"><i class="fa fa-puzzle-piece"></i> Categoria</label>
+                        <select id="inputCategory" class="form-control">
+                            <option selected>...</option>
+                            <option>Brinquedo</option>
+                            <option>Ferramenta</option>
+                            <option>Instrumento Musical</option>
+                            <option>Material Escolar</option>
+                            <option>Eletrônico</option>
+                            <option>Móvel</option>
+                            <option>Vestuário</option>
+                            <option>Decoração</option>
+                            <option>Outros</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputState"> <i class="fa fa-box"></i> Estado de conservação</label>
+                        <select id="inputState" class="form-control">
+                            <option selected>...</option>
+                            <option>Novo</option>
+                            <option>Semi-novo</option>
+                            <option>Usado</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPictures"><i class="fas fa-images"></i> Fotos</label>
+                    <div class="input-group mb-3">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="inputGroupFile02">
+                            <label class="custom-file-label" for="inputGroupFile02"
+                                aria-describedby="inputGroupFileAddon02">Escolher arquivos</label>
+                        </div>
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="inputGroupFileAddon02">Upload</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPictures"><i class="fas fa-images"></i> Descrição do objeto</label>
+                    <textarea class="form-control" aria-label="With textarea">Caracteristicas e informações sobre o objeto oferecido</textarea> 
+                </div>
+
+                <div class="form-group">
+                    <label for="inputQuantity"><i class="fas fa-plus"></i> Quantidade</label>
+                    <input type="text" class="form-control" id="inputQuantity" placeholder="Quantidade de objetos disponiveis para troca">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputKeywords"><i class="fas fa-key"></i> Palavras-chave</label>
+                    <input type="text" class="form-control" id="inputKeywords" placeholder="Palavras-chave para relacionadas ao seu produto">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputDesiredItems"><i class="fas fa-box-open"></i> Itens desejados em troca</label>
+                    <input type="text" class="form-control" id="inputQuantity" placeholder="Itens que tem preferência de receber em troca">
+                </div>
+
+                <div class="btn-cadastrar">
+                    <a href="#">
+                        <button type="submit" class="btn btn-primary">Criar Anúncio</button>
+                    </a>
+                </div>
+                <div class="direitos">
+                    @Todos os direitos reservados.
+                </div>
+            </form>
+
+            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+            </div>
+        </div>
+    </div>
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
