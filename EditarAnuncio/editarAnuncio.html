@@ -11,7 +11,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="criarAnuncio.css">
+    <link rel="stylesheet" href="editarAnuncio.css">
 </head>
 
 <body>
@@ -43,8 +43,9 @@
     </header>
 
     <div class="sessao-header">
-        <h1>Criar Anúncio</h1>
+        <h1>Editar Anúncio</h1>
     </div>
+
 
     <!-- Informações sobre o anúncio -->
     <div class="nav-tab" novalidate>
@@ -94,27 +95,23 @@
                 
                 <div class="form-group">
                     <label for="inputDescription"><i class="fas fa-align-left"></i> Descrição do objeto</label>
-                    <textarea class="form-control" aria-label="With textarea"
-                        placeholder="Caracteristicas e informações sobre o objeto oferecido" required></textarea>
-
+                    <textarea class="form-control" aria-label="With textarea" placeholder="Caracteristicas e informações sobre o objeto oferecido" required></textarea> 
+                    
                 </div>
 
                 <div class="form-group">
                     <label for="inputQuantity"><i class="fas fa-plus"></i> Quantidade</label>
-                    <input type="number" min=1 max=999 class="form-control" id="inputQuantity"
-                        placeholder="Quantidade de objetos disponiveis para troca" required>
+                    <input type="number" min=1 max=999 class="form-control" id="inputQuantity" placeholder="Quantidade de objetos disponiveis para troca" required>
                 </div>
 
                 <div class="form-group">
                     <label for="inputKeywords"><i class="fas fa-key"></i> Palavras-chave</label>
-                    <input type="text" class="form-control" id="inputKeywords"
-                        placeholder="Palavras-chave para relacionadas ao seu produto" required>
+                    <input type="text" class="form-control" id="inputKeywords" placeholder="Palavras-chave para relacionadas ao seu produto" required>
                 </div>
 
                 <div class="form-group">
                     <label for="inputDesiredItems"><i class="fas fa-box-open"></i> Itens desejados em troca</label>
-                    <input type="text" class="form-control" id="inputQuantity"
-                        placeholder="Itens que tem preferência de receber em troca" required>
+                    <input type="text" class="form-control" id="inputQuantity" placeholder="Itens que tem preferência de receber em troca" required>
                 </div>
 
                 <div class="btn-criar-anuncio">
