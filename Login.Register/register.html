@@ -1,60 +1,68 @@
 <!doctype html>
 <html lang="pt-br">
-  <head>
-    <meta charset="utf-8">
-    <title>Cadastre-se</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="bootstrap-4.5.3-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="register.css">
-  
+
+<head>
+  <meta charset="utf-8">
+  <title>Cadastre-se</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="bootstrap-4.5.3-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="register.css">
+
 </head>
-  <body>
 
-<header>
+<body>
+
+  <header>
     <nav class="navbar navbar-light bg-light">
-        <div class="o-logo">
-            <a href="#"><img src="Logo-Pser 2.png" alt=""></a>
-        </div>
-        <div class="nav-voltar">
-            <a href="#">
-            <svg class=" o-icon -xs-size-medium -color-extra-dark -spaced-right -full-arrow-left " style="position: absolute; width: 30; height: 30;" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <use xlink:href="#icon-full-arrow-left">
-                    <svg viewBox="0 0 30 30" id="icon-full-arrow-left">
-                            <g fill="none" fill-rule="evenodd">
-                                <path d="m22.85 11.147l-7-7c-.196-.196-.514-.196-.71 0-.196.196-.196.514 0 .71l6.15 6.14h-19.79c-.276 0-.5.224-.5.5 0 .276.224.5.5.5h19.79l-6.15 6.15c-.196.196-.196.514 0 .71.196.196.514.196.71 0l7-7c.095-.094.148-.222.148-.355 0-.133-.053-.261-.148-.355"
-                                fill="black" fill-rule="nonzero" transform="matrix(-1 0 0 1 23.998 0)">
-                                </path></g>
-                    </svg>
-                </use> 
-            </svg>
+      <div class="o-logo">
+        <a href="#"><img src="Logo-Pser 2.png" alt=""></a>
+      </div>
+      <div class="nav-voltar">
+        <a href="#">
+          <svg class=" o-icon -xs-size-medium -color-extra-dark -spaced-right -full-arrow-left "
+            style="position: absolute; width: 30; height: 30;" width="0" height="0" version="1.1"
+            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <use xlink:href="#icon-full-arrow-left">
+              <svg viewBox="0 0 30 30" id="icon-full-arrow-left">
+                <g fill="none" fill-rule="evenodd">
+                  <path
+                    d="m22.85 11.147l-7-7c-.196-.196-.514-.196-.71 0-.196.196-.196.514 0 .71l6.15 6.14h-19.79c-.276 0-.5.224-.5.5 0 .276.224.5.5.5h19.79l-6.15 6.15c-.196.196-.196.514 0 .71.196.196.514.196.71 0l7-7c.095-.094.148-.222.148-.355 0-.133-.053-.261-.148-.355"
+                    fill="black" fill-rule="nonzero" transform="matrix(-1 0 0 1 23.998 0)">
+                  </path>
+                </g>
+              </svg>
+            </use>
+          </svg>
         </a>
-        </div>
-    </div>
-</header>
+      </div>
+      </div>
+  </header>
 
-</div>
+  </div>
 
-<div class="nav-tab">
-  <ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item">
-      <a class="nav-link active" id="PessoaFisica-tab" data-toggle="tab" href="#PessoaFisica" role="tab" aria-controls="home" aria-selected="true">Pessoa Física</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="empresa-tab" data-toggle="tab" href="#empresa" role="tab" aria-controls="empresa" aria-selected="false" >Empresa</a>
-    </li>
-  </ul>
-  <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="PessoaFisica" role="tabpanel" aria-labelledby="PessoaFisica-tab">
-      <form class="o-formulario">  
-        <div class="form-group">
-          <label for="inputName"><i class="fa fa-user"></i> Nome</label>
-          <input type="text" class="form-control" id="inputName" placeholder="Nome completo">
-        </div>
+  <div class="nav-tab">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="PessoaFisica-tab" data-toggle="tab" href="#PessoaFisica" role="tab"
+          aria-controls="home" aria-selected="true">Pessoa Física</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="empresa-tab" data-toggle="tab" href="#empresa" role="tab" aria-controls="empresa"
+          aria-selected="false">Empresa</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="PessoaFisica" role="tabpanel" aria-labelledby="PessoaFisica-tab">
+        <form class="o-formulario">
+          <div class="form-group">
+            <label for="inputName"><i class="fa fa-user"></i> Nome</label>
+            <input type="text" class="form-control" id="inputName" placeholder="Nome completo">
+          </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="inputCPF"><i class="fa fa-id-card-o"></i> CPF</label>
@@ -76,7 +84,7 @@
             </div>
             <div class="form-group col-md-6">
               <label for="inputState">Estado</label>
-              <select id="inputState" class="form-control" >
+              <select id="inputState" class="form-control">
                 <option selected>...</option>
                 <option>Acre</option>
                 <option>Alagoas</option>
@@ -108,7 +116,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="inputEmail"><i class="material-icons"  style="font-size:15px">email</i> E-mail</label>
+            <label for="inputEmail"><i class="material-icons" style="font-size:15px">email</i> E-mail</label>
             <input type="Email" class="form-control" id="inputEmail">
           </div>
           <div class="form-group">
@@ -122,29 +130,29 @@
             </label>
           </div>
           <div class="btn-cadastrar">
-              <a href="#" >
-                <button type="submit" class="btn btn-primary">Criar conta</button>
-              </a>
+            <a href="#">
+              <button type="submit" class="btn btn-primary">Criar conta</button>
+            </a>
           </div>
           <div class="direitos">
             @Todos os direitos reservados.
           </div>
         </form>
-    </div>
-    <div class="tab-pane fade" id="empresa" role="tabpanel" aria-labelledby="empresa-tab">
-      <form class="o-formulario2">  
-        <div class="form-group">
-          <label for="inputName"><i class="fa fa-briefcase"></i> Nome da empresa</label>
-          <input type="text" class="form-control" id="inputName">
-        </div>
-        <div class="form-group">
-          <label for="inputCNPJ"><i class="fa fa-address-card"></i> CNPJ</label>
-          <input type="text" class="form-control" id="inputCNPJ" placeholder="Apenas números">
-        </div>
-        <div class="form-group">
-          <label for="inputRazaoSocial"><i class="fa fa-building"></i> Razão Social</label>
-          <input type="text" class="form-control" id="inputRazaoSocial">
-        </div>
+      </div>
+      <div class="tab-pane fade" id="empresa" role="tabpanel" aria-labelledby="empresa-tab">
+        <form class="o-formulario2">
+          <div class="form-group">
+            <label for="inputName"><i class="fa fa-briefcase"></i> Nome da empresa</label>
+            <input type="text" class="form-control" id="inputName">
+          </div>
+          <div class="form-group">
+            <label for="inputCNPJ"><i class="fa fa-address-card"></i> CNPJ</label>
+            <input type="text" class="form-control" id="inputCNPJ" placeholder="Apenas números">
+          </div>
+          <div class="form-group">
+            <label for="inputRazaoSocial"><i class="fa fa-building"></i> Razão Social</label>
+            <input type="text" class="form-control" id="inputRazaoSocial">
+          </div>
           <div class="form-group">
             <label for="inputAddress"><i class="fa fa-map-marker"></i> Endereço</label>
             <input type="text" class="form-control" id="inputAddress" placeholder="Residência">
@@ -156,7 +164,7 @@
             </div>
             <div class="form-group col-md-6">
               <label for="inputState">Estado</label>
-              <select id="inputState" class="form-control" >
+              <select id="inputState" class="form-control">
                 <option selected>...</option>
                 <option>Acre</option>
                 <option>Alagoas</option>
@@ -188,7 +196,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="inputEmail"><i class="material-icons"  style="font-size:15px">email</i> E-mail</label>
+            <label for="inputEmail"><i class="material-icons" style="font-size:15px">email</i> E-mail</label>
             <input type="Email" class="form-control" id="inputEmail">
           </div>
           <div class="form-group">
@@ -202,20 +210,25 @@
             </label>
           </div>
           <div class="btn-cadastrar">
-              <a href="#" >
-                <button type="submit" class="btn btn-primary">Criar conta</button>
-              </a>
+            <a href="#">
+              <button type="submit" class="btn btn-primary">Criar conta</button>
+            </a>
           </div>
           <div class="direitos">
             @Todos os direitos reservados.
           </div>
         </form>
-    </div>
-    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+      </div>
+      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+      </div>
     </div>
   </div>
-</div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-  </body>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
