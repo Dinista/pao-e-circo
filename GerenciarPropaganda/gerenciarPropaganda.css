@@ -1,0 +1,97 @@
+/* Centraliza Header */
+
+.o-logo {
+  position: relative;
+  vertical-align: auto;
+  top: 0;
+  left: 45%;
+}
+
+/***/
+
+.o-icon {
+  position: absolute;
+  top: 35%;
+  left: 5%;
+  height: 150px;
+}
+
+.btn, .btn-primary, .btn-primary:active {
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  box-shadow: 0 5px 0 #c72060;
+  background-color: rgb(255, 50, 94);
+  border-color: rgb(255, 50, 94);
+}
+
+.btn-primary:hover, .btn-primary:visited, .btn-primary:focus, .btn-primary:active:focus {
+  box-shadow: 0 5px 0 #0e0e0e;
+  background-color: rgb(53, 53, 53);
+  border-color: rgb(0, 0, 0);
+  border-width: 1px;
+}
+
+#btn-encerrar-propaganda {
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  box-shadow: 0 5px 0 #a51510;
+  background-color: rgb(235, 12, 12);
+  border-color: rgb(255, 50, 94);
+}
+
+#btn-encerrar-propaganda:hover, #btn-encerrar-propaganda:visited, #btn-encerrar-propaganda:focus, #btn-encerrar-propaganda:active:focus {
+  box-shadow: 0 5px 0 #0e0e0e;
+  background-color: rgb(53, 53, 53);
+  border-color: rgb(0, 0, 0);
+  border-width: 1px;
+}
+
+
+
+.form-font {
+  position: absolute;
+  left: 20%;
+  top: -15%;
+  font-size: 119%;
+}
+
+/* Posicão do forms */
+
+.nav-tab {
+  position: absolute;
+  width: 400px;
+  left: 37%;
+  top: 15%;
+}
+
+/* Deixe a escrita "Todos os direitos reservados" pequena e em cinza */
+
+.direitos {
+  position: absolute;
+  font-size: 75%;
+  color: rgb(150, 150, 150);
+  margin-left: 27%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.sessao-header {
+  font-family: 'Courier New', Courier, monospace;
+  display: flex;
+  /* Deixa esse container ocupar somente o necessário pro tamanho do header */
+  justify-content: center;
+  /* Centraliza o titulo geral da pagina Conhecimentos */
+  position: absolute;
+  left: 40%;
+  top: 9%;
+}
+
+.form-group #inputDescription {
+  min-height: 4rem;
+  height: 4rem;
+  max-height: 10rem;
+}
+
+.pictureInput  {
+  font-size: .8rem;
+}
