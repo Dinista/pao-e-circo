@@ -17,10 +17,11 @@
 }
 
 .btn, .btn-primary, .btn-primary:active {
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
   box-shadow: 0 5px 0 #c72060;
   background-color: rgb(255, 50, 94);
   border-color: rgb(255, 50, 94);
-  width: 400px;
 }
 
 .btn-primary:hover, .btn-primary:visited, .btn-primary:focus, .btn-primary:active:focus {
@@ -28,8 +29,24 @@
   background-color: rgb(53, 53, 53);
   border-color: rgb(0, 0, 0);
   border-width: 1px;
-  width: 400px;
 }
+
+#btn-encerrar-propaganda {
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  box-shadow: 0 5px 0 #a51510;
+  background-color: rgb(235, 12, 12);
+  border-color: rgb(255, 50, 94);
+}
+
+#btn-encerrar-propaganda:hover, #btn-encerrar-propaganda:visited, #btn-encerrar-propaganda:focus, #btn-encerrar-propaganda:active:focus {
+  box-shadow: 0 5px 0 #0e0e0e;
+  background-color: rgb(53, 53, 53);
+  border-color: rgb(0, 0, 0);
+  border-width: 1px;
+}
+
+
 
 .form-font {
   position: absolute;
@@ -45,12 +62,6 @@
   width: 400px;
   left: 37%;
   top: 15%;
-}
-
-/* Posição botão cadastrar */
-
-.btn-criar-anuncio {
-  margin-top: 2%;
 }
 
 /* Deixe a escrita "Todos os direitos reservados" pequena e em cinza */
@@ -82,5 +93,5 @@
 }
 
 .pictureInput  {
-  margin-bottom: .5rem;
+  font-size: .8rem;
 }
