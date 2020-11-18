@@ -139,6 +139,18 @@ a:link {
     outline: none;
 }
 
+.badge-icon{
+  position: absolute;
+  right: 30%;
+  top:60%;
+  width: 7px;
+  height: 7px;
+  background-color: #f05b78;
+  border-radius: 30px;
+}
+
+/* fim css headear */
+
 .user-bg {
   position: relative;
   margin: auto;
