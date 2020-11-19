@@ -16,21 +16,29 @@
   height: 150px;
 }
 
-.btn, .btn-primary, .btn-primary:active {
+.btn,
+.btn-primary,
+.btn-primary:active {
   box-shadow: 0 5px 0 #c72060;
   background-color: rgb(255, 50, 94);
   border-color: rgb(255, 50, 94);
-  width: 400px;
+  width: 375px;
 }
 
-.btn-primary:hover, .btn-primary:visited, .btn-primary:focus, .btn-primary:active:focus {
+
+.btn-primary:hover,
+.btn-primary:visited,
+.btn-primary:focus,
+.btn-primary:active:focus {
   box-shadow: 0 5px 0 #0e0e0e;
   background-color: rgb(53, 53, 53);
   border-color: rgb(0, 0, 0);
   border-width: 1px;
-  width: 400px;
+  width: 375px;
 }
 
+
+/* ?? */
 .form-font {
   position: absolute;
   left: 20%;
@@ -39,22 +47,25 @@
 }
 
 /* Posicão do forms */
-
 .nav-tab {
   position: absolute;
   width: 400px;
   left: 37%;
   top: 15%;
+  padding: 0rem 0.8rem 0.8rem 0.8rem;
+  border-radius: 1rem;
+}
+
+#header1 {
+  text-align: center;
 }
 
 /* Posição botão cadastrar */
-
-.btn-criar-anuncio {
+.btn-editar-anuncio {
   margin-top: 2%;
 }
 
 /* Deixe a escrita "Todos os direitos reservados" pequena e em cinza */
-
 .direitos {
   position: absolute;
   font-size: 75%;
@@ -66,10 +77,8 @@
 
 .sessao-header {
   font-family: 'Courier New', Courier, monospace;
-  display: flex;
-  /* Deixa esse container ocupar somente o necessário pro tamanho do header */
-  justify-content: center;
-  /* Centraliza o titulo geral da pagina Conhecimentos */
+  display: flex;  /* Deixa esse container ocupar somente o necessário pro tamanho do header */
+  justify-content: center; /* Centraliza o titulo geral da pagina Conhecimentos */
   position: absolute;
   left: 40%;
   top: 9%;
