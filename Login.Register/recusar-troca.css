@@ -138,3 +138,259 @@ a:link {
     border: none;
     outline: none;
 }
+
+
+.negociacoes-area{
+    display: flex;
+    width: 1176px;
+    margin: auto;
+    background-color: #f05b7900;
+}
+
+.nav-perfil{
+    margin-top: 2%;
+}
+
+.nav-tabs {
+    border-bottom: 0px solid;
+}
+
+.nav-tabs .nav-link{
+    border: 0px solid;
+    color:rgb(161, 161, 161);
+    border-bottom: 0px solid;
+}
+
+
+.nav-tabs .nav-link.active{
+    border-bottom: 2px solid rgb(252, 102, 140);
+    font-weight: 700;
+}
+
+.tab-content{
+  top: 20%;
+  position: absolute;
+}
+
+.img-neg-area{
+  width: 70px;
+  height: 70px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.img-neg{
+  margin-left: auto;
+  margin-right: auto;
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  margin: auto;
+}
+
+.lista-neg, .neg-pendentes{
+  list-style: none;
+  padding: 0px;
+}
+
+.lista-neg>li{
+  border-bottom: 1px solid rgba(202, 202, 202, 0.521);
+  margin: 10px 0;
+  padding-bottom: 10px;
+  display: flex;
+}
+
+.neg-text{
+  display: flex;
+}
+
+.neg-item-text{
+  margin: auto;
+  padding-left: 20px;
+  line-height: 15px;
+  width: 990px;
+}
+
+.neg-item-text>li{
+  font-size: 90%;
+  font-weight: 300;
+}
+
+.neg-item-text>li>h1{
+  font-size: 100%;
+}
+
+.date-feito{
+  margin: auto;
+  position: relative;
+  color: rgb(0, 0, 0);
+  font-weight: 200;
+  font-size: 90%;
+  margin-right: 0px;
+}
+
+.relogio{
+  color: rgb(145, 145, 145);
+  font-weight: 10;
+}
+
+.img-neg-troca{
+  position: absolute;
+  left:12%;
+}
+
+.icon-troca{
+  position: absolute;
+  top: 25%;
+  left: 8.2%;
+}
+
+.neg-item-text-troca{
+  position: relative;
+  left: 15%;
+
+}
+
+.btn-troca-area {
+  position: absolute;
+  left: 65%;
+  margin: auto;
+  top: 15%;
+  line-height: 10px;
+}
+
+.btn-concretiza-area{
+  left: 75%
+
+}
+.btn-aceitar-oferta{
+  width: 130px;
+  height: 40px;
+  background-color: #46d37c;
+  border: 0px solid rgba(0, 0, 0, 0.267);
+  border-radius: 3px;
+  font-size: 80%;
+  color: #fff;
+  font-weight: 500;
+  opacity: 0.8;
+  border-bottom:2px solid #37aa63;
+  
+}
+
+
+.btn-aceitar-oferta:hover{
+  opacity: 1;
+}
+
+.btn-aceitar-oferta:focus{
+  outline: 0px solid;
+  border: 0px solid;
+}
+
+
+.btn-recusar-oferta{
+  margin-left: 10px;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(226, 83, 83, 0.808);
+  border: 0px solid;
+  color: #fff;
+  border-radius: 3px;
+  border-bottom:2px solid rgb(175, 67, 67);
+}
+
+.btn-recusar-oferta:hover{
+  background-color: rgb(226, 83, 83);
+
+}
+
+.btn-recusar-oferta:focus{
+  outline: 0px solid;
+  border: 0px solid;
+}
+
+.btn-secondary, .btn-primary{
+  border: 1px solid rgb(209, 209, 209);
+  background-color: rgb(255, 255, 255);
+  color: black;
+}
+
+.btn-primary:hover{
+  background-color: #f05b78;
+  border: 0px solid;
+}
+
+#linha2{
+  position: relative;
+}
+
+.btn-concretizar{
+  width: 130px;
+  height: 40px;
+  font-size: 80%;
+  background-color: rgb(71, 71, 71);
+  color: #fff;
+  border: 0px solid;
+  border-radius: 3px;
+  border-bottom: 3px solid black;
+  opacity: 0.95;
+}
+
+.btn-concretizar:hover{
+  opacity: 1;
+}
+.btn-concretizar:focus{
+  outline: 0px solid;
+  border: 0px solid;
+}
+
+.btn-email{
+  margin-right: 20px;
+  width: 15px;
+  height: 15px;
+  border-radius: 3px;
+  border:0px solid;
+  background-color: rgb(255, 255, 255);
+  color: #f05b78;
+}
+
+.texto-contato {
+  position: absolute;
+  left: -207%;
+  font-size: 80%;
+  font-weight: 600;
+}
+
+.rate {
+  display: none;
+  position: absolute;
+  left:60%;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.288);
+  float: left;
+  height: 46px;
+  padding: 0 10px;
+}
+
+.rate:not(:checked) > input {
+  position: absolute;
+  top: -9999px;
+}
+
+.rate:not(:checked) > label {
+  float: right;
+  width: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 30px;
+  color: #ccc;
+}
+
+.rate:not(:checked) > label:before { content: '★ '; }
+
+.rate > input:checked ~ label { color: #ffc700; }
+
+.rate:not(:checked) > label:hover, .rate:not(:checked) > label:hover ~ label { color: #deb217; }
+
+.rate > input:checked + label:hover, .rate > input:checked + label:hover ~ label, .rate > input:checked ~ label:hover, .rate > input:checked ~ label:hover ~ label, .rate > label:hover ~ input:checked ~ label { color: #c59b08; }
