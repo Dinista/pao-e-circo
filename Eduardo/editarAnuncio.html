@@ -51,12 +51,17 @@
                 <h2 id="header1">Editar Anúncio</h2>
 
                 <div class="form-group">
-                    <label for="inputTitle"><i class="fa fa-bullhorn"></i> Título</label>
-                    <input type="text" class="form-control" id="inputTitle" placeholder="Titulo do anúncio" required>
+                    <label for="inputTitle"><i class="fa fa-bullhorn"></i> Título do anúncio</label>
+                    <input type="text" minlength="7" maxlength="50" class="form-control" id="inputTitle"
+                        placeholder="ex: Sapato social em bom estado, Luva azul" required>
+                    <small id="tituloHelp" class="form-text text-muted">&nbsp; Como seu anúncio aparecerá para as outras
+                        pessoas.</small>
                 </div>
                 <div class="form-group">
                     <label for="inputObject"><i class="fa fa-cube"></i> Objeto</label>
-                    <input type="text" class="form-control" id="inputObject" placeholder="Nome do objeto" required>
+                    <input type="text" minlength="6" maxlength="40" class="form-control" id="inputObject"
+                        placeholder="ex: Sapato, Luva" required>
+                    <small id="objetoHelp" class="form-text text-muted">&nbsp; Nome do objeto anunciado.</small>
                 </div>
 
 
@@ -88,33 +93,46 @@
                 </div>
 
                 <label for="inputPictures"><i class="fas fa-images"></i> Fotos</label>
-                <input class="pictureInput" type="file" id="picture1" name="picture1" accept="image/png, image/jpeg">
-                <input class="pictureInput" type="file" id="picture2" name="picture2" accept="image/png, image/jpeg">
+                <input class="pictureInput" type="file" id="picture1" name="picture1" accept="image/png, image/jpeg"
+                    required>
+                <input class="pictureInput" type="file" id="picture2" name="picture2" accept="image/png, image/jpeg"
+                    required>
                 <input class="pictureInput" type="file" id="picture3" name="picture3" accept="image/png, image/jpeg">
-
+                <small id="fotosHelp" class="form-text text-muted">&nbsp; Pelo menos 2 fotos.</small>
 
                 <div class="form-group">
                     <label for="inputDescription"><i class="fas fa-align-left"></i> Descrição do objeto</label>
-                    <textarea class="form-control" aria-label="With textarea"
-                        placeholder="Caracteristicas e informações sobre o objeto oferecido" required></textarea>
+                    <textarea class="form-control" aria-label="With textarea" id="inputDescription"
+                        placeholder="ex: Sapato tamanho 43-44, cor preta, bem preservado, 2 anos de uso, ..."
+                        required></textarea>
+                    <small id="descricaoHelp" class="form-text text-muted">&nbsp; Caracteristicas e informações sobre o
+                        objeto oferecido.</small>
                 </div>
 
                 <div class="form-group">
                     <label for="inputQuantity"><i class="fas fa-plus"></i> Quantidade</label>
-                    <input type="number" min=1 max=999 class="form-control" id="inputQuantity"
-                        placeholder="Quantidade de objetos disponiveis para troca" required>
+                    <input type="number" min=1 max=999 class="form-control" id="inputQuantity" placeholder="ex: 2"
+                        required>
+                    <small id="quantidadeHelp" class="form-text text-muted">&nbsp; Quantidade de objetos disponiveis
+                        para troca.&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        &nbsp; &nbsp; &nbsp; &nbsp;
+                        (Somente números, 1 a 999)</small>
                 </div>
 
                 <div class="form-group">
                     <label for="inputKeywords"><i class="fas fa-key"></i> Palavras-chave</label>
-                    <input type="text" class="form-control" id="inputKeywords"
-                        placeholder="Palavras-chave para relacionadas ao seu produto" required>
+                    <input type="text" maxlength="100" class="form-control" id="inputKeywords"
+                        placeholder="ex: formal, social, sport fino, sapato masculino, ..." required>
+                    <small id="palavrasHelp" class="form-text text-muted">&nbsp; Palavras-chave relacionadas ao seu
+                        produto. Entre virgulas.</small>
                 </div>
 
                 <div class="form-group">
                     <label for="inputDesiredItems"><i class="fas fa-box-open"></i> Itens desejados em troca</label>
                     <input type="text" class="form-control" id="inputQuantity"
-                        placeholder="Itens que tem preferência de receber em troca" required>
+                        placeholder="ex: tenis para corrida, carteira de couro, ..." required>
+                    <small id="desejadosHelp" class="form-text text-muted">&nbsp; Itens que tem preferência de receber
+                        em troca.</small>
                 </div>
 
                 <label for="inputEstimatedValue"><i class="fas fa-dollar-sign"></i> Valor estimado</label>
@@ -122,16 +140,19 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">R$</span>
                     </div>
-                    <input type="number" min=0 max=99999 class="form-control" aria-label="Quantia"
-                        placeholder="Quanto seu item vale em média" required>
+                    <input type="number" min=0 max=99999 class="form-control" aria-label="Quantia" placeholder="ex: 50"
+                        required>
                     <div class="input-group-append">
                         <span class="input-group-text">.00</span>
                     </div>
+                    <small id="desejadosHelp" class="form-text text-muted">&nbsp; Quanto você acha que seu objeto vale
+                        em média, em reais. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (Somente números, de 0 a
+                        99999)</small>
                 </div>
 
                 <div class="btn-salvar-alteracoes">
                     <a href="#btn-salvar-alteracoes">
-                        <button type="submit" class="btn btn-primary">Criar Anúncio</button>
+                        <button type="submit" class="btn btn-primary">Salvar alterações</button>
                     </a>
                 </div>
 
