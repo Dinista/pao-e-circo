@@ -1,0 +1,45 @@
+/* Centraliza Header */
+
+.o-logo {
+    position: relative;
+    vertical-align: auto;
+    top: 0;
+    left: 45%;
+}
+
+/***/
+.o-icon {
+    position: absolute;
+    top: 35%;
+    left: 5%;
+    height: 1500px;
+  }
+
+
+  /* ?? */
+  .form-font {
+    position: absolute;
+    left: 20%;
+    top: -15%;
+    font-size: 119%;
+  }
+
+  /* Posicão do forms */
+  .nav-tab {
+    position: absolute;
+    width: 700px;
+    left: 20%;
+    top: 15%;
+  }
+  #header1,#header2 {
+    text-align: center;
+  }
+  /* Deixe a escrita "Todos os direitos reservados" pequena e em cinza */
+  .direitos {
+    position: absolute;
+    font-size: 75%;
+    color: rgb(150, 150, 150);
+    margin-left: 27%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
