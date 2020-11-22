@@ -16,29 +16,24 @@
   height: 150px;
 }
 
-.btn,
-.btn-primary,
-.btn-primary:active {
+.btn, .btn-primary, .btn-primary:active {
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
   box-shadow: 0 5px 0 #c72060;
   background-color: rgb(255, 50, 94);
   border-color: rgb(255, 50, 94);
   width: 375px;
 }
 
-
-.btn-primary:hover,
-.btn-primary:visited,
-.btn-primary:focus,
-.btn-primary:active:focus {
-  box-shadow: 0 5px 0 #0e0e0e;
-  background-color: rgb(53, 53, 53);
-  border-color: rgb(0, 0, 0);
+.btn-primary:hover, .btn-primary:visited, .btn-primary:focus, .btn-primary:active:focus {
+  box-shadow: 0 5px 0 #691535;
+  background-color: #ad2056;
+  border-color: #3d091d;
   border-width: 1px;
-  width: 375px;
 }
 
-
 /* ?? */
+
 .form-font {
   position: absolute;
   left: 20%;
@@ -47,6 +42,7 @@
 }
 
 /* Posicão do forms */
+
 .nav-tab {
   position: absolute;
   width: 400px;
@@ -61,11 +57,13 @@
 }
 
 /* Posição botão cadastrar */
+
 .btn-editar-anuncio {
   margin-top: 2%;
 }
 
 /* Deixe a escrita "Todos os direitos reservados" pequena e em cinza */
+
 .direitos {
   position: absolute;
   font-size: 75%;
@@ -77,8 +75,10 @@
 
 .sessao-header {
   font-family: 'Courier New', Courier, monospace;
-  display: flex;  /* Deixa esse container ocupar somente o necessário pro tamanho do header */
-  justify-content: center; /* Centraliza o titulo geral da pagina Conhecimentos */
+  display: flex;
+  /* Deixa esse container ocupar somente o necessário pro tamanho do header */
+  justify-content: center;
+  /* Centraliza o titulo geral da pagina Conhecimentos */
   position: absolute;
   left: 40%;
   top: 9%;
@@ -90,6 +90,47 @@
   max-height: 10rem;
 }
 
-.pictureInput  {
+.pictureInput {
   margin-bottom: .5rem;
 }
+
+/* Modal sair sem salvar */
+
+#botaoSair {
+  width: 12rem;
+}
+
+#botaoSair, #botaoSair:active {
+  background-color: red;
+  box-shadow: 0 5px 0 #e79f9a;
+  border-color: rgb(139, 18, 18);
+}
+
+#botaoSair:hover, #botaoSair:focus, #botaoSair:visited, #botaoSair:active:focus{
+  background-color: rgb(187, 14, 14);
+  box-shadow: 0 5px 0 #7a1b14;
+  border-color: rgb(104, 20, 20);
+}
+
+#botaoFicar {
+  width: 12rem;
+  position: absolute;
+  left: 2.5%;
+}
+
+#botaoFicar, #botaoFicar:active {
+  color: #0e0e0e;
+  background-color: rgb(223, 223, 223);
+  box-shadow: 0 5px 0 #a5a1a3;
+  border-color: rgb(51, 50, 51);
+  
+}
+
+#botaoFicar:hover, #botaoFicar:focus, #botaoFicar:visited, #botaoFicar:active:focus{
+  color: #0e0e0e;
+  background-color: rgb(141, 139, 139);
+  box-shadow: 0 5px 0 #525151;
+  border-color: rgb(37, 36, 36);
+}
+
+/***/

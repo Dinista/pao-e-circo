@@ -58,17 +58,6 @@
                     <i class="fas fa-user"></i> <b>Empresa contratante</b></label> Pioneer Cellular LTDA <br>
                     <i class="fas fa-calendar"></i> <b>Data de expiração: </b> 31/12/2020
 
-                    <button type="submit" class="btn btn-primary" id="btn-alterar-empresa" data-toggle="modal"
-                        data-target="#modalEmpresa">
-                        Alterar empresa
-                    </button>
-
-                    <button type="submit" class="btn btn-primary" id="btn-alterar-data" data-toggle="modal"
-                    data-target="#modalData">
-                        Alterar Data
-                    </button>
-
-
                     <button class="btn btn-primary" id="button-collapse-picture1" type="submit" data-toggle="collapse"
                         href="#collapsePicture" role="button" aria-expanded="false" aria-controls="collapsePicture">
                         Alterar imagem propaganda
@@ -80,6 +69,17 @@
                         </div>
                     </div>
 
+                    <button type="submit" class="btn btn-primary" id="btn-alterar-empresa" data-toggle="modal"
+                        data-target="#modalEmpresa">
+                        Alterar empresa
+                    </button>
+                    <br>
+
+                    <button type="submit" class="btn btn-primary" id="btn-alterar-data" data-toggle="modal"
+                        data-target="#modalData">
+                        Alterar Data
+                    </button>
+                    <br>
 
                     <button type="submit" class="btn btn-primary" id="btn-encerrar-propaganda" data-toggle="modal"
                         data-target="#modalExclusao">
@@ -96,17 +96,6 @@
                     <i class="fas fa-user"></i> <b>Empresa contratante</b></label> ASUS LTDA <br>
                     <i class="fas fa-calendar"></i> <b>Data de expiração: </b> 31/01/2021
 
-                    <button type="submit" class="btn btn-primary" id="btn-alterar-empresa" data-toggle="modal"
-                        data-target="#modalEmpresa">
-                        Alterar empresa
-                    </button>
-
-                    <button type="submit" class="btn btn-primary" id="btn-alterar-data" data-toggle="modal"
-                    data-target="#modalData">
-                        Alterar Data
-                    </button>
-
-
                     <button class="btn btn-primary" id="button-collapse-picture2" type="submit" data-toggle="collapse"
                         href="#collapsePicture2" role="button" aria-expanded="false" aria-controls="collapsePicture2">
                         Alterar imagem propaganda
@@ -117,6 +106,18 @@
                                 accept="image/png, image/jpeg" required>
                         </div>
                     </div>
+
+                    <button type="submit" class="btn btn-primary" id="btn-alterar-empresa" data-toggle="modal"
+                        data-target="#modalEmpresa">
+                        Alterar empresa
+                    </button>
+                    <br>
+
+                    <button type="submit" class="btn btn-primary" id="btn-alterar-data" data-toggle="modal"
+                        data-target="#modalData">
+                        Alterar Data
+                    </button>
+                    <br>
 
                     <button type="submit" class="btn btn-primary" id="btn-encerrar-propaganda" data-toggle="modal"
                         data-target="#modalExclusao">
@@ -130,19 +131,8 @@
 
                     <h5>Anúncio 3</h5>
                     <img src="Imagens/banner-placeholder.png" class="img-fluid">
-                    <i class="fas fa-user"></i> <b>Empresa contratante</b></label>  <br>
+                    <i class="fas fa-user"></i> <b>Empresa contratante</b></label> <br>
                     <i class="fas fa-calendar"></i> <b>Data de expiração: </b> --/-/----
-
-                    <button type="submit" class="btn btn-primary" id="btn-alterar-empresa" data-toggle="modal"
-                        data-target="#modalEmpresa">
-                        Alterar empresa
-                    </button>
-
-                    <button type="submit" class="btn btn-primary" id="btn-alterar-data" data-toggle="modal"
-                    data-target="#modalData">
-                        Alterar Data
-                    </button>
-
 
                     <button class="btn btn-primary" id="button-collapse-picture3" type="submit" data-toggle="collapse"
                         href="#collapsePicture3" role="button" aria-expanded="false" aria-controls="collapsePicture3">
@@ -154,6 +144,18 @@
                                 accept="image/png, image/jpeg" required>
                         </div>
                     </div>
+
+                    <button type="submit" class="btn btn-primary" id="btn-alterar-empresa" data-toggle="modal"
+                        data-target="#modalEmpresa">
+                        Alterar empresa
+                    </button>
+                    <br>
+                
+                    <button type="submit" class="btn btn-primary" id="btn-alterar-data" data-toggle="modal"
+                        data-target="#modalData">
+                        Alterar Data
+                    </button>
+                    <br>
 
                     <button type="submit" class="btn btn-primary" id="btn-encerrar-propaganda" data-toggle="modal"
                         data-target="#modalExclusao">
@@ -178,8 +180,8 @@
                                 Deseja mesmo encerrar a propaganda?
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Encerrar</button>
+                                <button type="button" id="botaoCancelar" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button type="button" id="botaoEncerrar" class="btn btn-primary" data-dismiss="modal">Encerrar</button>
                             </div>
                         </div>
                     </div>
@@ -206,17 +208,18 @@
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Alterar</button>
+                                <button type="button" id="botaoCancelar" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button type="button"  id="botaoSalvar" class="btn btn-primary" data-dismiss="modal">Salvar
+                                    Alterações</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- -->
-                
+
                 <!-- Modal Data -->
-                <div class="modal fade" id="modalData" tabindex="-1" role="dialog"
-                    aria-labelledby="alterarData" aria-hidden="true">
+                <div class="modal fade" id="modalData" tabindex="-1" role="dialog" aria-labelledby="alterarData"
+                    aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -234,8 +237,9 @@
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Alterar</button>
+                                <button type="button" id="botaoCancelar" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button type="button" id="botaoSalvar" class="btn btn-primary" data-dismiss="modal">Salvar
+                                    Alterações</button>
                             </div>
                         </div>
                     </div>
