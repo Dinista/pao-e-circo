@@ -89,8 +89,8 @@ a:link {
 }
 /* tranforma iamgem para tamanho padrao*/
 .d-block {
-  width: 800px!important;
-  height: 600px!important;
+  width: 1000px!important;
+  height: 800px!important;
   }
   .align-self-center {
     width: 100px!important;
@@ -101,7 +101,10 @@ a:link {
         text-align: center;
         font-style: arial;
       }
-
+/**/
+#categoria{
+  
+}
 .menu-item {
   position: relative;
   height: 30px;
@@ -185,9 +188,9 @@ a:link {
   
   .nav-tab {
     position: absolute;
-    width: 800px;
+    width: 1000px;
     left: 20%;
-    top: 15%;
+    top: 8%;
   }
   
   /* Deixe a escrita "Todos os direitos reservados" pequena e em cinza */
