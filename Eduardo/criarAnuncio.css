@@ -93,3 +93,10 @@
 .pictureInput  {
   margin-bottom: .5rem;
 }
+
+
+#btn-modal-sucesso-ok {
+  width: 100px;
+  position: relative;
+  left: 40%;
+}
