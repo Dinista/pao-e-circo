@@ -90,6 +90,7 @@ a:link {
   border-radius: 25px;
 }
 
+
 .menu-item {
   position: relative;
   height: 30px;
@@ -139,6 +140,7 @@ a:link {
     outline: none;
 }
 
+/* fim header*/
 
 .negociacoes-area{
     display: flex;
