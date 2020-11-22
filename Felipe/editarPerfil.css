@@ -1,0 +1,384 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap');
+
+
+body{
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+.search {
+  position: absolute;
+  top: 1.5%;
+  left: 10%;
+  width: 60%;
+  margin-bottom: auto;
+  height: 50px;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.search-input {
+  color: white;
+  border: 0;
+  outline: 0;
+  background: none;
+  width: 0;
+  margin-top: 2px;
+  height: 25px;
+  caret-color: transparent;
+  line-height: 20px;
+  transition: width 0.4s linear;
+}
+
+.search .search-input {
+  padding: 0 10px;
+  width: 100%;
+  caret-color: #f55f84;
+  font-size: 19px;
+  font-weight: 300;
+  color: black;
+  transition: width 0.4s linear;
+}
+
+.search-icon {
+  height: 34px;
+  width: 34px;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: #fd5c7f;
+  font-size: 10px;
+  bottom: 30px;
+  position: relative;
+  border-radius: 5px;
+}
+
+.search-icon:hover {
+  color: #fff !important;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+.nav-area {
+  width: 100vw;
+  height: 9vh;
+}
+
+.topbar {
+  width: 100vw;
+  height: 9vh;
+  background-color: rgb(255, 255, 255);
+}
+
+.nav-logo-img {
+  margin-left: 2.5vw;
+  margin-top: 0.3vw;
+}
+
+.header {
+  position: relative;
+}
+
+.nav-user-img {
+  width: 10%;
+  margin-right: 10px;
+  height: 10%;
+  border-radius: 25px;
+}
+
+
+.menu-item {
+  position: relative;
+  height: 30px;
+  font-size: 20px;
+  top: 5px;
+}
+
+.fa {
+  color: rgb(59, 59, 59);
+}
+
+.menu {
+  position: absolute;
+  list-style-type: none;
+  width: 410px;
+  display: inline;
+  right: 0%;
+  top: 1.8%;
+  right: 2%;
+}
+
+.menu li {
+  display: inline;
+  letter-spacing: 15px;
+}
+
+.btn-anunciar{
+    position: absolute;
+    width: 130px;
+    top: -8px;
+    background-color:#f05b78;
+    border: none;
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    padding: 12px;
+    font-weight: 500;
+    border-radius: 5px;
+
+}
+
+.btn-anunciar:hover{
+   opacity: 0.8;
+}
+
+.btn-anunciar:focus{
+    border: none;
+    outline: none;
+}
+
+/* fim header*/
+
+.wrap{
+    position: relative;
+    width: 1176px;
+    height: auto;
+    /*background-color: pink;*/
+    margin: auto;
+    margin-top: 2%;
+}
+
+.layout-esq{
+    position: relative;
+    width: 25.5%;
+    height: 300px;
+    box-shadow: 0 0 5px rgba(44, 44, 44, 0.212);
+}
+
+
+.layout-bg{
+    position: absolute;
+    width: 300px;
+    height: auto;
+}
+
+
+.layout-user-img{
+    position: absolute;
+    width: 80px;
+    height: auto;
+    left: 35%;
+    top: 15%;
+    border-radius: 50px;
+    border: 2px solid white; 
+}
+#texto-esq{
+    position: absolute;
+    text-align: center;
+    left: 26%;
+    top: 45%;
+    font-size: 12px;
+    color: rgb(88, 88, 88);
+}
+
+#texto-esq>h1{
+    font-size: 25px;
+    color: rgb(36, 36, 36);
+}
+
+.layout-esq>button{
+    position: absolute;
+    width: 120px;
+    height: 50px;
+    top: 75%;
+    left: 29%;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.103);
+    border-radius: 3px;
+    color: rgb(252, 76, 105);
+    font-weight: 600;
+    font-size: 13px;
+}
+
+#bg{
+    position: relative;
+    width: 300px;
+    height: 70px;
+    overflow: hidden;
+
+}
+
+.layout-center-header{
+    position: absolute;
+    top: 0%;
+    left: 350px;
+    padding: 22px;
+    font-size: 18px;
+    width: 70.2%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.164);
+    border-radius: 5px;
+    color: rgb(252, 76, 105);
+    font-weight: 600;
+}
+
+.layout-center{
+    position: absolute;
+    left:350px;
+    top: 90px;
+    width: 70.2%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.164);
+    height: auto;
+    border-radius: 3px;
+    padding: 10px;
+}
+
+.header-categorias{
+    padding: 15px;
+    border-radius: 5px;
+    font-weight: 500;
+    color: rgb(119, 118, 118);
+    background-color: rgb(247, 245, 245);
+}
+
+.alt-foto, .alt-foto>li>ul{
+    list-style: none;
+}
+
+.img-alt{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+.list-pic{
+    display: flex;
+    margin-top: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.048);
+}
+
+.text-alt{
+    margin: auto;
+    margin-left: 0px;
+}
+
+.list-pic>button{
+    width: 120px;
+    height: 50px;
+    margin-right: 40px;
+    margin-top: 25px;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.103);
+    border-radius: 3px;
+    color: rgb(252, 76, 105);
+    font-weight: 600;
+    font-size: 13px;
+    border-bottom: 3px solid rgba(0, 0, 0, 0.116);
+}
+
+.dados, .dados>li{
+    list-style: none;
+    margin: 0px 0px 0px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.068);
+    padding: 15px;
+}
+
+.titulo{
+    font-weight: 700;
+}
+
+.info{
+    position: absolute;
+    left:25%;
+    color: rgb(104, 104, 104);
+}
+
+.header-categorias>button{
+    position: absolute;
+    right: 10%;
+    background-color: rgba(0, 0, 0, 0);
+    border: 0px solid;
+    color:  rgb(252, 76, 105);
+}
+
+button:focus{
+    outline: 0px solid;
+}
+
+.endereco-info{
+    position: relative;
+    list-style: none; 
+    margin-top: 20px;
+    color:  rgb(104, 104, 104);
+}
+
+.endereco-info>button{
+    position: absolute;
+    top: 10%;
+    right: 9%;
+    background-color: rgba(0, 0, 0, 0);
+    border: 0px solid;
+    color:  rgb(252, 76, 105);
+}
+
+.texto-conta{
+    width: 400px;
+    font-size: 14px;
+    padding: 30px;
+    display: flex;
+    
+}
+.texto-conta>text>h1{
+    font-size: 16px;
+    color: rgb(27, 27, 27);
+}
+
+.texto-conta>text{
+    color: rgb(78, 78, 78);
+}
+
+.excluir-conta{
+    position: absolute;
+    left: 50
+}
+
+#excluir-conta{
+    position: absolute;
+    background-color: rgba(255, 127, 80, 0);
+    border: 0px solid;
+    font-weight: 700;
+    color: crimson;
+    font-size: 15px;
+    width: 120px;
+    height: 50px;
+    right: 5%;
+    margin-top: 25px;
+}
+
+.salve{
+    width: 100%;
+    border-top: 1px solid rgba(192, 192, 192, 0.404);
+}
+
+.salvar{
+    margin-top: 2%;
+    margin-left:40%;
+    height: 50px ;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.103);
+    border-radius: 3px;
+    color: rgb(252, 76, 105);
+    font-weight: 600;
+    font-size: 14px;
+    border-bottom: 3px solid rgba(0, 0, 0, 0.151);
+    
+}
+
+.salvar:focus, .list-pic>button:focus{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.103);
+}
