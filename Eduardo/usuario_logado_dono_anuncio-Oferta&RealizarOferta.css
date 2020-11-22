@@ -233,3 +233,71 @@ img {
 #btn-ofertar-obj-selecionado {
   size: 10rem;
 }
+
+#container-excluir {
+  font-weight: bolder;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  border-radius: 1rem;
+  padding-bottom: .1rem;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+#header-excluir {
+  padding-top: .4rem;
+  text-align: center;
+}
+
+#btnExcluir, #btnExcluir:active {
+  margin-top: 0.3rem;
+  margin-left: 0.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 5px 0 #c72020;
+  background-color: rgb(255, 50, 50);
+  border-color: rgb(255, 50, 50);
+  width: 200px;
+}
+
+#btnExcluir:hover, #btnExcluir:visited, #btnExcluir:focus, #btnExcluir:active:focus {
+box-shadow: 0 5px 0  #691515;
+background-color:  #ad2020;
+border-color: #3d0909;
+border-width: 1px;
+}
+
+/* BOTAO EXCLUIR ANUNCIO */
+
+#btn-excluir-anuncio, #btn-sim-desejo-excluir {
+  box-shadow: 0 5px 0 #701212;
+  background-color: rgb(226, 27, 27);
+  border-color: rgb(206, 34, 34);
+}
+
+#btn-cancelar {
+  position: absolute;
+  left: 2.5%;
+}
+
+.btn-primary:hover, .btn-primary:visited, .btn-primary:focus, .btn-primary:active:focus {
+  box-shadow: 0 5px 0 #0e0e0e;
+  background-color: rgb(53, 53, 53);
+  border-color: rgb(0, 0, 0);
+  border-width: 1px;
+}
+
+/***/
+
+#btn-responder-comentario{
+  position: absolute;
+  left: 77.4%;
+  width: 100px;
+}
+
+#resposta-comentario {
+  padding-top: 4rem;
+}
+
+#labelResponderComentario {
+  font-weight: bolder;
+}
