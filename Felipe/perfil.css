@@ -3,6 +3,8 @@
 
 body{
   font-family: 'Noto Sans JP', sans-serif;
+  height: 100%;
+
 }
 
 .search {
@@ -419,4 +421,20 @@ ul.nav-tabs a{
 .fa-pencil-alt:hover{
   box-shadow: 0px 0px 5px rgba(150, 150, 150, 0.281);
   opacity: 1;
+}
+
+/* footer */
+
+footer, .push{
+  position: relative;
+  margin-top: -150px; /* negative value of footer height */
+  height: 150px;
+  clear:both;
+  padding-top:20px;
+  width: 1176px;
+
+}
+
+main{
+  padding-bottom:150px;
 }

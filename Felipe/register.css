@@ -20,6 +20,9 @@
   margin-right: auto;
   box-sizing: border-box;
 }
+.header{
+  margin-bottom: 15px;
+}
 
 .btn,
 .btn-primary,
@@ -49,7 +52,7 @@
   position: absolute;
   width: 400px;
   left: 35%;
-  top: 15%;
+  top: 18%;
 }
 .btn-cadastrar {
   margin-top: 2%;
@@ -61,4 +64,12 @@
   margin-left: 27%;
   margin-top: 5%;
   margin-bottom: 5%;
+}
+
+.titulo{
+  font-weight: 600;
+  padding-top: 5px;
+  font-size: 20px;
+  margin-left: 35%;
+  margin-bottom: 20px;
 }
