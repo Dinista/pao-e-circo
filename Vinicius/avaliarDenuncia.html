@@ -12,58 +12,54 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="buscarAnuncio.css">
+    <link rel="stylesheet" href="avaliarDenuncia.css">
     <title>Avaliar Denuncia</title>
 </head>
 
 <body>
-    <!-- Header -->
-    <header>
-        <container class="nav-area">
-            <nav class="topbar bg-light">
-                <dev class="menu-logo"><a href="#" class="menu-link"><img class="nav-logo-img"
-                            src="Imagens/Logo-Pser 2.png" alt=""></a></dev>
-                <div class="d-flex justify-content-center px-5">
-                    <div class="search">
-                        <input type="text" class="search-input" placeholder="Procure um produto..." name="">
-                        <a href="#" class="search-icon"> <i class="fa fa-search"></i></a>
-                    </div>
-                </div>
-                <ul class="menu">
-                    <li class="logo-nav"><a href="perfil.html" class="menu-link" title="Perfil"><img
-                                class="nav-user-img" src="Imagens/Avatar-pic-example.jpg" alt=""></a></li>
-                    <li class="menu-item"><a href="#" class="menu-link" title="Destaque"><i
-                                class="fa fa-bullhorn"></i></a></li>
-                    <li class="menu-item"><a href="#" class="menu-link" title="Negociações"><i
-                                class="fa fa-handshake"></i></a></li>
-                    <li class="menu-item"><a href="#" class="menu-link" title="Ajuda"><i
-                                class="fa fa-question-circle"></i></a></li>
-                    <li class="menu-item"><a href="register.html"><button class="btn-anunciar">quero
-                                anunciar</button></a></li>
-                </ul>
-            </nav>
-        </container>
-    </header>
+   <!-- Header -->
+   <header>
+    <nav class="navbar navbar-light bg-light">
+        <div class="o-logo">
+            <a href="#"><img src="Imagens/Logo-Pser 2.png" alt=""></a>
+        </div>
+        <div class="nav-voltar">
+            <a href="#">
+                <svg class=" o-icon -xs-size-medium -color-extra-dark -spaced-right -full-arrow-left "
+                    style="position: absolute; width: 30; height: 30;" width="0" height="0" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    data-toggle="modal" data-target="#modalSair">
+                    <use xlink:href="#icon-full-arrow-left">
+                        <svg viewBox="0 0 30 30" id="icon-full-arrow-left">
+                            <g fill="none" fill-rule="evenodd">
+                                <path
+                                    d="m22.85 11.147l-7-7c-.196-.196-.514-.196-.71 0-.196.196-.196.514 0 .71l6.15 6.14h-19.79c-.276 0-.5.224-.5.5 0 .276.224.5.5.5h19.79l-6.15 6.15c-.196.196-.196.514 0 .71.196.196.514.196.71 0l7-7c.095-.094.148-.222.148-.355 0-.133-.053-.261-.148-.355"
+                                    fill="black" fill-rule="nonzero" transform="matrix(-1 0 0 1 23.998 0)">
+                                </path>
+                            </g>
+                        </svg>
+                    </use>
+                </svg>
+            </a>
+        </div>
+        </div>
+</header>
 
     <div class="nav-tab" novalidate>
         <div class="container p-3 my-3 border">
             <h2 class="text-center" id="ResultadoPesquisa"> <b>Denuncias Pendentes:</b> </h2>
 
-            <!-- Anuncio 1 -->
+            <!-- denuncia 1 -->
             <div class="container p-3 my-3 border bg-light-gray" id="anuncio1">
                 <div class="media">
                     <img class="align-self-center mr-3" src="imagens/tremzinho.jpg" alt="Imagem de exemplo genérica">
                     <div class="media-body">
                         <h5 class="mt-0"><i class="fas fa-box"></i> <b>Camiseta Amarela Desenho</b></h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at euismod ante.
-                            Vestibulum ullamcorper aliquet lacus vel consectetur. Proin accumsan accumsan elit sed
-                            auctor.</p>
-                        <p class="mb-0">
                         <form class="form-inline">
                             <div class="form-group mb-2">
-                                <i class="fas fa-coins"></i> <b>Valor Estimado: </b> R$30,00 </div>
+                                <i class="fas fa-bullhorn"></i> <b>Numero de Denuncias: </b> 30 </div>
                             <div class="form-group mx-sm-3 mb-2">
-                                <i class="fas fa-bread-slice"></i> <b>Itens Desejados: </b> Lorem ipsum dolor.
+                                <i class="fas fa-tag"></i> <b>Categoria da Denuncia: </b> Conteudo Improprio.
                             </div>
                         </form>
                         <form class="form-inline">
@@ -71,15 +67,17 @@
                                 <i class="fas fa-user"></i> <b>Anunciante: </b> Jack Roberto Silva
                             </div>
                             <div class="form-group mx-sm-3 mb-2">
-                                <i class="fas fa-star"></i> <b> Avaliação: </b> 4,6
-                            </div>
-                            <div class="form-group col-md-6">
-                                <button type="submit" class="btn btn-primary">Visualizar</button>
+                                <i class="fas fa-user"></i> <b> Denunciante: </b> Rack Jobs Regis
                             </div>
                         </form>
-
-
-                        </p>
+                        <h5 class="mt-0"><i class="fas fa-exclamation-triangle"></i> <b>Descrição da Denuncia:</b></h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at euismod ante.
+                            Vestibulum ullamcorper aliquet lacus vel consectetur. Proin accumsan accumsan elit sed
+                            auctor.</p>
+                        <p class="mb-0">
+                        <div class="form-group col-md-6">
+                            <button type="submit" class="btn btn-primary">Visualizar</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -88,32 +86,32 @@
             <!-- Anuncio 2 -->
             <div class="container p-3 my-3 border bg-light-gray" id="anuncio1">
                 <div class="media">
-                    <img class="align-self-center mr-3" src="imagens/Vaso-rosto.jpg" alt="Imagem de exemplo genérica">
+                    <img class="align-self-center mr-3" src="imagens/pistola.jpg" alt="Imagem de exemplo genérica">
                     <div class="media-body">
-                        <h5 class="mt-0"><i class="fas fa-box"></i> <b>Vaso em formato de rosto</b></h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam condimentum. </p>
+                        <h5 class="mt-0"><i class="fas fa-box"></i> <b>Pistola Glock Nova</b></h5>
+                        <form class="form-inline">
+                            <div class="form-group mb-2">
+                                <i class="fas fa-bullhorn"></i> <b>Numero de Denuncias: </b> 100 </div>
+                            <div class="form-group mx-sm-3 mb-2">
+                                <i class="fas fa-tag"></i> <b>Categoria da Denuncia: </b> Conteudo Ilicito.
+                            </div>
+                        </form>
+                        <form class="form-inline">
+                            <div class="form-group mb-2">
+                                <i class="fas fa-user"></i> <b>Anunciante: </b> Robert Jhonsons Quadrado
+                            </div>
+                            <div class="form-group mx-sm-3 mb-2">
+                                <i class="fas fa-user"></i> <b> Denunciante: </b> Maria Fernanda de Jesus
+                            </div>
+                        </form>
+                        <h5 class="mt-0"><i class="fas fa-exclamation-triangle"></i> <b>Descrição da Denuncia:</b></h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at euismod ante.
+                            Vestibulum ullamcorper aliquet lacus vel consectetur. Proin accumsan accumsan elit sed
+                            auctor.</p>
                         <p class="mb-0">
-                        <form class="form-inline">
-                            <div class="form-group mb-2">
-                                <i class="fas fa-coins"></i> <b>Valor Estimado: </b> R$50,00 </div>
-                            <div class="form-group mx-sm-3 mb-2">
-                                <i class="fas fa-bread-slice"></i> <b>Itens Desejados: </b> Lorem ipsum dolor sit.
-                            </div>
-                        </form>
-                        <form class="form-inline">
-                            <div class="form-group mb-2">
-                                <i class="fas fa-user"></i> <b>Anunciante: </b> Julia Rodrigues Santos
-                            </div>
-                            <div class="form-group mx-sm-3 mb-2">
-                                <i class="fas fa-star"></i> <b> Avaliação: </b> 4,8
-                            </div>
-                            <div class="form-group col-md-6">
-                                <button type="submit" class="btn btn-primary">Visualizar</button>
-                            </div>
-                        </form>
-
-
-                        </p>
+                        <div class="form-group col-md-6">
+                            <button type="submit" class="btn btn-primary">Visualizar</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -122,48 +120,45 @@
             <!-- Anuncio 3 -->
             <div class="container p-3 my-3 border bg-light-gray" id="anuncio1">
                 <div class="media">
-                    <img class="align-self-center mr-3" src="imagens/Relogio-Bolso.jpg"
-                        alt="Imagem de exemplo genérica">
+                    <img class="align-self-center mr-3" src="imagens/pipa.jpg" alt="Imagem de exemplo genérica">
                     <div class="media-body">
-                        <h5 class="mt-0"><i class="fas fa-box"></i> <b>Relogio de Bolso Dourado</b></h5>
-                        <p>Cras dui diam, vulputate ut tempus vel, blandit in nulla. Sed bibendum sem eros, a
-                            lacinia.
-                        </p>
+                        <h5 class="mt-0"><i class="fas fa-box"></i> <b>Pipa</b></h5>
+                        <form class="form-inline">
+                            <div class="form-group mb-2">
+                                <i class="fas fa-bullhorn"></i> <b>Numero de Denuncias: </b> 8 </div>
+                            <div class="form-group mx-sm-3 mb-2">
+                                <i class="fas fa-tag"></i> <b>Categoria da Denuncia: </b> Conteudo Improprio.
+                            </div>
+                        </form>
+                        <form class="form-inline">
+                            <div class="form-group mb-2">
+                                <i class="fas fa-user"></i> <b>Anunciante: </b> Ding Dong Dololong
+                            </div>
+                            <div class="form-group mx-sm-3 mb-2">
+                                <i class="fas fa-user"></i> <b> Denunciante: </b> Tic Toc Tuc Tow
+                            </div>
+                        </form>
+                        <h5 class="mt-0"><i class="fas fa-exclamation-triangle"></i> <b>Descrição da Denuncia:</b></h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at euismod ante.
+                            Vestibulum ullamcorper aliquet lacus vel consectetur. Proin accumsan accumsan elit sed
+                            auctor.</p>
                         <p class="mb-0">
-                        <form class="form-inline">
-                            <div class="form-group mb-2">
-                                <i class="fas fa-coins"></i> <b>Valor Estimado: </b> R$500,00 </div>
-                            <div class="form-group mx-sm-3 mb-2">
-                                <i class="fas fa-bread-slice"></i> <b>Itens Desejados: </b> Lorem ipsum dolor.
-                            </div>
-                        </form>
-                        <form class="form-inline">
-                            <div class="form-group mb-2">
-                                <i class="fas fa-user"></i> <b>Anunciante: </b> Lionel Cabron Sales
-                            </div>
-                            <div class="form-group mx-sm-3 mb-2">
-                                <i class="fas fa-star"></i> <b> Avaliação: </b> 4,7
-                            </div>
-                            <div class="form-group col-md-6">
-                                <button type="submit" class="btn btn-primary">Visualizar</button>
-                            </div>
-                        </form>
-
-
-                        </p>
+                        <div class="form-group col-md-6">
+                            <button type="submit" class="btn btn-primary">Visualizar</button>
+                        </div>
                     </div>
                 </div>
             </div>
             <!-- -->
             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                 <div class="btn-group mr-2" role="group" aria-label="First group">
-                  <button type="button" class="btn btn-secondary">1</button>
-                  <button type="button" class="btn btn-secondary">2</button>
+                    <button type="button" class="btn btn-secondary">1</button>
+                    <button type="button" class="btn btn-secondary">2</button>
                 </div>
                 <div class="btn-group" role="group" aria-label="Third group">
-                  <button type="button" class="btn btn-secondary">Proximo</button>
+                    <button type="button" class="btn btn-secondary">Proximo</button>
                 </div>
-              </div>
+            </div>
         </div>
     </div>
 
