@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="criarAnuncio.css">
 </head>
 
+
 <body>
     <!-- Header -->
     <header>
@@ -45,129 +46,103 @@
 
 
     <!-- Informações sobre o anúncio -->
-    <div class="nav-tab bg-light" novalidate>
-        <div class="tab-content" id="myTabContent">
-            <form class="o-formulario">
-                <p>
-                <h2 id="header1">Criar Anúncio</h2>
+    <div class="container bg-light" novalidade>
+        <form class="o-formulario">
+            <h2 id="header1">Criar Anúncio</h2>
 
-                <div class="form-group">
-                    <label for="inputTitle"><i class="fa fa-bullhorn"></i> Título do anúncio</label>
-                    <input type="text" minlength="7" maxlength="50" class="form-control" id="inputTitle"
-                        placeholder="ex: Sapato social em bom estado, Luva azul" required>
-                    <small id="tituloHelp" class="form-text text-muted">&nbsp; Como seu anúncio aparecerá para as outras
-                        pessoas.</small>
-                </div>
-                <div class="form-group">
-                    <label for="inputObject"><i class="fa fa-cube"></i> Objeto</label>
-                    <input type="text" minlength="6" maxlength="40" class="form-control" id="inputObject"
-                        placeholder="ex: Sapato, Luva" required>
-                    <small id="objetoHelp" class="form-text text-muted">&nbsp; Nome do objeto anunciado.</small>
-                </div>
-
-
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="inputCategory"><i class="fa fa-puzzle-piece"></i> Categoria</label>
-                        <select id="inputCategory" class="form-control" required>
-                            <option></option>
-                            <option>Brinquedo</option>
-                            <option>Ferramenta</option>
-                            <option>Instrumento Musical</option>
-                            <option>Material Escolar</option>
-                            <option>Eletrônico</option>
-                            <option>Móvel</option>
-                            <option>Vestuário</option>
-                            <option>Decoração</option>
-                            <option>Outros</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="inputState"> <i class="fa fa-box"></i> Estado de conservação</label>
-                        <select id="inputState" class="form-control" required>
-                            <option></option>
-                            <option>Novo</option>
-                            <option>Semi-novo</option>
-                            <option>Usado</option>
-                        </select>
-                    </div>
-                </div>
-
-                <label for="inputPictures"><i class="fas fa-images"></i> Fotos</label>
-                <input class="pictureInput" type="file" id="picture1" name="picture1" accept="image/png, image/jpeg"
-                    required>
-                <input class="pictureInput" type="file" id="picture2" name="picture2" accept="image/png, image/jpeg"
-                    required>
-                <input class="pictureInput" type="file" id="picture3" name="picture3" accept="image/png, image/jpeg">
-                <small id="fotosHelp" class="form-text text-muted">&nbsp; Pelo menos 2 fotos.</small>
-
-                <div class="form-group">
-                    <label for="inputDescription"><i class="fas fa-align-left"></i> Descrição do objeto</label>
-                    <textarea class="form-control" aria-label="With textarea" id="inputDescription"
-                        placeholder="ex: Sapato tamanho 43-44, cor preta, bem preservado, 2 anos de uso, ..."
-                        required></textarea>
-                    <small id="descricaoHelp" class="form-text text-muted">&nbsp; Caracteristicas e informações sobre o
-                        objeto oferecido.</small>
-                </div>
-
-                <div class="form-group">
-                    <label for="inputQuantity"><i class="fas fa-plus"></i> Quantidade</label>
-                    <input type="number" min=1 max=999 class="form-control" id="inputQuantity" placeholder="ex: 2"
-                        required>
-                    <small id="quantidadeHelp" class="form-text text-muted">&nbsp; Quantidade de objetos disponiveis
-                        para troca.&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                        &nbsp; &nbsp; &nbsp; &nbsp;
-                        (Somente números, 1 a 999)</small>
-                </div>
-
-                <div class="form-group">
-                    <label for="inputKeywords"><i class="fas fa-key"></i> Palavras-chave</label>
-                    <input type="text" maxlength="100" class="form-control" id="inputKeywords"
-                        placeholder="ex: formal, social, sport fino, sapato masculino, ..." required>
-                    <small id="palavrasHelp" class="form-text text-muted">&nbsp; Palavras-chave relacionadas ao seu
-                        produto. Entre virgulas.</small>
-                </div>
-
-                <div class="form-group">
-                    <label for="inputDesiredItems"><i class="fas fa-box-open"></i> Itens desejados em troca</label>
-                    <input type="text" class="form-control" id="inputQuantity"
-                        placeholder="ex: tenis para corrida, carteira de couro, ..." required>
-                    <small id="desejadosHelp" class="form-text text-muted">&nbsp; Itens que tem preferência de receber
-                        em troca.</small>
-                </div>
-
-                <label for="inputEstimatedValue"><i class="fas fa-dollar-sign"></i> Valor estimado</label>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">R$</span>
-                    </div>
-                    <input type="number" min=0 max=99999 class="form-control" aria-label="Quantia" placeholder="ex: 50"
-                        required>
-                    <div class="input-group-append">
-                        <span class="input-group-text">.00</span>
-                    </div>
-                    <small id="desejadosHelp" class="form-text text-muted">&nbsp; Quanto você acha que seu objeto vale
-                        em média, em reais. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (Somente números, de 0 a
-                        99999)</small>
-                </div>
-
-                <div class="btn-criar-anuncio">
-                    <a href="#btn-criar-anuncio">
-                        <button type="submit" class="btn btn-primary" data-="">Criar Anúncio</button>
-                    </a>
-                </div>
-
-                <div class="direitos">
-                    @Todos os direitos reservados.
-                </div>
-            </form>
-
-            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+            <div class="form-group">
+                <label for="inputTitle"><i class="fa fa-bullhorn"></i> Título do anúncio</label>
+                <input type="text" minlength="7" maxlength="50" class="form-control" id="inputTitle"
+                    placeholder="ex: Sapato social em bom estado, Luva azul" required>
+                <small id="tituloHelp" class="form-text text-muted">&nbsp; Como seu anúncio aparecerá para as outras
+                    pessoas.</small>
             </div>
-        </div>
+            <div class="form-group">
+                <label for="inputObject"><i class="fa fa-cube"></i> Objeto</label>
+                <input type="text" minlength="6" maxlength="40" class="form-control" id="inputObject"
+                    placeholder="ex: Sapato, Luva" required>
+                <small id="objetoHelp" class="form-text text-muted">&nbsp; Nome do objeto anunciado.</small>
+            </div>
 
 
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputCategory"><i class="fa fa-puzzle-piece"></i> Categoria</label>
+                    <select id="inputCategory" class="form-control" required>
+                        <option></option>
+                        <option>Brinquedo</option>
+                        <option>Ferramenta</option>
+                        <option>Instrumento Musical</option>
+                        <option>Material Escolar</option>
+                        <option>Eletrônico</option>
+                        <option>Móvel</option>
+                        <option>Vestuário</option>
+                        <option>Decoração</option>
+                        <option>Outros</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputState"> <i class="fa fa-box"></i> Estado de conservação</label>
+                    <select id="inputState" class="form-control" required>
+                        <option></option>
+                        <option>Novo</option>
+                        <option>Semi-novo</option>
+                        <option>Usado</option>
+                    </select>
+                </div>
+            </div>
+
+            <label for="inputPictures"><i class="fas fa-images"></i> Fotos</label>
+            <input class="pictureInput" type="file" id="picture1" name="picture1" accept="image/png, image/jpeg"
+                required>
+            <input class="pictureInput" type="file" id="picture2" name="picture2" accept="image/png, image/jpeg"
+                required>
+            <input class="pictureInput" type="file" id="picture3" name="picture3" accept="image/png, image/jpeg">
+            <small id="fotosHelp" class="form-text text-muted">&nbsp; Pelo menos 2 fotos.</small>
+
+            <div class="form-group">
+                <label for="inputDescription"><i class="fas fa-align-left"></i> Descrição do objeto</label>
+                <textarea class="form-control" aria-label="With textarea" id="inputDescription"
+                    placeholder="ex: Sapato tamanho 43-44, cor preta, bem preservado, 2 anos de uso, ..."
+                    required></textarea>
+                <small id="descricaoHelp" class="form-text text-muted">&nbsp; Caracteristicas e informações sobre o
+                    objeto oferecido.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="inputDesiredItems"><i class="fas fa-box-open"></i> Itens desejados em troca</label>
+                <input type="text" class="form-control" id="inputQuantity"
+                    placeholder="ex: tenis para corrida, carteira de couro, ..." required>
+                <small id="desejadosHelp" class="form-text text-muted">&nbsp; Itens que tem preferência de receber
+                    em troca.</small>
+            </div>
+
+            <label for="inputEstimatedValue"><i class="fas fa-dollar-sign"></i> Valor estimado</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">R$</span>
+                </div>
+                <input type="number" min=0 max=99999 class="form-control" aria-label="Quantia" placeholder="ex: 50"
+                    required>
+                <div class="input-group-append">
+                    <span class="input-group-text">.00</span>
+                </div>
+                <small id="desejadosHelp" class="form-text text-muted">&nbsp; Quanto você acha que seu objeto vale
+                    em média, em reais. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (Somente números, de 0 a
+                    99999)</small>
+            </div>
+
+            <div class="btn-criar-anuncio">
+                <a href="#btn-criar-anuncio">
+                    <button type="submit" class="btn btn-primary" data-="">Criar Anúncio</button>
+                </a>
+            </div>
+
+        </form>
     </div>
+
+
+
 
     <!-- Modal deseja sair? -->
     <div class="modal fade" id="modalSair" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -204,7 +179,13 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-
+    
+    <footer>
+        <img id="ad" src="Imagens/ad.png" class="img-fluid" alt="Imagem responsiva">
+    </footer>
 </body>
+
+
+
 
 </html>
