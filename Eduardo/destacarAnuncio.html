@@ -28,7 +28,8 @@
                 <a href="#">
                     <svg class=" o-icon -xs-size-medium -color-extra-dark -spaced-right -full-arrow-left "
                         style="position: absolute; width: 30; height: 30;" width="0" height="0" version="1.1"
-                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" data-toggle="modal" data-target="#modalSair">
+                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        data-toggle="modal" data-target="#modalSair">
                         <use xlink:href="#icon-full-arrow-left">
                             <svg viewBox="0 0 30 30" id="icon-full-arrow-left">
                                 <g fill="none" fill-rule="evenodd">
@@ -44,57 +45,59 @@
             </div>
             </div>
     </header>
-
-    <div class="nav-tab" novalidate>
-        <div class="tab-content" id="myTabContent">
-            <div class="container p-3 my-3 border">
-                <h3 class="text-center" id="propagandasAtivas"> <b>Destaque para o anúncio:</b> </h3>
-                <div class="container p-2 my-2 border">
-                    <img src="Imagens/anuncioDestacado.jpg" class="img-fluid" id="img-bumerangue">
-                    <b>Título do anúncio: </b> Bumerangue Branco e Verde<br>
-                    <b>Data de criação do anúncio:</b> 11/11/2020<br>
-                    <b>Selecione o plano de destaque desejado: </b>
-                    <form>
-                        <fieldset class="form-group">
-                            <div class="row">
-                                <legend class="col-form-label col-sm-2 pt-0"> <b> Planos: </b></legend>
-                                <div class="col-sm-10">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1"
-                                            value="opcao1" checked>
-                                        <label class="form-check-label" for="gridRadios1">
-                                            30 dias (R$49.90)
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2"
-                                            value="opcao2">
-                                        <label class="form-check-label" for="gridRadios2">
-                                            60 dias (R$89.90)
-                                        </label>
-                                    </div>
-                                    <div class="form-check disabled">
-                                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3"
-                                            value="opcao3">
-                                        <label class="form-check-label" for="gridRadios3">
-                                            90 dias (R$119.90)
-                                        </label>
-                                    </div>
+    <main role="main" class="flex-shrink-0">
+        <div class="container bg-light" id="external-container">
+            <h3 class="text-center" id="propagandasAtivas"> <b>Destaque para o anúncio:</b> </h3>
+            <div class="container p-2 my-2 border">
+                <img src="Imagens/anuncioDestacado.jpg" class="img-fluid" id="img-bumerangue">
+                <b>Título do anúncio: </b> Bumerangue Branco e Verde<br>
+                <b>Data de criação do anúncio:</b> 11/11/2020<br>
+                <b>Selecione o plano de destaque desejado: </b>
+                <form>
+                    <fieldset class="form-group">
+                        <div class="row">
+                            <legend class="col-form-label col-sm-2 pt-0"> <b> Planos: </b></legend>
+                            <div class="col-sm-10">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1"
+                                        value="opcao1" checked>
+                                    <label class="form-check-label" for="gridRadios1">
+                                        30 dias (R$49.90)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2"
+                                        value="opcao2">
+                                    <label class="form-check-label" for="gridRadios2">
+                                        60 dias (R$89.90)
+                                    </label>
+                                </div>
+                                <div class="form-check disabled">
+                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3"
+                                        value="opcao3">
+                                    <label class="form-check-label" for="gridRadios3">
+                                        90 dias (R$119.90)
+                                    </label>
                                 </div>
                             </div>
-                        </fieldset>
-                    </form>
-
-                    <button type="submit" class="btn btn-primary" id="btn-prosseguir-pagamento">
-                        Prosseguir para o pagamento
-                    </button>
-
-                </div>
-
-
+                        </div>
+                    </fieldset>
+                </form>
+    
+                <button type="submit" class="btn btn-primary" id="btn-prosseguir-pagamento">
+                    Prosseguir para o pagamento
+                </button>
+    
             </div>
         </div>
-    </div>
+    
+    </main>
+    
+  
+
+
+
+
 
     <!-- Modal deseja sair? -->
     <div class="modal fade" id="modalSair" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -130,6 +133,18 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
+
+    
+
+
 </body>
+
+<br><br><br><br><br><br><br><br>
+
+<footer class="footer mt-auto py-3">
+    <div class="container">
+        <span class="text-muted"><img id="ad" src="Imagens/ad.png" class="img-fluid" alt="Imagem responsiva"></span>
+    </div>
+</footer>
 
 </html>

@@ -299,3 +299,17 @@ border-width: 1px;
 }
 
 /***/
+
+/* FOOTER */
+#ad {
+  width: 30rem;
+}
+
+footer {
+  text-align: center;
+  padding: 3px;
+  background-color: #f8f9fa;
+  color: white;
+}
+
+/***/

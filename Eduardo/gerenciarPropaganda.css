@@ -4,7 +4,7 @@
   position: relative;
   vertical-align: auto;
   top: 0;
-  left: 45%;
+  left: 48%;
 }
 
 /***/
@@ -22,7 +22,7 @@
   box-shadow: 0 5px 0 #c72060;
   background-color: rgb(255, 50, 94);
   border-color: rgb(255, 50, 94);
-  width: 330px;
+  width: 340px;
 }
 
 .btn-primary:hover, .btn-primary:visited, .btn-primary:focus, .btn-primary:active:focus {
@@ -49,32 +49,29 @@
 
 
 
-.form-font {
-  position: absolute;
-  left: 20%;
-  top: -15%;
-  font-size: 119%;
-}
-
-/* Posicão do forms */
-
-.nav-tab {
-  position: absolute;
+/* FOOTER */
+#container-external {
+  margin-top: 1rem;
   width: 400px;
   left: 37%;
   top: 15%;
+  padding: 0rem 0.8rem 0.8rem 0.8rem;
+  border-radius: 1rem;
 }
 
-/* Deixe a escrita "Todos os direitos reservados" pequena e em cinza */
-
-.direitos {
-  position: absolute;
-  font-size: 75%;
-  color: rgb(150, 150, 150);
-  margin-left: 27%;
-  margin-top: 5%;
-  margin-bottom: 5%;
+#ad {
+  width: 30rem;
 }
+
+footer {
+  text-align: center;
+  padding: 3px;
+  background-color:#f8f9fa;
+  color: white;
+}
+
+/***/
+
 
 .sessao-header {
   font-family: 'Courier New', Courier, monospace;
