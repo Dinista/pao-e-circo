@@ -178,6 +178,18 @@ a:link {
     margin-top: 5%;
     margin-bottom: 5%;
   }
+  .btn-anunciar {
+    position: absolute;
+    width: 130px;
+    top: -8px;
+    background-color: #f05b78;
+    border: none;
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    padding: 12px;
+    font-weight: 500;
+    border-radius: 5px;
+  }
   
   .sessao-header {
     font-family: 'Courier New', Courier, monospace;
