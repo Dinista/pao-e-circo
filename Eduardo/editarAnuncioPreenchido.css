@@ -22,7 +22,7 @@
   box-shadow: 0 5px 0 #c72060;
   background-color: rgb(255, 50, 94);
   border-color: rgb(255, 50, 94);
-  width: 375px;
+  width: 475px;
 }
 
 .btn-primary:hover, .btn-primary:visited, .btn-primary:focus, .btn-primary:active:focus {
@@ -35,7 +35,7 @@
 /* FOOTER */
 .container {
   margin-top: 1rem;
-  width: 400px;
+  width: 500px;
   left: 37%;
   top: 15%;
   padding: 0rem 0.8rem 0.8rem 0.8rem;
