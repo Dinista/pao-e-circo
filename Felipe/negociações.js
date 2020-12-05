@@ -4,6 +4,8 @@ const modelo = document.getElementsByClassName('modal-backdrop');
 const concretize = document.getElementsByClassName('btn-concretizar')[0];
 const divConcrete = document.getElementById('btn-concretiza-area');
 const ratingstar = document.getElementsByClassName('rate')[0];
+const enviar = document.getElementById('enviar');
+const divAv = document.getElementById('linha');
 
 function addRow() {
     const div = document.createElement('div');
@@ -31,6 +33,12 @@ function hidediv(){
     ratingstar.style.display = 'block';
 }
 
+function hidelinha(){
+    divAv.style.display = 'none';
+}
+
 button.addEventListener('click', toggleDiv, false);
 
 concretize.addEventListener('click', hidediv, false);
+
+enviar.addEventListener('click', hidelinha , false)

@@ -60,16 +60,16 @@
           <li class="list-pic"><img class="img-alt" src="img/Avatar-pic-example.jpg" alt=""><ul class="text-alt">
             <li style="font-weight: 600;">foto</li>
             <li style="font-size: 12px; color: rgb(116, 116, 116);">capricha na foto de perfil</li>
-          </ul><button>trocar foto</button></li>
+          </ul><label for="picture1">Carregar foto<input type="file" id="picture1" name="picture1" accept="image/png, image/jpeg"></label></li>
           <li class="list-pic"><img class="img-alt" src="img/bg-perfil.jpg" alt=""><ul class="text-alt">
             <li style="font-weight: 600;">capa</li>
             <li style="font-size: 12px; color: rgb(116, 116, 116);">pra ficar bonito</li>
-          </ul><button>trocar capa</button></li>
+          </ul><label for="picture2">Carregar capa<input type="file" id="picture2" name="picture2" accept="image/png, image/jpeg"></label></li>
         </ul>
         <div class="dados-pessoais" >
           <div class="header-categorias">
             <text style="text-align: center;">dados pessoais</text>
-            <button><i class="far fa-edit"></i></button>
+            <button id="botao-dados"><i class="far fa-edit"></i></button>
           </div>
           <ul class="dados">
             <li>
@@ -97,6 +97,44 @@
               <text class="info" id="tel">(44)••••-0000</text>
             </li>
           </ul>
+          <form id="form-dados" class="o-formulario needs-validation" novalidate>
+            <div class="form-group">
+              <label for="inputName">novo nome</label>
+              <input type="text" class="form-control" id="inputName" placeholder="Nome completo" required>
+            <div class="invalid-feedback">
+              Insira seu nome.
+            </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail"> novo e-mail</label>
+              <input type="Email" class="form-control" id="inputEmail" required>
+              <div class="invalid-feedback">
+                Informe seu e-mail.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputpassaword"> nova senha </label>
+              <input type="password" pattern=".{8,}" class="form-control" id="inputpassaword" required>
+              <div class="invalid-feedback">
+                a senha deve conter 8 ou mais caracteres.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputpassaword"> confirme a senha </label>
+              <input type="password" pattern=".{8,}" class="form-control" id="inputpassaword" required>
+              <div class="invalid-feedback">
+                as senhas não batem.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputcelphone"> telefone </label>
+              <input type="text" pattern="[0-9]+" class="form-control" id="inputcelphone" placeholder="DD0000000" required>
+              <div class="invalid-feedback">
+                número de telefone inválido.
+              </div>
+            </div>
+            <div class="salve"><button class="salvar" type='submit'>salvar alterações</button></div>
+          </form>
         </div>
         <div class="endereço">
           <div class="header-categorias">
@@ -105,8 +143,63 @@
           <ul class="endereco-info">
             <li><span>Av. G••o Vi••al, 23•6, apt •••</span></li>
             <li><span>ma•••-pr</span></li>
-            <button><i class="far fa-edit"></i></button>
+            <button id="btn-endereco"><i class="far fa-edit"></i></button>
           </ul>
+
+          <form id="form-endereco" class="o-formulario needs-validation" novalidate>
+            <div class="form-group">
+              <label for="inputAddress"><i class="fa fa-map-marker"></i> Endereço</label>
+              <input type="text" class="form-control" id="inputAddress" placeholder="Residência" required>
+              <div class="invalid-feedback">
+                Escreva o nome de sua cidade.
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputCity"><i class="fa fa-home"></i> Cidade</label>
+                <input type="text" class="form-control" id="inputCity" required>
+                <div class="invalid-feedback">
+                  Informe sua cidade.
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputState">Estado</label>
+                <select id="inputState" class="form-control" required>
+                  <option disabled selected value>...</option>
+                  <option>Acre</option>
+                  <option>Alagoas</option>
+                  <option>Amapá</option>
+                  <option>Amazonas</option>
+                  <option>Bahia</option>
+                  <option>Ceará</option>
+                  <option>Distrito Federal</option>
+                  <option>Espírito Santo</option>
+                  <option>Goiás</option>
+                  <option>Maranhão</option>
+                  <option>Mato Grosso</option>
+                  <option>Mato Grosso do Sul</option>
+                  <option>Minas Gerais</option>
+                  <option>Pará</option>
+                  <option>Paraíba</option>
+                  <option>Paraná</option>
+                  <option>Pernambuco</option>
+                  <option>Piauí</option>
+                  <option>Rio de Janeiro</option>
+                  <option>Rio Grande do Norte</option>
+                  <option>Rondônia</option>
+                  <option>Roraima</option>
+                  <option>Santa Catarina</option>
+                  <option>São Paulo</option>
+                  <option>Sergipe</option>
+                  <option>Tocantins</option>
+                </select>
+                <div class="invalid-feedback">
+                  Selecione seu estado.
+                </div>
+              </div>
+            </div>
+            <div class="salve"><button class="salvar" type='submit'>salvar alterações</button></div>
+          </form>
       </div>
       <div class="conta">
         <div class="header-categorias">
@@ -120,11 +213,31 @@
             torna-se impossível reativá-la depois.
             É, portanto, decisão definitiva.
           </text>
-          <button id="excluir-conta">excluir conta</button>
+          <button id="excluir-conta" data-toggle="modal" data-target="#Modal-Center">excluir conta</button>
         </div>
-        <div class="salve"><button class="salvar">salvar alterações</button></div>
       </div>
   </div>
-  
+  <!-- Modal -->
+  <div class="modal fade" id="Modal-Center" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle"><i class="fas fa-exclamation-triangle" style="color: rgb(248, 72, 110);"></i> Excluir conta</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Tem certeza que deseja excluir sua conta?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+          <button type="button" id="btn-primary" class="btn btn-primary">Sim</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- modal-->
   </body>
+  <script src="editarPerfil.js"></script>
   </html>

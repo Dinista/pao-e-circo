@@ -185,6 +185,7 @@ figure {
   margin-left: 27%;
   margin-top: 5%;
   margin-bottom: 5%;
+  display: none;
 }
 
 .sessao-header {

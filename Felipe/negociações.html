@@ -100,7 +100,7 @@
                               </button>
                             </div>
                             <div class="modal-body">
-                              Tem certeza que deseja sceitar o pedido de troca?
+                              Tem certeza que deseja aceitar o pedido de troca?
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
@@ -138,7 +138,7 @@
             <div class="tab-pane fade" id="pendentes" role="tabpanel" aria-labelledby="trocas-tab">
               <div class="neg-pendentes" id="neg-pendentes">
                 <ul class="lista-neg">
-                  <li id="linha2">
+                  <li id="linha">
                     <div class="img-neg-area ">
                       <img class ="img-neg" src="img/produto-exemplo2.jpg" alt="">
                     </div>
@@ -162,7 +162,9 @@
                           <label for="star2" title="text">2 stars</label>
                           <input type="radio" id="star1" name="rate" value="1" />
                           <label for="star1" title="text">1 star</label>
+                          <button id="enviar" title="enviar avaliação"><i class="fas fa-check"></i></button>
                         </div>
+                        
                       </div>
                       <div class="btn-troca-area btn-concretiza-area" id="btn-concretiza-area">
                         <span style="font-size: 10px; position: absolute; top:-40%; left:-20%; width:300px"><p>Trocaram? Clique para computar a troca</p></span>
@@ -170,27 +172,6 @@
                         <button class="btn-concretizar">
                           <i class="fas fa-check"></i>   finalizar troca
                         </button>
-                        <!-- Modal -->
-                        <div class="modal fade" id="Modal-Center" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                          <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Confirmar solicitação de troca</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                              </div>
-                              <div class="modal-body">
-                                Tem certeza que deseja sceitar o pedido de troca?
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
-                                <button type="button" id="btn-primary" class="btn btn-primary">Sim</button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- modal-->
                       </div>
                     </div>
                     <div class="date-feito">
