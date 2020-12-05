@@ -148,22 +148,25 @@ a:link {
 }
 
 .btn, .btn-primary, .btn-primary:active {
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
     box-shadow: 0 5px 0 #c72060;
     background-color: rgb(255, 50, 94);
     border-color: rgb(255, 50, 94);
+}
+
+.btn-primary:hover, .btn-primary:visited, .btn-primary:focus, .btn-primary:active:focus {
+    box-shadow: 0 5px 0 #691535;
+    background-color: #ad2056;
+    border-color: #3d091d;
+    border-width: 1px;
+    width: 200px;
 }
 
 #btn-denunciar-anuncio, #btn-realizar-denuncia {
     box-shadow: 0 5px 0 #701212;
     background-color: rgb(226, 27, 27);
     border-color: rgb(206, 34, 34);
-}
-
-.btn-primary:hover, .btn-primary:visited, .btn-primary:focus, .btn-primary:active:focus {
-    box-shadow: 0 5px 0 #0e0e0e;
-    background-color: rgb(53, 53, 53);
-    border-color: rgb(0, 0, 0);
-    border-width: 1px;
 }
 
 /***/
@@ -187,4 +190,5 @@ a:link {
     border-color: rgb(0, 0, 0);
     border-width: 1px;
 }
+
 /***/

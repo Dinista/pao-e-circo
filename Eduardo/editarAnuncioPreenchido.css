@@ -1,95 +1,131 @@
 /* Centraliza Header */
 
 .o-logo {
-    position: relative;
-    vertical-align: auto;
-    top: 0;
-    left: 45%;
+  position: relative;
+  vertical-align: auto;
+  top: 0;
+  left: 48%;
 }
 
 /***/
 
 .o-icon {
-    position: absolute;
-    top: 35%;
-    left: 5%;
-    height: 150px;
-  }
+  position: absolute;
+  top: 35%;
+  left: 5%;
+  height: 150px;
+}
 
-  .btn,
-  .btn-primary,
-  .btn-primary:active {
-    box-shadow: 0 5px 0 #c72060;
-    background-color: rgb(255, 50, 94);
-    border-color: rgb(255, 50, 94);
-    width: 375px;
-  }
+.btn, .btn-primary, .btn-primary:active {
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  box-shadow: 0 5px 0 #c72060;
+  background-color: rgb(255, 50, 94);
+  border-color: rgb(255, 50, 94);
+  width: 375px;
+}
+
+.btn-primary:hover, .btn-primary:visited, .btn-primary:focus, .btn-primary:active:focus {
+  box-shadow: 0 5px 0 #691535;
+  background-color: #ad2056;
+  border-color: #3d091d;
+  border-width: 1px;
+}
+
+/* FOOTER */
+.container {
+  margin-top: 1rem;
+  width: 400px;
+  left: 37%;
+  top: 15%;
+  padding: 0rem 0.8rem 0.8rem 0.8rem;
+  border-radius: 1rem;
+}
+
+#ad {
+  width: 30rem;
+}
+
+footer {
+  text-align: center;
+  padding: 3px;
+  background-color:#f8f9fa;
+  color: white;
+}
+
+/***/
 
 
-  .btn-primary:hover,
-  .btn-primary:visited,
-  .btn-primary:focus,
-  .btn-primary:active:focus {
-    box-shadow: 0 5px 0 #0e0e0e;
-    background-color: rgb(53, 53, 53);
-    border-color: rgb(0, 0, 0);
-    border-width: 1px;
-    width: 375px;
-  }
+#header1 {
+  text-align: center;
+}
+
+/* Posição botão cadastrar */
+
+.btn-editar-anuncio {
+  margin-top: 2%;
+}
 
 
-  /* ?? */
-  .form-font {
-    position: absolute;
-    left: 20%;
-    top: -15%;
-    font-size: 119%;
-  }
 
-  /* Posicão do forms */
-  .nav-tab {
-    position: absolute;
-    width: 400px;
-    left: 37%;
-    top: 15%;
-    padding: 0rem 0.8rem 0.8rem 0.8rem;
-    border-radius: 1rem;
-  }
+.sessao-header {
+  font-family: 'Courier New', Courier, monospace;
+  display: flex;
+  /* Deixa esse container ocupar somente o necessário pro tamanho do header */
+  justify-content: center;
+  /* Centraliza o titulo geral da pagina Conhecimentos */
+  position: absolute;
+  left: 40%;
+  top: 9%;
+}
 
-  #header1 {
-    text-align: center;
-  }
+.form-group #inputDescription {
+  min-height: 4rem;
+  height: 4rem;
+  max-height: 10rem;
+}
+
+.pictureInput {
+  margin-bottom: .5rem;
+}
+
+/* Modal sair sem salvar */
+
+#botaoSair {
+  width: 12rem;
+}
+
+#botaoSair, #botaoSair:active {
+  background-color: red;
+  box-shadow: 0 5px 0 #e79f9a;
+  border-color: rgb(139, 18, 18);
+}
+
+#botaoSair:hover, #botaoSair:focus, #botaoSair:visited, #botaoSair:active:focus{
+  background-color: rgb(187, 14, 14);
+  box-shadow: 0 5px 0 #7a1b14;
+  border-color: rgb(104, 20, 20);
+}
+
+#botaoFicar {
+  width: 12rem;
+  position: absolute;
+  left: 2.5%;
+}
+
+#botaoFicar, #botaoFicar:active {
+  color: #0e0e0e;
+  background-color: rgb(223, 223, 223);
+  box-shadow: 0 5px 0 #a5a1a3;
+  border-color: rgb(51, 50, 51);
   
-  /* Posição botão cadastrar */
-  .btn-editar-anuncio {
-    margin-top: 2%;
-  }
+}
 
-  /* Deixe a escrita "Todos os direitos reservados" pequena e em cinza */
-  .direitos {
-    position: absolute;
-    font-size: 75%;
-    color: rgb(150, 150, 150);
-    margin-left: 27%;
-    margin-top: 5%;
-    margin-bottom: 5%;
-  }
+#botaoFicar:hover, #botaoFicar:focus, #botaoFicar:visited, #botaoFicar:active:focus{
+  color: #0e0e0e;
+  background-color: rgb(141, 139, 139);
+  box-shadow: 0 5px 0 #525151;
+  border-color: rgb(37, 36, 36);
+}
 
-  .sessao-header {
-    font-family: 'Courier New', Courier, monospace;
-    display: flex;  /* Deixa esse container ocupar somente o necessário pro tamanho do header */
-    justify-content: center; /* Centraliza o titulo geral da pagina Conhecimentos */
-    position: absolute;
-    left: 40%;
-    top: 9%;
-  }
-
-  .form-group #inputDescription {
-    min-height: 4rem;
-    height: 4rem;
-    max-height: 10rem;
-  }
-
-  .pictureInput  {
-    margin-bottom: .5rem;
-  }
+/***/

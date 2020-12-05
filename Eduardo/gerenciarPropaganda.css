@@ -4,7 +4,7 @@
   position: relative;
   vertical-align: auto;
   top: 0;
-  left: 45%;
+  left: 48%;
 }
 
 /***/
@@ -22,12 +22,13 @@
   box-shadow: 0 5px 0 #c72060;
   background-color: rgb(255, 50, 94);
   border-color: rgb(255, 50, 94);
+  width: 340px;
 }
 
 .btn-primary:hover, .btn-primary:visited, .btn-primary:focus, .btn-primary:active:focus {
-  box-shadow: 0 5px 0 #0e0e0e;
-  background-color: rgb(53, 53, 53);
-  border-color: rgb(0, 0, 0);
+  box-shadow: 0 5px 0  #691535;
+  background-color:  #ad2056;
+  border-color: #3d091d;
   border-width: 1px;
 }
 
@@ -40,40 +41,37 @@
 }
 
 #btn-encerrar-propaganda:hover, #btn-encerrar-propaganda:visited, #btn-encerrar-propaganda:focus, #btn-encerrar-propaganda:active:focus {
-  box-shadow: 0 5px 0 #0e0e0e;
-  background-color: rgb(53, 53, 53);
-  border-color: rgb(0, 0, 0);
+  box-shadow: 0 5px 0 #311414;
+  background-color: rgb(131, 11, 11);
+  border-color: rgb(53, 6, 6);
   border-width: 1px;
 }
 
 
 
-.form-font {
-  position: absolute;
-  left: 20%;
-  top: -15%;
-  font-size: 119%;
-}
-
-/* Posicão do forms */
-
-.nav-tab {
-  position: absolute;
+/* FOOTER */
+#container-external {
+  margin-top: 1rem;
   width: 400px;
   left: 37%;
   top: 15%;
+  padding: 0rem 0.8rem 0.8rem 0.8rem;
+  border-radius: 1rem;
 }
 
-/* Deixe a escrita "Todos os direitos reservados" pequena e em cinza */
-
-.direitos {
-  position: absolute;
-  font-size: 75%;
-  color: rgb(150, 150, 150);
-  margin-left: 27%;
-  margin-top: 5%;
-  margin-bottom: 5%;
+#ad {
+  width: 30rem;
 }
+
+footer {
+  text-align: center;
+  padding: 3px;
+  background-color:#f8f9fa;
+  color: white;
+}
+
+/***/
+
 
 .sessao-header {
   font-family: 'Courier New', Courier, monospace;
@@ -95,3 +93,44 @@
 .pictureInput  {
   font-size: .8rem;
 }
+
+#botaoCancelar {
+  width: 12rem;
+  position: absolute;
+  left: 2.5%;
+}
+
+#botaoCancelar, #botaoCancelar:active {
+  color: #0e0e0e;
+  background-color: rgb(223, 223, 223);
+  box-shadow: 0 5px 0 #a5a1a3;
+  border-color: rgb(51, 50, 51);
+  
+}
+
+#botaoCancelar:hover, #botaoCancelar:focus, #botaoCancelar:visited, #botaoCancelar:active:focus{
+  color: #0e0e0e;
+  background-color: rgb(141, 139, 139);
+  box-shadow: 0 5px 0 #525151;
+  border-color: rgb(37, 36, 36);
+}
+
+#botaoSalvar, #botaoEncerrar {
+  width: 12rem;
+}
+
+#botaoEncerrar, #botaoEncerrar:active {
+  background-color: red;
+  box-shadow: 0 5px 0 #e79f9a;
+  border-color: rgb(139, 18, 18);
+}
+
+#botaoEncerrar:hover, #botaoEncerrar:focus, #botaoEncerrar:visited, #botaoEncerrar:active:focus{
+  background-color: rgb(187, 14, 14);
+  box-shadow: 0 5px 0 #7a1b14;
+  border-color: rgb(104, 20, 20);
+}
+
+
+
+

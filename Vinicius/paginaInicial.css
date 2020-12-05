@@ -87,7 +87,21 @@ a:link {
   height: 10%;
   border-radius: 25px;
 }
-
+/* tranforma iamgem para tamanho padrao*/
+.d-block {
+  width: 1000px!important;
+  height: 800px!important;
+  }
+  .align-self-center {
+    width: 100px!important;
+    height: 100px!important;
+    border-radius: 90px;
+    }
+  figure {
+        text-align: center;
+        font-style: arial;
+      }
+/**/
 .menu-item {
   position: relative;
   height: 30px;
@@ -135,99 +149,76 @@ a:link {
   border: none;
   outline: none;
 }
-
-/* Fim Header */
-
-/* Redimensiona a imagem pra ficar no máximo no tamanho que o container que está */
-
-img {
-  max-width: 100%;
-}
-
-#titulo-anuncio {
-  font-size: x-large;
-  text-align: left;
-}
-
-.container #container-informacoes-produto, #container-informacoes-vendedor, #container-fazer-oferta, #container-comentarios {
-  font-size: 0.9rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 1rem;
-  padding-top: 0.5rem;
-  text-align: left;
-}
-
-#container-fotos {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 1rem;
-  padding-top: 0.5rem;
-  text-align: center;
-}
-
-#informacoes {
-  margin-top: 1rem;
-  line-height: 2rem;
-}
-
-#resposta-comentario {
-  padding-top: 1rem;
-  padding-bottom: 2rem;
-}
-
-#foto-resposta, #foto-resposta2 {
-  border-radius: 3rem;
-}
-
-#foto-anunciante {
-  border-radius: 0.6rem;
-}
-
-.btn, .btn-primary, .btn-primary:active {
-  box-shadow: 0 5px 0 #c72060;
-  background-color: rgb(255, 50, 94);
-  border-color: rgb(255, 50, 94);
-  width: 200px;
-}
-
-.btn-primary:hover, .btn-primary:visited, .btn-primary:focus, .btn-primary:active:focus {
-  box-shadow: 0 5px 0 #0e0e0e;
-  background-color: rgb(53, 53, 53);
-  border-color: rgb(0, 0, 0);
-  border-width: 1px;
-  width: 200px;
-}
-
-.btn-comentar {
-  padding-left: .5rem;
-  padding-bottom: 2rem;
-}
-
-.mr-3-custom {
-  padding-top: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-.mt-0{
-  vertical-align: middle;
-}
-
-#container-itens{
-  font-weight: bolder;
-  font-size: 1.5rem;
-  margin-top: 1rem;
-  border-radius: 1rem;
-  padding-bottom: .01rem;
-  text-align: left;
-}
-
-#btn-cadastrar-item{
-  position: absolute;
-  left: 2.5%;
-}
-
-#btn-ofertar-obj-selecionado {
-  size: 10rem;
-}
+  /***/
+  
+  .o-icon {
+    position: absolute;
+    top: 35%;
+    left: 5%;
+    height: 150px;
+  }
+  
+  .btn, .btn-primary, .btn-primary:active {
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+    box-shadow: 0 5px 0 #c72060;
+    background-color: rgb(255, 50, 94);
+    border-color: rgb(255, 50, 94);
+  }
+  
+  .btn-primary:hover, .btn-primary:visited, .btn-primary:focus, .btn-primary:active:focus {
+    box-shadow: 0 5px 0 #0e0e0e;
+    background-color: rgb(53, 53, 53);
+    border-color: rgb(0, 0, 0);
+    border-width: 1px;
+  }  
+  
+  
+  .form-font {
+    position: absolute;
+    left: 20%;
+    top: -15%;
+    font-size: 119%;
+  }
+  
+  /* Posicão do forms */
+  
+  .nav-tab {
+    position: absolute;
+    width: 1000px;
+    left: 20%;
+    top: 8%;
+  }
+  
+  /* Deixe a escrita "Todos os direitos reservados" pequena e em cinza */
+  
+  .direitos {
+    position: absolute;
+    font-size: 75%;
+    color: rgb(150, 150, 150);
+    margin-left: 27%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+  
+  .sessao-header {
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    /* Deixa esse container ocupar somente o necessário pro tamanho do header */
+    justify-content: center;
+    /* Centraliza o titulo geral da pagina Conhecimentos */
+    position: absolute;
+    left: 40%;
+    top: 9%;
+  }
+  
+  .form-group #inputDescription {
+    min-height: 4rem;
+    height: 4rem;
+    max-height: 10rem;
+  }
+  
+  .pictureInput  {
+    font-size: .8rem;
+  }
+  
