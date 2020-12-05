@@ -50,7 +50,7 @@
       <div class="tab-pane fade show active" id="PessoaFisica" role="tabpanel" aria-labelledby="PessoaFisica-tab">
         <form class="o-formulario needs-validation" novalidate>
           <div class="form-group">
-            <label for="inputName"><i class="fa fa-user"></i> Nome</label>
+            <label for="inputName"><i class="fa fa-user"></i> * Nome</label>
             <input type="text" class="form-control" id="inputName" placeholder="Nome completo" required>
           <div class="invalid-feedback">
             Insira seu nome.
@@ -58,7 +58,7 @@
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="inputCPF"><i class="fa fa-id-card-o"></i> CPF</label>
+              <label for="inputCPF"><i class="fa fa-id-card-o"></i> * CPF</label>
               <input type="text" pattern= "[0-9]+\d{8,10}$"class="form-control" id="inputCPF" placeholder="Apenas números" required>
               <div class="invalid-feedback">
                 Apenas números e 11 digitos.
@@ -73,22 +73,22 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="inputAddress"><i class="fa fa-map-marker"></i> Endereço</label>
+            <label for="inputAddress"><i class="fa fa-map-marker"></i> * Endereço</label>
             <input type="text" class="form-control" id="inputAddress" placeholder="Residência" required>
             <div class="invalid-feedback">
-              Informe dseu endereço.
+              Informe seu endereço.
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="inputCity"><i class="fa fa-home"></i> Cidade</label>
+              <label for="inputCity"><i class="fa fa-home"></i> * Cidade</label>
               <input type="text" class="form-control" id="inputCity" required>
               <div class="invalid-feedback">
                 Informe sua cidade.
               </div>
             </div>
             <div class="form-group col-md-6">
-              <label for="inputState">Estado</label>
+              <label for="inputState"> * Estado</label>
               <select id="inputState" class="form-control" required>
                 <option disabled selected value>...</option>
                 <option>Acre</option>
@@ -124,14 +124,14 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="inputEmail"><i class="material-icons" style="font-size:15px">email</i> E-mail</label>
+            <label for="inputEmail"><i class="material-icons" style="font-size:15px">* email</i> E-mail</label>
             <input type="Email" class="form-control" id="inputEmail" required>
             <div class="invalid-feedback">
               Informe seu e-mail.
             </div>
           </div>
           <div class="form-group">
-            <label for="inputpassaword"><i class="fa fa-lock"></i> Senha </label>
+            <label for="inputpassaword"><i class="fa fa-lock"></i> * Senha </label>
             <input type="password" pattern=".{8,}" class="form-control" id="inputpassaword" required>
             <div class="invalid-feedback">
               a senha deve conter 8 ou mais caracteres.
@@ -140,7 +140,7 @@
           <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" required>
             <label class="form-check-label" for="defaultCheck1">
-              Aceito os <a href="#" style="color:rgb(250, 106, 149)">termos de condição</a> do site Pão e Circo.
+              * Aceito os <a href="#" style="color:rgb(250, 106, 149)">termos de condição</a> do site Pão e Circo.
             </label>
             <div class="invalid-feedback">
               é obrigatório aceitar os termos.
