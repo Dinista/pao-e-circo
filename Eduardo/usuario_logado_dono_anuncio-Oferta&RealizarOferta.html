@@ -158,12 +158,6 @@
                         </p>
                     </div>
 
-                    <div class="btn-comentar">
-                        <button type="submit" class="btn btn-primary" data-toggle="modal"
-                            data-target="#modalFazerOferta">
-                            Fazer uma oferta
-                        </button>
-                    </div>
                 </div>
                 <div class="container bg-light" id="container-excluir">
                     <h4 id="header-excluir">Deseja excluir esse anúncio?</h4>
@@ -177,54 +171,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="modalFazerOferta" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="TituloModalCentralizado">Fazer uma oferta</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>
-                    <h6>Selecione seu produto a ser ofertado:</h6>
-                    <ul class="list-unstyled">
-                        <div class="container bg-light" id="container-itens">
-                            <li class="media my-4">
-                                <div class="media-body">
-                                    <input type="radio" name="radio-obj" id="radio-obj-1" />
-                                    <label for="radio-obj-1"><img class="mr-3-custom" src="Imagens/pipa.jpg" alt="ex4">
-                                        Pipa
-                                    </label>
-                                </div>
-                            </li>
-
-
-
-                            <li class="media my-4">
-                                <div class="media-body">
-                                    <input type="radio" name="radio-obj" id="radio-obj-2" />
-                                    <label for="radio-obj-2"><img class="mr-3-custom" src="Imagens/estilingue.jpg"
-                                            alt="ex4"> Estilingue
-                                    </label>
-                                </div>
-                            </li>
-                        </div>
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="btn-cadastrar-item">Cadastrar novo objeto</button>
-                    <button type="button" class="btn btn-primary" id="btn-ofertar-obj-selecionado"
-                        data-dismiss="modal">Ofertar objeto selecionado</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <!-- Modal -->
     <div class="modal fade" id="modal-excluir-anuncio" tabindex="-1" role="dialog"
