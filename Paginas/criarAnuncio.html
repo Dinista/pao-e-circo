@@ -20,10 +20,10 @@
     <header>
         <nav class="navbar navbar-light bg-light">
             <div class="o-logo">
-                <a href="#"><img src="Imagens/Logo-Pser 2.png" alt=""></a>
+                <a href="index.html"><img src="Imagens/Logo-Pser 2.png" alt=""></a>
             </div>
             <div class="nav-voltar">
-                <a href="#">
+                <a href="index.html">
                     <svg class=" o-icon -xs-size-medium -color-extra-dark -spaced-right -full-arrow-left "
                         style="position: absolute; width: 30; height: 30;" width="0" height="0" version="1.1"
                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -47,7 +47,7 @@
 
     <!-- Informações sobre o anúncio -->
     <div class="container bg-light" novalidade>
-        <form class="o-formulario">
+        <form class="o-formulario" action="usuario_logado_dono_anuncio-Oferta&RealizarOferta.html">
             <h2 id="header1">Criar Anúncio</h2>
 
             <div class="form-group">
@@ -104,7 +104,7 @@
 
             <div class="form-group">
                 <label for="inputDescription"><i class="fas fa-align-left"></i> Descrição do objeto *</label>
-                <textarea class="form-control" aria-label="With textarea" id="inputDescription"
+                <textarea class="form-control" aria-label="With textarea" id="inputDescription" minlength="7" maxlength="200"
                     placeholder="ex: Sapato tamanho 43-44, cor preta, bem preservado, 2 anos de uso, ..."
                     required></textarea>
                 <small id="descricaoHelp" class="form-text text-muted">&nbsp; Caracteristicas e informações sobre o
@@ -113,7 +113,7 @@
 
             <div class="form-group">
                 <label for="inputDesiredItems"><i class="fas fa-box-open"></i> Itens desejados em troca</label>
-                <input type="text" class="form-control" id="inputQuantity"
+                <input type="text" class="form-control" id="inputQuantity" minlength="7" maxlength="100"
                     placeholder="ex: tenis para corrida, carteira de couro, ...">
                 <small id="desejadosHelp" class="form-text text-muted">&nbsp; Itens que tem preferência de receber
                     em troca.</small>
@@ -130,18 +130,17 @@
                     <span class="input-group-text">.00</span>
                 </div>
                 <small id="desejadosHelp" class="form-text text-muted">&nbsp; Quanto você acha que seu objeto vale
-                    em média, em reais.  (Somente números, de 0 a
+                    em média, em reais. (Somente números, de 0 a
                     99999)</small>
             </div>
 
             <small class="form-text text-muted"> (*) = Campos obrigatórios</small>
 
-            <div class="btn-criar-anuncio">
-                <a href="#btn-criar-anuncio">
-                    <button type="submit" class="btn btn-primary" data-="">Criar Anúncio</button>
-                </a>
-            </div>
-
+            
+                <div class="btn-criar-anuncio">
+                    <button type="submit" class="btn btn-primary">Criar Anúncio</button>
+                </div>
+            
         </form>
     </div>
 
@@ -165,7 +164,8 @@
                 <div class="modal-footer">
                     <button type="button" id="botaoFicar" class="btn btn-secondary" data-dismiss="modal">Desejo
                         ficar</button>
-                    <button type="button" id="botaoSair" class="btn btn-primary">Sim, desejo sair</button>
+                    <a href="index.html"><button type="button" id="botaoSair" class="btn btn-primary">Sim, desejo
+                            sair</button></a>
                 </div>
             </div>
         </div>
@@ -183,7 +183,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    
+
     <footer>
         <img id="ad" src="Imagens/ad.png" class="img-fluid" alt="Imagem responsiva">
     </footer>

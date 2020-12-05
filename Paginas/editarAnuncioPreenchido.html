@@ -46,7 +46,7 @@
 
     <!-- Informações sobre o anúncio -->
     <div class="container bg-light">
-        <form class="o-formulario">
+        <form class="o-formulario" action="usuario_logado_dono_anuncio-Oferta&RealizarOferta.html">
             <p>
             <h2 id="header1">Editar Anúncio</h2>
 
@@ -104,7 +104,7 @@
 
             <div class="form-group">
                 <label for="inputDescription"><i class="fas fa-align-left"></i> Descrição do objeto *</label>
-                <textarea class="form-control" aria-label="With textarea" id="inputDescription"
+                <textarea class="form-control" aria-label="With textarea" id="inputDescription" minlength="7" maxlength="200"
                     placeholder="ex: Sapato tamanho 43-44, cor preta, bem preservado, 2 anos de uso, ..."
                     required>Bumerangue dourado grande! Você joga e ele volta para você! Não perca!</textarea>
                 <small id="descricaoHelp" class="form-text text-muted">&nbsp; Caracteristicas e informações sobre o
@@ -113,7 +113,7 @@
 
             <div class="form-group">
                 <label for="inputDesiredItems"><i class="fas fa-box-open"></i> Itens desejados em troca</label>
-                <input type="text" class="form-control" id="inputQuantity"
+                <input type="text" class="form-control" id="inputQuantity" minlength="7" maxlength="100"
                     placeholder="ex: tenis para corrida, carteira de couro, ..."
                     value="Estilingue, Bolinha de Gude, Pipa">
                 <small id="desejadosHelp" class="form-text text-muted">&nbsp; Itens que tem preferência de receber
@@ -170,7 +170,7 @@
                 <div class="modal-footer">
                     <button type="button" id="botaoFicar" class="btn btn-secondary" data-dismiss="modal">Desejo
                         ficar</button>
-                    <button type="button" id="botaoSair" class="btn btn-primary">Sim, desejo sair</button>
+                        <a href="index.html"><button type="button" id="botaoSair" class="btn btn-primary">Sim, desejo sair</button></a>
                 </div>
             </div>
         </div>

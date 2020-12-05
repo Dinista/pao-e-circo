@@ -22,7 +22,7 @@
     <header>
         <container class="nav-area">
             <nav class="topbar bg-light">
-                <dev class="menu-logo"><a href="#" class="menu-link"><img class="nav-logo-img"
+                <dev class="menu-logo"><a href="index.html" class="menu-link"><img class="nav-logo-img"
                             src="Imagens/Logo-Pser 2.png" alt=""></a></dev>
                 <div class="d-flex justify-content-center px-5">
                     <div class="search">
@@ -39,7 +39,7 @@
                                 class="fa fa-handshake"></i></a></li>
                     <li class="menu-item"><a href="#" class="menu-link" title="Ajuda"><i
                                 class="fa fa-question-circle"></i></a></li>
-                    <li class="menu-item"><a href="register.html"><button class="btn-anunciar">quero
+                    <li class="menu-item"><a href="criarAnuncio.html"><button class="btn-anunciar">quero
                                 anunciar</button></a></li>
                 </ul>
             </nav>
@@ -54,7 +54,7 @@
 
                     <div class="container bg-light" id="container-informacoes-vendedor">
                         <p id="titulo-anuncio"> Informações do anunciante</p>
-                        <div> <img src="Imagens/Avatar-pic-example.jpg" alt="" id="foto-anunciante"> </div>
+                        <div> <a href="perfil-visitante.html"> <img src="Imagens/Avatar-pic-example.jpg" alt="" id="foto-anunciante"></a> </div>
                         <p id="informacoes">
                             <b>Nome:</b> Felipe Diniz<br>
                             <b>Cidade:</b> Maringá - PR
@@ -101,15 +101,19 @@
                     <div class="media">
                         <img class="mr-3" src="Imagens/lisa.jpg" alt="ex" id="foto-resposta">
                         <div class="media-body">
-                            <h6><b>Elisa</b>:</h6>
+                            <h6><b aria-describedby="horaMensagem">Elisa</b>:</h6>
+                            <small class="form-text text-muted" id="horaMensagem">10h24 16/10/2020</small>
                             <p> Ele é pesado?</p>
+                            
+    
 
                             <div class="media mt-3" id="resposta-comentario">
-                                <a class="pr-3" href="#">
+                                <a class="pr-3" href="perfil-visitante.html">
                                     <img src="Imagens/avatar-mini.jpg" alt="ex2" id="foto-resposta2">
                                 </a>
                                 <div class="media-body">
-                                    <h6 class="mt-0"><b>Felipe</b> (Anunciante)</h6>
+                                    <h6 class="mt-0" aria-describedby="horaResposta"><b>Felipe</b> (Anunciante)</h6>
+                                    <small class="form-text text-muted" id="horaResposta">10h30 17/10/2020</small>
                                     pesa 400 gramas!
                                 </div>
                             </div>
@@ -120,7 +124,8 @@
                     <h3>Insira um comentário</h3>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1"></label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea aria-describedby="ajudaComentar" class="form-control" id="exampleFormControlTextarea1" rows="3" minlength="0" maxlength="100"></textarea>
+                        <small id="ajudaComentar" class="form-text text-muted"> &nbsp; 0-100 caracteres.</small>
                     </div>
 
                     <div class="btn-comentar">
@@ -214,7 +219,7 @@
                     </ul>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="btn-cadastrar-item">Cadastrar novo objeto</button>
+                    <a href="criarAnuncio.html"><button type="button" class="btn btn-primary" id="btn-cadastrar-item">Cadastrar novo objeto</button></a> 
                     <button type="button" class="btn btn-primary" id="btn-ofertar-obj-selecionado"
                         data-dismiss="modal">Ofertar objeto selecionado</button>
                 </div>
