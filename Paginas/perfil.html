@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2ba73eb409.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="bootstrap-4.5.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="perfil.css">
+
+</head>
+<body>
+    <header>
+        <container class="nav-area">
+                <nav class="topbar bg-light">
+                    <dev class="menu-logo"><a href="#" class="menu-link"><img class="nav-logo-img" src="imagens/Logo-Pser 2.png" alt=""></a></dev>
+                    <div class="d-flex justify-content-center px-5">
+                        <div class="search">
+                            <input type="text" class="search-input" placeholder="Procure um produto..." name="">
+                            <a href="#" class="search-icon"> <i class="fa fa-search"></i></a>
+                        </div>
+                    </div>
+                    <ul class="menu">
+                        <li class="logo-nav"><a href="perfil.html" class="menu-link" title="Perfil"><img class="nav-user-img" src="imagens/Avatar-pic-example.jpg" alt=""></a></li>
+                        <li class="menu-item"><a href="perfil.html#myTabContent" class="menu-link" title="Destaque"><i class="fa fa-bullhorn"></i></a></li>
+                        <li class="menu-item"><a href="negociações.html" class="menu-link" title="Negociações"><i class="fa fa-handshake"><span class="badge-icon"><span></i></a></li>
+                        <li class="menu-item"><a href="#" class="menu-link" title ="Ajuda"><i class="fa fa-question-circle"></i></a></li>
+                        <li class="menu-item"><a href="register.html"><button class="btn-anunciar">quero anunciar</button></a></li>
+                    </ul>
+                </nav>
+        </container>
+    </header>
+<main>
+        <div class="user-bg">
+            <img src="imagens/bg-perfil.jpg" alt="Background">
+        </div>
+        <div class="cabecalho-perfil-area">
+            <ul class="cabecalho">
+                <li class="cabecalho-item"><a href="perfil.html" class="cabecalho-link"><img class="cabecalho-user-img" src="imagens/Avatar-pic-example.jpg" alt=""></a></li>
+                <li class="cabecalho-titulo"><h1 class="titulo">Lojinha de trocas do Felipe</h1></li>
+                <div class="cabecalho-info">
+                    <li class="cabecalho-texto"><text class="idade">21 anos</text></li>
+                    <li class="cabecalho-texto"><text class="localizacao">Maringá-Pr</text></li>
+                    <li class="cabecalho-texto"><text class="temp-cadastro">Usuário desde 2018</text></li>
+                </div>
+                <li class=cabecalho-ranking>
+                    <div class="ranting">
+                            <h1 class="rating-num">4.0</h1>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <div>
+                            <span class="fa fa-user"></span> 2 avaliações
+                        </div>
+                    </div>
+                </li>
+                <li class="cabecalho-config"><a href="editarPerfil.html" class="cabecalho-link" title="Editar perfil"><i class="fas fa-cog"></i></a></li>
+            </ul>
+        </div>
+        <div class="nav nav-tab nav-perfil">
+            <div class="nav-tab">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="anuncios-tab" data-toggle="tab" href="#anuncios-ativos" role="tab" aria-controls="anuncios-tab" aria-selected="true">6 anúncios ativos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="trocas-tab" data-toggle="tab" href="#anuncios-trocados" role="tab" aria-controls="trocas-tab" aria-selected="false">2 trocas</a>
+                </li>
+                </ul>
+            </div>
+        </div>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="anuncios-ativos" role="tabpanel" aria-labelledby="anuncios-tab">
+                <div class="container">
+                    <div class="row">
+                    <div class="col-3">
+                        <div class= item-ativo>
+                            <div class="img-item-area">
+                                <a href="#"><img class="img-item" src="imagens/produto-exemplo.jpg" alt="foto"></a>
+                            </div>
+                            <div class="texto-anuncio">
+                                <a class="edit-link" title="Editar Anúncio" href="#">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </a>
+                                <h1 class="valor-estimado"><span style="color:rgb(158, 158, 158); font-weight:400">valor estimado:</span> </b style="font-weight:bold">R$50,00</b> </h1>
+                                <text class= "nome-item">Carteira Mont Blanc</text>
+                                <a href=""><button class="btn-destaque">Destacar</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class= item-ativo>
+                            <div class="img-item-area">
+                                <a href="#"><img class="img-item" src="imagens/produto-exemplo2.jpg" alt="foto"></a>
+                            </div>
+                            <div class="texto-anuncio">
+                                <a class="edit-link" title="Editar Anúncio" href="#">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </a>
+                                <h1 class="valor-estimado"><span style="color:rgb(158, 158, 158); font-weight:400">valor estimado:</span> </b style="font-weight:bold">R$150,00</b> </h1>
+                                <text class= "nome-item">Tênis fila</text>
+                                <a href=""><button class="btn-destaque">Destacar</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class= item-ativo>
+                            <div class="img-item-area">
+                                <a href="#"><img class="img-item" src="imagens/produto-exemplo3.jpg" alt="foto"></a>
+                            </div>
+                            <div class="texto-anuncio">
+                                <a class="edit-link" title="Editar Anúncio" href="#">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </a>
+                                <h1 class="valor-estimado"><span style="color:rgb(158, 158, 158); font-weight:400">valor estimado:</span> </b style="font-weight:bold">R$30,00</b> </h1>
+                                <text class= "nome-item">Boné cheetos</text>
+                                <a href=""><button class="btn-destaque">Destacar</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class= item-ativo>
+                            <div class="img-item-area">
+                                <a href="#"><img class="img-item" src="imagens/produto-exemplo4.jpg" alt="foto"></a>
+                            </div>
+                            <div class="texto-anuncio">
+                                <a class="edit-link" title="Editar Anúncio" href="#">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </a>
+                                <h1 class="valor-estimado"><span style="color:rgb(158, 158, 158); font-weight:400">valor estimado:</span> </b style="font-weight:bold">R$130,00</b> </h1>
+                                <text class= "nome-item">3 jogos ps4</text>
+                                <a href=""><button class="btn-destaque">Destacar</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class= item-ativo>
+                            <div class="img-item-area">
+                                <a href="#"><img class="img-item" src="imagens/produto-exemplo5.jpg" alt="foto"></a>
+                            </div>
+                            <div class="texto-anuncio">
+                                <a class="edit-link" title="Editar Anúncio" href="#">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </a>
+                                <h1 class="valor-estimado"><span style="color:rgb(158, 158, 158); font-weight:400">valor estimado:</span> </b style="font-weight:bold">R$20,00</b> </h1>
+                                <text class= "nome-item">Leitor de microsd verde sandisk</text>
+                                <a href=""><button class="btn-destaque">Destacar</button></a>
+                            </div>
+                        </div>  
+                    </div>
+                    <div class="col-3">
+                        <div class= item-ativo>
+                            <div class="img-item-area">
+                                <a href="#"><img class="img-item" src="imagens/produto-exemplo6.jpg" alt="foto"></a>
+                            </div>
+                            <div class="texto-anuncio">
+                                <a class="edit-link" title="Editar Anúncio" href="#">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </a>
+                                <h1 class="valor-estimado"><span style="color:rgb(158, 158, 158); font-weight:400">valor estimado:</span> </b style="font-weight:bold">R$117,00</b> </h1>
+                                <text class= "nome-item">Bolsa pequena feminina</text>
+                                <a href=""><button class="btn-destaque">Destacar</button></a>
+                            </div>
+                        </div>  
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="anuncios-trocados" role="tabpanel" aria-labelledby="trocas-tab">
+                <div class="container">
+                    <div class="row">
+                    <div class="col-3">
+                        <div class= item-ativo-troca>
+                            <div class= "produto-troca">
+                                <img class="img-item-troca" src="imagens/produto-exemplo.jpg" alt="foto">
+                                <span class="troca-titulo">Carteira Mont Blanc</span>
+                            </div>
+                            <i class="fas fa-sync-alt"></i>
+                            <div class= "produto-troca">
+                                <img class="img-item-troca" src="imagens/produto-exemplo2.jpg" alt="foto">
+                                <span class="troca-titulo">Tênis fila</span>
+                            </div>
+                            <div class="avaliacao-icon"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+                            <ul class="info-troca">
+                                <li><text class= "item-info-troca">data da troca:       <b>27/09/2019</b></text></li>
+                                <li><text class= "item-info-troca">usuário:     <a href="#"><b>Maria</b></a></text></li>
+                                <li><text class= "item-info-troca">avaliação:       <b>4.0/5</b></text></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class= item-ativo-troca>
+                            <div class= "produto-troca">
+                                <img class="img-item-troca" src="imagens/produto-exemplo3.jpg" alt="foto">
+                                <span class="troca-titulo">Boné cheetos</span>
+                            </div>
+                            <i class="fas fa-sync-alt"></i>
+                            <div class= "produto-troca">
+                                <img class="img-item-troca" src="imagens/produto-exemplo5.jpg" alt="foto">
+                                <span class="troca-titulo">Leitor de microsd</span>
+                            </div>
+                            <div class="avaliacao-icon"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+                            <ul class="info-troca">
+                                <li><text class= "item-info-troca">data da troca:       <b>27/10/2018</b></text></li>
+                                <li><text class= "item-info-troca">usuário:     <a href="#"><b>Odair</b></a></text></li>
+                                <li><text class= "item-info-troca">avaliação:       <b>4.0/5</b></text></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                    </div>
+                    <div class="col-3">
+                    </div>
+                    <div class="col-3">
+                    </div>
+                    <div class="col-3">
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- footer -->
+</main>
+    <!-- <footer>
+        <div class= "propaganda">
+            <img src="" alt="">
+        </div>
+        <div class = "contato">
+            <img src="img/Logo-Pser 2.png" alt="">
+            <text>Pão&Circo © 2020 - todos os direitos reservados - paoecirco.com.br atividades de internet S.A. CNPJ: 00.000.000/0000-00
+                Av. Colombo, 5790 - Vila Esperanca, Maringá - PR, 87020-270 - (44) 0000-000</text>
+        </div>
+    </footer>
+    -->
+</body>
+</html>
