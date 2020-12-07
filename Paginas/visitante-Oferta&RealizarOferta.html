@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://kit.fontawesome.com/2ba73eb409.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="bootstrap-4.5.3-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="usuario_logado_dono_anuncio-Oferta&RealizarOferta.css">
+    <link rel="stylesheet" href="visitante-Oferta&RealizarOferta.css">
 
 
 </head>
@@ -26,19 +26,12 @@
                             src="Imagens/Logo-Pser 2.png" alt=""></a></dev>
                 <div class="d-flex justify-content-center px-5">
                     <div class="search">
-                        <input type="text" class="search-input" placeholder="Buscar um anúncio ou usuário..." name="">
+                        <input type="text" class="search-input" placeholder="Procure um produto..." name="">
                         <a href="buscar.html" class="search-icon"> <i class="fa fa-search"></i></a>
                     </div>
                 </div>
                 <ul class="menu">
-                    <li class="logo-nav"><a href="perfil.html" class="menu-link" title="Perfil"><img
-                                class="nav-user-img" src="Imagens/Avatar-pic-example.jpg" alt=""></a></li>
-                    <li class="menu-item"><a href="perfil.html#myTabContent" class="menu-link" title="Destaque"><i
-                                class="fa fa-bullhorn"></i></a></li>
-                    <li class="menu-item"><a href="negociações.html" class="menu-link" title="Negociações"><i
-                                class="fa fa-handshake"></i></a></li>
-                                <li class="menu-item"><a href="visitante-Oferta&RealizarOferta.html" class="menu-link" title ="Sair"><i class="fas fa-sign-out-alt" style="color: rgba(17, 17, 17, 0.795);"></i></a></li>
-                    <li class="menu-item"><a href="criarAnuncio.html"><button class="btn-anunciar">quero
+                    <li class="menu-item"><a href="login.html"><button class="btn-anunciar">quero
                                 anunciar</button></a></li>
                 </ul>
             </nav>
@@ -53,7 +46,7 @@
 
                     <div class="container bg-light" id="container-informacoes-vendedor">
                         <p id="titulo-anuncio"> Informações do anunciante</p>
-                        <div> <a href="perfil.html"> <img src="Imagens/Avatar-pic-example.jpg" alt=""
+                        <div> <a href="perfilVisitante.html"> <img src="Imagens/Avatar-pic-example.jpg" alt=""
                                     id="foto-anunciante"></a> </div>
                         <p id="informacoes">
                             <b>Nome:</b> Felipe Diniz<br>
@@ -99,26 +92,16 @@
                     <h2>Comentários</h2>
 
                     <div class="media">
-                        <a href="perfilVisitante.html"> <img class="mr-3" src="Imagens/lisa.jpg" alt="ex"
-                                id="foto-resposta"> </a>
+                        <a href="perfilVisitante.html">
+                            <img class="mr-3" src="Imagens/lisa.jpg" alt="ex" id="foto-resposta">
+                        </a>
                         <div class="media-body">
                             <h6><b aria-describedby="horaMensagem">Elisa</b>:</h6>
                             <small class="form-text text-muted" id="horaMensagem">10h24 16/10/2020</small>
                             <p> Ele é pesado?</p>
-                            <form onsubmit="alertaRespostaEnviada();">
-                                <div class="form-group">
-                                    <label for="labelResponderComentario"><b>Responder comentário</b></label>
-                                    <input type="text" class="form-control" id="responder-comentario"
-                                        aria-describedby="ajudaResposta" required>
-                                    <small id="ajudaResposta" class="form-text text-muted"> &nbsp; 0-50
-                                        caracteres.</small>
-                                </div>
-                                <button type="submit" id="btn-responder-comentario"
-                                    class="btn btn-primary">Enviar</button>
-                            </form>
 
                             <div class="media mt-3" id="resposta-comentario">
-                                <a class="pr-3" href="perfil.html">
+                                <a class="pr-3" href="perfilVisitante.html">
                                     <img src="Imagens/avatar-mini.jpg" alt="ex2" id="foto-resposta2">
                                 </a>
                                 <div class="media-body">
@@ -130,19 +113,19 @@
                         </div>
                     </div>
 
-                    <form onsubmit="alertaComentarioRealizado();">
+                    <form>
                         <p>
                         <h3>Insira um comentário</h3>
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1"></label>
                             <textarea aria-describedby="ajudaComentar" class="form-control"
-                                id="exampleFormControlTextarea1" rows="3" minlength="0" maxlength="100" required></textarea>
+                                id="exampleFormControlTextarea1" rows="3" minlength="0" maxlength="100"></textarea>
                             <small id="ajudaComentar" class="form-text text-muted"> &nbsp; 0-100 caracteres.</small>
                         </div>
 
                         <div class="btn-comentar">
-                            <a href="#">
-                                <button type="submit" class="btn btn-primary" >Comentar</button>
+                            <a href="login.html">
+                                <button type="button" class="btn btn-primary">Comentar</button>
                             </a>
                         </div>
                     </form>
@@ -151,7 +134,7 @@
             </div>
 
             <div class="col-sm">
-                <div class="container bg-light" id="container-info-produtos">
+                <div class="container bg-light" id="container-comentarios">
                     <div class="container bg-light" id="container-informacoes-produto">
                         <p id="titulo-anuncio"> Informações do anúncio</p>
                         <p id="informacoes">
@@ -164,47 +147,143 @@
                             <b>Itens desejados em troca: </b> Estilingue, Bolinha de Gude, Pipa.<br>
                             <b>Valor estimado: </b> R$50,00<br>
                         </p>
+                        <h1></h1>
                     </div>
 
-                </div>
-                <div class="container bg-light" id="container-excluir">
-                    <h4 id="header-excluir">Deseja excluir esse anúncio?</h4>
-                    <div class="btn-excluir">
-                        <button type="submit" id="btnExcluir" class="btn btn-primary" data-toggle="modal"
-                            data-target="#modal-excluir-anuncio">
-                            Excluir
-                        </button>
+                    <div class="btn-comentar">
+                        <a href="login.html">
+                            <button type="button" class="btn btn-primary">
+                                Fazer uma oferta
+                            </button>
+                        </a>
+                    </div>
+
+                    <div class="btn-seguir">
+                        <a href="login.html">
+                            <button id="botaoSeguir" type="button" class="btn btn-secondary">
+                                <var id="escritaBotaoSeguir"></var>
+                            </button>
+                        </a>
                     </div>
                 </div>
+                <div class="container bg-light" id="container-denunciar">
+                    <p>
+                    <h4 id="header-denunciar">Considera esse anúncio impróprio?</h4>
+                    </p>
+
+                    <a href="login.html">
+                        <div class="btn-denunciar">
+                            <button type="button" id="btnDenunciar" class="btn btn-primary">
+                                Denuncie!
+                            </button>
+                        </div>
+                    </a>
+
+                </div>
+
             </div>
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="modal-excluir-anuncio" tabindex="-1" role="dialog"
-        aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+
+    <!-- Modal denunciar anuncio -->
+    <div class="modal fade" id="modal-denunciar-anuncio" tabindex="-1" role="dialog"
+        aria-labelledby="TituloModalCentralizado" aria-hidden="true" novalidate>
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="TituloModalCentralizado">Excluir Anúncio</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>
-                    <h6>Tem certeza que deseja excluir esse anúncio?</h6>
-                    <p>Essa ação não pode ser desfeita</p>
+
+                <div class="form-group" novalidate>
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="TituloModalCentralizado">Denunciar Anúncio</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <form>
+                        <div class="modal-body">
+                            <p>
+                            <h6>Qual o problema com esse anúncio?</h6>
+
+                            <div class="form-group">
+
+                                <div class="form-check">
+
+                                    <input class="form-check-input" type="radio" name="gridRadio" value=""
+                                        id="check-improprio" checked>
+                                    <label class="form-check-label" for="check-improprio">
+                                        Conteúdo Impróprio
+                                    </label>
+                                </div>
+
+                                <br>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gridRadio" value=""
+                                        id="check-falso">
+                                    <label class="form-check-label" for="check-falso">
+                                        Anúncio Falso
+                                    </label>
+                                </div>
+
+                                <br>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gridRadio" value=""
+                                        id="check-ilicito">
+                                    <label class="form-check-label" for="check-ilicito">
+                                        Troca de objeto ilícito
+                                    </label>
+                                </div>
+
+                                <br>
+
+                                <div class="form-check">
+
+                                    <input class="form-check-input" type="radio" name="gridRadio" value=""
+                                        id="check-odio">
+                                    <label class="form-check-label" for="check-odio">
+                                        Contém discurso de ódio
+                                    </label>
+                                </div>
+
+                                <br>
+
+                                <div class="form-check">
+
+                                    <input class="form-check-input" type="radio" name="gridRadio" value=""
+                                        id="check-outro">
+                                    <label class="form-check-label" for="check-outro">
+                                        Outro
+                                    </label>
+                                </div>
+
+                                <h6 id="label-comentario-denuncia-header"><br>Deseja acrescentar um comentário sobre
+                                    a
+                                    denúncia?
+                                </h6>
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1"></label>
+                                    <textarea class="form-control" id="comentario-denuncia" rows="3" maxlength="1000"
+                                        aria-describedby="ajudaDenuncia"></textarea>
+                                    <small id="ajudaDenuncia" class="form-text text-muted">&nbsp; 0-200
+                                        caracteres.</small>
+                                </div>
+
+                            </div>
+                        </div>
 
                 </div>
+
                 <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary" id="btn-realizar-denuncia"
+                        onclick="alertaDenunciaRealizada();">Realizar
+                        denúncia</button>
 
-                    <button type="button" class="btn btn-secondary" id="btn-cancelar"
-                        data-dismiss="modal">Cancelar</button>
-                    <a href="perfil.html"><button type="submit" class="btn btn-secondary" id="btn-sim-desejo-excluir"
-                            onClick="alertaAnuncioExcluido();">Sim, desejo excluir</button></a>
+
                 </div>
-
+                </form>
             </div>
         </div>
     </div>
@@ -213,7 +292,7 @@
         <img id="ad" src="Imagens/ad.png" class="img-fluid" alt="Imagem responsiva">
     </footer>
 
-    <script type="text/javascript" src="usuario_logado_dono_anuncio-Oferta&RealizarOferta.js"></script>
+    <script type="text/javascript" src="visitante_Oferta&RealizarOferta.js"></script>
 </body>
 
 </html>

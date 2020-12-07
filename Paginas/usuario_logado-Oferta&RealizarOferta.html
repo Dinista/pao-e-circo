@@ -22,12 +22,12 @@
     <header>
         <container class="nav-area">
             <nav class="topbar bg-light">
-                <dev class="menu-logo"><a href="index.html" class="menu-link"><img class="nav-logo-img"
+                <dev class="menu-logo"><a href="indexLogado.html" class="menu-link"><img class="nav-logo-img"
                             src="Imagens/Logo-Pser 2.png" alt=""></a></dev>
                 <div class="d-flex justify-content-center px-5">
                     <div class="search">
-                        <input type="text" class="search-input" placeholder="Procure um produto..." name="">
-                        <a href="#" class="search-icon"> <i class="fa fa-search"></i></a>
+                        <input type="text" class="search-input" placeholder="Buscar um anúncio ou usuário..." name="">
+                        <a href="buscar.html" class="search-icon"> <i class="fa fa-search"></i></a>
                     </div>
                 </div>
                 <ul class="menu">
@@ -37,8 +37,9 @@
                                 class="fa fa-bullhorn"></i></a></li>
                     <li class="menu-item"><a href="negociações.html" class="menu-link" title="Negociações"><i
                                 class="fa fa-handshake"></i></a></li>
-                    <li class="menu-item"><a href="#" class="menu-link" title="Ajuda"><i
-                                class="fa fa-question-circle"></i></a></li>
+                    <li class="menu-item"><a href="visitante-Oferta&RealizarOferta.html" class="menu-link"
+                            title="Sair"><i class="fas fa-sign-out-alt" style="color: rgba(17, 17, 17, 0.795);"></i></a>
+                    </li>
                     <li class="menu-item"><a href="criarAnuncio.html"><button class="btn-anunciar">quero
                                 anunciar</button></a></li>
                 </ul>
@@ -54,7 +55,7 @@
 
                     <div class="container bg-light" id="container-informacoes-vendedor">
                         <p id="titulo-anuncio"> Informações do anunciante</p>
-                        <div> <a href="perfil-visitante.html"> <img src="Imagens/Avatar-pic-example.jpg" alt=""
+                        <div> <a href="perfilVisitante.html"> <img src="Imagens/Avatar-pic-example.jpg" alt=""
                                     id="foto-anunciante"></a> </div>
                         <p id="informacoes">
                             <b>Nome:</b> Felipe Diniz<br>
@@ -100,7 +101,9 @@
                     <h2>Comentários</h2>
 
                     <div class="media">
-                        <img class="mr-3" src="Imagens/lisa.jpg" alt="ex" id="foto-resposta">
+                        <a href="perfil.html">
+                            <img class="mr-3" src="Imagens/lisa.jpg" alt="ex" id="foto-resposta">
+                        </a>
                         <div class="media-body">
                             <h6><b aria-describedby="horaMensagem">Elisa</b>:</h6>
                             <small class="form-text text-muted" id="horaMensagem">10h24 16/10/2020</small>
@@ -109,7 +112,7 @@
 
 
                             <div class="media mt-3" id="resposta-comentario">
-                                <a class="pr-3" href="perfil-visitante.html">
+                                <a class="pr-3" href="perfilVisitante.html">
                                     <img src="Imagens/avatar-mini.jpg" alt="ex2" id="foto-resposta2">
                                 </a>
                                 <div class="media-body">
@@ -127,13 +130,14 @@
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1"></label>
                             <textarea aria-describedby="ajudaComentar" class="form-control"
-                                id="exampleFormControlTextarea1" rows="3" minlength="0" maxlength="100" required></textarea>
+                                id="exampleFormControlTextarea1" rows="3" minlength="0" maxlength="100"
+                                required></textarea>
                             <small id="ajudaComentar" class="form-text text-muted"> &nbsp; 0-100 caracteres.</small>
                         </div>
 
                         <div class="btn-comentar">
                             <a href="#">
-                                <button type="submit" class="btn btn-primary" >Comentar</button>
+                                <button type="submit" class="btn btn-primary">Comentar</button>
                             </a>
                         </div>
                     </form>
@@ -166,7 +170,9 @@
                     </div>
 
                     <div class="btn-seguir">
-                        <button id="botaoSeguir" type="submit" class="btn btn-secondary" onmouseout="verificaSeguindo();" onmouseover="alteraTextoDeixarSeguir();" onclick="cliqueBotaoSeguir();">
+                        <button id="botaoSeguir" type="submit" class="btn btn-secondary"
+                            onmouseout="verificaSeguindo();" onmouseover="alteraTextoDeixarSeguir();"
+                            onclick="cliqueBotaoSeguir();">
                             <var id="escritaBotaoSeguir"></var>
                         </button>
                     </div>
@@ -255,7 +261,7 @@
                         </button>
                     </div>
 
-                    <form>
+                    <form onsubmit="alertaDenunciaRealizada();">
                         <div class="modal-body">
                             <p>
                             <h6>Qual o problema com esse anúncio?</h6>
@@ -328,16 +334,16 @@
                             </div>
                         </div>
 
+
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-secondary" id="btn-realizar-denuncia">Realizar
+                                denúncia</button>
+
+
+                        </div>
+                    </form>
                 </div>
-
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-secondary" id="btn-realizar-denuncia"
-                        onclick="alertaDenunciaRealizada();">Realizar
-                        denúncia</button>
-
-
-                </div>
-                </form>
             </div>
         </div>
     </div>
