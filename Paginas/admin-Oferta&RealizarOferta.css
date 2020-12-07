@@ -228,28 +228,28 @@ img {
 #btn-cadastrar-item{
   position: absolute;
   left: 2.5%;
-  bottom: 2.5%;
 }
 
 #btn-ofertar-obj-selecionado {
   size: 10rem;
 }
 
-#container-denunciar {
+#container-excluir {
   font-weight: bolder;
   font-size: 1.5rem;
   margin-top: 1rem;
   border-radius: 1rem;
-  padding-bottom: .01rem;
+  padding-bottom: .1rem;
   text-align: left;
+  margin-bottom: 1rem;
 }
 
-#header-denunciar {
+#header-excluir {
   padding-top: .4rem;
   text-align: center;
 }
 
-#btnDenunciar, #btnDenunciar:active {
+#btnExcluir, #btnExcluir:active {
   margin-top: 0.3rem;
   margin-left: 0.5rem;
   margin-bottom: 1rem;
@@ -259,47 +259,48 @@ img {
   width: 200px;
 }
 
-#btnDenunciar:hover, #btnDenunciar:visited, #btnDenunciar:focus, #btnDenunciar:active:focus {
+#btnExcluir:hover, #btnExcluir:visited, #btnExcluir:focus, #btnExcluir:active:focus {
 box-shadow: 0 5px 0  #691515;
 background-color:  #ad2020;
 border-color: #3d0909;
 border-width: 1px;
 }
 
-/* BOTAO DENUNCIAR ANUNCIO */
+/* BOTAO EXCLUIR ANUNCIO */
 
-.form-group #comentario-denuncia {
-  min-height: 4rem;
-  max-height: 10rem;
-}
-
-#label-comentario-denuncia-header {
-  margin-bottom: -1rem;
-}
-
-.btn, .btn-primary, .btn-primary:active {
-  margin-top: 0.3rem;
-  margin-bottom: 0.3rem;
-  box-shadow: 0 5px 0 #c72060;
-  background-color: rgb(255, 50, 94);
-  border-color: rgb(255, 50, 94);
-}
-
-.btn-primary:hover, .btn-primary:visited, .btn-primary:focus, .btn-primary:active:focus {
-  box-shadow: 0 5px 0 #691535;
-  background-color: #ad2056;
-  border-color: #3d091d;
-  border-width: 1px;
-  width: 200px;
-}
-
-#btn-denunciar-anuncio, #btn-realizar-denuncia {
+#btn-excluir-anuncio, #btn-sim-desejo-excluir {
   box-shadow: 0 5px 0 #701212;
   background-color: rgb(226, 27, 27);
   border-color: rgb(206, 34, 34);
 }
 
+#btn-cancelar {
+  position: absolute;
+  left: 2.5%;
+}
+
+.btn-primary:hover, .btn-primary:visited, .btn-primary:focus, .btn-primary:active:focus {
+  box-shadow: 0 5px 0 #0e0e0e;
+  background-color: rgb(53, 53, 53);
+  border-color: rgb(0, 0, 0);
+  border-width: 1px;
+}
+
 /***/
+
+#btn-responder-comentario{
+  position: absolute;
+  left: 77.4%;
+  width: 100px;
+}
+
+#resposta-comentario {
+  padding-top: 4rem;
+}
+
+#labelResponderComentario {
+  font-weight: bolder;
+}
 
 /* FOOTER */
 #ad {
@@ -314,22 +315,3 @@ footer {
 }
 
 /***/
-
-/* Botao Seguir */
-
-#botaoSeguir {
-  margin-top: -0.9rem;
-  margin-bottom: 0.3rem;
-  margin-left: 0.5rem;
-  width: 200px;
-  height: 40px;
-  box-shadow: 0 5px 0 #2c568d;
-  background-color: rgb(82, 159, 231);
-  border-color: rgb(15, 51, 80);
-}
-
-#botaoSeguir:hover {
-  box-shadow: 0 5px 0 #1d3a61;
-  background-color: rgb(51, 115, 175);
-  border-color: rgb(10, 33, 53);
-}
