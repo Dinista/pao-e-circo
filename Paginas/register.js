@@ -13,3 +13,11 @@
         form.classList.add('was-validated');
       });
   })();
+
+
+  function goBack() {
+    var popup = confirm('Caso volte, perderá todos os dados preenchidos!\nTem certeza que deseja sair?');
+    if(popup == true){
+      window.history.back();
+    }
+}

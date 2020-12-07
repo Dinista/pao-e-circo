@@ -73,3 +73,15 @@
   margin-left: 35%;
   margin-bottom: 20px;
 }
+
+button:focus{
+  outline: none;
+}
+
+.btn-modal{
+  background-color: rgb(50, 132, 255);
+  border: none;
+  color: white;
+  border-radius: 3px;
+  padding: 5px;
+}

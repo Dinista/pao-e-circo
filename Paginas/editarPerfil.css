@@ -414,3 +414,8 @@ label{
     border: 0px solid #ced4da;
     box-shadow: 0 0 10px #a2a2a254;
 }
+
+#salve-pic{
+    display: None;
+    border: none;
+}

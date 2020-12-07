@@ -52,3 +52,28 @@ const form2 = document.querySelectorAll('.needs-validation')[1];
       });
 
   })();
+
+  const showalt = document.getElementById('salve-pic');
+
+  function preview_image(event){
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('avatar-preview');
+      output.src = reader.result;
+      showalt.style.display = 'block';
+    }
+    reader.readAsDataURL(event.target.files[0]);
+  }
+
+  function preview_image2(event){
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('bg-preview');
+      output.src = reader.result;
+      showalt.style.display = 'block';
+    }
+    reader.readAsDataURL(event.target.files[0]);
+  }
+
+
+

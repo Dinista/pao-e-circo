@@ -24,19 +24,19 @@
     <header>
       <container class="nav-area">
               <nav class="topbar bg-light">
-                  <dev class="menu-logo"><a href="#" class="menu-link"><img class="nav-logo-img" src="imagens/Logo-Pser 2.png" alt=""></a></dev>
+                  <dev class="menu-logo"><a href="index.html" class="menu-link"><img class="nav-logo-img" src="imagens/Logo-Pser 2.png" alt=""></a></dev>
                   <div class="d-flex justify-content-center px-5">
                       <div class="search">
                           <input type="text" class="search-input" placeholder="Procure um produto..." name="">
-                          <a href="#" class="search-icon"> <i class="fa fa-search"></i></a>
+                          <a href="buscarAnuncio.html" class="search-icon"> <i class="fa fa-search"></i></a>
                       </div>
                   </div>
                   <ul class="menu">
                     <li class="logo-nav"><a href="perfil.html" class="menu-link" title="Perfil"><img class="nav-user-img" src="imagens/Avatar-pic-example.jpg" alt=""></a></li>
                     <li class="menu-item"><a href="perfil.html#myTabContent" class="menu-link" title="Destaque"><i class="fa fa-bullhorn"></i></a></li>
                     <li class="menu-item"><a href="negociações.html" class="menu-link" title="Negociações"><i class="fa fa-handshake"><span class="badge-icon"><span></i></a></li>
-                    <li class="menu-item"><a href="#" class="menu-link" title ="Ajuda"><i class="fa fa-question-circle"></i></a></li>
-                    <li class="menu-item"><a href="register.html"><button class="btn-anunciar">quero anunciar</button></a></li>
+                    <li class="menu-item"><a href="#" class="menu-link" title ="Sair"><i class="fas fa-sign-out-alt" style="color: rgba(17, 17, 17, 0.795);"></i></a></li>
+                    <li class="menu-item"><a href="criarAnuncio.html"><button class="btn-anunciar">quero anunciar</button></a></li>
                   </ul>
               </nav>
       </container>
@@ -47,7 +47,7 @@
         <div id="bg"><img class="layout-bg" src= "imagens/bg-perfil.jpg" alt=""></div>
         <img class="layout-user-img" src="imagens/Avatar-pic-example.jpg" alt="">
         <text id="texto-esq"><h1>Felipe</h1>no Pão&Circo desde <span>2018</span></text>
-        <button class="minha-loja">meu perfil</button>
+        <button class="minha-loja" onclick = "location.href = 'perfil.html'">meu perfil</button>
       </div>
       <div class= "layout-center-header">
         <i class="fas fa-cogs"></i><text> Configurações</text>
@@ -57,14 +57,19 @@
           <text style="text-align: center;">perfil</text>
         </div>
         <ul class="alt-foto">
-          <li class="list-pic"><img class="img-alt" src="imagens/Avatar-pic-example.jpg" alt=""><ul class="text-alt">
+          <li class="list-pic"><img class="img-alt" id="avatar-preview" src="imagens/Avatar-pic-example.jpg" alt="">
+          <ul class="text-alt">
             <li style="font-weight: 600;">foto</li>
             <li style="font-size: 12px; color: rgb(116, 116, 116);">capricha na foto de perfil</li>
-          </ul><label for="picture1">Carregar foto<input type="file" id="picture1" name="picture1" accept="image/png, image/jpeg"></label></li>
-          <li class="list-pic"><img class="img-alt" src="imagens/bg-perfil.jpg" alt=""><ul class="text-alt">
+          </ul><label for="picture1">Carregar foto<input type="file" id="picture1" name="picture1" accept="image/png, image/jpeg" onchange="preview_image(event)"></label>
+        </li>
+          <li class="list-pic"><img class="img-alt" id="bg-preview" src="imagens/bg-perfil.jpg" alt="">
+          <ul class="text-alt">
             <li style="font-weight: 600;">capa</li>
             <li style="font-size: 12px; color: rgb(116, 116, 116);">pra ficar bonito</li>
-          </ul><label for="picture2">Carregar capa<input type="file" id="picture2" name="picture2" accept="image/png, image/jpeg"></label></li>
+          </ul><label for="picture2">Carregar capa<input type="file" id="picture2" name="picture2" accept="image/png, image/jpeg" onchange="preview_image2(event)"></label>
+        </li>
+          <li class="list-pic salve-edit" style="border: 0px solid;"><div class="salve" id="salve-pic"><button class="salvar" type='submit'>salvar alterações</button></div></li>
         </ul>
         <div class="dados-pessoais" >
           <div class="header-categorias">
@@ -97,7 +102,8 @@
               <text class="info" id="tel">(44)••••-0000</text>
             </li>
           </ul>
-          <form id="form-dados" class="o-formulario needs-validation" novalidate>
+          <form id="form-dados" class="o-formulario needs-validation" action="editarPerfil.html" novalidate method = post
+          oninput= 'up2.setCustomValidity(up2.value != up.value ? "Passwords do not match." : "")'>
             <div class="form-group">
               <label for="inputName">novo nome</label>
               <input type="text" class="form-control" id="inputName" placeholder="Nome completo" required>
@@ -106,29 +112,29 @@
             </div>
             </div>
             <div class="form-group">
-              <label for="inputEmail"> novo e-mail</label>
+              <label for="inputEmail">novo e-mail</label>
               <input type="Email" class="form-control" id="inputEmail" required>
               <div class="invalid-feedback">
                 Informe seu e-mail.
               </div>
             </div>
             <div class="form-group">
-              <label for="inputpassaword"> nova senha </label>
-              <input type="password" pattern=".{8,}" class="form-control" id="inputpassaword" required>
+              <label for="inputpassaword">nova senha </label>
+              <input type="password" pattern=".{8,}" class="form-control" id="inputpassaword" required name=up>
               <div class="invalid-feedback">
                 a senha deve conter 8 ou mais caracteres.
               </div>
             </div>
             <div class="form-group">
-              <label for="inputpassaword"> confirme a senha </label>
-              <input type="password" pattern=".{8,}" class="form-control" id="inputpassaword" required>
+              <label for="inputpassaword2">confirme a senha </label>
+              <input type="password" pattern=".{8,}" class="form-control" id="inputpassaword2" required name=up2>
               <div class="invalid-feedback">
                 as senhas não batem.
               </div>
             </div>
             <div class="form-group">
-              <label for="inputcelphone"> telefone </label>
-              <input type="text" pattern="[0-9]+" class="form-control" id="inputcelphone" placeholder="DD0000000" required>
+              <label for="inputcelphone">telefone </label>
+              <input type="text" pattern="[0-9]+" class="form-control" id="inputcelphone" placeholder="DD0000000">
               <div class="invalid-feedback">
                 número de telefone inválido.
               </div>
@@ -146,24 +152,24 @@
             <button id="btn-endereco"><i class="far fa-edit"></i></button>
           </ul>
 
-          <form id="form-endereco" class="o-formulario needs-validation" novalidate>
+          <form id="form-endereco" class="o-formulario needs-validation" action="editarPerfil.html" novalidate>
             <div class="form-group">
-              <label for="inputAddress"><i class="fa fa-map-marker"></i> Endereço</label>
+              <label for="inputAddress"><i class="fa fa-map-marker"></i> * Endereço</label>
               <input type="text" class="form-control" id="inputAddress" placeholder="Residência" required>
               <div class="invalid-feedback">
-                Escreva o nome de sua cidade.
+                Informe seu endereço.
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
-                <label for="inputCity"><i class="fa fa-home"></i> Cidade</label>
+                <label for="inputCity"><i class="fa fa-home"></i> * Cidade</label>
                 <input type="text" class="form-control" id="inputCity" required>
                 <div class="invalid-feedback">
                   Informe sua cidade.
                 </div>
               </div>
               <div class="form-group col-md-6">
-                <label for="inputState">Estado</label>
+                <label for="inputState">* Estado</label>
                 <select id="inputState" class="form-control" required>
                   <option disabled selected value>...</option>
                   <option>Acre</option>
@@ -228,11 +234,11 @@
           </button>
         </div>
         <div class="modal-body">
-          Tem certeza que deseja excluir sua conta?
+          Tem certeza que deseja excluir sua conta? <b>Todos os seus dados serão perdidos!</b>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
-          <button type="button" id="btn-primary" class="btn btn-primary">Sim</button>
+          <button type="button" id="btn-primary" class="btn btn-primary" onclick="location.href='index.html'" type="button">Sim</button>
         </div>
       </div>
     </div>

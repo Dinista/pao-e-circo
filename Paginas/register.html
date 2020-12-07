@@ -20,10 +20,10 @@
   <header class="header">
     <nav class="navbar navbar-light bg-light">
       <div class="o-logo">
-        <a href="#"><img src="imagens/Logo-Pser 2.png" alt=""></a>
+        <a href="index.html"><img src="imagens/Logo-Pser 2.png" alt=""></a>
       </div>
       <div class="nav-voltar">
-        <a href="#">
+        <button onclick = "goBack()" style = "color: white; border :none;">
           <svg class=" o-icon -xs-size-medium -color-extra-dark -spaced-right -full-arrow-left "
             style="position: absolute; width: 30; height: 30;" width="0" height="0" version="1.1"
             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -38,7 +38,7 @@
               </svg>
             </use>
           </svg>
-        </a>
+        </button>
       </div>
       </div>
     </nav>
@@ -48,9 +48,10 @@
   <div class="nav-tab">
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade show active" id="PessoaFisica" role="tabpanel" aria-labelledby="PessoaFisica-tab">
-        <form class="o-formulario needs-validation" novalidate>
+        <form class="o-formulario needs-validation" novalidate method = post
+        oninput= 'up2.setCustomValidity(up2.value != up.value ? "Passwords do not match." : "")' action = "indexLogado.html">
           <div class="form-group">
-            <label for="inputName"><i class="fa fa-user"></i> Nome</label>
+            <label for="inputName"><i class="fa fa-user"></i> * Nome</label>
             <input type="text" class="form-control" id="inputName" placeholder="Nome completo" required>
           <div class="invalid-feedback">
             Insira seu nome.
@@ -58,14 +59,14 @@
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="inputCPF"><i class="fa fa-id-card-o"></i> CPF</label>
+              <label for="inputCPF"><i class="fa fa-id-card-o"></i> * CPF</label>
               <input type="text" pattern= "[0-9]+\d{8,10}$"class="form-control" id="inputCPF" placeholder="Apenas números" required>
               <div class="invalid-feedback">
                 Apenas números e 11 digitos.
               </div>
             </div>
             <div class="form-group col-md-6">
-              <label for="inputPassword4">Data de nascimento</label>
+              <label for="inputPassword4"> * Data de nascimento</label>
               <input type="date" class="form-control" id="inputPassword4" required>
               <div class="invalid-feedback">
                 Coloque a data de nascimento.
@@ -73,22 +74,22 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="inputAddress"><i class="fa fa-map-marker"></i> Endereço</label>
+            <label for="inputAddress"><i class="fa fa-map-marker"></i> * Endereço</label>
             <input type="text" class="form-control" id="inputAddress" placeholder="Residência" required>
             <div class="invalid-feedback">
-              Informe dseu endereço.
+              Informe seu endereço.
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="inputCity"><i class="fa fa-home"></i> Cidade</label>
+              <label for="inputCity"><i class="fa fa-home"></i> * Cidade</label>
               <input type="text" class="form-control" id="inputCity" required>
               <div class="invalid-feedback">
                 Informe sua cidade.
               </div>
             </div>
             <div class="form-group col-md-6">
-              <label for="inputState">Estado</label>
+              <label for="inputState"> * Estado</label>
               <select id="inputState" class="form-control" required>
                 <option disabled selected value>...</option>
                 <option>Acre</option>
@@ -124,32 +125,57 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="inputEmail"><i class="material-icons" style="font-size:15px">email</i> E-mail</label>
+            <label for="inputEmail"><i class="material-icons" style="font-size:15px">email</i> * E-mail</label>
             <input type="Email" class="form-control" id="inputEmail" required>
             <div class="invalid-feedback">
-              Informe seu e-mail.
+              e-mail inválido.
             </div>
           </div>
           <div class="form-group">
-            <label for="inputpassaword"><i class="fa fa-lock"></i> Senha </label>
-            <input type="password" pattern=".{8,}" class="form-control" id="inputpassaword" required>
+            <label for="inputpassaword"><i class="fa fa-lock"></i> * Senha </label>
+            <input type="password" pattern=".{8,}" class="form-control" id="inputpassaword" required name=up>
             <div class="invalid-feedback">
               a senha deve conter 8 ou mais caracteres.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputpassaword2"><i class="fa fa-lock"></i> * Confirme sua senha</label>
+            <input type="password" pattern=".{8,}" class="form-control" id="inputpassaword2" required name=up2>
+            <div class="invalid-feedback">
+              as senhas não batem.
             </div>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" required>
             <label class="form-check-label" for="defaultCheck1">
-              Aceito os <a href="#" style="color:rgb(250, 106, 149)">termos de condição</a> do site Pão e Circo.
+              Aceito os <a href="#Modal-Center" style="color:rgb(250, 106, 149)" data-toggle="modal" data-target="#Modal-Center">termos de condição</a> do site Pão e Circo.
             </label>
             <div class="invalid-feedback">
               é obrigatório aceitar os termos.
             </div>
+            <!-- Modal -->
+            <div class="modal fade" id="Modal-Center" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Termos de serviço.</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    termos...
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn-modal" data-dismiss="modal">Continuar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Modal -->
           </div>
           <div class="btn-cadastrar">
-            <a href="#">
-              <button type="submit" class="btn btn-primary">Criar conta</button>
-            </a>
+            <button type="submit" class="btn btn-primary">Criar conta</button>
           </div>
           <div class="direitos">
             @Todos os direitos reservados.
