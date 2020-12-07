@@ -314,3 +314,22 @@ footer {
 }
 
 /***/
+
+/* Botao Seguir */
+
+#botaoSeguir {
+  margin-top: -0.9rem;
+  margin-bottom: 0.3rem;
+  margin-left: 0.5rem;
+  width: 200px;
+  height: 40px;
+  box-shadow: 0 5px 0 #2c568d;
+  background-color: rgb(82, 159, 231);
+  border-color: rgb(15, 51, 80);
+}
+
+#botaoSeguir:hover {
+  box-shadow: 0 5px 0 #1d3a61;
+  background-color: rgb(51, 115, 175);
+  border-color: rgb(10, 33, 53);
+}
