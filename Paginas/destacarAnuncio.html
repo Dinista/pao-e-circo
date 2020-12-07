@@ -49,7 +49,8 @@
         <div class="container bg-light" id="external-container">
             <h3 class="text-center" id="propagandasAtivas"> <b>Destaque para o anúncio:</b> </h3>
             <div class="container p-2 my-2 border">
-                <img src="Imagens/anuncioDestacado.jpg" class="img-fluid" id="img-bumerangue">
+                <a href="usuario_logado_dono_anuncio-Oferta&RealizarOferta.html"> <img
+                        src="Imagens/anuncioDestacado.jpg" class="img-fluid" id="img-bumerangue"> </a>
                 <b>Título do anúncio: </b> Bumerangue Branco e Verde<br>
                 <b>Data de criação do anúncio:</b> 11/11/2020<br>
                 <b>Selecione o plano de destaque desejado: </b>
@@ -83,14 +84,15 @@
                         </div>
                     </fieldset>
                 </form>
-    
-                <button type="submit" class="btn btn-primary" id="btn-prosseguir-pagamento">
+
+                <button type="submit" class="btn btn-primary" id="btn-prosseguir-pagamento"
+                    onclick="alertaRedirecionamento();">
                     Prosseguir para o pagamento
                 </button>
-    
+
             </div>
         </div>
-    
+
     </main>
 
     <!-- Modal deseja sair? -->
@@ -110,7 +112,7 @@
                 <div class="modal-footer">
                     <button type="button" id="botaoFicar" class="btn btn-secondary" data-dismiss="modal">Desejo
                         ficar</button>
-                    <button type="button" id="botaoSair" class="btn btn-primary">Sim, desejo sair</button>
+                    <a href="perfil.html"><button type="button" id="botaoSair" class="btn btn-primary">Sim, desejo sair</button></a>
                 </div>
             </div>
         </div>
@@ -127,7 +129,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
-
+    <script type="text/javascript" src="destacarAnuncio.js"></script>
 </body>
 
 <br><br><br><br><br><br><br><br>
