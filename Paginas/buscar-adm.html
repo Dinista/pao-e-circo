@@ -12,7 +12,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="buscar.css">
+    <link rel="stylesheet" href="buscar-adm.css">
     <title>Buscar</title>
 </head>
 
@@ -20,27 +20,32 @@
     <!-- Header -->
     <header>
         <container class="nav-area">
-            <nav class="topbar bg-light">
-                <dev class="menu-logo"><a href="index.html" class="menu-link"><img class="nav-logo-img"
-                            src="Imagens/Logo-Pser 2.png" alt=""></a></dev>
-                <div class="d-flex justify-content-center px-5">
-                    <div class="search">
-                        <input type="text" class="search-input" placeholder="Buscar um anúncio ou usuário..." name="">
-                        <a href="buscar.html" class="search-icon"> <i class="fa fa-search"></i></a>
+                <nav class="topbar bg-light">
+                    <dev class="menu-logo"><a href="#" class="menu-link"><img class="nav-logo-img" src="Imagens/Logo-Pser 2.png" alt=""></a></dev>
+                    <div class="d-flex justify-content-center px-5">
+                        <div class="search">
+                            <input type="text" class="search-input" placeholder="Buscar um anúncio ou usuário..." name="">
+                            <a href="buscar-adm.html" class="search-icon"> <i class="fa fa-search"></i></a>
+                        </div>
                     </div>
-                </div>
-                <ul class="menu">
-                    <li class="logo-nav"><a href="perfil.html" class="menu-link" title="Perfil"><img
-                                class="nav-user-img" src="Imagens/avatar-mini.jpg" alt=""></a></li>
-                    <li class="menu-item"><a href="perfil.html#myTabContent" class="menu-link" title="Destaque"><i
-                                class="fa fa-bullhorn"></i></a></li>
-                    <li class="menu-item"><a href="negociações.html" class="menu-link" title="Negociações"><i
-                                class="fa fa-handshake"></i></a></li>
-                                <li class="menu-item"><a href="index.html" class="menu-link" title ="Sair"><i class="fas fa-sign-out-alt" style="color: rgba(17, 17, 17, 0.795);"></i></a></li>
-                    <li class="menu-item"><a href="criarAnuncio.html"><button class="btn-anunciar">quero
-                                anunciar</button></a></li>
-                </ul>
-            </nav>
+                    <ul class="menu-drop">
+                        <li class="menu-item-drop">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-bars"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="gerenciarPropaganda.html">Gerenciar Propaganda.</a>
+                              <a class="dropdown-item" href="relatorioAnuncios.html">Relatório Anúncio.</a>
+                              <a class="dropdown-item" href="relatorioPropagandas.html">Relatório de Propagandas.</a>
+                              <a class="dropdown-item" href="relatorioUsuariosCadastrados.html">Relatório de Usuários cadastrados.</a>
+                              <a class="dropdown-item" href="avaliarDenuncia.html">Avaliar Denúncias.</a>
+
+                            </div>
+                        </div></li>
+                        <li><a href="index.html">Sair</a></li>
+                    </ul>
+                </nav>
         </container>
     </header>
 
@@ -95,7 +100,7 @@
                                                 <i class="fas fa-star"></i> <b> Avaliação: </b> 4,6
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <a href="usuario_logado-Oferta&RealizarOferta.html"><button type="button" class="btn btn-primary">Visualizar</button></a>
+                                                <a href="admin-Oferta&RealizarOferta.html"><button type="button" class="btn btn-primary">Visualizar</button></a>
                                             </div>
                                         </form>
 
@@ -132,7 +137,7 @@
                                                 <i class="fas fa-star"></i> <b> Avaliação: </b> 4,8
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <a href="usuario_logado-Oferta&RealizarOferta.html"><button type="button" class="btn btn-primary">Visualizar</button></a>
+                                                <a href="admin-Oferta&RealizarOferta.html"><button type="button" class="btn btn-primary">Visualizar</button></a>
                                             </div>
                                         </form>
 
@@ -171,7 +176,7 @@
                                                 <i class="fas fa-star"></i> <b> Avaliação: </b> 4,7
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <a href="usuario_logado-Oferta&RealizarOferta.html"><button type="button" class="btn btn-primary">Visualizar</button></a>
+                                                <a href="admin-Oferta&RealizarOferta.html"><button type="button" class="btn btn-primary">Visualizar</button></a>
                                             </div>
                                         </form>
 
@@ -229,7 +234,7 @@
                                                 <i class="fas fa-star"></i> <b> Avaliação: </b> 4,6
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <a href="perfil.html"><button type="button" class="btn btn-primary">Visualizar</button></a>
+                                                <a href="perfilAdm.html"><button type="button" class="btn btn-primary">Visualizar</button></a>
                                             </div>
                                         </form>
 
@@ -273,7 +278,7 @@
                                                 <i class="fas fa-star"></i> <b> Avaliação: </b> 4,8
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <a href="perfilVisitante.html"><button type="button" class="btn btn-primary">Visualizar</button></a>
+                                                <a href="perfilAdm.html"><button type="button" class="btn btn-primary">Visualizar</button></a>
                                             </div>
                                         </form>
 
@@ -316,7 +321,7 @@
                                                 <i class="fas fa-star"></i> <b> Avaliação: </b> 4,5
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <a href="perfilVisitante.html"><button type="button" class="btn btn-primary">Visualizar</button></a>
+                                                <a href="perfilAdm.html"><button type="button" class="btn btn-primary">Visualizar</button></a>
                                             </div>
                                         </form>
 
@@ -328,11 +333,11 @@
                             <!-- -->
                             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                                 <div class="btn-group mr-2" role="group" aria-label="First group">
-                                    <button type="button" class="btn btn-secondary">1</button>
-                                    <button type="button" class="btn btn-secondary">2</button>
+                                    <button type="button" id="btn-um" class="btn btn-secondary">1</button>
+                                    <button type="button" id="btn-dois" class="btn btn-secondary">2</button>
                                 </div>
                                 <div class="btn-group" role="group" aria-label="Third group">
-                                    <button type="button" class="btn btn-secondary">Proximo</button>
+                                    <button type="button" id="btn-proximo" class="btn btn-secondary">Proximo</button>
                                 </div>
                             </div>
                         </div>
