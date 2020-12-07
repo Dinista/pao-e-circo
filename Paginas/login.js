@@ -8,7 +8,10 @@ function autenticacao(){
     if(email.value == "felipe@gmail.com"){
         formulario.action = "indexLogado.html";
     
-    }else{
+    }else if(email.value == "adm@adm.com"){
+        formulario.action = "administrador.html";
+    }
+    else{
         formulario.action = "loginErro.html";   
     }
 }
