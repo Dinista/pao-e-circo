@@ -16,6 +16,7 @@ body {
   border-radius: 5px;
 }
 
+
 .search-input {
   color: white;
   border: 0;
@@ -168,6 +169,11 @@ figure {
 }
 
 /* Posicão do forms */
+.categoria{
+  color: #c72060;
+
+
+}
 
 .nav-tab {
   position: absolute;
