@@ -22,17 +22,33 @@
     <header>
         <container class="nav-area">
             <nav class="topbar bg-light">
-                <dev class="menu-logo"><a href="index.html" class="menu-link"><img class="nav-logo-img"
+                <dev class="menu-logo"><a href="administrador.html" class="menu-link"><img class="nav-logo-img"
                             src="Imagens/Logo-Pser 2.png" alt=""></a></dev>
                 <div class="d-flex justify-content-center px-5">
                     <div class="search">
-                        <input type="text" class="search-input" placeholder="Procure um produto..." name="">
-                        <a href="#" class="search-icon"> <i class="fa fa-search"></i></a>
+                        <input type="text" class="search-input" placeholder="Buscar um anúncio ou usuário..." name="">
+                        <a href="buscar.html" class="search-icon"> <i class="fa fa-search"></i></a>
                     </div>
                 </div>
-                <ul class="menu">
-                    
-                    
+                <ul class="menu-drop">
+                    <li class="menu-item-drop">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-bars"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="gerenciarPropaganda.html">Gerenciar Propaganda</a>
+                                <a class="dropdown-item" href="relatorioAnuncios.html">Relatório Anúncio.</a>
+                                <a class="dropdown-item" href="relatorioPropagandas.html">Relatório de Propagandas.</a>
+                                <a class="dropdown-item" href="relatorioUsuariosCadastrados.html">Relatório de Usuários
+                                    cadastrados.</a>
+                                <a class="dropdown-item" href="avaliarDenuncia.html">Avaliar Denúncias</a>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="index.html">Sair</a></li>
                 </ul>
             </nav>
         </container>
@@ -46,7 +62,7 @@
 
                     <div class="container bg-light" id="container-informacoes-vendedor">
                         <p id="titulo-anuncio"> Informações do anunciante</p>
-                        <div> <a href="perfil-admin.html"> <img src="Imagens/Avatar-pic-example.jpg" alt=""
+                        <div> <a href="perfilAdm.html"> <img src="Imagens/Avatar-pic-example.jpg" alt=""
                                     id="foto-anunciante"></a> </div>
                         <p id="informacoes">
                             <b>Nome:</b> Felipe Diniz<br>
@@ -92,14 +108,14 @@
                     <h2>Comentários</h2>
 
                     <div class="media">
-                        <a href="perfil-admin.html"> <img class="mr-3" src="Imagens/lisa.jpg" alt="ex"
-                                id="foto-resposta"> </a>
+                        <a href="perfilAdm.html"> <img class="mr-3" src="Imagens/lisa.jpg" alt="ex" id="foto-resposta">
+                        </a>
                         <div class="media-body">
                             <h6><b aria-describedby="horaMensagem">Elisa</b>:</h6>
                             <small class="form-text text-muted" id="horaMensagem">10h24 16/10/2020</small>
                             <p> Ele é pesado?</p>
                             <div class="media mt-3" id="resposta-comentario">
-                                <a class="pr-3" href="perfil-admin.html">
+                                <a class="pr-3" href="perfilAdm.html">
                                     <img src="Imagens/avatar-mini.jpg" alt="ex2" id="foto-resposta2">
                                 </a>
                                 <div class="media-body">
@@ -165,8 +181,9 @@
 
                     <button type="button" class="btn btn-secondary" id="btn-cancelar"
                         data-dismiss="modal">Cancelar</button>
-                    <a href="administrador.html"><button type="submit" class="btn btn-secondary" id="btn-sim-desejo-excluir"
-                            onClick="alertaAnuncioExcluido();">Sim, desejo excluir</button></a>
+                    <a href="administrador.html"><button type="submit" class="btn btn-secondary"
+                            id="btn-sim-desejo-excluir" onClick="alertaAnuncioExcluido();">Sim, desejo
+                            excluir</button></a>
                 </div>
 
             </div>
