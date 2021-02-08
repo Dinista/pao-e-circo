@@ -1,15 +1,18 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("clientes")
-export default class Cliente {
-  @PrimaryGeneratedColumn("increment")
-  id: number;
+class Cliente {
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
 
   @Column()
   name: string;
 
   @Column()
   endereco: string;
+
+  @Column()
+  cpf: string;
 
   @Column()
   cidade: string;
@@ -23,3 +26,5 @@ export default class Cliente {
   @Column()
   nota: number;
 }
+
+export default Cliente;

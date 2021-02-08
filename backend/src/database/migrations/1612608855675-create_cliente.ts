@@ -8,13 +8,17 @@ export class createCliente1612608855675 implements MigrationInterface {
         columns: [
           {
             name: "id",
-            type: "integer",
-            unsigned: true,
+            type: "uuid",
             isPrimary: true,
-            generationStrategy: "increment",
+            generationStrategy: "uuid",
+            default: "uuid_generate_v4()",
           },
           {
             name: "name",
+            type: "varchar",
+          },
+          {
+            name: "cpf",
             type: "varchar",
           },
           {
