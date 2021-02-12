@@ -1,0 +1,52 @@
+.header {
+  display: flex;
+  width: 100%;
+  height: auto;
+  position: relative;
+  align-items: center;
+  background: #0e4781;
+}
+.logo {
+  margin-right: 4vw;
+}
+
+.inputText {
+  height: 34px;
+  width: 50%;
+  border: 1px solid;
+  padding: 0 12px;
+  border-radius: 16px;
+}
+
+.loggedContainer {
+  align-items: center;
+}
+
+.avatar {
+  border-radius: 50%;
+}
+
+.iconContainer {
+  height: 34px;
+  display: flex;
+  width: 34px;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: #fd5c7f;
+  font-size: 15px;
+  border-radius: 5px;
+}
+
+.login {
+  margin-left: 30vw;
+  height: 40px;
+  display: flex;
+  width: 70px;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: #fd5c7f;
+  font-size: 15px;
+  border-radius: 5px;
+}
