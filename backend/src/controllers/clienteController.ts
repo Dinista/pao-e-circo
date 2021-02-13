@@ -20,7 +20,7 @@ class ClienteController {
 
     await clienteRepository.save(cliente);
 
-    return response.json(request.body);
+    return response.json("teste");
   }
 }
 
