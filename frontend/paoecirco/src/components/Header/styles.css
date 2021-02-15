@@ -5,6 +5,7 @@
   align-items: center;
   justify-content: space-between;
   background: #0e4781;
+  position: fixed;
 }
 .logo {
   margin-right: 4vw;
@@ -31,6 +32,7 @@
   justify-content: center;
   align-items: center;
   color: white;
+  margin-left: 5px;
   background-color: #fd5c7f;
   font-size: 15px;
   border-radius: 5px;
@@ -60,7 +62,9 @@
   height: 40px;
   width: 78px;
   display: flex;
+  text-decoration: none;
   justify-content: center;
+  font-weight: bold;
   align-items: center;
   color: white;
   font-size: 15px;
@@ -70,6 +74,8 @@
 .linkLogged {
   height: 40px;
   display: flex;
+  text-decoration: none;
+  font-weight: bold;
   width: 70px;
   justify-content: center;
   align-items: center;
@@ -79,6 +85,7 @@
 }
 
 .sair {
+  font-weight: bold;
   background-color: Transparent;
   border: none;
   color: white;
@@ -87,6 +94,7 @@
 .btLogin {
   height: 40px;
   display: flex;
+  font-weight: bold;
   width: 70px;
   justify-content: center;
   align-items: center;
