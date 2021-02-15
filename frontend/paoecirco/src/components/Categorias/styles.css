@@ -1,0 +1,32 @@
+.item {
+  font-size: 5vw;
+  text-decoration: none;
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.gravura {
+  color: black;
+}
+
+.textoDescricao {
+  font-size: 1vw;
+  font-weight: bold;
+  text-decoration: none;
+
+  color: black;
+}
+
+.textoDescricao:hover {
+  color: purple;
+}
+
+.categorias {
+  display: flex;
+  width: 60%;
+  box-shadow: 1px 1px 1px 1px #0e4781;
+  justify-content: space-around;
+}

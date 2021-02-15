@@ -1,17 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Header from "../../components/Header";
 import "./styles.css";
+
+import ImageSlider from "../../components/Slider";
+import { SliderData } from "../../components/SliderData";
+import Categorias from "../../components/Categorias";
 
 const Landing: React.FC = () => {
   return (
     <>
-      <Header />
-
-      <div>teste</div>
-      <button>
-        <Link to="/signup"> clica ae</Link>
-      </button>
+      <div className="container">
+        <Header />
+        <Categorias />
+        <ImageSlider slides={SliderData} />
+      </div>
     </>
   );
 };
