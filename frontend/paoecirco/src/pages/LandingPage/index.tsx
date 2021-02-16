@@ -5,6 +5,7 @@ import "./styles.css";
 import ImageSlider from "../../components/Slider";
 import { SliderData } from "../../components/SliderData";
 import Categorias from "../../components/Categorias";
+import Destaques from "../../components/Destaques";
 
 const Landing: React.FC = () => {
   return (
@@ -13,6 +14,7 @@ const Landing: React.FC = () => {
         <Header />
         <Categorias />
         <ImageSlider slides={SliderData} />
+        <Destaques />
       </div>
     </>
   );
