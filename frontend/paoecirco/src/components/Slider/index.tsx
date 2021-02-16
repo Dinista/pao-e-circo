@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { SliderData } from "../SliderData";
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
 import "./styles.css";
+import { Link } from "react-router-dom";
 
 const ImageSlider = ({ slides }: any) => {
   const [current, setCurrent] = useState(0);
@@ -25,13 +26,19 @@ const ImageSlider = ({ slides }: any) => {
       <FaArrowAltCircleRight className="right-arrow" onClick={nextSlide} />
       {SliderData.map((slide, index) => {
         return (
-          <div
-            className={index === current ? "slide active" : "slide"}
-            key={index}
-          >
-            {index === current && (
-              <img src={slide.image} alt="éisso" className="image" />
-            )}
+          <div className="sliderContainer">
+            <div
+              className={index === current ? "slide active" : "slide"}
+              key={index}
+            >
+              {index === current && (
+                <Link to="teste" className="linkContainer">
+                  <img src={slide.image} alt="éisso" className="image" />
+                  <h1 className="tituloSlide">{slide.titulo}</h1>
+                  <div className="descricao">{slide.descricao}</div>
+                </Link>
+              )}
+            </div>
           </div>
         );
       })}
