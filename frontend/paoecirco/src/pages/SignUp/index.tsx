@@ -3,7 +3,7 @@ import React from "react";
 import Link from "react-router-dom";
 import Header from "../../components/Header";
 
-const Signup: React.FC = () => {
+const SignUp: React.FC = () => {
   return (
     <>
       <Header />
@@ -12,4 +12,4 @@ const Signup: React.FC = () => {
   );
 };
 
-export default Signup;
+export default SignUp;
