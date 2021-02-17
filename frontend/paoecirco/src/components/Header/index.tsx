@@ -6,9 +6,11 @@ import { FiSearch } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 const Header: React.FC = (props) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  function handleLogout() {}
+  function handleLogout() {
+    setIsLoggedIn(false);
+  }
 
   return (
     <div className="header">
@@ -42,7 +44,11 @@ const Header: React.FC = (props) => {
           </button>
         </div>
       ) : (
-        <button className="btLogin">Login</button>
+        <div className="loggedContainer">
+          <Link to="/signin" className="linkSignin">
+            <button className="btLogin">Login</button>
+          </Link>
+        </div>
       )}
     </div>
   );
