@@ -6,7 +6,7 @@ import { FiSearch } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 const Header: React.FC = (props) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   function handleLogout() {
     setIsLoggedIn(false);
@@ -36,7 +36,7 @@ const Header: React.FC = (props) => {
           <Link to="/destaques" className="destaques">
             DESTAQUES
           </Link>
-          <Link to="/anunciar" className="linkLogged">
+          <Link to="/createexchangead" className="linkLogged">
             ANUNCIAR
           </Link>
           <button onClick={handleLogout} className="sair">
