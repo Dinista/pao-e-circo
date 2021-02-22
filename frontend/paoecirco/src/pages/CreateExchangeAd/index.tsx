@@ -1,5 +1,5 @@
-import React from "react";
-import logo from "../../assets/logo.png";
+import React, {useState} from "react";
+import { Form, TextField, SelectField, SubmitButton } from "../../components/FormElements/formElements";
 import "./styles.css";
 import { AiOutlineMail, AiFillLock, AiOutlineSound, AiOutlineDropbox } from "react-icons/ai";
 import { Link } from "react-router-dom";
@@ -8,7 +8,63 @@ import * as yup from "yup";
 const CreateExchangeAd: React.FC = () => {
   function handleExchangeAdCreation() {}
 
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    role: ""
+  });
+
+  const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
+    console.log(values);
+    setSubmitting(false);
+  }
+
   return (
+    <div className="CreateExchangeAd">
+      <Form
+        enableReinitialize
+        initialValues={formData}
+        onSubmit={onSubmit}  
+      >
+        <div>
+          <TextField 
+            name="name"
+            label="Name"
+          />
+        </div>
+
+        <div>
+          <TextField 
+            name="email"
+            label="Email"
+          />
+        </div>
+
+        <div>
+          <SelectField
+            name="role"
+            label="Role"
+            options={[
+              {
+                label: "Admin",
+                value: "admin"
+              },
+              {
+                label: "User",
+                value: "user"
+              }
+            ]}
+          />
+        </div>
+
+        <SubmitButton
+          title="Submit"
+        />
+      </Form>
+    </div>
+
+
+    /*
     <div className="createExchangeAdContainer">
       <div className="createExchangeAdLogoContainer">
         <img src={logo} alt="logo" />
@@ -18,7 +74,6 @@ const CreateExchangeAd: React.FC = () => {
         
       <div className="formsContainer">
 
-             
         <div className="tituloAnuncioContainer">
           <div className="tituloAnuncioTextoIconeContainer">
             <AiOutlineSound className="tituloIcon" />
@@ -45,32 +100,66 @@ const CreateExchangeAd: React.FC = () => {
           />        
         </div>
 
-        <div className="_Container">
-          <div className="_TextoIconeContainer">
-            <AiOutlineDropbox className="_Icon" />
-            _
+        <div className="categoriaContainer">
+          <div className="categoriaTextoIconeContainer">
+            <AiOutlineDropbox className="categoriaIcon" />
+            Categoria
           </div>
-          <input
-            type="text"
-            name="_Input"
-            id="_Input"
-            placeholder="ex: Sapato, Luva" 
-          />        
+          <select id="categoria">
+            <option value="val0"> Selecione</option>
+            <option value="val1"> Brinquedo</option>
+            <option value="val2"> Decorações</option>
+            <option value="val3"> Eletrônico</option>
+            <option value="val4"> Ferramenta</option>
+            <option value="val5"> Instrumento Musical</option>
+            <option value="val6"> Material Escolar</option>
+            <option value="val7"> Móvel</option>
+            <option value="val8"> Vestuário</option>
+            <option value="val9"> Outros</option>
+          </select>
         </div>
 
-        <div className="_Container">
-          <div className="_TextoIconeContainer">
-            <AiOutlineDropbox className="_Icon" />
-            _
+        <div className="estadoConservacaoContainer">
+          <div className="estadoConservacaoTextoIconeContainer">
+            <AiOutlineDropbox className="estadoConservacaoIcon" />
+            Estado de Conservacao
           </div>
-          <input
-            type="text"
-            name="_Input"
-            id="_Input"
-            placeholder="ex: Sapato, Luva" 
-          />        
+          <select id="estadoConservacao">
+            <option value="val0"> Selecione</option>
+            <option value="val1"> Novo</option>
+            <option value="val2"> Semi-novo</option>
+            <option value="val3"> Usado</option>
+          </select> 
         </div>
 
+        <div className="fotosContainer">
+          <div className="fotosTextoIconeContainer">
+            <AiOutlineDropbox className="fotosIcon" />
+            Fotos
+          </div>
+          <div className="file1">
+            <input
+              type="file"
+              name="fotoInput1"
+              id="fotoInput1"
+            />    
+          </div>
+          <div className="file2">
+            <input
+              type="file"
+              name="fotoInput2"
+              id="fotoInput2"
+            />        
+          </div>
+          <div className="file3">
+            <input
+              type="file"
+              name="fotoInput3"
+              id="fotoInput3"
+            />    
+          </div>
+        </div>
+        
         <div className="_Container">
           <div className="_TextoIconeContainer">
             <AiOutlineDropbox className="_Icon" />
@@ -133,6 +222,7 @@ const CreateExchangeAd: React.FC = () => {
         Não tem conta?
       </Link>
     </div>
+    */
   );
 };
 
