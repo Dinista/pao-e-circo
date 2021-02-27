@@ -1,87 +1,60 @@
-.o-logo {
-  position: relative;
-  vertical-align: auto;
-  top: 0;
-  left: 45%;
-}
-.o-icon {
-  position: absolute;
-  top: 35%;
-  left: 5%;
-  height: 150px;
-}
-#PessoaFisica,
-#empresa {
-  position: absolute;
-  top: 130%;
-  left: 0%;
-  max-width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-  box-sizing: border-box;
-}
-.header {
-  margin-bottom: 15px;
+.signupGrid {
+  display: grid;
+  place-content: center;
 }
 
-.btn,
-.btn-primary,
-.btn-primary:active {
-  box-shadow: 0 5px 0 #c72060;
-  background-color: rgb(255, 50, 94);
-  border-color: rgb(255, 50, 94);
-  width: 400px;
-}
-.btn-primary:hover,
-.btn-primary:visited,
-.btn-primary:focus,
-.btn-primary:active:focus {
-  box-shadow: 0 5px 0 #0e0e0e;
-  background-color: rgb(53, 53, 53);
-  border-color: rgb(0, 0, 0);
-  border-width: 1px;
-  width: 400px;
-}
-.form-font {
-  position: absolute;
-  left: 20%;
-  top: -15%;
-  font-size: 119%;
-}
-.nav-tab {
-  position: absolute;
-  width: 400px;
-  left: 35%;
-  top: 18%;
-}
-.btn-cadastrar {
-  margin-top: 2%;
-}
-.direitos {
-  position: absolute;
-  font-size: 75%;
-  color: rgb(150, 150, 150);
-  margin-left: 27%;
-  margin-top: 5%;
-  margin-bottom: 5%;
-}
-
-.titulo {
+.nomeSignupContainer {
+  margin-top: 9vh;
+  margin-bottom: 1vh;
+  display: flex;
+  justify-content: space-around;
+  height: 15%;
+  align-items: center;
+  flex-direction: column;
   font-weight: 600;
-  padding-top: 5px;
-  font-size: 20px;
-  margin-left: 35%;
-  margin-bottom: 20px;
 }
 
-button:focus {
-  outline: none;
+.cpfdatanascContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-weight: 600;
+  height: 100%;
+  justify-content: space-between;
 }
 
-.btn-modal {
-  background-color: rgb(50, 132, 255);
-  border: none;
-  color: white;
-  border-radius: 3px;
-  padding: 5px;
+.datePickerSignup {
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  box-shadow: 1px 1px 2px #333333;
+  -moz-box-shadow: 1px 1px 2px #333333;
+  -webkit-box-shadow: 1px 1px 2px #333333;
+  background: #cccccc;
+  border: 1px solid #000000;
+  height: 30px;
+  width: 400px;
+}
+
+.tituloDataNascSignup {
+  font-weight: 600;
+  font-size: 108%;
+}
+
+.submitButtonSignup {
+  margin-top: 20px;
+  height: 30px;
+  background: #ff325a;
+  width: 400px;
+
+  display: inline-block;
+  padding: 0.3em 1.2em;
+  border-radius: 2em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  color: #ffffff;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.2s;
 }

@@ -1,7 +1,17 @@
-import React, {useState} from "react";
-import { Form, TextField, SelectField, SubmitButton } from "../../components/FormElements/formElements";
+import React, { useState } from "react";
+import {
+  Form,
+  TextField,
+  SelectField,
+  SubmitButton,
+} from "../../components/FormElements/index";
 import "./styles.css";
-import { AiOutlineMail, AiFillLock, AiOutlineSound, AiOutlineDropbox } from "react-icons/ai";
+import {
+  AiOutlineMail,
+  AiFillLock,
+  AiOutlineSound,
+  AiOutlineDropbox,
+} from "react-icons/ai";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
 
@@ -11,32 +21,44 @@ const CreateExchangeAd: React.FC = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    role: ""
+    role: "",
   });
 
-  const onSubmit = (values, { setSubmitting, resetForm, setStatus }) => {
+  const onSubmit = (
+    values: any,
+    { setSubmitting, resetForm, setStatus }: any
+  ) => {
     console.log(values);
     setSubmitting(false);
-  }
+  };
 
   return (
     <div className="CreateExchangeAd">
       <Form
         enableReinitialize
         initialValues={formData}
-        onSubmit={onSubmit}  
+        onSubmit={onSubmit}
+        placeholder="ae"
+        label="ea"
+        name="es"
       >
         <div>
-          <TextField 
+          <TextField
             name="name"
             label="Name"
+            placeholder="aeae"
+            onchange=""
+            value=""
           />
         </div>
 
         <div>
-          <TextField 
+          <TextField
             name="email"
             label="Email"
+            placeholder=""
+            onchange=""
+            value=""
           />
         </div>
 
@@ -47,22 +69,19 @@ const CreateExchangeAd: React.FC = () => {
             options={[
               {
                 label: "Admin",
-                value: "admin"
+                value: "admin",
               },
               {
                 label: "User",
-                value: "user"
-              }
+                value: "user",
+              },
             ]}
           />
         </div>
 
-        <SubmitButton
-          title="Submit"
-        />
+        <SubmitButton title="Submit" />
       </Form>
     </div>
-
 
     /*
     <div className="createExchangeAdContainer">
