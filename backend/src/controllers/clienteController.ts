@@ -4,23 +4,33 @@ import Cliente from "../models/Cliente";
 
 class ClienteController {
   async create(request: Request, response: Response) {
-    const { name, cpf, endereco, cidade, email, senha, nota } = request.body;
+    const {
+      name,
+      cpf,
+      endereco,
+      cidade,
+      estado,
+      email,
+      senha,
+      dataNasc,
+    } = request.body;
 
     const clienteRepository = getRepository(Cliente);
 
     const cliente = clienteRepository.create({
       name,
       cpf,
+      dataNasc,
+      estado,
       endereco,
       cidade,
       email,
       senha,
-      nota,
     });
 
     await clienteRepository.save(cliente);
 
-    return response.json("teste");
+    return response.json("funfou se pa em");
   }
 }
 
