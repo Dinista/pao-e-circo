@@ -1,252 +1,84 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState } from "react";
-import {
-  Form,
-  TextField,
-  SelectField,
-  SubmitButton,
-} from "../../components/FormElements/index";
-import "./styles.css";
-
-import { Link } from "react-router-dom";
-import * as Yup from "yup";
-import Header from "../../components/Header";
-import { Field, Formik, useFormik } from "formik";
+import React, { useCallback, useRef } from "react";
+import { Form } from "@unform/web";
+import { FormHandles } from "@unform/core";
+import { FiArrowLeft, FiMail, FiLock, FiUser } from "react-icons/fi";
+import Input from "../../components/Input/index";
+import Button from "../../components/Button/index";
 import api from "../../services/api";
-import { date } from "yup/lib/locale";
+import { Link, useHistory } from "react-router-dom";
+import * as yup from "yup";
+import { AnimationContainer, Background, Container, Content } from "./styles";
+
+interface SignUpFormData {
+  name: string;
+  email: string;
+  password: string;
+}
 
 const SignUp: React.FC = () => {
-  const formik = useFormik({
-    initialValues: {
-      name: "",
-      cpf: "",
-      dataNasc: "",
-      endereco: Date.UTC,
-      cidade: "",
-      estado: "",
-      email: "",
-      senha: "",
-    },
-    onSubmit(values) {
-      console.log(values);
-    },
-  });
+  const formRef = useRef<FormHandles>(null);
+  const history = useHistory();
 
-  const Schema = Yup.object().shape({
-    name: Yup.string().required("Este campo é obrigatório"),
-    cpf: Yup.number().required("Este campo é obrigatório"),
-    endereco: Yup.string().required("Este campo é obrigatório"),
-    password: Yup.string().required("Este campo é obrigatório"),
-    email: Yup.string().required("Este campo é obrigatório"),
-    changepassword: Yup.string().when("password", {
-      is: (val: string | any[]) => (val && val.length > 0 ? true : false),
-      then: Yup.string().oneOf(
-        [Yup.ref("password")],
-        "As senhas precisam ser iguais"
-      ),
-    }),
-  });
+  //funções
+  const handleSubmit = useCallback(
+    async (data: SignUpFormData) => {
+      try {
+        formRef.current?.setErrors({});
+        const schema = yup.object().shape({
+          name: yup.string().required("Nome origatório"),
+          email: yup.string().required("E-mail obrigatório").email(),
+          password: yup.string().min(6, "No mínimo 6 dígitos"),
+        });
+
+        await schema.validate(data, {
+          abortEarly: false,
+        });
+
+        //await api.post("/users", data);
+
+        console.log(data);
+
+        history.push("/signin");
+      } catch (err) {
+        //se for um erro do yup, tipo não digitou senha, email inválido, etc
+        if (err instanceof yup.ValidationError) {
+          return;
+        }
+      }
+    },
+    [history]
+  );
 
   return (
-    <>
-      <Header />
-      <div className="signupGrid">
-        <Form
-          enableReinitialize
-          initialValues={formik}
-          placeholder="ae"
-          label="signup"
-          name="signup"
-          validationSchema={Schema}
-        >
-          <div className="nomeSignupContainer">
-            <TextField
-              name="name"
-              onchange={formik.handleChange}
-              value={formik.values.name}
-              label="Nome"
-              placeholder="Ex: Benjamin Arrola"
-            />
-          </div>
+    <Container>
+      <Background />
+      <Content>
+        <AnimationContainer>
+          <Form ref={formRef} onSubmit={handleSubmit}>
+            <h1>Faça seu cadastro </h1>
+            <Input name="name" icon={FiUser} placeholder="Nome"></Input>
+            <Input name="email" icon={FiMail} placeholder="E-mail"></Input>
+            <Input
+              name="password"
+              icon={FiLock}
+              placeholder="Senha"
+              type="password"
+            ></Input>
+            <Button name="submitButton" type="submit">
+              Cadastrar
+            </Button>
+          </Form>
 
-          <div className="cpfdatanascContainer">
-            <TextField
-              name="cpf"
-              label="Cpf"
-              placeholder="Ex: 09433365412"
-              onchange={formik.handleChange}
-              value={formik.values.cpf}
-            />
-            <div className="tituloDataNascSignup">Data de nascimento</div>
-            <Field
-              name="staticDate"
-              inputVariant="outlined"
-              label="Static Date"
-              type="date"
-              onchange={formik.handleChange}
-              value={formik.values.dataNasc}
-              format="MM/dd/yyyy"
-              helperText="No timezone specified"
-              className="datePickerSignup"
-              returnDateOnly
-              clearable
-            />
-            <TextField
-              name="endereco"
-              placeholder="Ex: Rua Jatobá, 6969"
-              label="Endereço"
-              onchange={formik.handleChange}
-              value={formik.values.endereco}
-            />
-
-            <SelectField
-              name="estado"
-              label="Estado"
-              onchange={formik.handleChange}
-              value={formik.values.estado}
-              options={[
-                {
-                  label: "Acre",
-                  value: "AC",
-                },
-                {
-                  label: "Alagoas",
-                  value: "AL",
-                },
-                {
-                  label: "Amapá",
-                  value: "AP",
-                },
-                {
-                  label: "Amazonas",
-                  value: "AM",
-                },
-                {
-                  label: "Bahia",
-                  value: "BA",
-                },
-                {
-                  label: "Ceará",
-                  value: "CE",
-                },
-                {
-                  label: "Distrito Federal",
-                  value: "DF",
-                },
-                {
-                  label: "Espírito Santo",
-                  value: "ES",
-                },
-                {
-                  label: "Goiás",
-                  value: "GO",
-                },
-                {
-                  label: "Maranhão",
-                  value: "MA",
-                },
-                {
-                  label: "Mato Grosso",
-                  value: "MT",
-                },
-                {
-                  label: "Mato Grosso do Sul",
-                  value: "MS",
-                },
-                {
-                  label: "Minas Gerais",
-                  value: "MG",
-                },
-                {
-                  label: "Pará",
-                  value: "PA",
-                },
-                {
-                  label: "Paraíba",
-                  value: "PB",
-                },
-                {
-                  label: "Paraná",
-                  value: "PR",
-                },
-                {
-                  label: "Pernambuco",
-                  value: "PE",
-                },
-                {
-                  label: "Piauí",
-                  value: "PI",
-                },
-                {
-                  label: "Rio de Janeiro",
-                  value: "RJ",
-                },
-                {
-                  label: "Rio Grande do Norte",
-                  value: "RN",
-                },
-                {
-                  label: "Rio Grande do Sul",
-                  value: "RS",
-                },
-                {
-                  label: "Rondônia",
-                  value: "RO",
-                },
-                {
-                  label: "Roraima",
-                  value: "RR",
-                },
-                {
-                  label: "Santa Catarina",
-                  value: "SC",
-                },
-                {
-                  label: "São Paulo",
-                  value: "SP",
-                },
-                {
-                  label: "Sergipe",
-                  value: "SE",
-                },
-                {
-                  label: "Tocantins",
-                  value: "TO",
-                },
-              ]}
-            />
-            <TextField
-              name="email"
-              placeholder="Ex: JorginReiDelas69@hotmail.com"
-              label="Email"
-              onchange={formik.handleChange}
-              value={formik.values.email}
-            />
-            <TextField
-              name="senha"
-              placeholder="••••••••"
-              label="Senha"
-              onchange={formik.handleChange}
-              value={formik.values.senha}
-            />
-            <TextField
-              name="confirmasenha"
-              placeholder="••••••••"
-              label="Confirme sua senha"
-              onchange={formik.handleChange}
-              value={formik.values.senha}
-            />
-          </div>
-
-          <SubmitButton
-            title="Enviar"
-            className="submitButtonSignup"
-            onClick={console.log(formik.values)}
-          />
-        </Form>
-      </div>
-    </>
+          <Link to="/">
+            Já tem uma conta?
+            <FiArrowLeft />
+          </Link>
+        </AnimationContainer>
+      </Content>
+    </Container>
   );
 };
+
+//styles
 
 export default SignUp;
