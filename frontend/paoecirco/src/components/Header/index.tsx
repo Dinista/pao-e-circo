@@ -25,17 +25,18 @@ const Header: React.FC = (props) => {
       try {
         formRef.current?.setErrors({});
         const schema = yup.object().shape({
-          busca: yup.string().required("Campo obrigatório"),
+          name: yup.string().required("Campo obrigatório"),
         });
 
         await schema.validate(data, {
           abortEarly: false,
         });
 
+        console.log(data);
         const resultado = await api.get("/clientes", data);
-        console.log(resultado.data);
+        console.log(resultado);
 
-        setState(resultado);
+        setState(resultado.data);
         console.log(state);
       } catch (err) {
         //se for um erro do yup, tipo não digitou senha, email inválido, etc
@@ -64,7 +65,7 @@ const Header: React.FC = (props) => {
               type="text"
               icon={FiSearch}
               onSubmit={handleSubmit}
-              name="busca"
+              name="name"
               placeholder="Buscar um anúncio ou um usuário..."
               className="inputText"
             ></Input>

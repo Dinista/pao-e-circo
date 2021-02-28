@@ -60,7 +60,7 @@ const Busca: React.FC = (props: any) => {
           <div>
             <div className="containerItemDestaque">
               <img src={image} alt="dataimg" className="cardAvatar" />
-              <div className="container2">
+              <div className="co ntainer2">
                 <div className="tituloCard">
                   <MdSubtitles className="iconCardContainer" />
                   {titulo}

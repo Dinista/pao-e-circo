@@ -34,11 +34,11 @@ class ClienteController {
   }
 
   async find(request: Request, response: Response) {
-    const { data } = request.body;
+    const data = request.body;
 
     const clienteRepository = getRepository(Cliente);
 
-    const cliente = await clienteRepository.findOneOrFail(data);
+    const cliente = await clienteRepository.find({ name: data.name });
 
     return response.json(cliente);
   }
