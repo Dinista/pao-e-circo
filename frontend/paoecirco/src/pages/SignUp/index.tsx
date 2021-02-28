@@ -55,7 +55,7 @@ const SignUp: React.FC = () => {
 
         history.push("/signin");
       } catch (err) {
-        //se for um erro do yup, tipo não digitou senha, email inválido, etc
+        //se for um erro do yup, tipo não digitou titulo, escolheu categoria, etc
         if (err instanceof yup.ValidationError) {
           return;
         }
