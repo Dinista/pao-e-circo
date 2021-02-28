@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-  Form,
-  TextField,
-  SelectField,
-  SubmitButton,
-} from "../../components/FormElements/index";
+
 import "./styles.css";
 import {
   AiOutlineMail,
@@ -16,7 +11,8 @@ import { Link } from "react-router-dom";
 import * as yup from "yup";
 
 const CreateExchangeAd: React.FC = () => {
-  function handleExchangeAdCreation() {}
+  return <div className="teste"></div>;
+  /*function handleExchangeAdCreation() {}
 
   const [formData, setFormData] = useState({
     name: "",
@@ -82,8 +78,8 @@ const CreateExchangeAd: React.FC = () => {
         <SubmitButton title="Submit" />
       </Form>
     </div>
-
-    /*
+*/
+  /*
     <div className="createExchangeAdContainer">
       <div className="createExchangeAdLogoContainer">
         <img src={logo} alt="logo" />
@@ -242,7 +238,6 @@ const CreateExchangeAd: React.FC = () => {
       </Link>
     </div>
     */
-  );
 };
 
 export default CreateExchangeAd;

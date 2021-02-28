@@ -32,6 +32,16 @@ class ClienteController {
 
     return response.json("funfou se pa em");
   }
+
+  async find(request: Request, response: Response) {
+    const { data } = request.body;
+
+    const clienteRepository = getRepository(Cliente);
+
+    const cliente = await clienteRepository.findOneOrFail(data);
+
+    return response.json(cliente);
+  }
 }
 
 export default ClienteController;

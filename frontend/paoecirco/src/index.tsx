@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import CreateExchangeAd from "./pages/CreateExchangeAd";
+import Busca from "./pages/Busca";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,6 +16,7 @@ ReactDOM.render(
         <Route path="/signup" component={SignUp} />
         <Route path="/signin" component={SignIn} />
         <Route path="/createexchangead" component={CreateExchangeAd} />
+        <Route path="/busca" component={Busca} />
       </Switch>
     </Router>
   </React.StrictMode>,

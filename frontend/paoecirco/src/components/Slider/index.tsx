@@ -26,11 +26,8 @@ const ImageSlider = ({ slides }: any) => {
       <FaArrowAltCircleRight className="right-arrow" onClick={nextSlide} />
       {SliderData.map((slide, index) => {
         return (
-          <div className="sliderContainer">
-            <div
-              className={index === current ? "slide active" : "slide"}
-              key={index}
-            >
+          <div className="sliderContainer" key={index}>
+            <div className={index === current ? "slide active" : "slide"}>
               {index === current && (
                 <Link to="teste" className="linkContainer">
                   <img src={slide.image} alt="éisso" className="image" />
