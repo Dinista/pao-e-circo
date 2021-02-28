@@ -1,4 +1,3 @@
-/*
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("Anuncios")
@@ -17,10 +16,10 @@ class Anuncio {
 
   @Column()
   conservacao: string;
-
+/*
   @Column()
-  fotos: FileList;
-
+  fotos: ;
+*/
   @Column()
   descricao: string;
 
@@ -32,4 +31,3 @@ class Anuncio {
 }
 
 export default Anuncio;
-*/

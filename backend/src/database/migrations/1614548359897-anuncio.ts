@@ -1,9 +1,16 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
+/*
+    1. criar tabelas
+    2. yarn typeorm migration:run 
+    ? 2.1 yarn typeorm migration:revert
+    3. verificar se foi criada a tabela no postgres
+    4. fazer a funcao create no anuncioController
+    5. mandar uma requisição pelo insomnia pra ver se salva no banco 
+*/
+ 
 export class anuncio1614548359897 implements MigrationInterface {
-
     public async up(queryRunner: QueryRunner): Promise<void> {
-        public async up(queryRunner: QueryRunner): Promise<void> {
             await queryRunner.createTable(
               new Table({
                 name: "anuncios",
@@ -16,40 +23,31 @@ export class anuncio1614548359897 implements MigrationInterface {
                     default: "uuid_generate_v4()",
                   },
                   {
-                    name: "name",
+                    name: "titulo",
                     type: "varchar",
                   },
                   {
-                    name: "cpf",
+                    name: "nomeObjeto",
                     type: "varchar",
                   },
                   {
-                    name: "endereco",
+                    name: "categoria",
                     type: "varchar",
                   },
                   {
-                    name: "dataNasc",
+                    name: "estadoConservacao",
                     type: "varchar",
                   },
                   {
-                    name: "cidade",
+                    name: "descricao",
                     type: "varchar",
                   },
                   {
-                    name: "estado",
+                    name: "itemDesejado",
                     type: "varchar",
                   },
                   {
-                    name: "email",
-                    type: "varchar",
-                  },
-                  {
-                    name: "senha",
-                    type: "varchar",
-                  },
-                  {
-                    name: "nota",
-                    isNullable: true,
+                    name: "valorEstimado",
                     type: "float",
                   },
                 ],
@@ -58,7 +56,7 @@ export class anuncio1614548359897 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("clientes");
+        await queryRunner.dropTable("anuncios");
     }
 
 }
