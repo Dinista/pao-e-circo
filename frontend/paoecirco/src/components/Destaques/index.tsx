@@ -11,7 +11,7 @@ const Destaques: React.FC = ({ slides }: any) => {
     <div className="containerDestaque">
       <h1 className="tituloDestaque">DESTAQUES</h1>
       {SliderData.map((data) => (
-        <div>
+        <div key={data.titulo}>
           <div className="containerItemDestaque">
             <img src={data.image} alt="dataimg" className="cardAvatar" />
             <div className="container2">

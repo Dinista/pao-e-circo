@@ -7,5 +7,6 @@ const clienteController = new ClienteController();
 
 //clientes
 routes.post("/clientes", clienteController.create);
+routes.get("/clientes", clienteController.find);
 
 export default routes;
