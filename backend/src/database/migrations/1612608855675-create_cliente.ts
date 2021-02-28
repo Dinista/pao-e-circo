@@ -26,7 +26,15 @@ export class createCliente1612608855675 implements MigrationInterface {
             type: "varchar",
           },
           {
+            name: "dataNasc",
+            type: "varchar",
+          },
+          {
             name: "cidade",
+            type: "varchar",
+          },
+          {
+            name: "estado",
             type: "varchar",
           },
           {
@@ -39,6 +47,7 @@ export class createCliente1612608855675 implements MigrationInterface {
           },
           {
             name: "nota",
+            isNullable: true,
             type: "float",
           },
         ],

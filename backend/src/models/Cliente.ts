@@ -18,6 +18,12 @@ class Cliente {
   cidade: string;
 
   @Column()
+  estado: string;
+
+  @Column()
+  dataNasc: string;
+
+  @Column()
   email: string;
 
   @Column()

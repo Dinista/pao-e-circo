@@ -1,3 +1,4 @@
+/*
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("Anuncios")
@@ -31,3 +32,4 @@ class Anuncio {
 }
 
 export default Anuncio;
+*/
