@@ -37,6 +37,7 @@ export function TextField(props: TextFieldProps) {
           <div style={{ color: "red" }}>{msg}</div>
         )}
       />
+      
     </>
   );
 }
@@ -44,7 +45,7 @@ export function TextField(props: TextFieldProps) {
 export function Form(props: any) {
   return (
     <Formik {...props}>
-      <FormikForm className="needs-validation" novalidate="">
+      <FormikForm className="needs-validation">
         {props.children}
       </FormikForm>
     </Formik>
@@ -90,3 +91,6 @@ export function SubmitButton(props: any) {
     </button>
   );
 }
+
+
+export {}
