@@ -1,0 +1,71 @@
+.tituloDestaque {
+  color: black;
+  font-weight: bold;
+  width: 60%;
+  margin-left: auto;
+}
+
+.containerDestaque {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.containerItemDestaque {
+  box-shadow: 1px 1px 1px 1px blue;
+  display: flex;
+}
+
+.cardAvatar {
+  height: 100px;
+  width: 100px;
+}
+
+.tituloCard {
+  display: flex;
+  font-weight: bold;
+  height: min-content;
+}
+
+.iconCardContainer {
+  color: black;
+  height: 30px;
+  width: 30px;
+}
+
+.iconeDolar {
+  height: 30px;
+  width: 30px;
+}
+
+.valorContainer {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.iconeEstrela {
+  height: 30px;
+  width: 30px;
+}
+
+.avaliacaoContainer {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.iconePessoa {
+  height: 30px;
+  width: 30px;
+}
+
+.vendedorContainer {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+.container2 {
+  display: flex;
+  flex-direction: column;
+}

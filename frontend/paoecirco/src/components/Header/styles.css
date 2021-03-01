@@ -1,0 +1,108 @@
+.header {
+  display: flex;
+  width: 100%;
+  height: auto;
+  align-items: center;
+  justify-content: space-between;
+  background: #0e4781;
+}
+.logo {
+  margin-right: 4vw;
+}
+
+.ladoEsquerdo {
+  justify-content: space-between;
+  width: 60%;
+  display: flex;
+}
+
+.containerAleatorio {
+  display: flex;
+  align-items: center;
+  width: 99%;
+
+  justify-content: flex-end;
+}
+
+.iconContainer {
+  height: 34px;
+  display: flex;
+  width: 34px;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin-left: 5px;
+  background-color: #fd5c7f;
+  font-size: 15px;
+  border-radius: 5px;
+}
+
+.inputText {
+  height: 34px;
+  width: 100%;
+  border: 1px solid;
+  padding: 0 12px;
+  border-radius: 16px;
+}
+
+.loggedContainer {
+  display: flex;
+  justify-content: space-around;
+  width: 30%;
+}
+
+.loggedContainer img {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+
+.destaques {
+  height: 40px;
+  width: 78px;
+  display: flex;
+  text-decoration: none;
+  justify-content: center;
+  font-weight: bold;
+  align-items: center;
+  color: white;
+  font-size: 15px;
+  border-radius: 5px;
+}
+
+.linkLogged {
+  height: 40px;
+  display: flex;
+  text-decoration: none;
+  font-weight: bold;
+  width: 70px;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 15px;
+  border-radius: 5px;
+}
+
+.sair {
+  font-weight: bold;
+  background-color: Transparent;
+  border: none;
+  color: white;
+}
+
+.btLogin {
+  height: 40px;
+  display: flex;
+  font-weight: bold;
+  width: 70px;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: #fd5c7f;
+  font-size: 15px;
+  border-radius: 5px;
+}
+
+.linkSignin {
+  text-decoration: none;
+}
