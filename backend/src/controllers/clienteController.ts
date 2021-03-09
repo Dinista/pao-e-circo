@@ -16,7 +16,7 @@ class ClienteController {
     } = request.body;
 
     const clienteRepository = getRepository(Cliente);
-
+    console.log(request.body);
     const cliente = clienteRepository.create({
       name,
       cpf,
@@ -34,13 +34,13 @@ class ClienteController {
   }
 
   async find(request: Request, response: Response) {
-    const data = request.body;
+    const { name } = request.body;
 
     const clienteRepository = getRepository(Cliente);
-
-    const cliente = await clienteRepository.find({ name: data.name });
-
-    return response.json(cliente);
+    console.log(request.body);
+    const cliente = await clienteRepository.find({ name: name });
+    console.log(cliente[0]);
+    return response.json(cliente[0]);
   }
 }
 
