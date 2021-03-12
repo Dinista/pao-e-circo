@@ -4,7 +4,7 @@ import { AiFillStar } from "react-icons/ai";
 import { BsPersonFill } from "react-icons/bs";
 import { MdSubtitles } from "react-icons/md";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
-
+import { Container, TituloDestaque, ContainerItemDestaque } from "./styles";
 import Header from "../../components/Header";
 
 const Busca: React.FC = (props: any) => {
@@ -15,11 +15,11 @@ const Busca: React.FC = (props: any) => {
     <>
       <Header />
 
-      <div className="containerDestaque">
-        <h1 className="tituloDestaque">DESTAQUES</h1>
+      <Container>
+        <TituloDestaque>RESULTADOS DA BUSCA</TituloDestaque>
         {
           <div>
-            <div className="containerItemDestaque">
+            <ContainerItemDestaque>
               <img src={image} alt="dataimg" className="cardAvatar" />
               <div className="container2">
                 <p className="descricaoCardContainer">{name}</p>
@@ -36,10 +36,10 @@ const Busca: React.FC = (props: any) => {
                   <AiFillStar className="iconeEstrela" /> Estado: {estado}
                 </div>
               </div>
-            </div>
+            </ContainerItemDestaque>
           </div>
         }
-      </div>
+      </Container>
     </>
   );
 };
