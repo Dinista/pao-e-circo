@@ -18,7 +18,7 @@ class AnuncioController {
             desejados, 
             valor,
         });
-        
+        console.log(anuncio);
         await anuncioRepository.save(anuncio);
 
         return response.json(request.body);

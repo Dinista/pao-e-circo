@@ -67,6 +67,7 @@ const CreateExchangeAd: React.FC = () => {
         formRef.current?.setErrors({});
         
         const schema = yup.object().shape({
+          /*
           titulo: yup.string().min(10).required("Título do anúncio obrigatório"),
           
           objeto: yup.string().min(2).required("Nome do objeto obrigatório"),
@@ -81,15 +82,16 @@ const CreateExchangeAd: React.FC = () => {
             .test('fileType', "Unsupported File Format", value => fileType.includes(value.type) ),
           imageInput3: yup.mixed().test('fileSize', "File Size is too large", value => value.size <= fileSize)
             .test('fileType', "Unsupported File Format", value => fileType.includes(value.type) ),
-          */  
+          
           descricaoObjeto: yup.string().min(6).required("Descrição obrigatória"),
           
           itensDesejados: yup.string().min(6).required("Itens desejados em troca obrigatório"),
 
           valorEstimado: yup.number().min(0).max(10000).required("Valor estimado obrigatório"),
+          */
         });
         
-      
+       
 
         await schema.validate(data, {
           abortEarly: false,
@@ -97,9 +99,9 @@ const CreateExchangeAd: React.FC = () => {
         
         
 
-        // await api.post("/anuncios", data);
+        await api.post("/anuncios", data);
 
-         history.push('/signin');
+        // history.push('/signin');
         console.log(data);
       } catch (err) {
         console.log("errozao!");
