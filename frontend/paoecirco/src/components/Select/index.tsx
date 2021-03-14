@@ -1,14 +1,14 @@
 import React, { useRef, useEffect } from "react";
-/*
+
 import ReactSelect, {
   OptionTypeBase,
   Props as SelectProps,
-} from 'react-select';*/
+} from 'react-select';
 import { useField } from "@unform/core";
-/*
+
 interface Props extends SelectProps<OptionTypeBase> {
   name: string;
-}*/
+}
 
 export default function Select({ name, ...rest }: any) {
   const selectRef = useRef(null);
@@ -23,7 +23,7 @@ export default function Select({ name, ...rest }: any) {
           if (!ref.state.value) {
             return [];
           }
-          // return ref.state.value.map((option: OptionTypeBase) => option.value);
+          return ref.state.value.map((option: OptionTypeBase) => option.value);
         }
         if (!ref.state.value) {
           return "";
@@ -32,7 +32,7 @@ export default function Select({ name, ...rest }: any) {
       },
     });
   }, [fieldName, registerField, rest.isMulti]);
-  /*
+  
   return (
     <ReactSelect
       defaultValue={defaultValue}
@@ -40,5 +40,5 @@ export default function Select({ name, ...rest }: any) {
       classNamePrefix="react-select"
       {...rest}
     />
-  );*/
+  );
 }

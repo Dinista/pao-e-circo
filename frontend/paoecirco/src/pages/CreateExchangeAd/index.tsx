@@ -65,7 +65,7 @@ const CreateExchangeAd: React.FC = () => {
     async (data: CreateExchangeAdFormData) => {
       try {
         formRef.current?.setErrors({});
-        /*
+        
         const schema = yup.object().shape({
           titulo: yup.string().min(10).required("Título do anúncio obrigatório"),
           
@@ -74,14 +74,14 @@ const CreateExchangeAd: React.FC = () => {
           categoria: yup.string().required("Categoria do objeto obrigatória"),
           
           estadoConservacao: yup.string().required("Estado de conservação do objeto obrigatória"),
-          
+          /*
           imageInput1: yup.mixed().test('fileSize', "File Size is too large", value => value.size <= fileSize)
             .test('fileType', "Unsupported File Format", value => fileType.includes(value.type) ),
           imageInput2: yup.mixed().test('fileSize', "File Size is too large", value => value.size <= fileSize)
             .test('fileType', "Unsupported File Format", value => fileType.includes(value.type) ),
           imageInput3: yup.mixed().test('fileSize', "File Size is too large", value => value.size <= fileSize)
             .test('fileType', "Unsupported File Format", value => fileType.includes(value.type) ),
-          
+          */  
           descricaoObjeto: yup.string().min(6).required("Descrição obrigatória"),
           
           itensDesejados: yup.string().min(6).required("Itens desejados em troca obrigatório"),
@@ -89,18 +89,23 @@ const CreateExchangeAd: React.FC = () => {
           valorEstimado: yup.number().min(0).max(10000).required("Valor estimado obrigatório"),
         });
         
+      
 
         await schema.validate(data, {
           abortEarly: false,
         });
-        */
+        
+        
 
-        await api.post("/anuncios", data);
+        // await api.post("/anuncios", data);
 
-        // history.push('/signin');
+         history.push('/signin');
         console.log(data);
       } catch (err) {
+        console.log("errozao!");
+        
         //se for um erro do yup, tipo não digitou senha, email inválido, etc
+        
         if (err instanceof yup.ValidationError) {
           return;
         }
@@ -110,7 +115,7 @@ const CreateExchangeAd: React.FC = () => {
   );
 
   return (
-    /*
+    
     <Container>
       <Background />
       <Content>
@@ -123,10 +128,11 @@ const CreateExchangeAd: React.FC = () => {
             
             <Input name="objeto" icon={FiSquare} placeholder="Nome do objeto"></Input>
       
+            
             <Select name="categoria" icon={FiSquare} placeholder="Selecione a categoria" options={categorias}></Select>
 
             <Select name="estadoConservacao" icon={FiSquare} placeholder="Selecione o estado de conservação" options={estadosConservacao}></Select>
-
+            
             <ImageInput name="imageInput1"></ImageInput>
             <ImageInput name="imageInput2"></ImageInput>
             <ImageInput name="imageInput3"></ImageInput>
@@ -145,8 +151,6 @@ const CreateExchangeAd: React.FC = () => {
         </AnimationContainer>
       </Content>
     </Container>
-    */
-    <div></div>
   );
 };
 
