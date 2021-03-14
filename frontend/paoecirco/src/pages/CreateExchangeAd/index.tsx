@@ -128,8 +128,7 @@ const CreateExchangeAd: React.FC = () => {
             
             <Input name="titulo" icon={FiType} placeholder="Titulo do anúncio"></Input>
             
-            <Input name="objeto" icon={FiSquare} placeholder="Nome do objeto"></Input>
-      
+            <Input name="nomeObjeto" icon={FiSquare} placeholder="Nome do objeto"></Input>
             
             <Select name="categoria" icon={FiSquare} placeholder="Selecione a categoria" options={categorias}></Select>
 
@@ -141,7 +140,7 @@ const CreateExchangeAd: React.FC = () => {
 
             <Input name="descricao" icon={FiAlignJustify} placeholder="Descrição do objeto"></Input>
 
-            <Input name="itensDesejados" icon={FiBox} placeholder="Itens desejados em troca"></Input>
+            <Input name="itemDesejado" icon={FiBox} placeholder="Itens desejados em troca"></Input>
 
             <Input name="valorEstimado" icon={FiDollarSign} placeholder="Valor estimado do produto oferecido"></Input>
 

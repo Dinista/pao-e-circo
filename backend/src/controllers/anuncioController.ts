@@ -4,20 +4,20 @@ import Anuncio from "../models/Anuncio";
 
 class AnuncioController {
     async create(request: Request, response: Response) {
-        const { titulo, objeto, categoria, conservacao, /*fotos,*/ descricao, desejados, valor } = request.body;
+        const { titulo, nomeObjeto, categoria, estadoConservacao, /*fotos,*/ descricao, itemDesejado, valorEstimado } = request.body;
 
         const anuncioRepository = getRepository(Anuncio);
 
         const anuncio = anuncioRepository.create({
             titulo, 
-            objeto, 
+            nomeObjeto, 
             categoria, 
-            conservacao, 
+            estadoConservacao, 
             /*fotos,*/ 
             descricao,
-            desejados, 
-            valor,
-        });
+            itemDesejado, 
+            valorEstimado,
+          });
         console.log(anuncio);
         await anuncioRepository.save(anuncio);
 
