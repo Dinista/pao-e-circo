@@ -1,17 +1,18 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from "react";
+/*
 import ReactSelect, {
   OptionTypeBase,
   Props as SelectProps,
-} from 'react-select';
-import { useField } from '@unform/core';
-
+} from 'react-select';*/
+import { useField } from "@unform/core";
+/*
 interface Props extends SelectProps<OptionTypeBase> {
   name: string;
-}
+}*/
 
-export default function Select({ name, ...rest }: Props) {
+export default function Select({ name, ...rest }: any) {
   const selectRef = useRef(null);
-  const { fieldName, defaultValue, registerField, error } = useField(name);
+  const { fieldName, defaultValue, registerField } = useField(name);
 
   useEffect(() => {
     registerField({
@@ -22,16 +23,16 @@ export default function Select({ name, ...rest }: Props) {
           if (!ref.state.value) {
             return [];
           }
-          return ref.state.value.map((option: OptionTypeBase) => option.value);
+          // return ref.state.value.map((option: OptionTypeBase) => option.value);
         }
         if (!ref.state.value) {
-          return '';
+          return "";
         }
         return ref.state.value.value;
       },
     });
   }, [fieldName, registerField, rest.isMulti]);
-
+  /*
   return (
     <ReactSelect
       defaultValue={defaultValue}
@@ -39,5 +40,5 @@ export default function Select({ name, ...rest }: Props) {
       classNamePrefix="react-select"
       {...rest}
     />
-  );
-};
+  );*/
+}

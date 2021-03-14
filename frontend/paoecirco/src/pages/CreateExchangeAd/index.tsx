@@ -1,7 +1,14 @@
 import React, { useCallback, useRef } from "react";
 import { Form } from "@unform/web";
 import { FormHandles } from "@unform/core";
-import { FiArrowLeft, FiType, FiAlignJustify, FiBox, FiDollarSign, FiSquare} from "react-icons/fi";
+import {
+  FiArrowLeft,
+  FiType,
+  FiAlignJustify,
+  FiBox,
+  FiDollarSign,
+  FiSquare,
+} from "react-icons/fi";
 import Input from "../../components/Input/index";
 import Button from "../../components/Button/index";
 import api from "../../services/api";
@@ -25,34 +32,34 @@ interface CreateExchangeAdFormData {
 }
 
 const categorias = [
-  { value: 'brinquedo', label: 'Brinquedo' },
-  { value: 'ferramenta', label: 'Ferramenta' },
-  { value: 'instrumentoMusical', label: 'Instrumento Musical' },
-  { value: 'materialEscolar', label: 'Material Escolar' },
-  { value: 'eletronico', label: 'Eletrônico' },
-  { value: 'movel', label: 'Móvel' },
-  { value: 'vestuario', label: 'Vestuário' },
-  { value: 'decoracao', label: 'Decoração' },
-  { value: 'outros', label: 'Outros' },
+  { value: "brinquedo", label: "Brinquedo" },
+  { value: "ferramenta", label: "Ferramenta" },
+  { value: "instrumentoMusical", label: "Instrumento Musical" },
+  { value: "materialEscolar", label: "Material Escolar" },
+  { value: "eletronico", label: "Eletrônico" },
+  { value: "movel", label: "Móvel" },
+  { value: "vestuario", label: "Vestuário" },
+  { value: "decoracao", label: "Decoração" },
+  { value: "outros", label: "Outros" },
 ];
 
-const fileSize = 10
+const fileSize = 10;
 const fileType = [
-  { value: 'image/jpg', label: 'jpg'},
-  { value: 'img/jpeg', label: 'jpeg'},
-  { value: 'image,png', label: 'png'}
+  { value: "image/jpg", label: "jpg" },
+  { value: "img/jpeg", label: "jpeg" },
+  { value: "image,png", label: "png" },
 ];
 
 const estadosConservacao = [
-  { value: 'novo', label: 'Novo' },
-  { value: 'semiNovo', label: 'Semi-novo' },
-  { value: 'usado', label: 'Usado' },
+  { value: "novo", label: "Novo" },
+  { value: "semiNovo", label: "Semi-novo" },
+  { value: "usado", label: "Usado" },
 ];
 
 const CreateExchangeAd: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const history = useHistory();
-  
+
   //funções
   const handleSubmit = useCallback(
     async (data: CreateExchangeAdFormData) => {
@@ -103,6 +110,7 @@ const CreateExchangeAd: React.FC = () => {
   );
 
   return (
+    /*
     <Container>
       <Background />
       <Content>
@@ -137,9 +145,9 @@ const CreateExchangeAd: React.FC = () => {
         </AnimationContainer>
       </Content>
     </Container>
+    */
+    <div></div>
   );
 };
-
-//styles
 
 export default CreateExchangeAd;

@@ -9,19 +9,32 @@ import * as yup from "yup";
 import api from "../../services/api";
 import { Form } from "@unform/web";
 import Input from "../Input";
-import { AxiosResponse } from "axios";
 
-const Header: React.FC = (props) => {
+interface StateBusca {
+  name: string;
+  titulo: string;
+  avaliacao: string;
+  cidade: string;
+  estado: string;
+}
+
+const Header: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const formRef = useRef<FormHandles>(null);
-  const [state, setState] = useState<AxiosResponse | null | void>(null);
+  const [state, setState] = useState<StateBusca>({
+    name: "",
+    avaliacao: "",
+    cidade: "",
+    estado: "",
+    titulo: "",
+  });
 
   function handleLogout() {
     setIsLoggedIn(false);
   }
 
   const handleSubmit = useCallback(
-    async (data) => {
+    async (data: any) => {
       try {
         formRef.current?.setErrors({});
         const schema = yup.object().shape({
@@ -32,9 +45,7 @@ const Header: React.FC = (props) => {
           abortEarly: false,
         });
 
-        console.log(data);
-        const resultado = await api.get("/clientes", data);
-        console.log(resultado);
+        const resultado = await api.post("clientess", data);
 
         setState(resultado.data);
         console.log(state);
@@ -64,8 +75,8 @@ const Header: React.FC = (props) => {
             <Input
               type="text"
               icon={FiSearch}
-              onSubmit={handleSubmit}
               name="name"
+              onSubmit={handleSubmit}
               placeholder="Buscar um anúncio ou um usuário..."
               className="inputText"
             ></Input>
@@ -75,7 +86,10 @@ const Header: React.FC = (props) => {
                 to={{
                   pathname: "/busca",
                   state: {
-                    state,
+                    name: state.name,
+                    avaliacao: state.avaliacao,
+                    cidade: state.cidade,
+                    estado: state.estado,
                   },
                 }}
               >
