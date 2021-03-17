@@ -10,7 +10,7 @@ const anuncioController = new AnuncioController();
 
 //clientes
 routes.post("/clientes", clienteController.create);
-routes.post("/clientess", clienteController.find);
+routes.post("/clientes", clienteController.find);
 
 routes.post("/anuncios", anuncioController.create);
 routes.get("/anuncios", anuncioController.find);
