@@ -15,10 +15,23 @@ interface Propaganda {
 const GerenciarPropaganda: React.FC = () => {
   const [propagandaData, setPropagandaData] = useState<Propaganda[]>([]);
 
+  //funções
+
+  //puxa propagandas do banco
   useEffect(() => {
-    api
-      .get("/propaganda")
-      .then((response) => setPropagandaData(response.data.propagandas));
+    api.get("/propaganda").then((response) => {
+      setPropagandaData(response.data.propagandas);
+    });
+  }, []);
+
+  //deleta do banco
+  const handleDelete = useCallback(async (data: any) => {
+    await api.delete(`/propaganda/${data}`);
+    alert("A propaganda foi apagada com sucesso");
+
+    setPropagandaData((oldPropagandas) =>
+      oldPropagandas.filter((propaganda) => propaganda.id !== data)
+    );
   }, []);
 
   return (
@@ -41,7 +54,9 @@ const GerenciarPropaganda: React.FC = () => {
               <Button>Alterar imagem propaganda</Button>
               <Button>Alterar empresa</Button>
               <Button>Alterar data de expiração</Button>
-              <Button>Encerrar propaganda</Button>
+              <Button onClick={() => handleDelete(propaganda.id)}>
+                Encerrar propaganda
+              </Button>
             </AnuncioCard>
           );
         })}

@@ -19,13 +19,19 @@ class PropagandaController {
   }
 
   async index(request: Request, response: Response) {
-    const propagandaRepository = getRepository(Propaganda);
-
     const propagandas = await getRepository(Propaganda)
       .createQueryBuilder("propagandas")
       .getMany();
 
     return response.json({ propagandas: propagandas });
+  }
+
+  async delete(request: Request, response: Response) {
+    const propagandaRepository = getRepository(Propaganda);
+
+    const results = await propagandaRepository.delete(request.params.id);
+
+    return response.send(results);
   }
 }
 
