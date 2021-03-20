@@ -1,10 +1,11 @@
 import styled, { keyframes } from "styled-components";
 import { shade } from "polished";
+import Select from "../../components/Select";
 
 export const Container = styled.div`
-  height: 100vh;
+  height: 90vh;
   display: flex;
-  align-items: stretch;
+  width: 70vw;
 `;
 
 export const Content = styled.div`
@@ -81,4 +82,21 @@ export const AnimationContainer = styled.div`
 export const Background = styled.div`
   flex: 1;
   background-size: cover;
+`;
+
+export const CustomDiv = styled.div`
+  border-radius: 10px;
+  border: 2px solid black;
+  padding: 8px;
+  width: 105%;
+  margin-top: 6px;
+  margin-bottom: 6px;
+`; 
+
+export const BoxTitle = styled.p`
+  text-justify: center;
+  margin-top: -0.24rem; 
+  margin-bottom: 0.4rem;
+  margin-left: 0.5rem; 
+  text-align: left;
 `;

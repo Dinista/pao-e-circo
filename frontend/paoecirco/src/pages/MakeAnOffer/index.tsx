@@ -9,7 +9,7 @@ import { ExternalContainer, ContainerFlexVertical, ContainerFlexVerticalWider, C
 import Header from "../../components/Header";
 
 const AcceptOffer: React.FC = (props: any) => {
-  const { image, name, avaliacao, cidade, estado } =
+  const { nome, cidade, estado, avaliacao, numTrocas, tituloAnuncio /*, imagens*/, objeto, categoria, estadoConservacao, descricao, itensTroca, valorEstimado } =
     (props.location && props.location.state) || {};
 
   return (
@@ -22,14 +22,15 @@ const AcceptOffer: React.FC = (props: any) => {
 
           {/* Foto */}
 
-          <p> Nome: </p>
-          <p> Cidade: </p>
-          <p> Avaliação: </p>
-          <p> Trocas concretizadas: </p>
+          <p> Nome: {nome} </p>
+          <p> Cidade: {cidade} </p>
+          <p> Estado: {estado} </p>
+          <p> Avaliação: {avaliacao} </p>
+          <p> Trocas concretizadas: {numTrocas} </p>
         </ContainerFlexVertical>
 
         <ContainerFlexVerticalWider className = "VerticalContainerMiddle">
-          <h1> TITULO ANUNCIO {/* Título do anúncio */} </h1>
+          <h1> {tituloAnuncio} </h1>
           {/* FOTO */ } 
 
           <ContainerComments>
@@ -42,41 +43,14 @@ const AcceptOffer: React.FC = (props: any) => {
 
         <ContainerFlexVertical className = "VerticalContainerRight">
           <h2> Informações do anúncio </h2>
-          <p> Objeto: </p>
-          <p> Categoria: </p>
-          <p> Estado: </p>
-          <p> Descricao: </p>
-          <p> Itens desejados em troca: </p>
-          <p> Valor estimado: </p>
+          <p> Objeto: {objeto} </p>
+          <p> Categoria: {categoria} </p>
+          <p> Estado: {estadoConservacao} </p>
+          <p> Descricao: {descricao} </p>
+          <p> Itens desejados em troca: {itensTroca} </p>
+          <p> Valor estimado: {valorEstimado} </p>
         </ContainerFlexVertical>
       </ExternalContainer>
-      {/*
-      <Container>
-        <TituloDestaque>RESULTADOS DA BUSCA</TituloDestaque>
-        {
-          <div>
-            <ContainerItemDestaque>
-              <img src={image} alt="dataimg" className="cardAvatar" />
-              <div className="container2">
-                <p className="descricaoCardContainer">{name}</p>
-                <div className="vendedorContainer">
-                  <BsPersonFill className="iconePessoa" /> Vendedor: {name}
-                </div>
-                <div className="avaliacaoContainer">
-                  <AiFillStar className="iconeEstrela" /> Avaliação: {avaliacao}
-                </div>
-                <div className="avaliacaoContainer">
-                  <AiFillStar className="iconeEstrela" /> Cidade: {cidade}
-                </div>
-                <div className="avaliacaoContainer">
-                  <AiFillStar className="iconeEstrela" /> Estado: {estado}
-                </div>
-              </div>
-            </ContainerItemDestaque>
-          </div>
-        }
-      </Container>
-      */}
     </>
   );
 };

@@ -17,6 +17,7 @@ import * as yup from "yup";
 import { AnimationContainer, Background, Container, Content } from "./styles";
 import ImageInput from "../../components/ImageInput";
 import Select from "../../components/Select";
+import { CustomDiv, BoxTitle } from "./styles";
 
 interface CreateExchangeAdFormData {
   titulo: string;
@@ -133,10 +134,15 @@ const CreateExchangeAd: React.FC = () => {
             <Select name="categoria" icon={FiSquare} placeholder="Selecione a categoria" options={categorias}></Select>
 
             <Select name="estadoConservacao" icon={FiSquare} placeholder="Selecione o estado de conservação" options={estadosConservacao}></Select>
-            
-            <ImageInput name="imageInput1"></ImageInput>
-            <ImageInput name="imageInput2"></ImageInput>
-            <ImageInput name="imageInput3"></ImageInput>
+
+            <CustomDiv> 
+              <BoxTitle> Imagens: </BoxTitle>
+              <ImageInput name="imageInput1"></ImageInput>
+              <ImageInput name="imageInput2"></ImageInput>
+              <ImageInput name="imageInput3"></ImageInput>
+            </CustomDiv>   
+
+           
 
             <Input name="descricao" icon={FiAlignJustify} placeholder="Descrição do objeto"></Input>
 

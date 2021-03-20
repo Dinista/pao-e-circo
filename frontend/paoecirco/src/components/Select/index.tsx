@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from "react";
+import {NiceDiv, NicerDiv, CustomSelect} from "./styles";
 
 import ReactSelect, {
   OptionTypeBase,
@@ -10,7 +11,7 @@ interface Props extends SelectProps<OptionTypeBase> {
   name: string;
 }
 
-export default function Select({ name, ...rest }: any) {
+export default function Select({ name, icon: Icon, ...rest }: any) {
   const selectRef = useRef(null);
   const { fieldName, defaultValue, registerField } = useField(name);
 
@@ -34,11 +35,10 @@ export default function Select({ name, ...rest }: any) {
   }, [fieldName, registerField, rest.isMulti]);
   
   return (
-    <ReactSelect
-      defaultValue={defaultValue}
-      ref={selectRef}
-      classNamePrefix="react-select"
-      {...rest}
-    />
+      <CustomSelect
+        defaultValue={defaultValue}
+        ref={selectRef}
+        classNamePrefix="react-select"
+        {...rest}/>
   );
 }

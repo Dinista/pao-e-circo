@@ -9,6 +9,8 @@ import React, {
   interface Props {
     name: string;
   }
+  import "./styles.css";
+
   type InputProps = JSX.IntrinsicElements['input'] & Props;
   export default function ImageInput({ name, ...rest }: InputProps) {
     const inputRef = useRef<HTMLInputElement>(null);
@@ -38,8 +40,7 @@ import React, {
     }, [fieldName, registerField]);
     return (
       <>
-        {preview && <img src={preview} alt="Preview" width="100" />}
-        <input type="file" ref={inputRef} onChange={handlePreview} {...rest} />
+        <input className="inputImage" type="file" ref={inputRef} onChange={handlePreview} accept=".jpg,.png,.jpeg" {...rest} />
       </>
     );
   };
