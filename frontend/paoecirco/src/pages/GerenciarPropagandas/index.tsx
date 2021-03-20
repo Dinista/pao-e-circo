@@ -1,28 +1,38 @@
-import { FormHandles } from "@unform/core";
-import React, { useCallback, useRef } from "react";
-import { AiFillStar } from "react-icons/ai";
-import { BsPersonFill } from "react-icons/bs";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { AnuncioCard, Container, DivComum, ImgContainer } from "./styles";
 import Header from "../../components/Header";
 import { PropagandaData } from "../../components/PropagandaData";
 import Button from "../../components/Button";
+import api from "../../services/api";
 
-//const handleAlterarImagem = useCallback(PropagandaData, []);
+interface Propaganda {
+  id: string;
+  imageName: string;
+  empresaContratante: string;
+  dataExpiracao: string;
+}
 
 const GerenciarPropaganda: React.FC = () => {
+  const [propagandaData, setPropagandaData] = useState<Propaganda[]>([]);
+
+  useEffect(() => {
+    api
+      .get("/propaganda")
+      .then((response) => setPropagandaData(response.data.propagandas));
+  }, []);
+
   return (
     <>
       <Header />
       <Container>
-        {PropagandaData.map((propaganda, index) => {
+        {propagandaData.map((propaganda, index) => {
           return (
-            <AnuncioCard>
+            <AnuncioCard key={propaganda.imageName}>
               <h1>Anuncio {index + 1}</h1>
-              <ImgContainer src={propaganda.image} />
               <DivComum>
-                Empresa contratante: {propaganda.EmpresaContratante}
+                Empresa contratante: {propaganda.empresaContratante}
               </DivComum>
-              <DivComum>Data de expiração: {propaganda.DataExpiracao}</DivComum>
+              <DivComum>Data de expiração: {propaganda.dataExpiracao}</DivComum>
               <Button>Alterar imagem propaganda</Button>
               <Button>Alterar empresa</Button>
               <Button>Alterar data de expiração</Button>
@@ -34,7 +44,5 @@ const GerenciarPropaganda: React.FC = () => {
     </>
   );
 };
-
-//styles
 
 export default GerenciarPropaganda;
