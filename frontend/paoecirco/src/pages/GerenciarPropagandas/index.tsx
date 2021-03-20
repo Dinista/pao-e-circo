@@ -29,6 +29,11 @@ const GerenciarPropaganda: React.FC = () => {
           return (
             <AnuncioCard key={propaganda.imageName}>
               <h1>Anuncio {index + 1}</h1>
+              <ImgContainer
+                src={propaganda.imageName}
+                alt="éisso"
+                className="image"
+              />
               <DivComum>
                 Empresa contratante: {propaganda.empresaContratante}
               </DivComum>
