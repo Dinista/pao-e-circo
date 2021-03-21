@@ -10,14 +10,16 @@ import {
   FiSquare,
 } from "react-icons/fi";
 import Input from "../../components/Input/index";
-import Button from "../../components/Button/index";
 import api from "../../services/api";
 import { Link, useHistory } from "react-router-dom";
 import * as yup from "yup";
-import { AnimationContainer, Background, Container, Content } from "./styles";
+import { AnimationContainer, Background, Container, Content, TituloPagina } from "./styles";
 import ImageInput from "../../components/ImageInput";
 import Select from "../../components/Select";
-import { CustomDiv, BoxTitle } from "./styles";
+import SubText from "../../components/Subtext";
+import { CustomDiv, BoxTitle, ButtonStyled } from "./styles";
+import Header from "../../components/Header";
+
 
 interface CreateExchangeAdFormData {
   titulo: string;
@@ -118,46 +120,59 @@ const CreateExchangeAd: React.FC = () => {
   );
 
   return (
-    
-    <Container>
+    <div>
+      <Header/>
+      <Container>
+      
       <Background />
       <Content>
         <AnimationContainer>
           <Form ref={formRef} onSubmit={handleSubmit}>
             
-            <h1>Cadastre seu item </h1>
+            <TituloPagina>Cadastre seu item </TituloPagina>
             
-            <Input name="titulo" icon={FiType} placeholder="Titulo do anúncio"></Input>
-            
-            <Input name="nomeObjeto" icon={FiSquare} placeholder="Nome do objeto"></Input>
-            
-            <Select name="categoria" icon={FiSquare} placeholder="Selecione a categoria" options={categorias}></Select>
+            <Input name="titulo" icon={FiType} placeholder="Titulo do anúncio *"/>
+            <SubText text="Título que será exibido no site. Ex: 'Bumerangue dourado novo'."/>
 
-            <Select name="estadoConservacao" icon={FiSquare} placeholder="Selecione o estado de conservação" options={estadosConservacao}></Select>
+            <Input name="nomeObjeto" icon={FiSquare} placeholder="Nome do objeto *"/>
+            <SubText text="Nome do objeto ofertado. Ex: 'Bumerangue Dourado'."/>
+
+            <Select name="categoria" icon={FiSquare} placeholder="Categoria *" options={categorias}></Select>
+            <SubText text="Categoria a qual pertence seu objeto."/>
+            
+            <Select name="estadoConservacao" icon={FiSquare} placeholder="Estado de conservação *" options={estadosConservacao}></Select>
+            <SubText text="Estado de conservação em qual se encontra seu objeto."/>
 
             <CustomDiv> 
-              <BoxTitle> Imagens: </BoxTitle>
+              <BoxTitle> Fotos * </BoxTitle>
               <ImageInput name="imageInput1"></ImageInput>
               <ImageInput name="imageInput2"></ImageInput>
               <ImageInput name="imageInput3"></ImageInput>
-            </CustomDiv>   
+            </CustomDiv>
+            <SubText text="Fotos do objeto. Mínimo três."/> 
 
-           
+            <Input name="descricao" icon={FiAlignJustify} placeholder="Descrição do objeto *"></Input>
+            <SubText text="Informações sobre o objeto. Ex: 'Altura: 30cm, Largura: ...'."/>
 
-            <Input name="descricao" icon={FiAlignJustify} placeholder="Descrição do objeto"></Input>
+            <Input name="itemDesejado" icon={FiBox} placeholder="Itens desejados em troca *"></Input>
+            <SubText text="Itens que gostaria de receber em troca. Ex: 'Tênis, Estilingue'."/>
 
-            <Input name="itemDesejado" icon={FiBox} placeholder="Itens desejados em troca"></Input>
+            <Input name="valorEstimado" icon={FiDollarSign} placeholder="Valor estimado*"></Input>
+            <SubText text="Valor estimado do seu objeto em reais. Ex: '30'."/>
+            <br/>
+            <b><SubText text="Campos com um * no nome são obrigatórios."/></b>
 
-            <Input name="valorEstimado" icon={FiDollarSign} placeholder="Valor estimado do produto oferecido"></Input>
-
-            <Button name="submitButton" type="submit">
+            <ButtonStyled name="submitButton" type="submit">
               Criar anúncio
-            </Button>
+            </ButtonStyled>
           
           </Form>
         </AnimationContainer>
       </Content>
     </Container>
+    </div>
+
+    
   );
 };
 

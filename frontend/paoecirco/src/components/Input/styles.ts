@@ -10,6 +10,8 @@ export const Container = styled.div<ContainerProps>`
   border-radius: 10px;
   border: 2px solid black;
   padding: 16px;
+  margin-top: 10px;
+  margin-bottom: -7px;  
   width: 100%;
   color: #666360;
   transition: all 1s;

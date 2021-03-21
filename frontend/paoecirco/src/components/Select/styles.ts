@@ -12,7 +12,7 @@ export const CustomSelect = styled(ReactSelect)`
   transition: all 1s;
   align-items: center;
   margin-top: 6px;
-  margin-bottom: 6px;
+  margin-bottom: -7px;
 `;
 
 export const NiceDiv = styled.div`
