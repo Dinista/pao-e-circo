@@ -6,6 +6,7 @@ import { MdSubtitles } from "react-icons/md";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { Container, TituloDestaque, ContainerItemDestaque } from "./styles";
 import Header from "../../components/Header";
+import ExibirPropaganda from "../../components/ExibirPropaganda";
 
 const BuscaUsuario: React.FC = (props: any) => {
   const { image, name, avaliacao, cidade, estado } =
@@ -40,6 +41,7 @@ const BuscaUsuario: React.FC = (props: any) => {
           </div>
         }
       </Container>
+      <ExibirPropaganda />
     </>
   );
 };

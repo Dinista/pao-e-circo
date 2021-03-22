@@ -4,6 +4,7 @@ import "./styles.css";
 import { AiOutlineMail, AiFillLock } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
+import ExibirPropaganda from "../../components/ExibirPropaganda";
 
 const SignIn: React.FC = () => {
   function handleLogin() {}
@@ -58,6 +59,7 @@ const SignIn: React.FC = () => {
       <Link to="/signup" className="linkSignupSignin">
         Não tem conta?
       </Link>
+      <ExibirPropaganda />
     </div>
   );
 };
