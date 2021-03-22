@@ -4,6 +4,7 @@ import Header from "../../components/Header";
 import Button from "../../components/Button";
 import api from "../../services/api";
 import ModalReact from "../../components/ModalPropaganda";
+import ExibirPropaganda from "../../components/ExibirPropaganda";
 
 interface Propaganda {
   id: string;
@@ -73,6 +74,7 @@ const GerenciarPropaganda: React.FC = () => {
           );
         })}
       </Container>
+      <ExibirPropaganda />
     </>
   );
 };

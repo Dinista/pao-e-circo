@@ -11,6 +11,7 @@ import {
   ImageContainer,
 } from "./styles";
 import Header from "../../components/Header";
+import ExibirPropaganda from "../../components/ExibirPropaganda";
 
 const BuscaAnuncio: React.FC = (props: any) => {
   const { titulo, valorEstimado, itemDesejado, anunciante } =
@@ -46,6 +47,7 @@ const BuscaAnuncio: React.FC = (props: any) => {
                 </div>
               </div>
             </ContainerItemDestaque>
+            <ExibirPropaganda />
           </div>
         }
       </Container>

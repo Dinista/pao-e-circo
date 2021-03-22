@@ -5,19 +5,37 @@ import { BsPersonFill } from "react-icons/bs";
 import { MdSubtitles } from "react-icons/md";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 // import { Container, TituloDestaque, ContainerItemDestaque } from "./styles";
-import { ExternalContainer, ContainerFlexVertical, ContainerFlexVerticalWider, ContainerComments } from "./styles";
+import {
+  ExternalContainer,
+  ContainerFlexVertical,
+  ContainerFlexVerticalWider,
+  ContainerComments,
+} from "./styles";
 import Header from "../../components/Header";
+import ExibirPropaganda from "../../components/ExibirPropaganda";
 
 const AcceptOffer: React.FC = (props: any) => {
-  const { nome, cidade, estado, avaliacao, numTrocas, tituloAnuncio /*, imagens*/, objeto, categoria, estadoConservacao, descricao, itensTroca, valorEstimado } =
-    (props.location && props.location.state) || {};
+  const {
+    nome,
+    cidade,
+    estado,
+    avaliacao,
+    numTrocas,
+    tituloAnuncio /*, imagens*/,
+    objeto,
+    categoria,
+    estadoConservacao,
+    descricao,
+    itensTroca,
+    valorEstimado,
+  } = (props.location && props.location.state) || {};
 
   return (
     <>
       <Header />
-      
+
       <ExternalContainer className="ExternalContainer">
-        <ContainerFlexVertical className = "VerticalContainerLeft">
+        <ContainerFlexVertical className="VerticalContainerLeft">
           <h2> Informações do Anunciante </h2>
 
           {/* Foto */}
@@ -29,19 +47,16 @@ const AcceptOffer: React.FC = (props: any) => {
           <p> Trocas concretizadas: {numTrocas} </p>
         </ContainerFlexVertical>
 
-        <ContainerFlexVerticalWider className = "VerticalContainerMiddle">
+        <ContainerFlexVerticalWider className="VerticalContainerMiddle">
           <h1> {tituloAnuncio} </h1>
-          {/* FOTO */ } 
+          {/* FOTO */}
 
           <ContainerComments>
             <h2> Comentários </h2>
-            
-
           </ContainerComments>
-
         </ContainerFlexVerticalWider>
 
-        <ContainerFlexVertical className = "VerticalContainerRight">
+        <ContainerFlexVertical className="VerticalContainerRight">
           <h2> Informações do anúncio </h2>
           <p> Objeto: {objeto} </p>
           <p> Categoria: {categoria} </p>
@@ -51,6 +66,7 @@ const AcceptOffer: React.FC = (props: any) => {
           <p> Valor estimado: {valorEstimado} </p>
         </ContainerFlexVertical>
       </ExternalContainer>
+      <ExibirPropaganda />
     </>
   );
 };

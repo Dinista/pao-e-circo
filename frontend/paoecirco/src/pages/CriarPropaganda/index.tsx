@@ -12,6 +12,7 @@ import { Link, useHistory } from "react-router-dom";
 import * as yup from "yup";
 import { AnimationContainer, Container, Content } from "./styles";
 import Header from "../../components/Header";
+import ExibirPropaganda from "../../components/ExibirPropaganda";
 
 interface SignUpFormData {
   name: string;
@@ -90,6 +91,7 @@ const CriaPropaganda: React.FC = () => {
           </AnimationContainer>
         </Content>
       </Container>
+      <ExibirPropaganda />
     </>
   );
 };
