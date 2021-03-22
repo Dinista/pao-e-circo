@@ -8,8 +8,12 @@ import SignIn from "./pages/SignIn";
 import CreateExchangeAd from "./pages/CreateExchangeAd";
 import BuscaUsuario from "./pages/BuscaAnuncio";
 import GerenciarPropaganda from "./pages/GerenciarPropagandas";
+
 import CriarPropaganda from "./pages/CriarPropaganda";
 import BuscaAnuncio from "./pages/BuscaAnuncio";
+
+import MakeAnOffer from "./pages/MakeAnOffer";
+
 
 ReactDOM.render(
   <React.StrictMode>
@@ -22,7 +26,11 @@ ReactDOM.render(
         <Route path="/buscausuario" component={BuscaUsuario} />
         <Route path="/buscaanuncio" component={BuscaAnuncio} />
         <Route path="/gerenciarpropaganda" component={GerenciarPropaganda} />
+
         <Route path="/criarpropaganda" component={CriarPropaganda} />
+
+        <Route path="/makeanoffer" component={MakeAnOffer} />
+
       </Switch>
     </Router>
   </React.StrictMode>,

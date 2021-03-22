@@ -180,6 +180,10 @@ const Header: React.FC = () => {
           <Link to="/createexchangead" className="linkLogged">
             ANUNCIAR
           </Link>
+
+          <Link to="/makeanoffer" className="link">
+            <p> placeholder make an offer</p>
+          </Link>
           <button onClick={handleLogout} className="sair">
             SAIR
           </button>

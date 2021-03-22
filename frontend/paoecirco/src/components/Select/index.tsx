@@ -1,16 +1,17 @@
 import React, { useRef, useEffect } from "react";
-/*
+import {NiceDiv, NicerDiv, CustomSelect} from "./styles";
+
 import ReactSelect, {
   OptionTypeBase,
   Props as SelectProps,
-} from 'react-select';*/
+} from 'react-select';
 import { useField } from "@unform/core";
-/*
+
 interface Props extends SelectProps<OptionTypeBase> {
   name: string;
-}*/
+}
 
-export default function Select({ name, ...rest }: any) {
+export default function Select({ name, icon: Icon, ...rest }: any) {
   const selectRef = useRef(null);
   const { fieldName, defaultValue, registerField } = useField(name);
 
@@ -23,7 +24,7 @@ export default function Select({ name, ...rest }: any) {
           if (!ref.state.value) {
             return [];
           }
-          // return ref.state.value.map((option: OptionTypeBase) => option.value);
+          return ref.state.value.map((option: OptionTypeBase) => option.value);
         }
         if (!ref.state.value) {
           return "";
@@ -32,13 +33,12 @@ export default function Select({ name, ...rest }: any) {
       },
     });
   }, [fieldName, registerField, rest.isMulti]);
-  /*
+  
   return (
-    <ReactSelect
-      defaultValue={defaultValue}
-      ref={selectRef}
-      classNamePrefix="react-select"
-      {...rest}
-    />
-  );*/
+      <CustomSelect
+        defaultValue={defaultValue}
+        ref={selectRef}
+        classNamePrefix="react-select"
+        {...rest}/>
+  );
 }

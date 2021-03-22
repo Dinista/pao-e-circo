@@ -27,7 +27,7 @@ class ClienteController {
       email,
       senha,
     });
-
+    console.log(cliente);
     await clienteRepository.save(cliente);
 
     return response.json("funfou se pa em");
