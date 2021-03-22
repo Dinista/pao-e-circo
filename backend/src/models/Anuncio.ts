@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity("Anuncios")
+@Entity("anuncios")
 class Anuncio {
   @PrimaryGeneratedColumn("uuid")
   id: string;
@@ -9,13 +9,13 @@ class Anuncio {
   titulo: string;
 
   @Column()
-  objeto: string;
+  nomeObjeto: string;
 
   @Column()
   categoria: string;
 
   @Column()
-  conservacao: string;
+  estadoConservacao: string;
 /*
   @Column()
   fotos: ;
@@ -24,10 +24,10 @@ class Anuncio {
   descricao: string;
 
   @Column()
-  desejados: string;
+  itemDesejado: string;
 
   @Column()
-  valor: number;
+  valorEstimado: number;
 }
 
 export default Anuncio;
