@@ -21,5 +21,8 @@ routes.get("/anuncios", anuncioController.find);
 routes.post("/propaganda", propagandaController.create);
 routes.get("/propaganda", propagandaController.index);
 routes.delete("/propaganda/:id", propagandaController.delete);
+routes.put("/propagandaempresa/:id", propagandaController.updateEmpresa);
+routes.put("/propagandadata/:id", propagandaController.updateDataExpiracao);
+routes.put("/propagandaimage/:id", propagandaController.updateImagem);
 
 export default routes;

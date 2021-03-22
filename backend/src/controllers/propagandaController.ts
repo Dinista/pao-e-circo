@@ -33,6 +33,47 @@ class PropagandaController {
 
     return response.send(results);
   }
+
+  async updateEmpresa(request: Request, response: Response) {
+    const { empresaContratante } = request.body;
+    const propagandaRepository = getRepository(Propaganda);
+
+    const resultado = await propagandaRepository
+      .createQueryBuilder()
+      .update(Propaganda)
+      .set({ empresaContratante: empresaContratante })
+      .where("id = :id", { id: request.params.id })
+      .execute();
+
+    return response.send({ resultado: resultado });
+  }
+  async updateImagem(request: Request, response: Response) {
+    const { imageName } = request.body;
+    const propagandaRepository = getRepository(Propaganda);
+
+    const resultado = await propagandaRepository
+      .createQueryBuilder()
+      .update(Propaganda)
+      .set({ imageName: imageName })
+      .where("id = :id", { id: request.params.id })
+      .execute();
+
+    return response.send({ resultado: resultado });
+  }
+
+  async updateDataExpiracao(request: Request, response: Response) {
+    const { dataExpiracao } = request.body;
+    const propagandaRepository = getRepository(Propaganda);
+
+    const resultado = await propagandaRepository
+      .createQueryBuilder()
+      .update(Propaganda)
+      .set({ dataExpiracao: dataExpiracao })
+      .where("id = :id", { id: request.params.id })
+      .execute();
+
+    return response.send({ resultado: resultado });
+  }
 }
 
 export default PropagandaController;

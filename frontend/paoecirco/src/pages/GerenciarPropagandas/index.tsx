@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { AnuncioCard, Container, DivComum, ImgContainer } from "./styles";
 import Header from "../../components/Header";
-import { PropagandaData } from "../../components/PropagandaData";
 import Button from "../../components/Button";
 import api from "../../services/api";
+import ModalReact from "../../components/ModalPropaganda";
 
 interface Propaganda {
   id: string;
@@ -14,8 +14,16 @@ interface Propaganda {
 
 const GerenciarPropaganda: React.FC = () => {
   const [propagandaData, setPropagandaData] = useState<Propaganda[]>([]);
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   //funções
+
+  function handleOpenModal() {
+    setIsModalOpen(true);
+  }
+
+  function handleCloseModal() {
+    setIsModalOpen(false);
+  }
 
   //puxa propagandas do banco
   useEffect(() => {
@@ -40,7 +48,13 @@ const GerenciarPropaganda: React.FC = () => {
       <Container>
         {propagandaData.map((propaganda, index) => {
           return (
-            <AnuncioCard key={propaganda.imageName}>
+            <AnuncioCard key={propaganda.id}>
+              <ModalReact
+                isOpen={isModalOpen}
+                onRequestClose={handleCloseModal}
+                id={propaganda.id}
+              />
+
               <h1>Anuncio {index + 1}</h1>
               <ImgContainer
                 src={propaganda.imageName}
@@ -51,9 +65,7 @@ const GerenciarPropaganda: React.FC = () => {
                 Empresa contratante: {propaganda.empresaContratante}
               </DivComum>
               <DivComum>Data de expiração: {propaganda.dataExpiracao}</DivComum>
-              <Button>Alterar imagem propaganda</Button>
-              <Button>Alterar empresa</Button>
-              <Button>Alterar data de expiração</Button>
+              <Button onClick={handleOpenModal}>Alterar dados</Button>
               <Button onClick={() => handleDelete(propaganda.id)}>
                 Encerrar propaganda
               </Button>
