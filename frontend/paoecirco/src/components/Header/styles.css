@@ -27,14 +27,20 @@
 .iconContainer {
   height: 34px;
   display: flex;
-  width: 34px;
+  width: 60px;
   justify-content: center;
   align-items: center;
   color: white;
   margin-left: 5px;
   background-color: #fd5c7f;
-  font-size: 15px;
   border-radius: 5px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.linkContainerHeader {
+  text-decoration: none;
+  color: black;
 }
 
 .inputText {

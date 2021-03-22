@@ -16,7 +16,7 @@ class Anuncio {
 
   @Column()
   estadoConservacao: string;
-/*
+  /*
   @Column()
   fotos: ;
 */
