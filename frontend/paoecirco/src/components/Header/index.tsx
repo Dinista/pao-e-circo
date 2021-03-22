@@ -44,7 +44,7 @@ const Header: React.FC = () => {
         await schema.validate(data, {
           abortEarly: false,
         });
-
+        console.log(data);
         const resultado = await api.post("clientess", data);
 
         setState(resultado.data);
