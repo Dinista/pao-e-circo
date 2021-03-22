@@ -15,7 +15,7 @@ routes.post("/clientess", clienteController.find);
 
 //anuncios
 routes.post("/anuncios", anuncioController.create);
-routes.get("/anuncios", anuncioController.find);
+routes.post("/anuncioss", anuncioController.find);
 
 //propagandas
 routes.post("/propaganda", propagandaController.create);

@@ -7,7 +7,7 @@ import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { Container, TituloDestaque, ContainerItemDestaque } from "./styles";
 import Header from "../../components/Header";
 
-const Busca: React.FC = (props: any) => {
+const BuscaUsuario: React.FC = (props: any) => {
   const { image, name, avaliacao, cidade, estado } =
     (props.location && props.location.state) || {};
 
@@ -46,4 +46,4 @@ const Busca: React.FC = (props: any) => {
 
 //styles
 
-export default Busca;
+export default BuscaUsuario;
