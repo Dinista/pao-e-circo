@@ -10,7 +10,7 @@ import api from "../../services/api";
 import { Form } from "@unform/web";
 import Input from "../Input";
 
-interface StateBusca {
+interface StateBuscaUsuario {
   name: string;
   titulo: string;
   avaliacao: string;
@@ -18,10 +18,17 @@ interface StateBusca {
   estado: string;
 }
 
+interface StateBuscaAnuncio {
+  titulo: string;
+  valorEstimado: string;
+  itemDesejado: string;
+  anunciante: string;
+}
+
 const Header: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const formRef = useRef<FormHandles>(null);
-  const [state, setState] = useState<StateBusca>({
+  const [stateUsuario, setStateUsuario] = useState<StateBuscaUsuario>({
     name: "",
     avaliacao: "",
     cidade: "",
@@ -29,11 +36,18 @@ const Header: React.FC = () => {
     titulo: "",
   });
 
+  const [stateAnuncio, setStateAnuncio] = useState<StateBuscaAnuncio>({
+    titulo: "",
+    valorEstimado: "",
+    itemDesejado: "",
+    anunciante: "flavin do pneu",
+  });
+
   function handleLogout() {
     setIsLoggedIn(false);
   }
 
-  const handleSubmit = useCallback(
+  const handleSubmitUsuario = useCallback(
     async (data: any) => {
       try {
         formRef.current?.setErrors({});
@@ -44,11 +58,11 @@ const Header: React.FC = () => {
         await schema.validate(data, {
           abortEarly: false,
         });
-
+        console.log(data);
         const resultado = await api.post("clientess", data);
 
-        setState(resultado.data);
-        console.log(state);
+        setStateUsuario(resultado.data);
+        console.log(stateUsuario);
       } catch (err) {
         //se for um erro do yup, tipo não digitou senha, email inválido, etc
         if (err instanceof yup.ValidationError) {
@@ -56,7 +70,33 @@ const Header: React.FC = () => {
         }
       }
     },
-    [state]
+    [stateUsuario]
+  );
+
+  const handleSubmitAnuncio = useCallback(
+    async (data: any) => {
+      try {
+        formRef.current?.setErrors({});
+        const schema = yup.object().shape({
+          anuncio: yup.string().required("Campo obrigatório"),
+        });
+
+        await schema.validate(data, {
+          abortEarly: false,
+        });
+        console.log(data);
+        const resultado = await api.post("anuncioss", data);
+
+        setStateAnuncio(resultado.data);
+        console.log(stateAnuncio);
+      } catch (err) {
+        //se for um erro do yup, tipo não digitou senha, email inválido, etc
+        if (err instanceof yup.ValidationError) {
+          return;
+        }
+      }
+    },
+    [stateAnuncio]
   );
 
   return (
@@ -69,31 +109,62 @@ const Header: React.FC = () => {
         <div className="containerAleatorio">
           <Form
             ref={formRef}
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmitUsuario}
             className="containerAleatorio"
           >
             <Input
               type="text"
               icon={FiSearch}
               name="name"
-              onSubmit={handleSubmit}
-              placeholder="Buscar um anúncio ou um usuário..."
+              onSubmit={handleSubmitUsuario}
+              placeholder="Buscar um usuário..."
               className="inputText"
             ></Input>
 
             <button className="iconContainer" type="submit">
               <Link
                 to={{
-                  pathname: "/busca",
+                  pathname: "/buscausuario",
                   state: {
-                    name: state.name,
-                    avaliacao: state.avaliacao,
-                    cidade: state.cidade,
-                    estado: state.estado,
+                    name: stateUsuario.name,
+                    avaliacao: stateUsuario.avaliacao,
+                    cidade: stateUsuario.cidade,
+                    estado: stateUsuario.estado,
                   },
                 }}
+                className="linkContainerHeader"
               >
-                <FiSearch />
+                Buscar usuário
+              </Link>
+            </button>
+          </Form>
+          <Form
+            ref={formRef}
+            onSubmit={handleSubmitAnuncio}
+            className="containerAleatorio"
+          >
+            <Input
+              type="text"
+              icon={FiSearch}
+              name="anuncio"
+              onSubmit={handleSubmitAnuncio}
+              placeholder="Buscar um anúncio..."
+              className="inputText"
+            ></Input>
+            <button className="iconContainer" type="submit">
+              <Link
+                to={{
+                  pathname: "/buscaanuncio",
+                  state: {
+                    titulo: stateAnuncio.titulo,
+                    anunciante: "Flavin do pneu",
+                    itemDesejado: stateAnuncio.itemDesejado,
+                    valorEstimado: stateAnuncio.valorEstimado,
+                  },
+                }}
+                className="linkContainerHeader"
+              >
+                Buscar anúncio
               </Link>
             </button>
           </Form>
@@ -108,6 +179,10 @@ const Header: React.FC = () => {
           </Link>
           <Link to="/createexchangead" className="linkLogged">
             ANUNCIAR
+          </Link>
+
+          <Link to="/makeanoffer" className="link">
+            <p> placeholder make an offer</p>
           </Link>
           <button onClick={handleLogout} className="sair">
             SAIR
