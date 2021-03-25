@@ -2,12 +2,14 @@ import express from "express";
 import ClienteController from "./controllers/clienteController";
 import AnuncioController from "./controllers/anuncioController";
 import PropagandaController from "./controllers/propagandaController";
+import NotificacoesController from "./controllers/notificacoesController";
 
 const routes = express.Router();
 
 const clienteController = new ClienteController();
 const propagandaController = new PropagandaController();
 const anuncioController = new AnuncioController();
+const notificacoesController = new NotificacoesController();
 
 //clientes
 routes.post("/clientes", clienteController.create);
@@ -25,4 +27,6 @@ routes.put("/propagandaempresa/:id", propagandaController.updateEmpresa);
 routes.put("/propagandadata/:id", propagandaController.updateDataExpiracao);
 routes.put("/propagandaimage/:id", propagandaController.updateImagem);
 
+//notificações
+routes.post("/notificacoes", notificacoesController.create);
 export default routes;

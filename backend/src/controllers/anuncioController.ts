@@ -36,9 +36,7 @@ class AnuncioController {
     const { anuncio } = request.body;
 
     const clienteRepository = getRepository(Anuncio);
-    console.log(request.body);
     const cliente = await clienteRepository.find({ titulo: anuncio });
-    console.log(cliente[0]);
     return response.json(cliente[0]);
   }
 }

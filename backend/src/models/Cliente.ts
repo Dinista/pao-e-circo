@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import Notificacoes from "./Notificacoes";
 
 @Entity("clientes")
 class Cliente {
@@ -13,6 +20,9 @@ class Cliente {
 
   @Column()
   cpf: string;
+
+  @Column("simple-array")
+  notificacoes: string;
 
   @Column()
   cidade: string;
