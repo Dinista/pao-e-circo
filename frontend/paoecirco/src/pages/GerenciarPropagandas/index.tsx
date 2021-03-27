@@ -73,6 +73,8 @@ const GerenciarPropaganda: React.FC = () => {
             </AnuncioCard>
           );
         })}
+
+        
       </Container>
       <ExibirPropaganda />
     </>
