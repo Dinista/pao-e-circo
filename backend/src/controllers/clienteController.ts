@@ -16,7 +16,15 @@ class ClienteController {
     } = request.body;
 
     const clienteRepository = getRepository(Cliente);
-    console.log(request.body);
+
+    const checkClienteExists = await clienteRepository.findOne({
+      where: { email },
+    });
+
+    if (checkClienteExists) {
+      return response.status(400).send({ Erro: "E-mail já cadastrado" });
+    }
+
     const cliente = clienteRepository.create({
       name,
       cpf,
@@ -27,7 +35,6 @@ class ClienteController {
       email,
       senha,
     });
-    console.log(cliente);
     await clienteRepository.save(cliente);
 
     return response.json("funfou se pa em");
@@ -37,9 +44,7 @@ class ClienteController {
     const { name } = request.body;
 
     const clienteRepository = getRepository(Cliente);
-    console.log(request.body);
     const cliente = await clienteRepository.find({ name: name });
-    console.log(cliente[0]);
     return response.json(cliente[0]);
   }
 }

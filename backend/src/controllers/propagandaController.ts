@@ -7,6 +7,14 @@ class PropagandaController {
     const { imageName, empresaContratante, dataExpiracao } = request.body;
     const propagandaRepository = getRepository(Propaganda);
 
+    const checkPropagandaExists = await propagandaRepository.findOne({
+      where: { imageName },
+    });
+
+    if (checkPropagandaExists) {
+      return response.status(400).send({ Erro: "Imagem já cadastrada" });
+    }
+
     const propaganda = propagandaRepository.create({
       imageName,
       empresaContratante,
