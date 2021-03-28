@@ -29,7 +29,12 @@ const ImageSlider = ({ slides }: any) => {
           <div className="sliderContainer" key={index}>
             <div className={index === current ? "slide active" : "slide"}>
               {index === current && (
-                <Link to="teste" className="linkContainer">
+                <Link to={{
+                  pathname: "/makeanoffer",
+                  state: {
+                    id: "testes"
+                  },
+                }} className="linkContainer">
                   <img src={slide.image} alt="éisso" className="image" />
                   <h1 className="tituloSlide">{slide.titulo}</h1>
                   <div className="descricao">{slide.descricao}</div>
