@@ -40,9 +40,8 @@ const AcceptOffer: React.FC = (props /* ad id (?) */: any) => {
   const [adData, setAdData] = useState<Ad>();
 
   useEffect(() => {
-    api.post("/anuncioss", id).then((response) => {
+    api.post(`/anunciosss/${id}`).then((response) => {
       setAdData(response.data.anuncios);
-      console.log(adData);
     });
     // { /*api.post("usuarioss", adData.userId).then(()) ... */}
   }, []);
@@ -50,7 +49,6 @@ const AcceptOffer: React.FC = (props /* ad id (?) */: any) => {
   return (
     <>
       <Header />
-
       <ExternalContainer className="ExternalContainer">
         <ContainerFlexVertical className="VerticalContainerLeft">
           <h2> Informações do Anunciante </h2>

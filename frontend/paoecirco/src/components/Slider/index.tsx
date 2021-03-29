@@ -31,6 +31,7 @@ const ImageSlider = ({ slides }: any) => {
               {index === current && (
                 <Link to={{
                   pathname: "/makeanoffer",
+                  // TO DO receber como props
                   state: {
                     id: "testes"
                   },

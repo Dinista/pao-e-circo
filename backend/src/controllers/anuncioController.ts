@@ -39,6 +39,14 @@ class AnuncioController {
     const anuncio = await anuncioRepository.find({ titulo : titulo });
     return response.json(anuncio[0]);
   }
+
+  async find2(request: Request, response: Response) {
+    const anuncioRepository = getRepository(Anuncio);
+    const anuncio = await anuncioRepository.find({ titulo : request.params.id});
+    console.log(request.params.id);
+    console.log(anuncio[0]);
+    return response.json(anuncio[0]);
+  }
 }
 
 export default AnuncioController;
