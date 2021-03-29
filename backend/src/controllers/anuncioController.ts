@@ -33,11 +33,11 @@ class AnuncioController {
   }
 
   async find(request: Request, response: Response) {
-    const { anuncio } = request.body;
-
-    const clienteRepository = getRepository(Anuncio);
-    const cliente = await clienteRepository.find({ titulo: anuncio });
-    return response.json(cliente[0]);
+    const anuncioRepository = getRepository(Anuncio);
+    console.log(request.params.id);
+    const anuncio = await anuncioRepository.find({ id : request.params.id});
+    console.log(anuncio[0]);
+    return response.json(anuncio[0]);
   }
 }
 

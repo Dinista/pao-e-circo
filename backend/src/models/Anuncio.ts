@@ -1,9 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
+import Cliente from "./Cliente";
 
 @Entity("anuncios")
 class Anuncio {
   @PrimaryGeneratedColumn("uuid")
   id: string;
+
+  @ManyToOne(() => Cliente, cliente => cliente.anuncios)
+  cliente: Cliente;
 
   @Column()
   titulo: string;
