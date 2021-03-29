@@ -14,11 +14,11 @@ const notificacoesController = new NotificacoesController();
 //clientes
 routes.post("/clientes", clienteController.create);
 routes.post("/clientess", clienteController.find);
+routes.post("/login", clienteController.login);
 
 //anuncios
 routes.post("/anuncios", anuncioController.create);
-routes.post("/anuncioss", anuncioController.find);
-routes.post("/anunciosss/:id", anuncioController.find2);
+routes.post("/anuncioss/:id", anuncioController.find);
 
 //propagandas
 routes.post("/propaganda", propagandaController.create);

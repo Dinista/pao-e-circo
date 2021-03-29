@@ -28,20 +28,22 @@ const AcceptOffer: React.FC = (props /* ad id (?) */: any) => {
     avaliacao,
     numTrocas,
     */
-    tituloAnuncio : string, /* imagens,*/
-    objeto : string,
-    categoria : string,
-    estadoConservacao : string,
-    descricao : string, 
-    itensTroca : string,
-    valorEstimado : number,
+    titulo: string, /* imagens,*/
+    nomeObjeto: string,
+    categoria: string,
+    estadoConservacao: string,
+    itemDesejado: string,
+    descricao: string, 
+    valorEstimado: number,
   };
 
   const [adData, setAdData] = useState<Ad>();
 
   useEffect(() => {
-    api.post(`/anunciosss/${id}`).then((response) => {
-      setAdData(response.data.anuncios);
+    api.post(`/anuncioss/${id}`).then((response) => {
+      console.log(response.data)
+      setAdData(response.data);
+      console.log(adData);
     });
     // { /*api.post("usuarioss", adData.userId).then(()) ... */}
   }, []);
@@ -63,7 +65,7 @@ const AcceptOffer: React.FC = (props /* ad id (?) */: any) => {
         </ContainerFlexVertical>
 
         <ContainerFlexVerticalWider className="VerticalContainerMiddle">
-          <h1> {/*tituloAnuncio*/} </h1>
+          <h1> {adData?.titulo} </h1>
           {/* FOTO */}
 
           <ContainerComments>
@@ -73,12 +75,12 @@ const AcceptOffer: React.FC = (props /* ad id (?) */: any) => {
 
         <ContainerFlexVertical className="VerticalContainerRight">
           <h2> Informações do anúncio </h2>
-          <p> Objeto: {adData?.objeto} </p>
-          <p> Categoria: {/*categoria*/} </p>
-          <p> Estado: {/*estadoConservacao*/} </p>
-          <p> Descricao: {/*descricao*/} </p>
-          <p> Itens desejados em troca: {/*itensTroca*/} </p>
-          <p> Valor estimado: {/*valorEstimado*/} </p>
+          <p> Objeto: {adData?.nomeObjeto} </p>
+          <p> Categoria: {adData?.categoria} </p>
+          <p> Estado: {adData?.estadoConservacao} </p>
+          <p> Descricao: {adData?.descricao} </p>
+          <p> Itens desejados em troca: {adData?.itemDesejado} </p>
+          <p> Valor estimado: {adData?.valorEstimado} </p>
         </ContainerFlexVertical>
       </ExternalContainer>
       <ExibirPropaganda />

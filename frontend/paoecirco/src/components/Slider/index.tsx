@@ -33,7 +33,7 @@ const ImageSlider = ({ slides }: any) => {
                   pathname: "/makeanoffer",
                   // TO DO receber como props
                   state: {
-                    id: "testes"
+                    id: slide.id
                   },
                 }} className="linkContainer">
                   <img src={slide.image} alt="éisso" className="image" />
