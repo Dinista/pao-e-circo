@@ -20,10 +20,16 @@ class Anuncio {
 
   @Column()
   estadoConservacao: string;
-  /*
+
   @Column()
-  fotos: ;
-*/
+  foto1: string;
+
+  @Column()
+  foto2: string;
+  
+  @Column()
+  foto3: string;
+
   @Column()
   descricao: string;
 

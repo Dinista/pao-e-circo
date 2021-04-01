@@ -2,6 +2,7 @@ import styled, { keyframes } from "styled-components";
 import { shade } from "polished";
 import Select from "../../components/Select";
 import Button from "../../components/Button"
+import Input from "../../components/Input";
 
 export const TituloPagina = styled.h1`
   color: #93130d; 
@@ -109,8 +110,9 @@ export const CustomDiv = styled.div`
 
 export const BoxTitle = styled.p`
   text-justify: center;
-  margin-top: -0.24rem; 
-  margin-bottom: 0.4rem;
+  margin-top: 0.7rem; 
+  margin-bottom: -0.3rem;
   margin-left: 0.5rem; 
   text-align: left;
+  font-weight: 600;
 `;

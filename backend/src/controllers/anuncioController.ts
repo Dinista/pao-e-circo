@@ -4,12 +4,17 @@ import Anuncio from "../models/Anuncio";
 
 class AnuncioController {
   async create(request: Request, response: Response) {
+
+    
     const {
       titulo,
       nomeObjeto,
       categoria,
       estadoConservacao,
-      /*fotos,*/ descricao,
+      foto1,
+      foto2, 
+      foto3,
+      descricao,
       itemDesejado,
       valorEstimado,
     } = request.body;
@@ -21,7 +26,9 @@ class AnuncioController {
       nomeObjeto,
       categoria,
       estadoConservacao,
-      /*fotos,*/
+      foto1,
+      foto2,
+      foto3,
       descricao,
       itemDesejado,
       valorEstimado,

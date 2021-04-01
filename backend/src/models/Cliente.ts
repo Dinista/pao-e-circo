@@ -16,7 +16,6 @@ class Cliente {
   
   @OneToMany(type => Anuncio, cliente => Cliente)
   anuncios: Anuncio[];
-	
 
   @Column()
   name: string;
