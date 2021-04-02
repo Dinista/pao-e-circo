@@ -19,6 +19,7 @@ routes.post("/login", clienteController.login);
 //anuncios
 routes.post("/anuncios", anuncioController.create);
 routes.post("/anuncioss/:id", anuncioController.find);
+routes.delete("/anuncios/:id", anuncioController.delete);
 
 //propagandas
 routes.post("/propaganda", propagandaController.create);

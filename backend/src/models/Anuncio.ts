@@ -38,6 +38,12 @@ class Anuncio {
 
   @Column()
   valorEstimado: number;
+
+  @Column()
+  destaque: boolean;
+
+  @Column()
+  destaqueExpira: Date;
 }
 
 export default Anuncio;
