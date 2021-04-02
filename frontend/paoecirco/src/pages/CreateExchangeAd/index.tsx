@@ -33,12 +33,14 @@ interface CreateExchangeAdFormData {
   objeto: string;
   categoria: string;
   estadoConservacao: string;
-  foto1: Buffer;
-  foto2: Buffer;
-  foto3: Buffer;
+  foto1: string;
+  foto2: string;
+  foto3: string;
   descricao: string;
   itensDesejados: string;
   valorEstimado: number;
+  destaque: boolean;
+  destaqueExpira: Date;
 }
 
 const categorias = [
@@ -104,6 +106,9 @@ const CreateExchangeAd: React.FC = () => {
         await schema.validate(data, {
           abortEarly: false,
         });
+        
+        data.destaque = false;
+        data.destaqueExpira = new Date("01/01/2099");
 
         await api.post("/anuncios", data);
 
