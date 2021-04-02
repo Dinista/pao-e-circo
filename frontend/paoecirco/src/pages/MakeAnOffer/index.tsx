@@ -62,17 +62,10 @@ const AcceptOffer: React.FC = (props /* ad id (?) */: any) => {
     // { /*api.post("usuarioss", adData.userId).then(()) ... */}
   }, []);
 
-  {/* Ainda não funciona */}
   const handleDelete = useCallback(async (data: any) => {
     await api.delete(`/anuncios/${data}`);
     alert("O anuncio foi apagado com sucesso");
-    /*
-    setAdData((oldAd) =>
-      oldAd.filter((ad) => ad.id !== data)
-    );
-    */
   }, []);
-  {/* Ainda não funciona */}
 
 
 
@@ -103,11 +96,10 @@ const AcceptOffer: React.FC = (props /* ad id (?) */: any) => {
 
         <ContainerFlexVertical className="VerticalContainerRight">
 
-          {/* Ainda não funciona */}
           <Button onClick={() => handleDelete(adData?.id)}>
                   Encerrar anuncio
           </Button>
-          {/* Ainda não funciona */}
+          
           
           <h2> Informações do anúncio </h2>
           <p> Objeto: {adData?.nomeObjeto} </p>

@@ -57,6 +57,18 @@ class AnuncioController {
 
     return response.send(results);
   }
-}
 
+  async destacar(request: Request, response: Response) {
+    const { dataExpiracao } = request.body;
+    const anuncioRepository = getRepository(Anuncio);
+
+    const resultado = await anuncioRepository
+      .createQueryBuilder()
+      .update(Anuncio)
+      .set({ destaqueExpira: dataExpiracao })
+      .where("id = :id", { id: request.params.id })
+      .execute();
+      return response.send( { resultado: resultado });
+    }
+}
 export default AnuncioController;
