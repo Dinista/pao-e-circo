@@ -1,9 +1,7 @@
-import { FormHandles } from "@unform/core";
-import React, { useCallback, useRef } from "react";
+import React from "react";
 import { AiFillStar } from "react-icons/ai";
 import { BsPersonFill } from "react-icons/bs";
 import { MdAttachMoney } from "react-icons/md";
-import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import {
   Container,
   TituloDestaque,

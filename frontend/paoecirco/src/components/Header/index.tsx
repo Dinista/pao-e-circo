@@ -25,9 +25,20 @@ interface StateBuscaAnuncio {
   anunciante: string;
 }
 
-const Header: React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+interface HeaderProps {
+  state?: any;
+}
+
+const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
+  const propsValid = (props: any) =>
+    Object.values(props).every((prop) => prop !== undefined);
+
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean | undefined>(
+    propsValid(props) ? true : false
+  );
+
   const formRef = useRef<FormHandles>(null);
+
   const [stateUsuario, setStateUsuario] = useState<StateBuscaUsuario>({
     name: "",
     avaliacao: "",
@@ -47,57 +58,47 @@ const Header: React.FC = () => {
     setIsLoggedIn(false);
   }
 
-  const handleSubmitUsuario = useCallback(
-    async (data: any) => {
-      try {
-        formRef.current?.setErrors({});
-        const schema = yup.object().shape({
-          name: yup.string().required("Campo obrigatório"),
-        });
+  const handleSubmitUsuario = useCallback(async (data: any) => {
+    try {
+      formRef.current?.setErrors({});
+      const schema = yup.object().shape({
+        name: yup.string().required("Campo obrigatório"),
+      });
 
-        await schema.validate(data, {
-          abortEarly: false,
-        });
-        console.log(data);
-        const resultado = await api.post("clientess", data);
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+      const resultado = await api.post("clientess", data);
 
-        setStateUsuario(resultado.data);
-        console.log(stateUsuario);
-      } catch (err) {
-        //se for um erro do yup, tipo não digitou senha, email inválido, etc
-        if (err instanceof yup.ValidationError) {
-          return;
-        }
+      setStateUsuario(resultado.data);
+    } catch (err) {
+      //se for um erro do yup, tipo não digitou senha, email inválido, etc
+      if (err instanceof yup.ValidationError) {
+        return;
       }
-    },
-    [stateUsuario]
-  );
+    }
+  }, []);
 
-  const handleSubmitAnuncio = useCallback(
-    async (data: any) => {
-      try {
-        formRef.current?.setErrors({});
-        const schema = yup.object().shape({
-          anuncio: yup.string().required("Campo obrigatório"),
-        });
+  const handleSubmitAnuncio = useCallback(async (data: any) => {
+    try {
+      formRef.current?.setErrors({});
+      const schema = yup.object().shape({
+        anuncio: yup.string().required("Campo obrigatório"),
+      });
 
-        await schema.validate(data, {
-          abortEarly: false,
-        });
-        console.log(data);
-        const resultado = await api.post("anuncioss", data);
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+      const resultado = await api.post("anuncioss", data);
 
-        setStateAnuncio(resultado.data);
-        console.log(stateAnuncio);
-      } catch (err) {
-        //se for um erro do yup, tipo não digitou senha, email inválido, etc
-        if (err instanceof yup.ValidationError) {
-          return;
-        }
+      setStateAnuncio(resultado.data);
+    } catch (err) {
+      //se for um erro do yup, tipo não digitou senha, email inválido, etc
+      if (err instanceof yup.ValidationError) {
+        return;
       }
-    },
-    [stateAnuncio]
-  );
+    }
+  }, []);
 
   return (
     <div className="header">
@@ -173,7 +174,9 @@ const Header: React.FC = () => {
 
       {isLoggedIn ? (
         <div className="loggedContainer">
-          <img src={Avatar} className="avatar" alt="avatar" />
+          <Link to={{ pathname: "/perfil", state: { id: props.state.id } }}>
+            <img src={Avatar} className="avatar" alt="avatar" />
+          </Link>
           <Link to="/destaques" className="destaques">
             DESTAQUES
           </Link>
@@ -181,9 +184,7 @@ const Header: React.FC = () => {
             ANUNCIAR
           </Link>
 
-          <Link to="/makeanoffer" className="link">
-            <p> placeholder make an offer</p>
-          </Link>
+          <Link to={`/usuario/ae`} className="link"></Link>
           <button onClick={handleLogout} className="sair">
             SAIR
           </button>
