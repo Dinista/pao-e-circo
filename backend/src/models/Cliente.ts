@@ -14,7 +14,7 @@ class Cliente {
   @PrimaryGeneratedColumn("uuid")
   id: string;
   
-  @OneToMany(() => Anuncio, anuncio => anuncio.cliente)
+  @OneToMany(type => Anuncio, cliente => Cliente)
   anuncios: Anuncio[];
 
   @Column()

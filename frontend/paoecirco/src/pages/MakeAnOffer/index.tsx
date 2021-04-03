@@ -10,8 +10,22 @@ import {
 import Header from "../../components/Header";
 import ExibirPropaganda from "../../components/ExibirPropaganda";
 
+import { debug } from "console";
+import ImageSlider from "../../components/Slider";
+import Button from "../../components/Button";
+
 const AcceptOffer: React.FC = (props: /* ad id (?) */ any) => {
   const { id } = (props.location && props.location.state) || {};
+
+  
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  function handleOpenModal() {
+    setIsModalOpen(true);
+  }
+  function handleCloseModal() {
+    setIsModalOpen(false);
+  }
+
 
   interface Ad {
     /* USER DATA
@@ -21,15 +35,19 @@ const AcceptOffer: React.FC = (props: /* ad id (?) */ any) => {
     avaliacao,
     numTrocas,
     */
-    titulo: string /* imagens,*/;
-    nomeObjeto: string;
-    categoria: string;
-    estadoConservacao: string;
-    itemDesejado: string;
-    descricao: string;
-    valorEstimado: number;
-  }
 
+    id: string, 
+    titulo: string, 
+    foto1: string;
+    foto2: string;
+    foto3: string; 
+    nomeObjeto: string,
+    categoria: string,
+    estadoConservacao: string,
+    itemDesejado: string,
+    descricao: string, 
+    valorEstimado: number,
+  };
   const [adData, setAdData] = useState<Ad>();
 
   useEffect(() => {
@@ -41,6 +59,20 @@ const AcceptOffer: React.FC = (props: /* ad id (?) */ any) => {
     // { /*api.post("usuarioss", adData.userId).then(()) ... */}
   }, [adData, id]);
 
+  {/* Ainda não funciona */}
+  const handleDelete = useCallback(async (data: any) => {
+    await api.delete(`/anuncios/${data}`);
+    alert("O anuncio foi apagado com sucesso");
+    /*
+    setAdData((oldAd) =>
+      oldAd.filter((ad) => ad.id !== data)
+    );
+    */
+  }, []);
+  {/* Ainda não funciona */}
+
+
+
   return (
     <>
       <Header />
@@ -48,7 +80,7 @@ const AcceptOffer: React.FC = (props: /* ad id (?) */ any) => {
         <ContainerFlexVertical className="VerticalContainerLeft">
           <h2> Informações do Anunciante </h2>
 
-          {/* Foto */}
+          <ImageSlider slides={[adData?.foto1, adData?.foto2, adData?.foto3]}></ImageSlider>
 
           <p> Nome: {/***/} </p>
           <p> Cidade: {/*cidade*/} </p>
@@ -67,6 +99,13 @@ const AcceptOffer: React.FC = (props: /* ad id (?) */ any) => {
         </ContainerFlexVerticalWider>
 
         <ContainerFlexVertical className="VerticalContainerRight">
+
+          {/* Ainda não funciona */}
+          <Button onClick={() => handleDelete(adData?.id)}>
+                  Encerrar anuncio
+          </Button>
+          {/* Ainda não funciona */}
+          
           <h2> Informações do anúncio </h2>
           <p> Objeto: {adData?.nomeObjeto} </p>
           <p> Categoria: {adData?.categoria} </p>

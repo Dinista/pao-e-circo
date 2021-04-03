@@ -6,10 +6,9 @@ export const SliderData = [
     titulo: "testes",
     valor: "250",
     avaliacao: "4.5",
-    descricao:
-      "AHIUSHDOIUASH AISUDHISAUHD ADAHIUSHDOIUASH AISUDHISAUHD ADAHIUSHDOIUASH AISUDHISAUHD AD",
-    id: "b9388021-3135-441b-b5cf-6c10f9dee9ef"
-      },
+    descricao: "AHIUSHDOIUASH AISUDHISAUHD ADADOIUASH AISUDHISAUHD AD",
+    id: "fa1d259a-199e-4952-8047-2dadda95591e"
+  },
   {
     image:
       "https://images.unsplash.com/photo-1501446529957-6226bd447c46?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1489&q=80",
@@ -17,7 +16,8 @@ export const SliderData = [
     valor: "250",
     avaliacao: "4.5",
     anunciante: "Dr Hanz Chucrutes",
-    descricao: "eb098ebb-bcf0-4de8-a060-e15f6d358b32",
+    descricao: "-eb098ebbbcf0-4de8-a060-e15f6d358b32",
+    id: "6cff42d0-fe34-42f7-9843-9ab0651398db"
   },
   {
     image:

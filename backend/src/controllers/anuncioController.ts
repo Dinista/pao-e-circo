@@ -4,14 +4,20 @@ import Anuncio from "../models/Anuncio";
 
 class AnuncioController {
   async create(request: Request, response: Response) {
+
     const {
       titulo,
       nomeObjeto,
       categoria,
       estadoConservacao,
-      /*fotos,*/ descricao,
+      foto1,
+      foto2, 
+      foto3,
+      descricao,
       itemDesejado,
       valorEstimado,
+      destaque,
+      destaqueExpira,
     } = request.body;
 
     const anuncioRepository = getRepository(Anuncio);
@@ -21,10 +27,14 @@ class AnuncioController {
       nomeObjeto,
       categoria,
       estadoConservacao,
-      /*fotos,*/
+      foto1,
+      foto2,
+      foto3,
       descricao,
       itemDesejado,
       valorEstimado,
+      destaque,
+      destaqueExpira,
     });
 
     await anuncioRepository.save(anuncio);
@@ -38,6 +48,14 @@ class AnuncioController {
     const anuncio = await anuncioRepository.find({ id : request.params.id});
     console.log(anuncio[0]);
     return response.json(anuncio[0]);
+  }
+
+  async delete(request: Request, response: Response) {
+    const anuncioRepository = getRepository(Anuncio);
+
+    const results = await anuncioRepository.delete(request.params.id);
+
+    return response.send(results);
   }
 }
 

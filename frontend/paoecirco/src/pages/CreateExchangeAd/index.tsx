@@ -25,18 +25,21 @@ import SubText from "../../components/Subtext";
 import { CustomDiv, BoxTitle, ButtonStyled } from "./styles";
 import Header from "../../components/Header";
 import ExibirPropaganda from "../../components/ExibirPropaganda";
+import { inputCSS } from "react-select/src/components/Input";
 
 interface CreateExchangeAdFormData {
   titulo: string;
   objeto: string;
   categoria: string;
   estadoConservacao: string;
-  foto1: File;
-  foto2: File;
-  foto3: File;
+  foto1: string;
+  foto2: string;
+  foto3: string;
   descricao: string;
   itensDesejados: string;
   valorEstimado: number;
+  destaque: boolean;
+  destaqueExpira: Date;
 }
 
 const categorias = [
@@ -95,6 +98,9 @@ const CreateExchangeAd: React.FC = () => {
         await schema.validate(data, {
           abortEarly: false,
         });
+        
+        data.destaque = false;
+        data.destaqueExpira = new Date("01/01/2099");
 
         await api.post("/anuncios", data);
         alert("anuncio criado com sucesso");
@@ -152,14 +158,28 @@ const CreateExchangeAd: React.FC = () => {
                 options={estadosConservacao}
               ></Select>
               <SubText text="Estado de conservação em qual se encontra seu objeto." />
+              
+                <BoxTitle> Fotos </BoxTitle>
+                
+                <Input
+                  name="foto1"
+                  icon={FiAlignJustify}
+                  placeholder="URL da foto 1*"
+                ></Input>
+              
+                <Input
+                  name="foto2"
+                  icon={FiAlignJustify}
+                  placeholder="URL da foto 2*"
+                ></Input>
 
-              <CustomDiv>
-                <BoxTitle> Fotos * </BoxTitle>
-                <ImageInput name="imageInput1"></ImageInput>
-                <ImageInput name="imageInput2"></ImageInput>
-                <ImageInput name="imageInput3"></ImageInput>
-              </CustomDiv>
-              <SubText text="Fotos do objeto. Mínimo três." />
+                <Input
+                  name="foto3"
+                  icon={FiAlignJustify}
+                  placeholder="URL da foto 3*"
+                ></Input>
+             
+              <SubText text="Link para as fotos do objeto. Mínimo três." />
 
               <Input
                 name="descricao"
