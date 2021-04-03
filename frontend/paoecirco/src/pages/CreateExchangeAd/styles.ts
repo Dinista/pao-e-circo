@@ -1,14 +1,13 @@
 import styled, { keyframes } from "styled-components";
 import { shade } from "polished";
-import Select from "../../components/Select";
-import Button from "../../components/Button"
+import Button from "../../components/Button";
 
 export const TituloPagina = styled.h1`
-  color: #93130d; 
-  margin-top: 70px; 
-  font-family:Arial, Helvetica, sans-serif;
-  margin-left: 30px; 
-  text-shadow: 3px 3px 3px pink; 
+  color: #93130d;
+  margin-top: 70px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 30px;
+  text-shadow: 3px 3px 3px pink;
 `;
 
 export const Container = styled.div`
@@ -19,13 +18,12 @@ export const Container = styled.div`
 
 export const ButtonStyled = styled(Button)`
   width: 110%;
-  
 `;
 
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  
+
   justify-content: center;
 
   width: 100%;
@@ -58,7 +56,7 @@ export const AnimationContainer = styled.div`
 
   h1 {
     margin-bottom: 24px;
-    text-align: center; 
+    text-align: center;
   }
 
   a {
@@ -105,12 +103,12 @@ export const CustomDiv = styled.div`
   width: 105%;
   margin-top: 6px;
   margin-bottom: -7px;
-`; 
+`;
 
 export const BoxTitle = styled.p`
   text-justify: center;
-  margin-top: -0.24rem; 
+  margin-top: -0.24rem;
   margin-bottom: 0.4rem;
-  margin-left: 0.5rem; 
+  margin-left: 0.5rem;
   text-align: left;
 `;

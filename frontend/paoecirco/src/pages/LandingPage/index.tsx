@@ -7,12 +7,20 @@ import { SliderData } from "../../components/SliderData";
 import Categorias from "../../components/Categorias";
 import Destaques from "../../components/Destaques";
 import ExibirPropaganda from "../../components/ExibirPropaganda";
+import { useLocation } from "react-router-dom";
+
+interface IState {
+  logado?: boolean;
+  id?: string;
+}
 
 const Landing: React.FC = () => {
+  const location = useLocation<IState>();
+
   return (
     <>
       <div className="container">
-        <Header />
+        <Header state={location.state} />
         <Categorias />
         <ImageSlider slides={SliderData} />
         <Destaques />

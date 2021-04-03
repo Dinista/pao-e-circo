@@ -1,10 +1,5 @@
-import { FormHandles } from "@unform/core";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import api from "../../services/api";
-import { AiFillStar } from "react-icons/ai";
-import { BsPersonFill } from "react-icons/bs";
-import { MdSubtitles } from "react-icons/md";
-import { RiMoneyDollarCircleLine } from "react-icons/ri";
 // import { Container, TituloDestaque, ContainerItemDestaque } from "./styles";
 import {
   ExternalContainer,
@@ -14,12 +9,10 @@ import {
 } from "./styles";
 import Header from "../../components/Header";
 import ExibirPropaganda from "../../components/ExibirPropaganda";
-import { debug } from "console";
 
-const AcceptOffer: React.FC = (props /* ad id (?) */: any) => {
-  
+const AcceptOffer: React.FC = (props: /* ad id (?) */ any) => {
   const { id } = (props.location && props.location.state) || {};
-  
+
   interface Ad {
     /* USER DATA
     nome,
@@ -28,25 +21,25 @@ const AcceptOffer: React.FC = (props /* ad id (?) */: any) => {
     avaliacao,
     numTrocas,
     */
-    titulo: string, /* imagens,*/
-    nomeObjeto: string,
-    categoria: string,
-    estadoConservacao: string,
-    itemDesejado: string,
-    descricao: string, 
-    valorEstimado: number,
-  };
+    titulo: string /* imagens,*/;
+    nomeObjeto: string;
+    categoria: string;
+    estadoConservacao: string;
+    itemDesejado: string;
+    descricao: string;
+    valorEstimado: number;
+  }
 
   const [adData, setAdData] = useState<Ad>();
 
   useEffect(() => {
     api.post(`/anuncioss/${id}`).then((response) => {
-      console.log(response.data)
+      console.log(response.data);
       setAdData(response.data);
       console.log(adData);
     });
     // { /*api.post("usuarioss", adData.userId).then(()) ... */}
-  }, []);
+  }, [adData, id]);
 
   return (
     <>

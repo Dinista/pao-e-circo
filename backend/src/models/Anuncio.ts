@@ -6,9 +6,6 @@ class Anuncio {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @ManyToOne(() => Cliente, cliente => cliente.anuncios)
-  cliente: Cliente;
-
   @Column()
   titulo: string;
 

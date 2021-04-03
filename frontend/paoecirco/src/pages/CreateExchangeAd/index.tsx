@@ -2,7 +2,6 @@ import React, { useCallback, useRef } from "react";
 import { Form } from "@unform/web";
 import { FormHandles } from "@unform/core";
 import {
-  FiArrowLeft,
   FiType,
   FiAlignJustify,
   FiBox,
@@ -11,7 +10,7 @@ import {
 } from "react-icons/fi";
 import Input from "../../components/Input/index";
 import api from "../../services/api";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import {
   AnimationContainer,
@@ -50,13 +49,6 @@ const categorias = [
   { value: "vestuario", label: "Vestuário" },
   { value: "decoracao", label: "Decoração" },
   { value: "outros", label: "Outros" },
-];
-
-const fileSize = 10;
-const fileType = [
-  { value: "image/jpg", label: "jpg" },
-  { value: "img/jpeg", label: "jpeg" },
-  { value: "image,png", label: "png" },
 ];
 
 const estadosConservacao = [
@@ -105,8 +97,8 @@ const CreateExchangeAd: React.FC = () => {
         });
 
         await api.post("/anuncios", data);
-
-        // history.push('/signin');
+        alert("anuncio criado com sucesso");
+        history.push("/");
         console.log(data);
       } catch (err) {
         console.log("errozao!");

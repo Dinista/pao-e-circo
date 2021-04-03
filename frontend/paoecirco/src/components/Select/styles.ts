@@ -1,7 +1,6 @@
-import styled, { css } from "styled-components";
-import React, { useRef, useEffect } from "react";
+import styled from "styled-components";
 
-import ReactSelect from 'react-select';
+import ReactSelect from "react-select";
 
 export const CustomSelect = styled(ReactSelect)`
   border-radius: 10px;
@@ -26,5 +25,5 @@ export const NiceDiv = styled.div`
 `;
 
 export const NicerDiv = styled.div`
-  size: 100000px; 
+  size: 100000px;
 `;
