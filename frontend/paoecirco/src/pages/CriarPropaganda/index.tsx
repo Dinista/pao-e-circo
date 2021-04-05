@@ -3,7 +3,7 @@ import { Form } from "@unform/web";
 import { FormHandles } from "@unform/core";
 import { FiArrowLeft } from "react-icons/fi";
 import { MdWork } from "react-icons/md";
-import { FaBirthdayCake, FaCity } from "react-icons/fa";
+import { FaBirthdayCake } from "react-icons/fa";
 import { AiFillFileImage } from "react-icons/ai";
 import Input from "../../components/Input/index";
 import Button from "../../components/Button/index";

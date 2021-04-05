@@ -11,8 +11,9 @@ export const Container = styled.div<ContainerProps>`
   border: 2px solid black;
   padding: 16px;
   margin-top: 10px;
-  margin-bottom: -7px;  
+  margin-bottom: 7px;
   width: 100%;
+  height: 10px;
   color: #666360;
   transition: all 1s;
   display: flex;

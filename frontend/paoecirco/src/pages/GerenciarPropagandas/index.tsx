@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { AnuncioCard, Container, DivComum, ImgContainer } from "./styles";
 import Header from "../../components/Header";
 import Button from "../../components/Button";
@@ -73,8 +73,6 @@ const GerenciarPropaganda: React.FC = () => {
             </AnuncioCard>
           );
         })}
-
-        
       </Container>
       <ExibirPropaganda />
     </>
