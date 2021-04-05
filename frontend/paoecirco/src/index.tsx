@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
@@ -13,7 +13,6 @@ import CriarPropaganda from "./pages/CriarPropaganda";
 import BuscaAnuncio from "./pages/BuscaAnuncio";
 
 import MakeAnOffer from "./pages/MakeAnOffer";
-
 
 ReactDOM.render(
   <React.StrictMode>
@@ -30,7 +29,6 @@ ReactDOM.render(
         <Route path="/criarpropaganda" component={CriarPropaganda} />
 
         <Route path="/makeanoffer" component={MakeAnOffer} />
-
       </Switch>
     </Router>
   </React.StrictMode>,
