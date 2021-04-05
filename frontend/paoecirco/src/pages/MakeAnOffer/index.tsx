@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import api from "../../services/api";
 // import { Container, TituloDestaque, ContainerItemDestaque } from "./styles";
 import {
@@ -13,11 +13,11 @@ import ExibirPropaganda from "../../components/ExibirPropaganda";
 import { debug } from "console";
 import ImageSlider from "../../components/Slider";
 import Button from "../../components/Button";
+import ModalReactDestaque from "../../components/ModalDestaque";
 
 const AcceptOffer: React.FC = (props: /* ad id (?) */ any) => {
   const { id } = (props.location && props.location.state) || {};
 
-  
   const [isModalOpen, setIsModalOpen] = useState(false);
   function handleOpenModal() {
     setIsModalOpen(true);
@@ -25,7 +25,6 @@ const AcceptOffer: React.FC = (props: /* ad id (?) */ any) => {
   function handleCloseModal() {
     setIsModalOpen(false);
   }
-
 
   interface Ad {
     /* USER DATA
@@ -52,9 +51,7 @@ const AcceptOffer: React.FC = (props: /* ad id (?) */ any) => {
 
   useEffect(() => {
     api.post(`/anuncioss/${id}`).then((response) => {
-      console.log(response.data);
       setAdData(response.data);
-      console.log(adData);
     });
     // { /*api.post("usuarioss", adData.userId).then(()) ... */}
   }, [adData, id]);
@@ -64,15 +61,19 @@ const AcceptOffer: React.FC = (props: /* ad id (?) */ any) => {
     alert("O anuncio foi apagado com sucesso");
   }, []);
 
-
-
   return (
     <>
       <Header />
       <ExternalContainer className="ExternalContainer">
+
+        <ModalReactDestaque
+                isOpen={isModalOpen}
+                onRequestClose={handleCloseModal}
+                id={adData?.id}/>
+
         <ContainerFlexVertical className="VerticalContainerLeft">
           <h2> Informações do Anunciante </h2>
-
+  
           <ImageSlider slides={[adData?.foto1, adData?.foto2, adData?.foto3]}></ImageSlider>
 
           <p> Nome: {/***/} </p>
@@ -97,7 +98,6 @@ const AcceptOffer: React.FC = (props: /* ad id (?) */ any) => {
                   Encerrar anuncio
           </Button>
           
-          
           <h2> Informações do anúncio </h2>
           <p> Objeto: {adData?.nomeObjeto} </p>
           <p> Categoria: {adData?.categoria} </p>
@@ -105,6 +105,8 @@ const AcceptOffer: React.FC = (props: /* ad id (?) */ any) => {
           <p> Descricao: {adData?.descricao} </p>
           <p> Itens desejados em troca: {adData?.itemDesejado} </p>
           <p> Valor estimado: {adData?.valorEstimado} </p>
+          
+          <Button onClick={handleOpenModal}>Destacar</Button>          
         </ContainerFlexVertical>
       </ExternalContainer>
       <ExibirPropaganda />

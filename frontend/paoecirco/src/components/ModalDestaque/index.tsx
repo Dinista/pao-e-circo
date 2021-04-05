@@ -12,7 +12,7 @@ import SubText from "../Subtext";
 interface NewModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
-  id: string;
+  id: string | undefined;
 }
 
 const planos = [
@@ -21,40 +21,38 @@ const planos = [
   { value: "90", label: "90 dias - R$ 64,90" },
 ];
 
-const ModalReact: React.FC<NewModalProps> = ({
+const ModalReactDestaque: React.FC<NewModalProps> = ({
   isOpen,
   onRequestClose,
   id,
 }: NewModalProps) => {
-  {
-    
-    const formRefData = useRef<FormHandles>(null);
+  { const formRefData = useRef<FormHandles>(null);
 
-
-
-    const handleSubmitData = useCallback(async (data: any) => {
-      try {
-        /*
-        const schema = yup.object().shape({
-          dataExpiracao: yup.string(),
-        });
-        */
-        /*
-        await schema.validate(data, {
-          abortEarly: false,
-        });
-        */
-        console.log(id);
-        
-        console.log(data);
-        var time = new Date();
-        time.setDate(time.getDate() + data); // Adiciona X dias, de acordo com a escolha do usuario 
-        await api.put(`anunciodestaque/${id}`, );
-        alert("O anuncio foi destacado com sucesso");
-      } catch (err) {
-        console.log("Erro no handleSubmitData!");
-      }
-    }, []);
+    const handleSubmitData = useCallback(
+      async (planoDias: any) => {
+        try {
+          /*
+          const schema = yup.object().shape({
+            dataExpiracao: yup.string(),
+          });
+          */
+          /*
+          await schema.validate(data, {
+            abortEarly: false,
+          });
+          */
+         
+          
+          console.log(planoDias);
+          const time = new Date();
+          time.setDate(time.getDate() + planoDias); // Adiciona X dias, de acordo com a escolha do usuario 
+          console.log(time.getDate);
+          await api.put(`anunciodestaque/${id}`, time);
+          alert("O anuncio foi destacado com sucesso");
+        } catch {}
+    }, 
+    [id]
+  );
     
 
     return (
@@ -86,4 +84,4 @@ const ModalReact: React.FC<NewModalProps> = ({
   }
 };
 
-export default ModalReact;
+export default ModalReactDestaque;

@@ -33,6 +33,9 @@ const ModalReact: React.FC<NewModalProps> = ({
         await schema.validate(data, {
           abortEarly: false,
         });
+        
+        console.log("oi");
+        
         await api.put(`propagandaimage/${id}`, data);
         alert("A propaganda foi alterada com sucesso");
       } catch {}

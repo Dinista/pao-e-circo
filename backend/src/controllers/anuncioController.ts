@@ -44,9 +44,9 @@ class AnuncioController {
 
   async find(request: Request, response: Response) {
     const anuncioRepository = getRepository(Anuncio);
-    console.log(request.params.id);
+    
     const anuncio = await anuncioRepository.find({ id : request.params.id});
-    console.log(anuncio[0]);
+    
     return response.json(anuncio[0]);
   }
 
@@ -61,6 +61,7 @@ class AnuncioController {
   async destacar(request: Request, response: Response) {
     const { dataExpiracao } = request.body;
     const anuncioRepository = getRepository(Anuncio);
+    console.log(dataExpiracao);
 
     const resultado = await anuncioRepository
       .createQueryBuilder()
@@ -68,7 +69,9 @@ class AnuncioController {
       .set({ destaqueExpira: dataExpiracao })
       .where("id = :id", { id: request.params.id })
       .execute();
-      return response.send( { resultado: resultado });
-    }
+
+    return response.send( { resultado: resultado });
+  }
 }
+
 export default AnuncioController;
