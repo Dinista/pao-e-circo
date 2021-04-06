@@ -1,18 +1,13 @@
 import React, { useCallback, useRef } from "react";
 import Header from "../../components/Header";
 
-interface IState {
-  logado?: boolean;
-  id?: string;
-}
-
-const Perfil: React.FC = (props: any) => {
-  const { id } = (props.location && props.location.state) || {};
+const Perfil: React.FC = () => {
+  const loginId = localStorage.getItem("loginid");
 
   return (
     <>
-      <Header state={props.location.state} />
-      <p>{id}</p>
+      <Header />
+      <p>{loginId}</p>
     </>
   );
 };

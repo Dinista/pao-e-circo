@@ -25,18 +25,16 @@ interface StateBuscaAnuncio {
   anunciante: string;
 }
 
-interface HeaderProps {
-  state?: any;
-}
+const Header: React.FC = () => {
+  const loginId = localStorage.getItem("loginid") || "";
 
-const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
-  const propsValid = (props: any) =>
-    Object.values(props).every((prop) => prop !== undefined);
-
-  console.log(props);
+  const propsValid = (loginId: any) => {
+    if (loginId == "") return false;
+    else return true;
+  };
 
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | undefined>(
-    propsValid(props) ? true : false
+    propsValid(loginId) ? true : false
   );
 
   const formRef = useRef<FormHandles>(null);
@@ -57,6 +55,7 @@ const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
   });
 
   function handleLogout() {
+    localStorage.removeItem("loginid");
     setIsLoggedIn(false);
   }
 
@@ -176,7 +175,7 @@ const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
 
       {isLoggedIn ? (
         <div className="loggedContainer">
-          <Link to={{ pathname: "/perfil", state: { id: props.state.id } }}>
+          <Link to={{ pathname: "/perfil", state: { id: loginId } }}>
             <img src={Avatar} className="avatar" alt="avatar" />
           </Link>
 
