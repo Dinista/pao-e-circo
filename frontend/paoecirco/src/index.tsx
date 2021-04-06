@@ -13,7 +13,7 @@ import CriarPropaganda from "./pages/CriarPropaganda";
 import BuscaAnuncio from "./pages/BuscaAnuncio";
 
 import MakeAnOffer from "./pages/MakeAnOffer";
-
+import Profile from "./pages/UserProfile";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -26,7 +26,7 @@ ReactDOM.render(
         <Route path="/buscausuario" component={BuscaUsuario} />
         <Route path="/buscaanuncio" component={BuscaAnuncio} />
         <Route path="/gerenciarpropaganda" component={GerenciarPropaganda} />
-
+        <Route path="/profile" component={Profile} />
         <Route path="/criarpropaganda" component={CriarPropaganda} />
 
         <Route path="/makeanoffer" component={MakeAnOffer} />
