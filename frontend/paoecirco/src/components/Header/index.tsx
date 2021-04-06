@@ -33,6 +33,8 @@ const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
   const propsValid = (props: any) =>
     Object.values(props).every((prop) => prop !== undefined);
 
+  console.log(props);
+
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | undefined>(
     propsValid(props) ? true : false
   );
@@ -174,11 +176,10 @@ const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
 
       {isLoggedIn ? (
         <div className="loggedContainer">
-          
-          <Link to={{ pathname: "/perfil", state: 10 /* id: props.state.id */ }}>
+          <Link to={{ pathname: "/perfil", state: { id: props.state.id } }}>
             <img src={Avatar} className="avatar" alt="avatar" />
           </Link>
-          
+
           <Link to="/destaques" className="destaques">
             DESTAQUES
           </Link>
@@ -190,7 +191,6 @@ const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
           <button onClick={handleLogout} className="sair">
             SAIR
           </button>
-          
         </div>
       ) : (
         <div className="loggedContainer">

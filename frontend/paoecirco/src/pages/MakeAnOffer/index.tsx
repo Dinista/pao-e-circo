@@ -35,18 +35,18 @@ const AcceptOffer: React.FC = (props: /* ad id (?) */ any) => {
     numTrocas,
     */
 
-    id: string, 
-    titulo: string, 
+    id: string;
+    titulo: string;
     foto1: string;
     foto2: string;
-    foto3: string; 
-    nomeObjeto: string,
-    categoria: string,
-    estadoConservacao: string,
-    itemDesejado: string,
-    descricao: string, 
-    valorEstimado: number,
-  };
+    foto3: string;
+    nomeObjeto: string;
+    categoria: string;
+    estadoConservacao: string;
+    itemDesejado: string;
+    descricao: string;
+    valorEstimado: number;
+  }
   const [adData, setAdData] = useState<Ad>();
 
   useEffect(() => {
@@ -65,16 +65,18 @@ const AcceptOffer: React.FC = (props: /* ad id (?) */ any) => {
     <>
       <Header />
       <ExternalContainer className="ExternalContainer">
-
         <ModalReactDestaque
-                isOpen={isModalOpen}
-                onRequestClose={handleCloseModal}
-                id={adData?.id}/>
+          isOpen={isModalOpen}
+          onRequestClose={handleCloseModal}
+          id={adData?.id}
+        />
 
         <ContainerFlexVertical className="VerticalContainerLeft">
           <h2> Informações do Anunciante </h2>
-  
-          <ImageSlider slides={[adData?.foto1, adData?.foto2, adData?.foto3]}></ImageSlider>
+
+          <ImageSlider
+            slides={[adData?.foto1, adData?.foto2, adData?.foto3]}
+          ></ImageSlider>
 
           <p> Nome: {/***/} </p>
           <p> Cidade: {/*cidade*/} </p>
@@ -93,11 +95,10 @@ const AcceptOffer: React.FC = (props: /* ad id (?) */ any) => {
         </ContainerFlexVerticalWider>
 
         <ContainerFlexVertical className="VerticalContainerRight">
-
           <Button onClick={() => handleDelete(adData?.id)}>
-                  Encerrar anuncio
+            Encerrar anuncio
           </Button>
-          
+
           <h2> Informações do anúncio </h2>
           <p> Objeto: {adData?.nomeObjeto} </p>
           <p> Categoria: {adData?.categoria} </p>
@@ -105,8 +106,8 @@ const AcceptOffer: React.FC = (props: /* ad id (?) */ any) => {
           <p> Descricao: {adData?.descricao} </p>
           <p> Itens desejados em troca: {adData?.itemDesejado} </p>
           <p> Valor estimado: {adData?.valorEstimado} </p>
-          
-          <Button onClick={handleOpenModal}>Destacar</Button>          
+
+          <Button onClick={handleOpenModal}>Destacar</Button>
         </ContainerFlexVertical>
       </ExternalContainer>
       <ExibirPropaganda />
