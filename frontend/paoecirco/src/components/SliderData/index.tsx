@@ -7,7 +7,7 @@ export const SliderData = [
     valor: "250",
     avaliacao: "4.5",
     descricao: "AHIUSHDOIUASH AISUDHISAUHD ADADOIUASH AISUDHISAUHD AD",
-    id: "fa1d259a-199e-4952-8047-2dadda95591e"
+    id: "70396fb9-69bf-4bd9-bf73-49e7fa33db30"
   },
   {
     image:

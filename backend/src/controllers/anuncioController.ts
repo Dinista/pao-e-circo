@@ -44,9 +44,9 @@ class AnuncioController {
 
   async find(request: Request, response: Response) {
     const anuncioRepository = getRepository(Anuncio);
-    console.log(request.params.id);
+    
     const anuncio = await anuncioRepository.find({ id : request.params.id});
-    console.log(anuncio[0]);
+    
     return response.json(anuncio[0]);
   }
 
@@ -59,16 +59,24 @@ class AnuncioController {
   }
 
   async destacar(request: Request, response: Response) {
-    const { dataExpiracao } = request.body;
+    console.log(request.body);
+    const { plano } = request.body;
     const anuncioRepository = getRepository(Anuncio);
 
+    const time = new Date();
+    time.setDate(time.getDate() + plano); // Adiciona X dias, de acordo com a escolha do usuario 
+    
+    var dataExpiracao = time.getDay().toString() + "/" + time.getMonth().toString() + "/" + time.getFullYear().toString();
+    
     const resultado = await anuncioRepository
       .createQueryBuilder()
       .update(Anuncio)
       .set({ destaqueExpira: dataExpiracao })
       .where("id = :id", { id: request.params.id })
       .execute();
-      return response.send( { resultado: resultado });
-    }
+
+    return response.send( { resultado: resultado });
+  }
 }
+
 export default AnuncioController;

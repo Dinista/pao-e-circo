@@ -40,7 +40,7 @@ class Anuncio {
   destaque: boolean;
 
   @Column()
-  destaqueExpira: Date;
+  destaqueExpira: string;
 }
 
 export default Anuncio;
