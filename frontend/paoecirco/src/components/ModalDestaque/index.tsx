@@ -8,6 +8,7 @@ import { ButtonPropaganda, Container, ImagemContainer } from "./styles";
 import api from "../../services/api";
 import Select from "../Select";
 import SubText from "../Subtext";
+import { parse } from "path";
 
 interface NewModalProps {
   isOpen: boolean;
@@ -16,9 +17,9 @@ interface NewModalProps {
 }
 
 const planos = [
-  { value: "30", label: "30 dias - R$ 29,90" },
-  { value: "60", label: "60 dias - R$ 49,90" },
-  { value: "90", label: "90 dias - R$ 64,90" },
+  { value: 30, label: "30 dias - R$ 29,90" },
+  { value: 60, label: "60 dias - R$ 49,90" },
+  { value: 90, label: "90 dias - R$ 64,90" },
 ];
 
 const ModalReactDestaque: React.FC<NewModalProps> = ({
@@ -41,15 +42,18 @@ const ModalReactDestaque: React.FC<NewModalProps> = ({
             abortEarly: false,
           });
           */
-         
-          
-          console.log(planoDias);
+
+          // Necessario para recuperar o valor do objeto
+          var stringObjeto = JSON.stringify(planoDias);
+          var stringValor = (stringObjeto[9] + stringObjeto[10]);
+          var numberValor = Number(stringValor);
+          ///
+
           const time = new Date();
-          time.setDate(time.getDate() + planoDias); // Adiciona X dias, de acordo com a escolha do usuario 
-          console.log(time.getDate);
+          time.setDate(time.getDate() + numberValor); // Adiciona X dias, de acordo com a escolha do usuario 
           await api.put(`anunciodestaque/${id}`, time);
           alert("O anuncio foi destacado com sucesso");
-        } catch {}
+        } catch (err) {}
     }, 
     [id]
   );

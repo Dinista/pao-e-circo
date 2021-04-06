@@ -84,7 +84,7 @@ const ModalReact: React.FC<NewModalProps> = ({
         alert("A propaganda foi alterada com sucesso");
       } catch (err) {}
     },
-    [id]
+    []
   );
 
   return (

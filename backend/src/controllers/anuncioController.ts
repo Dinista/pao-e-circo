@@ -59,6 +59,7 @@ class AnuncioController {
   }
 
   async destacar(request: Request, response: Response) {
+    console.log("ALO");
     const { dataExpiracao } = request.body;
     const anuncioRepository = getRepository(Anuncio);
     console.log(dataExpiracao);
