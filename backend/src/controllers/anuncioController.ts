@@ -59,11 +59,15 @@ class AnuncioController {
   }
 
   async destacar(request: Request, response: Response) {
-    console.log("ALO");
-    const { dataExpiracao } = request.body;
+    console.log(request.body);
+    const { plano } = request.body;
     const anuncioRepository = getRepository(Anuncio);
-    console.log(dataExpiracao);
 
+    const time = new Date();
+    time.setDate(time.getDate() + plano); // Adiciona X dias, de acordo com a escolha do usuario 
+    
+    var dataExpiracao = time.getDay().toString() + "/" + time.getMonth().toString() + "/" + time.getFullYear().toString();
+    
     const resultado = await anuncioRepository
       .createQueryBuilder()
       .update(Anuncio)

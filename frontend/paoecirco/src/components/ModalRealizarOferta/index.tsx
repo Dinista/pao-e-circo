@@ -1,28 +1,24 @@
+
+
 import { FormHandles } from "@unform/core";
 import { Form } from "@unform/web";
 import React, { useCallback, useRef, useState } from "react";
 import * as yup from "yup";
 import Modal from "react-modal";
 import Input from "../Input";
-import { ButtonPropaganda, Container, ImagemContainer } from "./styles";
+// import { ButtonPropaganda, Container, ImagemContainer } from "./styles";
 import api from "../../services/api";
 import Select from "../Select";
 import SubText from "../Subtext";
 import { parse } from "path";
-
+/*
 interface NewModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
   id: string | undefined;
 }
 
-const planos = [
-  { value: 30, label: "30 dias - R$ 29,90" },
-  { value: 60, label: "60 dias - R$ 49,90" },
-  { value: 90, label: "90 dias - R$ 64,90" },
-];
-
-const ModalReactDestaque: React.FC<NewModalProps> = ({
+const ModalReactRealizarOferta: React.FC<NewModalProps> = ({
   isOpen,
   onRequestClose,
   id,
@@ -32,13 +28,8 @@ const ModalReactDestaque: React.FC<NewModalProps> = ({
     const handleSubmitData = useCallback(
       async (planoDias: any) => {
         try {
-          const schema = yup.object().shape({});
           
-          await schema.validate(planoDias, {
-            abortEarly: false,
-          });
-          console.log(planoDias);
-          await api.put(`anunciodestaque/${id}`, planoDias);
+          await api.put(`anunciodestaque/${id}`, time);
           alert("O anuncio foi destacado com sucesso");
         } catch (err) {}
     }, 
@@ -55,7 +46,7 @@ const ModalReactDestaque: React.FC<NewModalProps> = ({
         appElement={document.getElementById("root") as HTMLElement}
       >
         <Container>
-          <h2>Destacar anúncio</h2>         
+          <h2>Realizar oferta</h2>         
           <Form ref={formRefData} onSubmit={handleSubmitData}>
             <Select
                 name="plano"
@@ -75,4 +66,5 @@ const ModalReactDestaque: React.FC<NewModalProps> = ({
   }
 };
 
-export default ModalReactDestaque;
+export default ModalReactRealizarOferta;
+*/
