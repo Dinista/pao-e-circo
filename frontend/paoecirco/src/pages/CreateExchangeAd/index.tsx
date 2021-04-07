@@ -19,17 +19,16 @@ import {
   Content,
   TituloPagina,
 } from "./styles";
-import ImageInput from "../../components/ImageInput";
 import Select from "../../components/Select";
 import SubText from "../../components/Subtext";
-import { CustomDiv, BoxTitle, ButtonStyled } from "./styles";
+import { BoxTitle, ButtonStyled } from "./styles";
 import Header from "../../components/Header";
 import ExibirPropaganda from "../../components/ExibirPropaganda";
-import { inputCSS } from "react-select/src/components/Input";
 
 interface CreateExchangeAdFormData {
   titulo: string;
   objeto: string;
+  cliente: string;
   categoria: string;
   estadoConservacao: string;
   foto1: string;
@@ -40,7 +39,6 @@ interface CreateExchangeAdFormData {
   valorEstimado: number;
   destaque: boolean;
   destaqueExpira: Date;
-  clienteId: string;
 }
 
 const categorias = [
@@ -102,7 +100,7 @@ const CreateExchangeAd: React.FC = () => {
 
         data.destaque = false;
         data.destaqueExpira = new Date("01/01/2099");
-        data.clienteId = localStorage.getItem("loginid") || "";
+        data.cliente = localStorage.getItem("loginid") || "";
 
         await api.post("/anuncios", data);
         alert("Anuncio criado com sucesso");

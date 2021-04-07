@@ -17,7 +17,7 @@ export const SliderData = [
     avaliacao: "4.5",
     anunciante: "Dr Hanz Chucrutes",
     descricao: "-eb098ebbbcf0-4de8-a060-e15f6d358b32",
-    id: "6cff42d0-fe34-42f7-9843-9ab0651398db"
+    id: "dc616764-d6d6-4e0f-b236-faca68d6a7eb"
   },
   {
     image:
@@ -27,7 +27,7 @@ export const SliderData = [
     avaliacao: "4.5",
     valor: "250",
     descricao: "teste3",
-    id: "b9388021-3135-441b-b5cf-6c10f9dee9ef"
+    id: "1225da06-c0f2-4783-8216-f00ab4218a92"
   },
   {
     image:
@@ -37,7 +37,7 @@ export const SliderData = [
     anunciante: "Dr Hanz Chucrutes",
     titulo: "IMAGEM 4",
     descricao: "teste4",
-    id: "b9388021-3135-441b-b5cf-6c10f9dee9ef"
+    id: "90af3be9-1e52-42bb-8e40-6b32e274c38e"
   },
   {
     image:

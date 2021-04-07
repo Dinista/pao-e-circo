@@ -10,14 +10,13 @@ import {
 import Header from "../../components/Header";
 import ExibirPropaganda from "../../components/ExibirPropaganda";
 
-import { debug } from "console";
-import ImageSlider from "../../components/Slider";
 import Button from "../../components/Button";
 import ModalReactDestaque from "../../components/ModalDestaque";
 import ImageSliderAnuncio from "../../components/SliderAnuncio";
+import Cliente from "../../../../../backend/src/models/Cliente";
 
 const AcceptOffer: React.FC = (props: any) => {
-  const { id } = (props.location && props.location.state) || {};
+  const { id } = (props.location && props.location.state);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   function handleOpenModal() {
@@ -29,7 +28,7 @@ const AcceptOffer: React.FC = (props: any) => {
 
   interface Ad {
     id: string;
-    clienteId: string;
+    cliente: Cliente;
     titulo: string;
     foto1: string;
     foto2: string;
@@ -43,21 +42,9 @@ const AcceptOffer: React.FC = (props: any) => {
   }
   const [adData, setAdData] = useState<Ad>();
 
-  interface Cliente {
-    name: string,
-    cidade: string,
-    estado: string,
-    nota: number,
-    numTrocas: number,
-  }
-  const [clienteData, setClienteData] = useState<Cliente>();
-
   useEffect(() => {
     api.post(`/anuncioss/${id}`).then((response) => {
       setAdData(response.data);
-    });
-    api.post(`/clientess/${adData?.clienteId}`).then((response) => {
-      setClienteData(response.data);
     });
   }, [adData, id]);
 
@@ -78,12 +65,12 @@ const AcceptOffer: React.FC = (props: any) => {
 
         <ContainerFlexVertical className="VerticalContainerLeft">
           <h2> Informações do Anunciante </h2>
-
-          <p> Nome: {clienteData?.name} </p>
-          <p> Cidade: {clienteData?.cidade} </p>
-          <p> Estado: {clienteData?.estado} </p>
-          <p> Avaliação: {clienteData?.nota} </p>
-          <p> Trocas concretizadas: {clienteData?.numTrocas} </p>
+          
+          <p> Nome: {adData?.cliente.name} </p>
+          <p> Cidade: {adData?.cliente.cidade} </p>
+          <p> Estado: {adData?.cliente.estado} </p>
+          <p> Avaliação: {adData?.cliente.nota} </p>
+          <p> Trocas concretizadas: {adData?.cliente.numTrocas} </p>
         </ContainerFlexVertical>
 
         <ContainerFlexVerticalWider className="VerticalContainerMiddle">

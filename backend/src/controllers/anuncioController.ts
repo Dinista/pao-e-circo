@@ -7,6 +7,7 @@ class AnuncioController {
 
     const {
       titulo,
+      cliente,
       nomeObjeto,
       categoria,
       estadoConservacao,
@@ -24,11 +25,12 @@ class AnuncioController {
 
     const anuncio = anuncioRepository.create({
       titulo,
+      cliente,
       nomeObjeto,
       categoria,
       estadoConservacao,
       foto1,
-      foto2,
+      foto2, 
       foto3,
       descricao,
       itemDesejado,

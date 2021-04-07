@@ -35,6 +35,7 @@ class ClienteController {
       email,
       senha,
     });
+    console.log("ue");
     await clienteRepository.save(cliente);
 
     return response.json("funfou se pa em");

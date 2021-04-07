@@ -26,7 +26,9 @@ class Cliente {
   @Column()
   cpf: string;
 
-  @Column("simple-array")
+  @Column("simple-array", {
+    nullable: true
+  })
   notificacoes: string;
 
   @Column()
@@ -44,10 +46,14 @@ class Cliente {
   @Column()
   senha: string;
 
-  @Column()
+  @Column( {
+    nullable: true
+  })
   nota: number;
 
-  @Column()
+  @Column({
+    nullable: true
+  })
   numTrocas: number;
 }
 

@@ -5,8 +5,10 @@ import Cliente from "./Cliente";
 class Anuncio {
   @PrimaryGeneratedColumn("uuid")
   id: string;
-  
-  @ManyToOne(type => Cliente, anuncios => Anuncio) 
+ 
+  @ManyToOne(type => Cliente, anuncios => Anuncio, {
+    eager: true
+  }) 
   cliente: Cliente;
 
   @Column()
