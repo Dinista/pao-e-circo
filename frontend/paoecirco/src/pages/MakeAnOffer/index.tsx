@@ -14,6 +14,7 @@ import { debug } from "console";
 import ImageSlider from "../../components/Slider";
 import Button from "../../components/Button";
 import ModalReactDestaque from "../../components/ModalDestaque";
+import ImageSliderAnuncio from "../../components/SliderAnuncio";
 
 const AcceptOffer: React.FC = (props: /* ad id (?) */ any) => {
   const { id } = (props.location && props.location.state) || {};
@@ -74,9 +75,9 @@ const AcceptOffer: React.FC = (props: /* ad id (?) */ any) => {
         <ContainerFlexVertical className="VerticalContainerLeft">
           <h2> Informações do Anunciante </h2>
 
-          <ImageSlider
+          <ImageSliderAnuncio
             slides={[adData?.foto1, adData?.foto2, adData?.foto3]}
-          ></ImageSlider>
+          ></ImageSliderAnuncio>
 
           <p> Nome: {/***/} </p>
           <p> Cidade: {/*cidade*/} </p>
