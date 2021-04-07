@@ -1,6 +1,6 @@
 import { FormHandles } from "@unform/core";
 import { Form } from "@unform/web";
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useRef } from "react";
 import * as yup from "yup";
 import Modal from "react-modal";
 import Input from "../Input";
@@ -18,12 +18,12 @@ const ModalReact: React.FC<NewModalProps> = ({
   onRequestClose,
   id,
 }: NewModalProps) => {
-  {
-    const formRefImagem = useRef<FormHandles>(null);
-    const formRefEmpresa = useRef<FormHandles>(null);
-    const formRefData = useRef<FormHandles>(null);
+  const formRefImagem = useRef<FormHandles>(null);
+  const formRefEmpresa = useRef<FormHandles>(null);
+  const formRefData = useRef<FormHandles>(null);
 
-    const handleSubmitImagem = useCallback(async (data: any) => {
+  const handleSubmitImagem = useCallback(
+    async (data: any) => {
       try {
         formRefImagem.current?.setErrors({});
         const schema = yup.object().shape({
@@ -33,12 +33,18 @@ const ModalReact: React.FC<NewModalProps> = ({
         await schema.validate(data, {
           abortEarly: false,
         });
+
+        console.log("oi");
+
         await api.put(`propagandaimage/${id}`, data);
         alert("A propaganda foi alterada com sucesso");
       } catch {}
-    }, []);
+    },
+    [id]
+  );
 
-    const handleSubmitEmpresa = useCallback(async (data: any) => {
+  const handleSubmitEmpresa = useCallback(
+    async (data: any) => {
       try {
         formRefEmpresa.current?.setErrors({});
 
@@ -55,9 +61,12 @@ const ModalReact: React.FC<NewModalProps> = ({
         await api.put(`propagandaempresa/${id}`, data);
         alert("A propaganda foi alterada com sucesso");
       } catch {}
-    }, []);
+    },
+    [id]
+  );
 
-    const handleSubmitData = useCallback(async (data: any) => {
+  const handleSubmitData = useCallback(
+    async (data: any) => {
       try {
         formRefEmpresa.current?.setErrors({});
 
@@ -74,60 +83,61 @@ const ModalReact: React.FC<NewModalProps> = ({
         await api.put(`propagandadata/${id}`, data);
         alert("A propaganda foi alterada com sucesso");
       } catch (err) {}
-    }, []);
+    },
+    [id]
+  );
 
-    return (
-      <Modal
-        isOpen={isOpen}
-        onRequestClose={onRequestClose}
-        overlayClassName="react-modal-overlay"
-        className="react-modal-content"
-        appElement={document.getElementById("root") as HTMLElement}
-      >
-        <Container>
-          <h2>Atualizar dados</h2>
-          <Form ref={formRefImagem} onSubmit={handleSubmitImagem}>
-            <ImagemContainer>
-              <Input
-                type="text"
-                placeholder="Atualizar imagem"
-                name="imageName"
-              />
-              <ButtonPropaganda type="submit" onClick={handleSubmitImagem}>
-                Atualizar imagem
-              </ButtonPropaganda>
-            </ImagemContainer>
-          </Form>
-          <Form ref={formRefEmpresa} onSubmit={handleSubmitEmpresa}>
-            <ImagemContainer>
-              <Input
-                name="empresaContratante"
-                type="text"
-                onSubmit={handleSubmitEmpresa}
-                placeholder="Atualizar empresa"
-              />
-              <ButtonPropaganda type="submit" onClick={handleSubmitEmpresa}>
-                Atualizar empresa
-              </ButtonPropaganda>
-            </ImagemContainer>
-          </Form>
-          <Form ref={formRefData} onSubmit={handleSubmitData}>
-            <ImagemContainer>
-              <Input
-                name="dataExpiracao"
-                type="date"
-                className=""
-                placeholder="Atualizar data de expiração"
-              />
-              <ButtonPropaganda type="submit" onClick={handleSubmitData}>
-                Atualizar data
-              </ButtonPropaganda>
-            </ImagemContainer>
-          </Form>
-        </Container>
-      </Modal>
-    );
-  }
+  return (
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={onRequestClose}
+      overlayClassName="react-modal-overlay"
+      className="react-modal-content"
+      appElement={document.getElementById("root") as HTMLElement}
+    >
+      <Container>
+        <h2>Atualizar dados</h2>
+        <Form ref={formRefImagem} onSubmit={handleSubmitImagem}>
+          <ImagemContainer>
+            <Input
+              type="text"
+              placeholder="Atualizar imagem"
+              name="imageName"
+            />
+            <ButtonPropaganda type="submit" onClick={handleSubmitImagem}>
+              Atualizar imagem
+            </ButtonPropaganda>
+          </ImagemContainer>
+        </Form>
+        <Form ref={formRefEmpresa} onSubmit={handleSubmitEmpresa}>
+          <ImagemContainer>
+            <Input
+              name="empresaContratante"
+              type="text"
+              onSubmit={handleSubmitEmpresa}
+              placeholder="Atualizar empresa"
+            />
+            <ButtonPropaganda type="submit" onClick={handleSubmitEmpresa}>
+              Atualizar empresa
+            </ButtonPropaganda>
+          </ImagemContainer>
+        </Form>
+        <Form ref={formRefData} onSubmit={handleSubmitData}>
+          <ImagemContainer>
+            <Input
+              name="dataExpiracao"
+              type="date"
+              className=""
+              placeholder="Atualizar data de expiração"
+            />
+            <ButtonPropaganda type="submit" onClick={handleSubmitData}>
+              Atualizar data
+            </ButtonPropaganda>
+          </ImagemContainer>
+        </Form>
+      </Container>
+    </Modal>
+  );
 };
 
 export default ModalReact;

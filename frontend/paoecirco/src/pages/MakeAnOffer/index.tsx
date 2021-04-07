@@ -1,10 +1,5 @@
-import { FormHandles } from "@unform/core";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import api from "../../services/api";
-import { AiFillStar } from "react-icons/ai";
-import { BsPersonFill } from "react-icons/bs";
-import { MdSubtitles } from "react-icons/md";
-import { RiMoneyDollarCircleLine } from "react-icons/ri";
 // import { Container, TituloDestaque, ContainerItemDestaque } from "./styles";
 import {
   ExternalContainer,
@@ -14,14 +9,15 @@ import {
 } from "./styles";
 import Header from "../../components/Header";
 import ExibirPropaganda from "../../components/ExibirPropaganda";
-import { debug } from "console";
-import ImageSlider from "../../components/Slider";
-import Button from "../../components/Button";
 
-const AcceptOffer: React.FC = (props /* ad id (?) */: any) => {
-  
-  const { id } = (props.location && props.location.state) || {};
-  
+import Button from "../../components/Button";
+import ModalReactDestaque from "../../components/ModalDestaque";
+import ImageSliderAnuncio from "../../components/SliderAnuncio";
+import Cliente from "../../../../../backend/src/models/Cliente";
+
+const AcceptOffer: React.FC = (props: any) => {
+  const { id } = (props.location && props.location.state);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   function handleOpenModal() {
     setIsModalOpen(true);
@@ -31,70 +27,58 @@ const AcceptOffer: React.FC = (props /* ad id (?) */: any) => {
   }
 
   interface Ad {
-    /* USER DATA
-    nome,
-    cidade,
-    estado,
-    avaliacao,
-    numTrocas,
-    */
-    id: string, 
-    titulo: string, 
+    id: string;
+    cliente: Cliente;
+    titulo: string;
     foto1: string;
     foto2: string;
-    foto3: string; 
-    nomeObjeto: string,
-    categoria: string,
-    estadoConservacao: string,
-    itemDesejado: string,
-    descricao: string, 
-    valorEstimado: number,
-  };
-
+    foto3: string;
+    nomeObjeto: string;
+    categoria: string;
+    estadoConservacao: string;
+    itemDesejado: string;
+    descricao: string;
+    valorEstimado: number;
+  }
   const [adData, setAdData] = useState<Ad>();
 
   useEffect(() => {
     api.post(`/anuncioss/${id}`).then((response) => {
-      console.log(response.data)
       setAdData(response.data);
-      console.log(adData);
     });
-    // { /*api.post("usuarioss", adData.userId).then(()) ... */}
-  }, []);
+  }, [adData, id]);
 
-  {/* Ainda não funciona */}
   const handleDelete = useCallback(async (data: any) => {
     await api.delete(`/anuncios/${data}`);
     alert("O anuncio foi apagado com sucesso");
-    /*
-    setAdData((oldAd) =>
-      oldAd.filter((ad) => ad.id !== data)
-    );
-    */
   }, []);
-  {/* Ainda não funciona */}
-
-
 
   return (
     <>
       <Header />
       <ExternalContainer className="ExternalContainer">
+        <ModalReactDestaque
+          isOpen={isModalOpen}
+          onRequestClose={handleCloseModal}
+          id={adData?.id}
+        />
+
         <ContainerFlexVertical className="VerticalContainerLeft">
           <h2> Informações do Anunciante </h2>
-
-          <ImageSlider slides={[adData?.foto1, adData?.foto2, adData?.foto3]}></ImageSlider>
-
-          <p> Nome: {/***/} </p>
-          <p> Cidade: {/*cidade*/} </p>
-          <p> Estado: {/*estado*/} </p>
-          <p> Avaliação: {/*avaliacao*/} </p>
-          <p> Trocas concretizadas: {/*numTrocas*/} </p>
+          
+          <p> Nome: {adData?.cliente.name} </p>
+          <p> Cidade: {adData?.cliente.cidade} </p>
+          <p> Estado: {adData?.cliente.estado} </p>
+          <p> Avaliação: {adData?.cliente.nota} </p>
+          <p> Trocas concretizadas: {adData?.cliente.numTrocas} </p>
         </ContainerFlexVertical>
 
         <ContainerFlexVerticalWider className="VerticalContainerMiddle">
           <h1> {adData?.titulo} </h1>
-          {/* FOTO */}
+          
+          <ImageSliderAnuncio
+            slides={[adData?.foto1, adData?.foto2, adData?.foto3]}
+          ></ImageSliderAnuncio>
 
           <ContainerComments>
             <h2> Comentários </h2>
@@ -102,13 +86,10 @@ const AcceptOffer: React.FC = (props /* ad id (?) */: any) => {
         </ContainerFlexVerticalWider>
 
         <ContainerFlexVertical className="VerticalContainerRight">
-
-          {/* Ainda não funciona */}
           <Button onClick={() => handleDelete(adData?.id)}>
-                  Encerrar anuncio
+            Encerrar anuncio
           </Button>
-          {/* Ainda não funciona */}
-          
+
           <h2> Informações do anúncio </h2>
           <p> Objeto: {adData?.nomeObjeto} </p>
           <p> Categoria: {adData?.categoria} </p>
@@ -116,6 +97,8 @@ const AcceptOffer: React.FC = (props /* ad id (?) */: any) => {
           <p> Descricao: {adData?.descricao} </p>
           <p> Itens desejados em troca: {adData?.itemDesejado} </p>
           <p> Valor estimado: {adData?.valorEstimado} </p>
+
+          <Button onClick={handleOpenModal}>Destacar</Button>
         </ContainerFlexVertical>
       </ExternalContainer>
       <ExibirPropaganda />

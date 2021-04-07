@@ -2,7 +2,6 @@ import React, { useCallback, useRef } from "react";
 import { Form } from "@unform/web";
 import { FormHandles } from "@unform/core";
 import {
-  FiArrowLeft,
   FiType,
   FiAlignJustify,
   FiBox,
@@ -11,7 +10,7 @@ import {
 } from "react-icons/fi";
 import Input from "../../components/Input/index";
 import api from "../../services/api";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import {
   AnimationContainer,
@@ -20,17 +19,16 @@ import {
   Content,
   TituloPagina,
 } from "./styles";
-import ImageInput from "../../components/ImageInput";
 import Select from "../../components/Select";
 import SubText from "../../components/Subtext";
-import { CustomDiv, BoxTitle, ButtonStyled } from "./styles";
+import { BoxTitle, ButtonStyled } from "./styles";
 import Header from "../../components/Header";
 import ExibirPropaganda from "../../components/ExibirPropaganda";
-import { inputCSS } from "react-select/src/components/Input";
 
 interface CreateExchangeAdFormData {
   titulo: string;
   objeto: string;
+  cliente: string;
   categoria: string;
   estadoConservacao: string;
   foto1: string;
@@ -53,13 +51,6 @@ const categorias = [
   { value: "vestuario", label: "Vestuário" },
   { value: "decoracao", label: "Decoração" },
   { value: "outros", label: "Outros" },
-];
-
-const fileSize = 10;
-const fileType = [
-  { value: "image/jpg", label: "jpg" },
-  { value: "img/jpeg", label: "jpeg" },
-  { value: "image,png", label: "png" },
 ];
 
 const estadosConservacao = [
@@ -106,16 +97,17 @@ const CreateExchangeAd: React.FC = () => {
         await schema.validate(data, {
           abortEarly: false,
         });
-        
+
         data.destaque = false;
         data.destaqueExpira = new Date("01/01/2099");
+        data.cliente = localStorage.getItem("loginid") || "";
 
         await api.post("/anuncios", data);
-
-        // history.push('/signin');
+        alert("Anuncio criado com sucesso");
+        history.push("/");
         console.log(data);
       } catch (err) {
-        console.log("errozao!");
+        console.log("erro no yup!");
 
         //se for um erro do yup, tipo não digitou senha, email inválido, etc
 
@@ -166,27 +158,27 @@ const CreateExchangeAd: React.FC = () => {
                 options={estadosConservacao}
               ></Select>
               <SubText text="Estado de conservação em qual se encontra seu objeto." />
-              
-                <BoxTitle> Fotos </BoxTitle>
-                
-                <Input
-                  name="foto1"
-                  icon={FiAlignJustify}
-                  placeholder="URL da foto 1*"
-                ></Input>
-              
-                <Input
-                  name="foto2"
-                  icon={FiAlignJustify}
-                  placeholder="URL da foto 2*"
-                ></Input>
 
-                <Input
-                  name="foto3"
-                  icon={FiAlignJustify}
-                  placeholder="URL da foto 3*"
-                ></Input>
-             
+              <BoxTitle> Fotos </BoxTitle>
+
+              <Input
+                name="foto1"
+                icon={FiAlignJustify}
+                placeholder="URL da foto 1*"
+              ></Input>
+
+              <Input
+                name="foto2"
+                icon={FiAlignJustify}
+                placeholder="URL da foto 2*"
+              ></Input>
+
+              <Input
+                name="foto3"
+                icon={FiAlignJustify}
+                placeholder="URL da foto 3*"
+              ></Input>
+
               <SubText text="Link para as fotos do objeto. Mínimo três." />
 
               <Input

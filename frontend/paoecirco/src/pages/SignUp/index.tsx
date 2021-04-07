@@ -22,6 +22,7 @@ interface SignUpFormData {
   estado: string;
   cidade: string;
   senha: string;
+  dataNasc: string; 
 }
 
 const SignUp: React.FC = () => {
@@ -51,7 +52,7 @@ const SignUp: React.FC = () => {
         await schema.validate(data, {
           abortEarly: false,
         });
-
+        console.log("bugou");
         await api.post("/clientes", data);
 
         history.push("/signin");

@@ -5,8 +5,10 @@ import Cliente from "./Cliente";
 class Anuncio {
   @PrimaryGeneratedColumn("uuid")
   id: string;
-  
-  @ManyToOne(type => Cliente, anuncios => Anuncio) 
+ 
+  @ManyToOne(type => Cliente, anuncios => Anuncio, {
+    eager: true
+  }) 
   cliente: Cliente;
 
   @Column()
@@ -43,7 +45,7 @@ class Anuncio {
   destaque: boolean;
 
   @Column()
-  destaqueExpira: Date;
+  destaqueExpira: string;
 }
 
 export default Anuncio;
