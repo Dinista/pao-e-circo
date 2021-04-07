@@ -46,6 +46,9 @@ class Cliente {
 
   @Column()
   nota: number;
+
+  @Column()
+  numTrocas: number;
 }
 
 export default Cliente;

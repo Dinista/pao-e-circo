@@ -16,7 +16,7 @@ import Button from "../../components/Button";
 import ModalReactDestaque from "../../components/ModalDestaque";
 import ImageSliderAnuncio from "../../components/SliderAnuncio";
 
-const AcceptOffer: React.FC = (props: /* ad id (?) */ any) => {
+const AcceptOffer: React.FC = (props: any) => {
   const { id } = (props.location && props.location.state) || {};
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -28,15 +28,8 @@ const AcceptOffer: React.FC = (props: /* ad id (?) */ any) => {
   }
 
   interface Ad {
-    /* USER DATA
-    nome,
-    cidade,
-    estado,
-    avaliacao,
-    numTrocas,
-    */
-
     id: string;
+    clienteId: string;
     titulo: string;
     foto1: string;
     foto2: string;
@@ -50,11 +43,22 @@ const AcceptOffer: React.FC = (props: /* ad id (?) */ any) => {
   }
   const [adData, setAdData] = useState<Ad>();
 
+  interface Cliente {
+    name: string,
+    cidade: string,
+    estado: string,
+    nota: number,
+    numTrocas: number,
+  }
+  const [clienteData, setClienteData] = useState<Cliente>();
+
   useEffect(() => {
     api.post(`/anuncioss/${id}`).then((response) => {
       setAdData(response.data);
     });
-    // { /*api.post("usuarioss", adData.userId).then(()) ... */}
+    api.post(`/clientess/${adData?.clienteId}`).then((response) => {
+      setClienteData(response.data);
+    });
   }, [adData, id]);
 
   const handleDelete = useCallback(async (data: any) => {
@@ -75,20 +79,19 @@ const AcceptOffer: React.FC = (props: /* ad id (?) */ any) => {
         <ContainerFlexVertical className="VerticalContainerLeft">
           <h2> Informações do Anunciante </h2>
 
-          <ImageSliderAnuncio
-            slides={[adData?.foto1, adData?.foto2, adData?.foto3]}
-          ></ImageSliderAnuncio>
-
-          <p> Nome: {/***/} </p>
-          <p> Cidade: {/*cidade*/} </p>
-          <p> Estado: {/*estado*/} </p>
-          <p> Avaliação: {/*avaliacao*/} </p>
-          <p> Trocas concretizadas: {/*numTrocas*/} </p>
+          <p> Nome: {clienteData?.name} </p>
+          <p> Cidade: {clienteData?.cidade} </p>
+          <p> Estado: {clienteData?.estado} </p>
+          <p> Avaliação: {clienteData?.nota} </p>
+          <p> Trocas concretizadas: {clienteData?.numTrocas} </p>
         </ContainerFlexVertical>
 
         <ContainerFlexVerticalWider className="VerticalContainerMiddle">
           <h1> {adData?.titulo} </h1>
-          {/* FOTO */}
+          
+          <ImageSliderAnuncio
+            slides={[adData?.foto1, adData?.foto2, adData?.foto3]}
+          ></ImageSliderAnuncio>
 
           <ContainerComments>
             <h2> Comentários </h2>

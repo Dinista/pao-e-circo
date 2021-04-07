@@ -40,6 +40,7 @@ interface CreateExchangeAdFormData {
   valorEstimado: number;
   destaque: boolean;
   destaqueExpira: Date;
+  clienteId: string;
 }
 
 const categorias = [
@@ -101,13 +102,14 @@ const CreateExchangeAd: React.FC = () => {
 
         data.destaque = false;
         data.destaqueExpira = new Date("01/01/2099");
+        data.clienteId = localStorage.getItem("loginid") || "";
 
         await api.post("/anuncios", data);
-        alert("anuncio criado com sucesso");
+        alert("Anuncio criado com sucesso");
         history.push("/");
         console.log(data);
       } catch (err) {
-        console.log("errozao!");
+        console.log("erro no yup!");
 
         //se for um erro do yup, tipo não digitou senha, email inválido, etc
 
