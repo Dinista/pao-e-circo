@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Container, ContainerImg, Imagem } from "./styles";
 import api from "../../services/api";
 
@@ -12,6 +12,8 @@ interface Propaganda {
 const ExibirPropaganda: React.FC = () => {
   const [propagandaData, setPropagandaData] = useState<Propaganda[]>([]);
   const [index, setIndex] = useState(0);
+  const timeoutRef = useRef();
+
   const delay = 5000;
 
   useEffect(() => {
@@ -19,6 +21,12 @@ const ExibirPropaganda: React.FC = () => {
       setPropagandaData(response.data.propagandas);
     });
   }, []);
+
+  function resetTimeout() {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+  }
 
   React.useEffect(() => {
     setTimeout(

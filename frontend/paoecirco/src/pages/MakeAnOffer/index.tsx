@@ -14,8 +14,9 @@ import { debug } from "console";
 import ImageSlider from "../../components/Slider";
 import Button from "../../components/Button";
 import ModalReactDestaque from "../../components/ModalDestaque";
+import ImageSliderAnuncio from "../../components/SliderAnuncio";
 
-const AcceptOffer: React.FC = (props: /* ad id (?) */ any) => {
+const AcceptOffer: React.FC = (props: any) => {
   const { id } = (props.location && props.location.state) || {};
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,33 +28,37 @@ const AcceptOffer: React.FC = (props: /* ad id (?) */ any) => {
   }
 
   interface Ad {
-    /* USER DATA
-    nome,
-    cidade,
-    estado,
-    avaliacao,
-    numTrocas,
-    */
-
-    id: string, 
-    titulo: string, 
+    id: string;
+    clienteId: string;
+    titulo: string;
     foto1: string;
     foto2: string;
-    foto3: string; 
-    nomeObjeto: string,
-    categoria: string,
-    estadoConservacao: string,
-    itemDesejado: string,
-    descricao: string, 
-    valorEstimado: number,
-  };
+    foto3: string;
+    nomeObjeto: string;
+    categoria: string;
+    estadoConservacao: string;
+    itemDesejado: string;
+    descricao: string;
+    valorEstimado: number;
+  }
   const [adData, setAdData] = useState<Ad>();
+
+  interface Cliente {
+    name: string,
+    cidade: string,
+    estado: string,
+    nota: number,
+    numTrocas: number,
+  }
+  const [clienteData, setClienteData] = useState<Cliente>();
 
   useEffect(() => {
     api.post(`/anuncioss/${id}`).then((response) => {
       setAdData(response.data);
     });
-    // { /*api.post("usuarioss", adData.userId).then(()) ... */}
+    api.post(`/clientess/${adData?.clienteId}`).then((response) => {
+      setClienteData(response.data);
+    });
   }, [adData, id]);
 
   const handleDelete = useCallback(async (data: any) => {
@@ -65,27 +70,28 @@ const AcceptOffer: React.FC = (props: /* ad id (?) */ any) => {
     <>
       <Header />
       <ExternalContainer className="ExternalContainer">
-
         <ModalReactDestaque
-                isOpen={isModalOpen}
-                onRequestClose={handleCloseModal}
-                id={adData?.id}/>
+          isOpen={isModalOpen}
+          onRequestClose={handleCloseModal}
+          id={adData?.id}
+        />
 
         <ContainerFlexVertical className="VerticalContainerLeft">
           <h2> Informações do Anunciante </h2>
-  
-          <ImageSlider slides={[adData?.foto1, adData?.foto2, adData?.foto3]}></ImageSlider>
 
-          <p> Nome: {/***/} </p>
-          <p> Cidade: {/*cidade*/} </p>
-          <p> Estado: {/*estado*/} </p>
-          <p> Avaliação: {/*avaliacao*/} </p>
-          <p> Trocas concretizadas: {/*numTrocas*/} </p>
+          <p> Nome: {clienteData?.name} </p>
+          <p> Cidade: {clienteData?.cidade} </p>
+          <p> Estado: {clienteData?.estado} </p>
+          <p> Avaliação: {clienteData?.nota} </p>
+          <p> Trocas concretizadas: {clienteData?.numTrocas} </p>
         </ContainerFlexVertical>
 
         <ContainerFlexVerticalWider className="VerticalContainerMiddle">
           <h1> {adData?.titulo} </h1>
-          {/* FOTO */}
+          
+          <ImageSliderAnuncio
+            slides={[adData?.foto1, adData?.foto2, adData?.foto3]}
+          ></ImageSliderAnuncio>
 
           <ContainerComments>
             <h2> Comentários </h2>
@@ -93,11 +99,10 @@ const AcceptOffer: React.FC = (props: /* ad id (?) */ any) => {
         </ContainerFlexVerticalWider>
 
         <ContainerFlexVertical className="VerticalContainerRight">
-
           <Button onClick={() => handleDelete(adData?.id)}>
-                  Encerrar anuncio
+            Encerrar anuncio
           </Button>
-          
+
           <h2> Informações do anúncio </h2>
           <p> Objeto: {adData?.nomeObjeto} </p>
           <p> Categoria: {adData?.categoria} </p>
@@ -105,8 +110,8 @@ const AcceptOffer: React.FC = (props: /* ad id (?) */ any) => {
           <p> Descricao: {adData?.descricao} </p>
           <p> Itens desejados em troca: {adData?.itemDesejado} </p>
           <p> Valor estimado: {adData?.valorEstimado} </p>
-          
-          <Button onClick={handleOpenModal}>Destacar</Button>          
+
+          <Button onClick={handleOpenModal}>Destacar</Button>
         </ContainerFlexVertical>
       </ExternalContainer>
       <ExibirPropaganda />

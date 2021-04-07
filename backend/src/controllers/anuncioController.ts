@@ -66,7 +66,7 @@ class AnuncioController {
     const time = new Date();
     time.setDate(time.getDate() + plano); // Adiciona X dias, de acordo com a escolha do usuario 
     
-    var dataExpiracao = time.getDay().toString() + "/" + time.getMonth().toString() + "/" + time.getFullYear().toString();
+    var dataExpiracao = time.toDateString();
     
     const resultado = await anuncioRepository
       .createQueryBuilder()

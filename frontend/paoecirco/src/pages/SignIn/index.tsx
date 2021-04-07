@@ -35,13 +35,10 @@ const SignIn: React.FC = () => {
 
         const teste = await api.post("/login", data);
         if (teste.data.logou) {
+          localStorage.setItem("loginid", teste.data.cliente[0].id);
           alert("Login efetuado com sucesso");
           history.push({
             pathname: "/",
-            state: {
-              logado: teste.data.logou,
-              id: teste.data.cliente[0].id,
-            },
           });
         } else alert("Usuário ou senha incorretos");
       } catch (err) {

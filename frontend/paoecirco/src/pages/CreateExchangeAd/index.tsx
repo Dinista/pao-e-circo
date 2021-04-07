@@ -40,6 +40,7 @@ interface CreateExchangeAdFormData {
   valorEstimado: number;
   destaque: boolean;
   destaqueExpira: Date;
+  clienteId: string;
 }
 
 const categorias = [
@@ -98,16 +99,17 @@ const CreateExchangeAd: React.FC = () => {
         await schema.validate(data, {
           abortEarly: false,
         });
-        
+
         data.destaque = false;
         data.destaqueExpira = new Date("01/01/2099");
+        data.clienteId = localStorage.getItem("loginid") || "";
 
         await api.post("/anuncios", data);
-        alert("anuncio criado com sucesso");
+        alert("Anuncio criado com sucesso");
         history.push("/");
         console.log(data);
       } catch (err) {
-        console.log("errozao!");
+        console.log("erro no yup!");
 
         //se for um erro do yup, tipo não digitou senha, email inválido, etc
 
@@ -158,27 +160,27 @@ const CreateExchangeAd: React.FC = () => {
                 options={estadosConservacao}
               ></Select>
               <SubText text="Estado de conservação em qual se encontra seu objeto." />
-              
-                <BoxTitle> Fotos </BoxTitle>
-                
-                <Input
-                  name="foto1"
-                  icon={FiAlignJustify}
-                  placeholder="URL da foto 1*"
-                ></Input>
-              
-                <Input
-                  name="foto2"
-                  icon={FiAlignJustify}
-                  placeholder="URL da foto 2*"
-                ></Input>
 
-                <Input
-                  name="foto3"
-                  icon={FiAlignJustify}
-                  placeholder="URL da foto 3*"
-                ></Input>
-             
+              <BoxTitle> Fotos </BoxTitle>
+
+              <Input
+                name="foto1"
+                icon={FiAlignJustify}
+                placeholder="URL da foto 1*"
+              ></Input>
+
+              <Input
+                name="foto2"
+                icon={FiAlignJustify}
+                placeholder="URL da foto 2*"
+              ></Input>
+
+              <Input
+                name="foto3"
+                icon={FiAlignJustify}
+                placeholder="URL da foto 3*"
+              ></Input>
+
               <SubText text="Link para as fotos do objeto. Mínimo três." />
 
               <Input
