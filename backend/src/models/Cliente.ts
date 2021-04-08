@@ -14,7 +14,7 @@ class Cliente {
   @PrimaryGeneratedColumn("uuid")
   id: string;
   
-  @OneToMany(() => Anuncio, anuncio => anuncio.cliente)
+  @OneToMany(type => Anuncio, cliente => Cliente)
   anuncios: Anuncio[];
 
   @Column()
@@ -26,7 +26,9 @@ class Cliente {
   @Column()
   cpf: string;
 
-  @Column("simple-array")
+  @Column("simple-array", {
+    nullable: true
+  })
   notificacoes: string;
 
   @Column()
@@ -44,8 +46,15 @@ class Cliente {
   @Column()
   senha: string;
 
-  @Column()
+  @Column( {
+    nullable: true
+  })
   nota: number;
+
+  @Column({
+    nullable: true
+  })
+  numTrocas: number;
 }
 
 export default Cliente;

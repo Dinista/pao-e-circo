@@ -5,8 +5,10 @@ import Cliente from "./Cliente";
 class Anuncio {
   @PrimaryGeneratedColumn("uuid")
   id: string;
-
-  @ManyToOne(() => Cliente, cliente => cliente.anuncios)
+ 
+  @ManyToOne(type => Cliente, anuncios => Anuncio, {
+    eager: true
+  }) 
   cliente: Cliente;
 
   @Column()
@@ -20,10 +22,16 @@ class Anuncio {
 
   @Column()
   estadoConservacao: string;
-  /*
+
   @Column()
-  fotos: ;
-*/
+  foto1: string;
+
+  @Column()
+  foto2: string;
+  
+  @Column()
+  foto3: string;
+
   @Column()
   descricao: string;
 
@@ -32,6 +40,12 @@ class Anuncio {
 
   @Column()
   valorEstimado: number;
+
+  @Column()
+  destaque: boolean;
+
+  @Column()
+  destaqueExpira: string;
 }
 
 export default Anuncio;

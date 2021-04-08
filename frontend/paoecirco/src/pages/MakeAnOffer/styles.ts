@@ -1,9 +1,8 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 export const ExternalContainer = styled.div`
   display: flex;
   flex-direction: row;
-  
 `;
 
 export const ContainerFlexVertical = styled.div`
@@ -34,9 +33,8 @@ export const ContainerFlexVerticalWider = styled.div`
 
 export const ContainerComments = styled.div`
   background-color: green;
-  text-align: center; 
+  text-align: center;
 `;
-
 
 /*
 export const Container = styled.div`

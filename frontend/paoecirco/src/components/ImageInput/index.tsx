@@ -1,10 +1,4 @@
-import React, {
-  ChangeEvent,
-  useRef,
-  useEffect,
-  useCallback,
-  useState,
-} from "react";
+import React, { ChangeEvent, useRef, useEffect, useCallback } from "react";
 import { useField } from "@unform/core";
 import "./styles.css";
 interface Props {
@@ -14,15 +8,11 @@ interface Props {
 type InputProps = JSX.IntrinsicElements["input"] & Props;
 export default function ImageInput({ name, ...rest }: InputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const { fieldName, registerField, defaultValue, error } = useField(name);
-  const [preview, setPreview] = useState(defaultValue);
+  const { fieldName, registerField } = useField(name);
   const handlePreview = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) {
-      setPreview(null);
     }
-    const previewURL = URL.createObjectURL(file);
-    setPreview(previewURL);
   }, []);
   useEffect(() => {
     registerField({
@@ -31,11 +21,8 @@ export default function ImageInput({ name, ...rest }: InputProps) {
       path: "files[0]",
       clearValue(ref: HTMLInputElement) {
         ref.value = "";
-        setPreview(null);
       },
-      setValue(_: HTMLInputElement, value: string) {
-        setPreview(value);
-      },
+      setValue(_: HTMLInputElement, value: string) {},
     });
   }, [fieldName, registerField]);
   return (
