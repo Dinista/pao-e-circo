@@ -45,11 +45,7 @@ const AcceptOffer: React.FC = (props: any) => {
   useEffect(() => {
     api.post(`/anuncioss/${id}`).then((response) => {
       setAdData(response.data);
-      if(localStorage.getItem("loginid" || "") == adData?.cliente.id ) {
-        console.log("É O DONO DO ANUNCIO!");
-      } else {
-        console.log("NÃO É O DONO DO ANUNCIO");
-      }
+      setEhDonoAnuncio(localStorage.getItem("loginid" || "") == adData?.cliente.id);
     });
   }, [adData, id]);
 
@@ -58,9 +54,12 @@ const AcceptOffer: React.FC = (props: any) => {
     alert("O anuncio foi apagado com sucesso");
   }, []);
 
+  const [ehDonoAnuncio, setEhDonoAnuncio] = useState<boolean | undefined>();
+
   return (
     <>
       <Header />
+      {ehDonoAnuncio ? (<h1> EH DONO </h1>) : (<h1> NAO EH DONO </h1>)} 
       <ExternalContainer className="ExternalContainer">
         <ModalReactDestaque
           isOpen={isModalOpen}
@@ -91,6 +90,7 @@ const AcceptOffer: React.FC = (props: any) => {
         </ContainerFlexVerticalWider>
 
         <ContainerFlexVertical className="VerticalContainerRight">
+        
           <Button onClick={() => handleDelete(adData?.id)}>
             Encerrar anuncio
           </Button>
