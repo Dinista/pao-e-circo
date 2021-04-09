@@ -45,6 +45,11 @@ const AcceptOffer: React.FC = (props: any) => {
   useEffect(() => {
     api.post(`/anuncioss/${id}`).then((response) => {
       setAdData(response.data);
+      if(localStorage.getItem("loginid" || "") == adData?.cliente.id ) {
+        console.log("É O DONO DO ANUNCIO!");
+      } else {
+        console.log("NÃO É O DONO DO ANUNCIO");
+      }
     });
   }, [adData, id]);
 

@@ -1,6 +1,6 @@
 
 import styled from "styled-components";
-/*
+
 export const Container = styled.div`
   display: flex;
   align-items: center;
@@ -45,4 +45,3 @@ export const ButtonPropaganda = styled.button`
   font-size: 15px;
   border-radius: 5px;
 `;
-*/

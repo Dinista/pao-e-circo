@@ -56,6 +56,12 @@ class ClienteController {
     const cliente = await clienteRepository.find({ name: name });
     return response.json(cliente[0]);
   }
+
+  async findById(request: Request, response: Response) {
+    const clienteRepository = getRepository(Cliente);
+    const cliente = await clienteRepository.find({ id : request.params.id });
+    return response.json(cliente[0]);
+  }
 }
 
 export default ClienteController;

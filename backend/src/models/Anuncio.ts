@@ -6,7 +6,7 @@ class Anuncio {
   @PrimaryGeneratedColumn("uuid")
   id: string;
  
-  @ManyToOne(type => Cliente, anuncios => Anuncio, {
+  @ManyToOne(() => Cliente, anuncios => Anuncio, {
     eager: true
   }) 
   cliente: Cliente;
