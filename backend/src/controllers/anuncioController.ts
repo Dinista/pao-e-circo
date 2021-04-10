@@ -85,7 +85,7 @@ class AnuncioController {
     const resultado = await anuncioRepository
       .createQueryBuilder()
       .update(Anuncio)
-      .set({ destaqueExpira: dataExpiracao })
+      .set({ destaqueExpira: dataExpiracao, destaque : true })
       .where("id = :id", { id: request.params.id })
       .execute();
 
