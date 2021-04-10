@@ -1,5 +1,4 @@
-
-
+import { Link, useHistory } from "react-router-dom";
 import { FormHandles } from "@unform/core";
 import { Form } from "@unform/web";
 import React, { useCallback, useEffect, useRef, useState } from "react";
@@ -11,6 +10,9 @@ import api from "../../services/api";
 import Select from "../Select";
 import SubText from "../Subtext";
 import { parse } from "path";
+import { debug } from "console";
+
+const objetosUsuarioLogado:any = [];
 
 interface NewModalProps {
   isOpen: boolean;
@@ -18,35 +20,56 @@ interface NewModalProps {
   id: string | null;
 }
 
+interface Ad {
+  objeto: string
+}
+
 const ModalReactRealizarOferta: React.FC<NewModalProps> = ({
   isOpen,
   onRequestClose,
   id,
 }: NewModalProps) => {
+  const history = useHistory();
+  const formRef = useRef<FormHandles>(null);
   
-  interface Ad {
-    id: string
-  }
-  const [adData, setAdData] = useState<Ad>();
 
   useEffect(() => {
+    objetosUsuarioLogado.length = 0;
+
     api.post(`/anunciosall/${id}`).then((response) => {
-      setAdData(response.data);
-        
+      objetosUsuarioLogado.push({value: "", label: ""}); // Coloca a 1a opção vazia
+      for(let i = 0; i < response.data.length; i++) {
+        objetosUsuarioLogado.push({
+          value: response.data[i].id,
+          label: response.data[i].titulo
+        });
+      }
     });
+  }, [isOpen]);
+
+  { 
+    const formRefData = useRef<FormHandles>(null);
     
-  }, [adData, id]);
-
-  { const formRefData = useRef<FormHandles>(null);
-
     const handleSubmitData = useCallback(
       async (itemOferecidoId: any) => {
         try {
-          // await api.put(`anunciosall/${id}`);        Pegar o certo? 
+          formRef.current?.setErrors({});
+        
+          const schema = yup.object().shape({ 
+            objeto: yup.string().required("Selecione um item!")
+          });
+         
+          await schema.validate(itemOferecidoId, {
+            abortEarly: false,
+          });
+
           alert("A oferta foi realizada com sucesso");
-        } catch (err) {}
-    }, 
-    [/* ? */id]
+          // Ainda precisa enviar a informação pra algum lugar
+          history.push("/");
+        } catch(err) {
+          alert(err);
+        }
+    }, []
   );
 
     return (
@@ -60,21 +83,17 @@ const ModalReactRealizarOferta: React.FC<NewModalProps> = ({
         <Container>
           <h2>Realizar oferta</h2>         
           <Form ref={formRefData} onSubmit={handleSubmitData}>
-            {
-
-            }
-            {/*
             <Select
-                name="plano"
-                placeholder="Plano"
-                options={planos}
+                name="objeto"
+                placeholder="Selecione um objeto seu para oferecer"
+                options={objetosUsuarioLogado}
             ></Select>
-            */}
-            <SubText text="Escolha o item que vai oferecer." />
+            <SubText text="O item ainda estará disponível até que o outro usuário aceite a proposta de troca." />
             
-            <ButtonPropaganda type="submit" onClick={handleSubmitData}>
+            <ButtonPropaganda name="submitButton" type="submit">
               Oferecer item selecionado
             </ButtonPropaganda>
+
           </Form>
         </Container>
       </Modal>
