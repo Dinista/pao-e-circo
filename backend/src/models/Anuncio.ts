@@ -46,6 +46,11 @@ class Anuncio {
 
   @Column()
   destaqueExpira: string;
+
+  @Column({
+    nullable: true
+  })
+  denuncias: string[];
 }
 
 export default Anuncio;
