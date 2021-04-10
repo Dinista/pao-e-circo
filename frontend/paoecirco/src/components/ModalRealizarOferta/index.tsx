@@ -15,7 +15,7 @@ import { parse } from "path";
 interface NewModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
-  id: string | undefined;
+  id: string | null;
 }
 
 const ModalReactRealizarOferta: React.FC<NewModalProps> = ({
@@ -31,9 +31,10 @@ const ModalReactRealizarOferta: React.FC<NewModalProps> = ({
 
   useEffect(() => {
     api.post(`/anunciosall/${id}`).then((response) => {
-      console.log("response front: " + response);
       setAdData(response.data);
+        
     });
+    
   }, [adData, id]);
 
   { const formRefData = useRef<FormHandles>(null);

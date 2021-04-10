@@ -52,7 +52,7 @@ const SignUp: React.FC = () => {
         await schema.validate(data, {
           abortEarly: false,
         });
-        console.log("bugou");
+        console.log("ERRO CRIAR CLIENTE antes  do api post");
         await api.post("/clientes", data);
 
         history.push("/signin");

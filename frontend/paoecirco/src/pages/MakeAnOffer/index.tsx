@@ -80,7 +80,7 @@ const AcceptOffer: React.FC = (props: any) => {
         <ModalReactRealizarOferta
           isOpen={isModalRealizarOfertaOpen}
           onRequestClose={handleCloseModalRealizarOferta}
-          id={adData?.id}
+          id={localStorage.getItem("loginid" || "")}
         />
 
         <ContainerFlexVertical className="VerticalContainerLeft">

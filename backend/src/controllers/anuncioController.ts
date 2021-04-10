@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
-import { getConnection, getRepository } from "typeorm";
+import { createConnection } from "net";
+import { Connection, getConnection, getRepository } from "typeorm";
 import Anuncio from "../models/Anuncio";
 import Cliente from "../models/Cliente";
 import ClienteController from "./clienteController";
@@ -55,12 +56,12 @@ class AnuncioController {
   }
 
   async findAllByUserId(request: Request, response: Response) {
-    const anuncioRepository = getRepository(Anuncio);
-    const anuncio = await getConnection() .createQueryBuilder() 
-    .select("anuncio") 
-    .from(Anuncio, "anuncio") 
-    .where("anuncio.cliente.id = request.params.id") .getMany();
-    console.log("ANUNCIOS: " + anuncio);
+    const anuncio = await getConnection()
+    .getRepository(Anuncio)
+    .createQueryBuilder("anuncio")
+    .leftJoinAndSelect("anuncio.cliente", "cliente")
+    .where("cliente.id = :idCliente", {idCliente : request.params.id})
+    .getMany();   
     return response.json(anuncio);
   }
 
@@ -73,7 +74,6 @@ class AnuncioController {
   }
 
   async destacar(request: Request, response: Response) {
-    console.log(request.body);
     const { plano } = request.body;
     const anuncioRepository = getRepository(Anuncio);
 
