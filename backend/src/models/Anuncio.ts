@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany, ManyToMany, JoinTable } from "typeorm";
 import Cliente from "./Cliente";
 import Denuncia from "./Denuncia";
 
@@ -50,6 +50,13 @@ class Anuncio {
 
   @OneToMany(() => Denuncia, denuncia => denuncia.anuncio)
   denuncias: Denuncia[];
+
+  @ManyToMany(() => Cliente, cliente => cliente.anunciosSeguidos, {
+    cascade: true
+  })
+  @JoinTable()
+  seguidores: Cliente[];
+  
 }
 
 export default Anuncio;

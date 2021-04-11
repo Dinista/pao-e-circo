@@ -24,6 +24,9 @@ routes.post("/anuncioss/:id", anuncioController.find);
 routes.post("/anunciosall/:id", anuncioController.findAllByUserId);
 routes.delete("/anuncios/:id", anuncioController.delete);
 routes.put("/anunciodestaque/:id", anuncioController.destacar);
+routes.post("/verificaseguidor/", anuncioController.verificaSeguidor);
+routes.put("/seguir", anuncioController.seguir);
+routes.put("/deixardeseguir", anuncioController.deixarDeSeguir);
 
 //denuncias
 routes.post("/denunciar", denunciaController.create);

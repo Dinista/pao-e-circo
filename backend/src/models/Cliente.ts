@@ -1,8 +1,8 @@
 import {
   Column,
   Entity,
-  JoinColumn,
-  ManyToOne,
+  JoinTable,
+  ManyToMany,
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
@@ -55,6 +55,9 @@ class Cliente {
     nullable: true
   })
   numTrocas: number;
+
+  @ManyToMany(() => Anuncio, anuncio => anuncio.seguidores)
+  anunciosSeguidos: Anuncio[];
 }
 
 export default Cliente;

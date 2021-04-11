@@ -72,6 +72,18 @@ const AcceptOffer: React.FC = (props: any) => {
     alert("O anuncio foi apagado com sucesso");
   }, []);
 
+  const handleSeguirAnuncio = useCallback(async (data: any) => {
+    const segue = await api.post("/verificaseguidor", data);
+    console.log("SEGUE: " + segue);
+
+    if(segue.data == "") { // nao segue, então insere na lista de seguidores!
+      await api.put("/seguir", data);
+    } else {
+      await api.put("/deixardeseguir", data)
+    }
+    
+  }, []);
+
   const [ehDonoAnuncio, setEhDonoAnuncio] = useState<boolean | undefined>();
 
   return (
@@ -131,6 +143,9 @@ const AcceptOffer: React.FC = (props: any) => {
             ) : (
               <>
                 <Button onClick={handleOpenModalRealizarOferta}>Oferecer item</Button>
+                
+                <Button onClick={() => handleSeguirAnuncio({idAnuncio: adData?.id, idCliente: localStorage.getItem("loginid" || "")})}>Seguir anúncio</Button>
+
                 <Button onClick={handleOpenModalDenuncia}>Denunciar anúncio</Button>
               </>
           )}

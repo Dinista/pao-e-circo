@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { createConnection } from "net";
 import { Connection, getConnection, getRepository } from "typeorm";
-import Anuncio from "../models/Anuncio";
+import Anuncio from "../../src/models/Anuncio";
 import Cliente from "../models/Cliente";
 import ClienteController from "./clienteController";
 
@@ -46,6 +46,7 @@ class AnuncioController {
 
     return response.json(request.body);
   }
+  
 
   async find(request: Request, response: Response) {
     const anuncioRepository = getRepository(Anuncio);
@@ -71,6 +72,7 @@ class AnuncioController {
     const results = await anuncioRepository.delete(request.params.id);
 
     return response.send(results);
+    
   }
 
   async destacar(request: Request, response: Response) {
@@ -90,6 +92,54 @@ class AnuncioController {
       .execute();
 
     return response.send( { resultado: resultado });
+  }
+
+  async verificaSeguidor(request: Request, response: Response) {
+    const  { 
+      idCliente,
+      idAnuncio
+    } = request.body; 
+
+    const anuncioRepository = getRepository(Anuncio);
+
+    const segue = await anuncioRepository
+    .createQueryBuilder("anuncio")
+    .leftJoinAndSelect("anuncio.seguidores", "seguidor")
+    .where('seguidor.id  = :idCliente1' , {idCliente1 : idCliente})
+    .andWhere('anuncio.id = :idAnuncio1', {idAnuncio1 : idAnuncio})
+    .getMany();
+
+    return response.send(segue);
+  }
+
+  async seguir(request: Request, response: Response) {
+    const  { 
+      idCliente,
+      idAnuncio
+    } = request.body; 
+
+    await getConnection()
+    .createQueryBuilder()
+    .relation(Anuncio, "seguidores")
+    .of(idAnuncio)
+    .add(idCliente);
+
+    return 1;
+  }
+
+  async deixarDeSeguir(request: Request, response: Response) {
+    const {
+      idCliente,
+      idAnuncio
+    } = request.body;
+
+    await getConnection()
+    .createQueryBuilder()
+    .relation(Anuncio, "seguidores")
+    .of(idAnuncio)
+    .remove(idCliente);
+
+    return 1;
   }
 }
 
