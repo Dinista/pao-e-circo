@@ -50,7 +50,7 @@ class Anuncio {
   @Column({
     nullable: true
   })
-  denuncias: string[];
+  denuncias: string;
 }
 
 export default Anuncio;
