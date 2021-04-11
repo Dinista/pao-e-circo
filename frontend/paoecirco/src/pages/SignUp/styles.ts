@@ -1,6 +1,5 @@
 import styled, { keyframes } from "styled-components";
 import { shade } from "polished";
-
 export const Container = styled.div`
   display: grid;
   place-items: center;
@@ -15,6 +14,7 @@ export const Content = styled.div`
   width: 100%;
   max-width: 700px;
 `;
+
 
 export const AppearFromLeft = keyframes`
   from {
@@ -36,7 +36,7 @@ export const AnimationContainer = styled.div`
   animation: ${AppearFromLeft} 1s;
 
   form {
-    margin: 80px 0;
+    margin: 30px 0;
     width: 340px;
     text-align: center;
   }
@@ -44,11 +44,13 @@ export const AnimationContainer = styled.div`
   h1 {
     margin-bottom: 24px;
   }
-
+  .dataNasc{
+    color: grey;
+  }
   a {
     color: #f4ede8;
     display: block;
-    margin-top: 24px;
+    margin-top: 0px;
     text-decoration: none;
     transition: 02s;
 
@@ -60,7 +62,7 @@ export const AnimationContainer = styled.div`
   > a {
     color: #ff9000;
     display: block;
-    margin-top: 24px;
+    margin-top: 0px;
     text-decoration: none;
     transition: 02s;
 

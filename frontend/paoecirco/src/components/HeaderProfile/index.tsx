@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.css";
-import Avatar from "../../assets/Avatar-pic.jpg";
+import Avatar from "../../assets/avatar-pic.jpg";
 
 const Cabecalho: React.FC = () => {
     return(

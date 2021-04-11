@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { getRepository } from "typeorm";
 import Cliente from "../models/Cliente";
 
+
 class ClienteController {
   async create(request: Request, response: Response) {
     const {
@@ -15,6 +16,8 @@ class ClienteController {
       dataNasc,
     } = request.body;
 
+    var crypto = require("crypto");
+    
     const clienteRepository = getRepository(Cliente);
 
     const checkClienteExists = await clienteRepository.findOne({
@@ -22,9 +25,11 @@ class ClienteController {
     });
 
     if (checkClienteExists) {
-      return response.status(400).send({ Erro: "E-mail já cadastrado" });
+      return response.status(400).json({ Erro: "E-mail já cadastrado" });
     }
 
+    const passwaordHash = crypto.createHash("sha256").update(senha).digest("hex");
+    
     const cliente = clienteRepository.create({
       name,
       cpf,
@@ -33,7 +38,7 @@ class ClienteController {
       endereco,
       cidade,
       email,
-      senha,
+      senha, //passwaordHash,
     });
     console.log("ue");
     await clienteRepository.save(cliente);
@@ -42,11 +47,20 @@ class ClienteController {
   }
 
   async login(request: Request, response: Response) {
-    const { email, senha } = request.body;
+    const { name, senha } = request.body;
+    var crypto = require("crypto");
+    
     const clienteRepository = getRepository(Cliente);
-    const cliente = await clienteRepository.find({ email: email });
-    const isRight = cliente[0].senha == senha ? true : false;
-    return response.json({ logou: isRight, cliente });
+    try{
+      //const senhaHash = crypto.createHash("sha256").update(senha).digest("hex");
+      const cliente = await clienteRepository.find({ email: name });
+      const isRight = cliente[0].senha == senha ? true : false;
+      return response.json({ logou: isRight, cliente });}
+    catch (e){
+      console.log(e)
+      return response.json({ logou: false})
+    }
+  
   }
 
   async find(request: Request, response: Response) {
