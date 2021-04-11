@@ -12,19 +12,29 @@ import ExibirPropaganda from "../../components/ExibirPropaganda";
 
 import Button from "../../components/Button";
 import ModalReactDestaque from "../../components/ModalDestaque";
+import ModalReactRealizarOferta from "../../components/ModalRealizarOferta";
 import ImageSliderAnuncio from "../../components/SliderAnuncio";
 import Cliente from "../../../../../backend/src/models/Cliente";
 
 const AcceptOffer: React.FC = (props: any) => {
   const { id } = (props.location && props.location.state);
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  function handleOpenModal() {
-    setIsModalOpen(true);
+  const [isModalDestaqueOpen, setIsModalDestaqueOpen] = useState(false);
+  function handleOpenModalDestaque() {
+    setIsModalDestaqueOpen(true);
   }
-  function handleCloseModal() {
-    setIsModalOpen(false);
+  function handleCloseModalDestaque() {
+    setIsModalDestaqueOpen(false);
   }
+
+  const [isModalRealizarOfertaOpen, setIsModalRealizarOfertaOpen] = useState(false);
+  function handleOpenModalRealizarOferta() {
+    setIsModalRealizarOfertaOpen(true);
+  }
+  function handleCloseModalRealizarOferta() {
+    setIsModalRealizarOfertaOpen(false);
+  }
+
 
   interface Ad {
     id: string;
@@ -45,6 +55,7 @@ const AcceptOffer: React.FC = (props: any) => {
   useEffect(() => {
     api.post(`/anuncioss/${id}`).then((response) => {
       setAdData(response.data);
+      setEhDonoAnuncio(localStorage.getItem("loginid" || "") == adData?.cliente.id);
     });
   }, [adData, id]);
 
@@ -53,14 +64,23 @@ const AcceptOffer: React.FC = (props: any) => {
     alert("O anuncio foi apagado com sucesso");
   }, []);
 
+  const [ehDonoAnuncio, setEhDonoAnuncio] = useState<boolean | undefined>();
+
   return (
     <>
       <Header />
+      
       <ExternalContainer className="ExternalContainer">
         <ModalReactDestaque
-          isOpen={isModalOpen}
-          onRequestClose={handleCloseModal}
+          isOpen={isModalDestaqueOpen}
+          onRequestClose={handleCloseModalDestaque}
           id={adData?.id}
+        />
+
+        <ModalReactRealizarOferta
+          isOpen={isModalRealizarOfertaOpen}
+          onRequestClose={handleCloseModalRealizarOferta}
+          id={localStorage.getItem("loginid" || "")}
         />
 
         <ContainerFlexVertical className="VerticalContainerLeft">
@@ -86,9 +106,17 @@ const AcceptOffer: React.FC = (props: any) => {
         </ContainerFlexVerticalWider>
 
         <ContainerFlexVertical className="VerticalContainerRight">
-          <Button onClick={() => handleDelete(adData?.id)}>
-            Encerrar anuncio
-          </Button>
+          {ehDonoAnuncio ? ( 
+            <div>
+              <Button onClick={() => handleDelete(adData?.id)}>
+                Encerrar anuncio
+              </Button> 
+              <Button onClick={handleOpenModalDestaque}>Destacar</Button>
+            </div>
+            ) : (
+            <Button onClick={handleOpenModalRealizarOferta}>Oferecer item</Button>
+          )}
+          
 
           <h2> Informações do anúncio </h2>
           <p> Objeto: {adData?.nomeObjeto} </p>
@@ -98,7 +126,7 @@ const AcceptOffer: React.FC = (props: any) => {
           <p> Itens desejados em troca: {adData?.itemDesejado} </p>
           <p> Valor estimado: {adData?.valorEstimado} </p>
 
-          <Button onClick={handleOpenModal}>Destacar</Button>
+         
         </ContainerFlexVertical>
       </ExternalContainer>
       <ExibirPropaganda />
