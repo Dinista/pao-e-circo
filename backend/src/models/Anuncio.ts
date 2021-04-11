@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany } from "typeorm";
 import Cliente from "./Cliente";
+import Denuncia from "./Denuncia";
 
 @Entity("anuncios")
 class Anuncio {
@@ -47,10 +48,8 @@ class Anuncio {
   @Column()
   destaqueExpira: string;
 
-  @Column({
-    nullable: true
-  })
-  denuncias: string;
+  @OneToMany(() => Denuncia, denuncia => denuncia.anuncio)
+  denuncias: Denuncia[];
 }
 
 export default Anuncio;

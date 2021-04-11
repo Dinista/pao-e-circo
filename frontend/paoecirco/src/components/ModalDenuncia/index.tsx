@@ -7,18 +7,22 @@ import { ButtonPropaganda, Container, ImagemContainer } from "./styles";
 import api from "../../services/api";
 import Select from "../Select";
 import SubText from "../Subtext";
-import Input from "../Input";
+import Input from "../Input/index";
 import { useHistory } from "react-router";
+import Anuncio from "../../../../../backend/src/models/Anuncio";
 
 interface NewModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
-  id: string | undefined;
+  idDenunciante: string | null;
+  idAnuncio: string | undefined
 }
 
 interface Denuncia {
   categoria: string,
-  comentario: string
+  comentario: string,
+  idDenunciante: string | null,
+  anuncio: string | undefined
 }
 
 const categorias = [
@@ -32,7 +36,8 @@ const categorias = [
 const ModalReactDenuncia: React.FC<NewModalProps> = ({
   isOpen,
   onRequestClose,
-  id,
+  idDenunciante,
+  idAnuncio
 }: NewModalProps) => {
   const formRefData = useRef<FormHandles>(null);
   const history = useHistory();
@@ -49,14 +54,19 @@ const ModalReactDenuncia: React.FC<NewModalProps> = ({
           abortEarly: false,
         });
 
-        await api.put(`anunciodenuncia/${id}`, data);
+        data.anuncio = idAnuncio;
+        data.idDenunciante = idDenunciante;
+        
+        console.log(data);
+
+        await api.post("/denunciar", data);
         alert("O anuncio foi denunciado com sucesso");
         history.push("/");
       } catch (err) {
         alert(err)
       }
     },
-    [id]
+    [idAnuncio]
   );
 
   return (
@@ -74,8 +84,8 @@ const ModalReactDenuncia: React.FC<NewModalProps> = ({
           <Select name="categoria" placeholder="Categoria da denúncia" options={categorias}></Select>
 
           <p>Deseja acrescentar um comentário sobre a denúncia? </p>
-          <Input name="comentario" placeholder="Insira um comentário... "> </Input>
-
+          <Input name="comentario" placeholder="Insira um comentário... "></Input>
+          
           <ButtonPropaganda name="submitButton" type="submit">
             Denunciar
           </ButtonPropaganda>

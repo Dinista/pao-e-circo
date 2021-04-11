@@ -15,6 +15,7 @@ import ModalReactDestaque from "../../components/ModalDestaque";
 import ModalReactRealizarOferta from "../../components/ModalRealizarOferta";
 import ImageSliderAnuncio from "../../components/SliderAnuncio";
 import Cliente from "../../../../../backend/src/models/Cliente";
+import ModalReactDenuncia from "../../components/ModalDenuncia";
 
 const AcceptOffer: React.FC = (props: any) => {
   const { id } = (props.location && props.location.state);
@@ -35,6 +36,13 @@ const AcceptOffer: React.FC = (props: any) => {
     setIsModalRealizarOfertaOpen(false);
   }
 
+  const [isModalDenunciaOpen, setIsModalDenunciaOpen] = useState(false);
+  function handleOpenModalDenuncia() {
+    setIsModalDenunciaOpen(true);
+  }
+  function handleCloseModalDenuncia() {
+    setIsModalDenunciaOpen(false);
+  }
 
   interface Ad {
     id: string;
@@ -83,6 +91,13 @@ const AcceptOffer: React.FC = (props: any) => {
           id={localStorage.getItem("loginid" || "")}
         />
 
+        <ModalReactDenuncia
+          isOpen={isModalDenunciaOpen}
+          onRequestClose={handleCloseModalDenuncia}
+          idDenunciante={localStorage.getItem("loginid" || "")}
+          idAnuncio={adData?.id}
+        />
+        
         <ContainerFlexVertical className="VerticalContainerLeft">
           <h2> Informações do Anunciante </h2>
           
@@ -114,7 +129,10 @@ const AcceptOffer: React.FC = (props: any) => {
               <Button onClick={handleOpenModalDestaque}>Destacar</Button>
             </div>
             ) : (
-            <Button onClick={handleOpenModalRealizarOferta}>Oferecer item</Button>
+              <>
+                <Button onClick={handleOpenModalRealizarOferta}>Oferecer item</Button>
+                <Button onClick={handleOpenModalDenuncia}>Denunciar anúncio</Button>
+              </>
           )}
           
 
