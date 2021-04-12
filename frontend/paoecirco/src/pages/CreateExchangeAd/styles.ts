@@ -11,9 +11,10 @@ export const TituloPagina = styled.h1`
 `;
 
 export const Container = styled.div`
-  height: 90vh;
-  display: flex;
-  width: 70vw;
+  margin: 0 auto;
+  overflow: hidden;
+  max-width: 500px;
+  margin-top: -100px;
 `;
 
 export const ButtonStyled = styled(Button)`
@@ -96,15 +97,6 @@ export const Background = styled.div`
   background-size: cover;
 `;
 
-export const CustomDiv = styled.div`
-  border-radius: 10px;
-  border: 2px solid black;
-  padding: 8px;
-  width: 105%;
-  margin-top: 6px;
-  margin-bottom: -7px;
-`;
-
 export const BoxTitle = styled.p`
   text-justify: center;
 
@@ -113,4 +105,12 @@ export const BoxTitle = styled.p`
   margin-left: 0.5rem;
   text-align: left;
   font-weight: 600;
+`;
+
+export const SubTituloPagina = styled.p`
+  color: #000000;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 10px;
+  margin-bottom: -5px;
+  text-shadow: 0px 0.5px gray;
 `;

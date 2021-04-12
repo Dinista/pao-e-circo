@@ -17,6 +17,7 @@ import {
   Background,
   Container,
   Content,
+  SubTituloPagina,
   TituloPagina,
 } from "./styles";
 import Select from "../../components/Select";
@@ -24,6 +25,7 @@ import SubText from "../../components/Subtext";
 import { BoxTitle, ButtonStyled } from "./styles";
 import Header from "../../components/Header";
 import ExibirPropaganda from "../../components/ExibirPropaganda";
+import getValidationErrors from "../../utils/getValidationErrors";
 
 interface CreateExchangeAdFormData {
   titulo: string;
@@ -62,36 +64,20 @@ const estadosConservacao = [
 const CreateExchangeAd: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const history = useHistory();
-
+  var update = 0; 
   //funções
   const handleSubmit = useCallback(
     async (data: CreateExchangeAdFormData) => {
       try {
         formRef.current?.setErrors({});
-
         const schema = yup.object().shape({
-          /*
-          titulo: yup.string().min(10).required("Título do anúncio obrigatório"),
-          
-          objeto: yup.string().min(2).required("Nome do objeto obrigatório"),
-          
-          categoria: yup.string().required("Categoria do objeto obrigatória"),
-          
-          estadoConservacao: yup.string().required("Estado de conservação do objeto obrigatória"),
-          /*
-          imageInput1: yup.mixed().test('fileSize', "File Size is too large", value => value.size <= fileSize)
-            .test('fileType', "Unsupported File Format", value => fileType.includes(value.type) ),
-          imageInput2: yup.mixed().test('fileSize', "File Size is too large", value => value.size <= fileSize)
-            .test('fileType', "Unsupported File Format", value => fileType.includes(value.type) ),
-          imageInput3: yup.mixed().test('fileSize', "File Size is too large", value => value.size <= fileSize)
-            .test('fileType', "Unsupported File Format", value => fileType.includes(value.type) ),
-          
-          descricaoObjeto: yup.string().min(6).required("Descrição obrigatória"),
-          
-          itensDesejados: yup.string().min(6).required("Itens desejados em troca obrigatório"),
-
-          valorEstimado: yup.number().min(0).max(10000).required("Valor estimado obrigatório"),
-          */
+          titulo: yup.string().min(7, "Deve ter pelo menos 7 caracteres.").required("Campo obrigatório."),
+          objeto: yup.string().min(2, "Deve ter pelo menos 2 caracteres.").required("Campo obrigatório."),
+          categoria: yup.string().required("Campo obrigatório."),
+          estadoConservacao: yup.string().required("Campo obrigatório."),  
+          descricaoObjeto: yup.string().min(10, "Deve ter pelo menos 10 caracteres.").required("Campo obrigatório."),
+          itensDesejados: yup.string().min(6, "Deve ter pelo menos 6 caracteres. ").required("Campo obrigatório."),
+          valorEstimado: yup.number().min(0, "Deve ter valor maior que 0").max(10000, "Deve ter valor menor que 10000").required("Campo obrigatório.").typeError("O valor informado deve ser um número"),    
         });
 
         await schema.validate(data, {
@@ -103,41 +89,45 @@ const CreateExchangeAd: React.FC = () => {
         data.cliente = localStorage.getItem("loginid") || "";
 
         await api.post("/anuncios", data);
-        alert("Anuncio criado com sucesso");
+        alert("Anuncio criado com successo!");
+
         history.push("/");
         console.log(data);
       } catch (err) {
-        console.log("erro no yup!");
-
-        //se for um erro do yup, tipo não digitou senha, email inválido, etc
-
-        if (err instanceof yup.ValidationError) {
-          return;
+        console.log("rapaz " + err);
+        
+        
+        if(err instanceof yup.ValidationError) {
+          const errors = getValidationErrors(err);
+          formRef.current?.setErrors(errors);
+          update = update + 1;
+          return; 
         }
       }
     },
-    [history]
+    [history, update]
   );
 
   return (
     <div>
       <Header />
+
       <Container>
         <Background />
         <Content>
           <AnimationContainer>
             <Form ref={formRef} onSubmit={handleSubmit}>
               <TituloPagina>Cadastre seu item </TituloPagina>
-
+              <SubTituloPagina> Titulo do anúncio * </SubTituloPagina>
               <Input
                 name="titulo"
                 icon={FiType}
-                placeholder="Titulo do anúncio *"
+                placeholder=""
               />
               <SubText text="Título que será exibido no site. Ex: 'Bumerangue dourado novo'." />
 
               <Input
-                name="nomeObjeto"
+                name="objeto"
                 icon={FiSquare}
                 placeholder="Nome do objeto *"
               />
@@ -182,14 +172,14 @@ const CreateExchangeAd: React.FC = () => {
               <SubText text="Link para as fotos do objeto. Mínimo três." />
 
               <Input
-                name="descricao"
+                name="descricaoObjeto"
                 icon={FiAlignJustify}
                 placeholder="Descrição do objeto *"
               ></Input>
               <SubText text="Informações sobre o objeto. Ex: 'Altura: 30cm, Largura: ...'." />
 
               <Input
-                name="itemDesejado"
+                name="itensDesejados"
                 icon={FiBox}
                 placeholder="Itens desejados em troca *"
               ></Input>
@@ -213,6 +203,7 @@ const CreateExchangeAd: React.FC = () => {
           </AnimationContainer>
         </Content>
       </Container>
+
       <ExibirPropaganda />
     </div>
   );
