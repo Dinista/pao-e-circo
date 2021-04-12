@@ -13,8 +13,8 @@ import Notificacoes from "./Notificacoes";
 class Cliente {
   @PrimaryGeneratedColumn("uuid")
   id: string;
-  
-  @OneToMany(() => Anuncio, cliente => Cliente)
+
+  @OneToMany(() => Anuncio, (cliente) => Cliente)
   anuncios: Anuncio[];
 
   @Column()
@@ -25,11 +25,6 @@ class Cliente {
 
   @Column()
   cpf: string;
-
-  @Column("simple-array", {
-    nullable: true
-  })
-  notificacoes: string;
 
   @Column()
   cidade: string;
@@ -46,17 +41,17 @@ class Cliente {
   @Column()
   senha: string;
 
-  @Column( {
-    nullable: true
+  @Column({
+    nullable: true,
   })
   nota: number;
 
   @Column({
-    nullable: true
+    nullable: true,
   })
   numTrocas: number;
 
-  @ManyToMany(() => Anuncio, anuncio => anuncio.seguidores)
+  @ManyToMany(() => Anuncio, (anuncio) => anuncio.seguidores)
   anunciosSeguidos: Anuncio[];
 }
 

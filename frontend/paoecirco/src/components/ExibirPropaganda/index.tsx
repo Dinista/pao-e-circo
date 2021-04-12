@@ -37,7 +37,7 @@ const ExibirPropaganda: React.FC = () => {
       delay
     );
     return () => {};
-  }, [index, propagandaData.length]);
+  }, [index]);
 
   return (
     <Container>
