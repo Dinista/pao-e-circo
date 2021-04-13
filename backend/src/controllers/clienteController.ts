@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { getRepository } from "typeorm";
 import Cliente from "../models/Cliente";
 
-
 class ClienteController {
   async create(request: Request, response: Response) {
     const {
@@ -17,7 +16,7 @@ class ClienteController {
     } = request.body;
 
     var crypto = require("crypto");
-    
+
     const clienteRepository = getRepository(Cliente);
 
     const checkClienteExists = await clienteRepository.findOne({
@@ -28,8 +27,11 @@ class ClienteController {
       return response.status(400).json({ Erro: "E-mail já cadastrado" });
     }
 
-    const passwaordHash = crypto.createHash("sha256").update(senha).digest("hex");
-    
+    const passwaordHash = crypto
+      .createHash("sha256")
+      .update(senha)
+      .digest("hex");
+
     const cliente = clienteRepository.create({
       name,
       cpf,
@@ -48,18 +50,17 @@ class ClienteController {
   async login(request: Request, response: Response) {
     const { name, senha } = request.body;
     var crypto = require("crypto");
-    
+
     const clienteRepository = getRepository(Cliente);
-    try{
+    try {
       //const senhaHash = crypto.createHash("sha256").update(senha).digest("hex");
       const cliente = await clienteRepository.find({ email: name });
       const isRight = cliente[0].senha == senha ? true : false;
-      return response.json({ logou: isRight, cliente });}
-    catch (e){
-      console.log(e)
-      return response.json({ logou: false})
+      return response.json({ logou: isRight, cliente });
+    } catch (e) {
+      console.log(e);
+      return response.json({ logou: false });
     }
-  
   }
 
   async find(request: Request, response: Response) {
@@ -72,7 +73,7 @@ class ClienteController {
 
   async findById(request: Request, response: Response) {
     const clienteRepository = getRepository(Cliente);
-    const cliente = await clienteRepository.find({ id : request.params.id });
+    const cliente = await clienteRepository.find({ id: request.params.id });
     return response.json(cliente[0]);
   }
 }

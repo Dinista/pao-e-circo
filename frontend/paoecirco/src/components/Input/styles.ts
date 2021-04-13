@@ -12,7 +12,7 @@ export const Container = styled.div<ContainerProps>`
   padding: 16px;
   margin-top: 10px;
   margin-bottom: 7px;
-  width: 90%;
+  width: 110%;
   height: 10px;
   color: #666360;
   transition: all 1s;
@@ -38,8 +38,8 @@ export const Container = styled.div<ContainerProps>`
     props.isFilled &&
     css`
       color: #ff9000;
-      .dataNasc{
-        color:black;
+      .dataNasc {
+        color: black;
       }
     `}
   input {
