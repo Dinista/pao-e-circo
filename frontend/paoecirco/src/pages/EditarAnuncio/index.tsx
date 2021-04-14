@@ -73,7 +73,6 @@ const EditarAnuncio: React.FC = (props: any) => {
   useEffect(() => {
     api.post(`/anuncioss/${idAnuncio}`).then((response) => {
       setAdData(response.data);
-      // setIndexes();
     });
   }, [adData, idAnuncio]);
 
@@ -128,7 +127,7 @@ const EditarAnuncio: React.FC = (props: any) => {
           abortEarly: false,
         });
 
-        // await api.post("/anuncios", data);
+        await api.put(`/editaranuncio/${idAnuncio}`, data);
         alert("Anuncio editado com successo!");
         history.push("/");
       } catch (err) {

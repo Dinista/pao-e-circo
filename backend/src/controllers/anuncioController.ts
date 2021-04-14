@@ -46,6 +46,36 @@ class AnuncioController {
 
     return response.json(request.body);
   }
+
+  async editar(request: Request, response: Response) {
+
+    const {
+      titulo,
+      cliente,
+      nomeObjeto,
+      categoria,
+      estadoConservacao,
+      foto1,
+      foto2, 
+      foto3,
+      descricao,
+      itemDesejado,
+      valorEstimado,
+      destaque,
+      destaqueExpira,
+    } = request.body;
+
+    const anuncioRepository = getRepository(Anuncio);
+
+    const resultado = await anuncioRepository
+      .createQueryBuilder()
+      .update(Anuncio)
+      .set(request.body)
+      .where("id = :id", { id: request.params.id })
+      .execute();
+
+    return response.send({ resultado: resultado });  
+  }
   
 
   async find(request: Request, response: Response) {

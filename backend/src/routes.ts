@@ -20,6 +20,7 @@ routes.post("/login", clienteController.login);
 
 //anuncios
 routes.post("/anuncios", anuncioController.create);
+routes.put("/editaranuncio/:id", anuncioController.editar);
 routes.post("/anuncioss/:id", anuncioController.find);
 routes.post("/anunciosall/:id", anuncioController.findAllByUserId);
 routes.delete("/anuncios/:id", anuncioController.delete);
