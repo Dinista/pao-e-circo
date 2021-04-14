@@ -32,7 +32,7 @@ const SignIn: React.FC = () => {
         await schema.validate(data, {
           abortEarly: false,
         });
-
+        console.log("piriri");
         const teste = await api.post("/login", data);
         if (teste.data.logou) {
           localStorage.setItem("loginid", teste.data.cliente[0].id);

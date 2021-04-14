@@ -57,8 +57,9 @@ class ClienteController {
       const cliente = await clienteRepository.find({ email: name });
       const isRight = cliente[0].senha == senha ? true : false;
       return response.json({ logou: isRight, cliente });
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      console.log("erro login back-end: " + err);
+      
       return response.json({ logou: false });
     }
   }

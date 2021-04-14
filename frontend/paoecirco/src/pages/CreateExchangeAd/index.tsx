@@ -70,6 +70,11 @@ const CreateExchangeAd: React.FC = () => {
   const handleSubmit = useCallback(
     async (data: CreateExchangeAdFormData) => {
       try {
+        data.cliente = localStorage.getItem("loginid") || "";
+        if(data.cliente == "") {
+          alert("Para criar um anuncio é necessário logar");
+          history.push("/signin");
+        }
         formRef.current?.setErrors({});
         const schema = yup.object().shape({
           titulo: yup.string().min(7, "Deve ter pelo menos 7 caracteres.").required("Campo obrigatório."),
@@ -90,7 +95,6 @@ const CreateExchangeAd: React.FC = () => {
 
         data.destaque = false;
         data.destaqueExpira = new Date("01/01/2099");
-        data.cliente = localStorage.getItem("loginid") || "";
 
         await api.post("/anuncios", data);
         alert("Anuncio criado com successo!");
