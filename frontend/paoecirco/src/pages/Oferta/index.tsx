@@ -16,8 +16,9 @@ import ModalReactRealizarOferta from "../../components/ModalRealizarOferta";
 import ImageSliderAnuncio from "../../components/SliderAnuncio";
 import Cliente from "../../../../../backend/src/models/Cliente";
 import ModalReactDenuncia from "../../components/ModalDenuncia";
+import { Link } from "react-router-dom";
 
-const AcceptOffer: React.FC = (props: any) => {
+const Oferta: React.FC = (props: any) => {
   const { id } = (props.location && props.location.state);
 
   const [isModalDestaqueOpen, setIsModalDestaqueOpen] = useState(false);
@@ -139,6 +140,11 @@ const AcceptOffer: React.FC = (props: any) => {
                 Encerrar anuncio
               </Button> 
               <Button onClick={handleOpenModalDestaque}>Destacar</Button>
+
+              <Link to={{ pathname: "/editaranuncio", state: { idAnuncio: adData?.id }, }} className="linkContainer">
+                <Button>Editar anúncio</Button>
+
+              </Link>
             </div>
             ) : (
               <>
@@ -169,4 +175,4 @@ const AcceptOffer: React.FC = (props: any) => {
 
 //styles
 
-export default AcceptOffer;
+export default Oferta;
