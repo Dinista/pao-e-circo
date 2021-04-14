@@ -1,6 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import { shade } from "polished";
 import Button from "../../components/Button";
+import Input from "../../components/Input";
 
 export const TituloPagina = styled.h1`
   color: #93130d;
@@ -92,19 +93,14 @@ export const AnimationContainer = styled.div`
   }
 `;
 
+export const InputCriarAnuncio = styled(Input)`
+  size: 1000px;
+
+`
+
 export const Background = styled.div`
   flex: 1;
   background-size: cover;
-`;
-
-export const BoxTitle = styled.p`
-  text-justify: center;
-
-  margin-top: 0.7rem;
-  margin-bottom: -0.3rem;
-  margin-left: 0.5rem;
-  text-align: left;
-  font-weight: 600;
 `;
 
 export const SubTituloPagina = styled.p`

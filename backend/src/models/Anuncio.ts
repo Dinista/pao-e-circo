@@ -60,3 +60,4 @@ class Anuncio {
 }
 
 export default Anuncio;
+
