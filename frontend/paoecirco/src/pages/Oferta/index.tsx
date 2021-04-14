@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import api from "../../services/api";
 // import { Container, TituloDestaque, ContainerItemDestaque } from "./styles";
 import {
@@ -7,6 +7,8 @@ import {
   ContainerFlexVerticalWider,
   ContainerComments,
 } from "./styles";
+
+import { useHistory } from "react-router-dom";
 import Header from "../../components/Header";
 import ExibirPropaganda from "../../components/ExibirPropaganda";
 
@@ -17,9 +19,19 @@ import ImageSliderAnuncio from "../../components/SliderAnuncio";
 import Cliente from "../../../../../backend/src/models/Cliente";
 import ModalReactDenuncia from "../../components/ModalDenuncia";
 import { Link } from "react-router-dom";
+import { Form } from "@unform/web";
+import { FormHandles } from "@unform/core";
+import * as yup from "yup";
+import getValidationErrors from "../../utils/getValidationErrors";
+import SubText from "../../components/Subtext";
+import Input from "../../components/Input";
+import { FiAlignJustify } from "react-icons/fi";
+import { ButtonStyled } from "../CriarAnuncio/styles";
 
 const Oferta: React.FC = (props: any) => {
   const { id } = (props.location && props.location.state);
+  const history = useHistory();
+  const formRef = useRef<FormHandles>(null);
 
   const [isModalDestaqueOpen, setIsModalDestaqueOpen] = useState(false);
   function handleOpenModalDestaque() {
@@ -61,6 +73,13 @@ const Oferta: React.FC = (props: any) => {
   }
   const [adData, setAdData] = useState<Ad>();
 
+  interface Comentario {
+    anuncio: string | undefined,
+    texto: string,
+    idComentador: string;
+    data: Date;
+  }
+
   useEffect(() => {
     api.post(`/anuncioss/${id}`).then((response) => {
       setAdData(response.data);
@@ -84,6 +103,44 @@ const Oferta: React.FC = (props: any) => {
     }
     
   }, []);
+
+  const handleCommentSubmit = useCallback(
+    async (data: Comentario) => {
+      try {
+        const cliente = localStorage.getItem("loginid") || "";
+        if(cliente == "") {
+          alert("Para comentar em um anuncio é necessário logar");
+          history.push("/signin");
+        }
+        formRef.current?.setErrors({});
+        
+        const schema = yup.object().shape({
+          texto: yup.string().min(5, "O comentário deve ter pelo menos 5 caracteres.").required("Campo obrigatório.")
+        });
+        
+        data.anuncio = adData?.id;
+        data.data = new Date();
+        data.idComentador = cliente;
+        
+        await schema.validate(data, {
+          abortEarly: false,
+        });
+
+        await api.post("/comentar", data);
+
+        alert("Comentario realizado com successo!");
+        history.push("/");
+      } catch (err) {
+        if(err instanceof yup.ValidationError) {
+          console.log(err)
+          const errors = getValidationErrors(err);
+          formRef.current?.setErrors(errors);
+          return; 
+        }
+      }
+    },
+    [history]
+  );
 
   const [ehDonoAnuncio, setEhDonoAnuncio] = useState<boolean | undefined>();
 
@@ -153,6 +210,21 @@ const Oferta: React.FC = (props: any) => {
                 <Button onClick={() => handleSeguirAnuncio({idAnuncio: adData?.id, idCliente: localStorage.getItem("loginid" || "")})}>Seguir anúncio</Button>
 
                 <Button onClick={handleOpenModalDenuncia}>Denunciar anúncio</Button>
+                
+                <Form ref={formRef} onSubmit={handleCommentSubmit}>
+              
+                  <Input
+                    name="texto"
+                    icon={FiAlignJustify}
+                    placeholder=" Ex: 'Ele é pesado?'"
+                  ></Input>
+                  <SubText text="Caso deseje, faça  um comentário. Pelo menos 5 caracteres."/>
+
+                  <ButtonStyled name="submitButton" type="submit">
+                    Enviar comentário
+                  </ButtonStyled>
+
+                </Form>
               </>
           )}
           

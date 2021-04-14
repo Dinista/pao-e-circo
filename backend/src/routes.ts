@@ -4,6 +4,7 @@ import AnuncioController from "./controllers/anuncioController";
 import PropagandaController from "./controllers/propagandaController";
 import NotificacoesController from "./controllers/notificacoesController";
 import DenunciaController from "./controllers/denunciaController";
+import ComentarioController from "./controllers/comentarioController";
 
 const routes = express.Router();
 
@@ -12,6 +13,7 @@ const propagandaController = new PropagandaController();
 const anuncioController = new AnuncioController();
 const notificacoesController = new NotificacoesController();
 const denunciaController = new DenunciaController();
+const comentarioController = new ComentarioController();
 
 //clientes
 routes.post("/clientes", clienteController.create);
@@ -31,6 +33,9 @@ routes.put("/deixardeseguir", anuncioController.deixarDeSeguir);
 
 //denuncias
 routes.post("/denunciar", denunciaController.create);
+
+//comentarios
+routes.post("/comentar", comentarioController.create);
 
 //propagandas
 routes.post("/propaganda", propagandaController.create);
