@@ -5,6 +5,16 @@ import "./styles.css";
 import { Link } from "react-router-dom";
 
 const ImageSlider = ({ slides }: any) => {
+  const propsValid = (slides: any) => {
+    console.log("slides: " + typeof(slides));
+    if (slides == undefined || slides == [] || slides == "") return false;
+    else return true;
+  };
+
+  const [isSlides, setIsSlides] = useState<boolean | undefined>(
+    propsValid(slides) ? true : false
+  );
+
   const [current, setCurrent] = useState(0);
   const length = slides.length;
 
@@ -20,8 +30,11 @@ const ImageSlider = ({ slides }: any) => {
     return null;
   }
 
+
   return (
-    <section className="slider">
+    <div>
+    { isSlides ? (
+      <section className="slider">
       <FaArrowAltCircleLeft className="left-arrow" onClick={prevSlide} />
       <FaArrowAltCircleRight className="right-arrow" onClick={nextSlide} />
       {SliderData.map((slide, index) => {
@@ -40,13 +53,23 @@ const ImageSlider = ({ slides }: any) => {
                   <h1 className="tituloSlide">{slide.titulo}</h1>
                   <div className="descricao">{slide.descricao}</div>
                 </Link>
+                
               )}
             </div>
           </div>
         );
       })}
     </section>
-  );
-};
+
+    ) : (
+      <div/>
+    ) 
+
+    }
+    
+    
+
+    </div>
+  )};
 
 export default ImageSlider;
