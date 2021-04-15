@@ -175,7 +175,7 @@ const Header: React.FC = () => {
 
       {isLoggedIn ? (
         <div className="loggedContainer">
-          <Link to={{ pathname: "/perfil", state: { id: loginId } }}>
+          <Link to={{ pathname: `/perfil/${loginId}`,  state: { id: loginId } } }>
             <img src={Avatar} className="avatar" alt="avatar" />
           </Link>
 

@@ -9,6 +9,7 @@ import { string } from "yup/lib/locale";
 import api from "../../services/api";
 
 import { useParams } from "react-router";
+import { render } from "@testing-library/react";
 
 //import BG from "../../assets/bg-perfil.jpg";
 
@@ -22,34 +23,71 @@ declare module 'react' {
 interface cliente{
   id: string,
   name: string,
-  cpf: string,
   dataNasc: string,
   estado: string,
-  endereco: string,
   cidade : string,
-  email: string,
-  senha : string,
 }
 
 
 const Perfil: React.FC = () => {
   // Perfil handle
-  var json = require('./data.json');
   const loginId = localStorage.getItem("loginid");
   const [perfilData, setperfilData] = useState<cliente>()
-  const [isOwner, setIsOwner] = useState <boolean>()
-  const urlParams = useParams();
-  // perfil tratamento
-  
-  try{
-    api.get(`/perfil/${urlParams}`).then((response) => {
-      setperfilData(response.data);
-      setIsOwner("loginid" == perfilData?.id);
-    });
-  }catch(e){
-    console.log("Perfil não encontrado")
-  }
+  const [isOwner, setIsOwner] = useState <boolean>(false)
+  const urlParams = useParams() as object;
+  const dataUser = perfilData?.dataNasc.split("-") as any || 0
 
+  function idade(anoAniversario: number, mesAniversario: number, diaAniversario: number) {
+    var d = new Date,
+        ano_atual = d.getFullYear(),
+        mes_atual = d.getMonth() + 1,
+        dia_atual = d.getDate(),
+
+        anoAniversario = +anoAniversario,
+        mesAniversario = +mesAniversario,
+        diaAniversario = +diaAniversario,
+
+        quantos_anos = ano_atual - anoAniversario;
+
+    if (mes_atual < mesAniversario || mes_atual == mesAniversario && dia_atual < diaAniversario) {
+        quantos_anos--;
+    }
+
+    return quantos_anos < 0 ? 0 : quantos_anos;
+}
+
+function usePrevious (value : any) {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
+
+const prevURL = usePrevious((urlParams as any).id)
+  
+useEffect(() =>{
+    if ((urlParams as any).id != prevURL &&  prevURL != undefined){
+     window.location.reload()
+  }},[urlParams])
+  
+  // perfil tratamento
+
+  useEffect(()=> {
+    api.get(`/perfil/${(urlParams as any).id}`).then((response) => {
+      const picked = (({ id, name,  dataNasc, estado, cidade }) => ({ id, name,  dataNasc, estado, cidade }))(response.data);
+      setperfilData(picked);
+      setIsOwner(loginId == picked.id);
+    })
+  }, []);
+  
+  useEffect(()=> {
+    api.get(`/anunciosall/${(urlParams as any).id}`).then((response) => {
+      console.log(response)
+    })
+  }, []);
+  
+  var json = require('./data.json');
   const [anuncio, setAnuncios] = useState(json);
   const [pageNumber, setPageNumber] = useState(0);
   const numberPerPage = 12;
@@ -114,16 +152,19 @@ const Perfil: React.FC = () => {
       }))
   }
   },[pageNumber, isclicked]);
-
-
-
+  console.log(isOwner)
   return (
     <>
     <div className = "PerfilContainer">
       <Header />
       <div className = "bg"><img src ="" alt=""/></div>
-      <Cabecalho/>
       <div onClick = {clickAtivos}>
+      <Cabecalho
+      nome = {perfilData?.name.split(" ")[0]}
+      idade = {idade(parseInt(dataUser[0], 10), parseInt(dataUser[1], 10), parseInt(dataUser[2], 10))}
+      cidade = {perfilData?.cidade} 
+      estado = {perfilData?.estado} 
+      />
       <Tabs>
         <div label = "Anúncios Ativos"> 
         <div className = "Conteiner-Anuncios-Ativos">
@@ -144,7 +185,7 @@ const Perfil: React.FC = () => {
         </div> 
       </Tabs>
       </div>
-      <div>{perfilData?.name}</div>
+      <div>{}</div>
     </div>
     </>
   );
