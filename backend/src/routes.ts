@@ -13,7 +13,8 @@ const notificacoesController = new NotificacoesController();
 
 //clientes
 routes.post("/clientes", clienteController.create);
-routes.post("/clientess", clienteController.find);
+routes.post("/clientess/", clienteController.find);
+routes.get("/perfil/:id", clienteController.findById);
 routes.post("/login", clienteController.login);
 
 //anuncios
