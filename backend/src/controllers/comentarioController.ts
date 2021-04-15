@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
-import { getRepository } from "typeorm";
+import { getConnection, getRepository } from "typeorm";
+import Anuncio  from "../models/Anuncio";
 import Comentario from "../models/Comentario";
 
 class ComentarioController {
@@ -7,7 +8,7 @@ class ComentarioController {
     
     const {
       anuncio,
-      idComentador,
+      comentador,
       texto,
       data
     } = request.body;
@@ -16,7 +17,7 @@ class ComentarioController {
 
     const comentario = comentarioRepository.create({
       anuncio,
-      idComentador,
+      comentador,
       texto,
       data
     });
@@ -31,18 +32,20 @@ class ComentarioController {
     const comentario = await comentarioRepository.find({ idComentario : request.params.id});
     
     return response.json(comentario[0]);
+
   }
-  /*
-  async findAllByUserId(request: Request, response: Response) {
+  
+  async findCommentsByAnuncioId(request: Request, response: Response) {
     const anuncio = await getConnection()
     .getRepository(Anuncio)
     .createQueryBuilder("anuncio")
-    .leftJoinAndSelect("anuncio.cliente", "cliente")
-    .where("cliente.id = :idCliente", {idCliente : request.params.id})
+    .leftJoinAndSelect("anuncio.comentarios", "comentario")
+    .where("comentario.anuncio = :idAnuncio", {idAnuncio : request.params.id})
+    .leftJoinAndSelect("comentario.comentador", "comentador")
     .getMany();   
     return response.json(anuncio);
   }
-  */
+
   async delete(request: Request, response: Response) {
     const comentarioRepository = getRepository(Comentario);
 
