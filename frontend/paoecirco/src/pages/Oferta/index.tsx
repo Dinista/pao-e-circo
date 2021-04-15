@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useRef } from "react";
+import React, { useEffect, useState, useCallback, useRef, InputHTMLAttributes } from "react";
 import api from "../../services/api";
 // import { Container, TituloDestaque, ContainerItemDestaque } from "./styles";
 import {
@@ -27,11 +27,14 @@ import SubText from "../../components/Subtext";
 import Input from "../../components/Input";
 import { FiAlignJustify } from "react-icons/fi";
 import { ButtonStyled } from "../CriarAnuncio/styles";
+import InvisibleInput from "../../components/InvisibleInput";
 
 const Oferta: React.FC = (props: any) => {
   const { id } = (props.location && props.location.state);
   const history = useHistory();
   const formRef = useRef<FormHandles>(null);
+  const [ehDonoAnuncio, setEhDonoAnuncio] = useState<boolean | undefined>();
+
 
   const [isModalDestaqueOpen, setIsModalDestaqueOpen] = useState(false);
   function handleOpenModalDestaque() {
@@ -74,18 +77,34 @@ const Oferta: React.FC = (props: any) => {
   const [adData, setAdData] = useState<Ad>();
 
   interface Comentario {
-    anuncio: string | undefined,
+    id?: string; 
+    anuncio: string,
     texto: string,
-    idComentador: string;
+    comentador: Cliente | undefined;
     data: Date;
+    nomeComentador: string;
   }
+  const [comentarios, setComentarios] = useState<Comentario[]>([]);
+
+  interface ClienteLogado { 
+    ClienteObj: Cliente;
+  }
+  const [clienteLogado, setClienteLogado] = useState<ClienteLogado>();
+
 
   useEffect(() => {
     api.post(`/anuncioss/${id}`).then((response) => {
       setAdData(response.data);
       setEhDonoAnuncio(localStorage.getItem("loginid" || "") == adData?.cliente.id);
     });
-  }, [adData, id]);
+  }, [id]);
+  
+  useEffect(() => {
+    api.post(`/encontrarcomentariosanuncio/${id}`).then((response) => {
+      setComentarios(response.data[0].comentarios);    
+    });
+
+  }, []);
 
   const handleDelete = useCallback(async (data: any) => {
     await api.delete(`/anuncios/${data}`);
@@ -118,14 +137,16 @@ const Oferta: React.FC = (props: any) => {
           texto: yup.string().min(5, "O comentário deve ter pelo menos 5 caracteres.").required("Campo obrigatório.")
         });
         
-        data.anuncio = adData?.id;
-        data.data = new Date();
-        data.idComentador = cliente;
-        
         await schema.validate(data, {
           abortEarly: false,
         });
+        
 
+        data.data = new Date();
+        
+        let objClienteLogado = await api.post(`/findclientebyid/${cliente}`);
+        data.comentador = objClienteLogado.data[0];
+        
         await api.post("/comentar", data);
 
         alert("Comentario realizado com successo!");
@@ -141,9 +162,6 @@ const Oferta: React.FC = (props: any) => {
     },
     [history]
   );
-
-  const [ehDonoAnuncio, setEhDonoAnuncio] = useState<boolean | undefined>();
-
   return (
     <>
       <Header />
@@ -187,6 +205,16 @@ const Oferta: React.FC = (props: any) => {
 
           <ContainerComments>
             <h2> Comentários </h2>
+            {/* MAP*/}
+            {comentarios.map((comentario) => (
+              <div key={comentario.texto}>
+                <p>{comentario.comentador?.name}</p>
+                <p>{comentario.data}</p>
+                <p>{comentario.texto}</p>
+                </div>
+            ))}
+
+
           </ContainerComments>
         </ContainerFlexVerticalWider>
 
@@ -212,13 +240,15 @@ const Oferta: React.FC = (props: any) => {
                 <Button onClick={handleOpenModalDenuncia}>Denunciar anúncio</Button>
                 
                 <Form ref={formRef} onSubmit={handleCommentSubmit}>
-              
                   <Input
                     name="texto"
                     icon={FiAlignJustify}
                     placeholder=" Ex: 'Ele é pesado?'"
+                    
                   ></Input>
-                  <SubText text="Caso deseje, faça  um comentário. Pelo menos 5 caracteres."/>
+                  <SubText text="Caso deseje, faça um comentário. Pelo menos 5 caracteres."/>
+
+                  <InvisibleInput name="anuncio" defaultValue={adData?.id}></InvisibleInput>
 
                   <ButtonStyled name="submitButton" type="submit">
                     Enviar comentário
@@ -227,7 +257,6 @@ const Oferta: React.FC = (props: any) => {
                 </Form>
               </>
           )}
-          
 
           <h2> Informações do anúncio </h2>
           <p> Objeto: {adData?.nomeObjeto} </p>
@@ -236,10 +265,10 @@ const Oferta: React.FC = (props: any) => {
           <p> Descricao: {adData?.descricao} </p>
           <p> Itens desejados em troca: {adData?.itemDesejado} </p>
           <p> Valor estimado: {adData?.valorEstimado} </p>
-
          
         </ContainerFlexVertical>
       </ExternalContainer>
+
       <ExibirPropaganda />
     </>
   );

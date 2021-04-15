@@ -18,6 +18,7 @@ const comentarioController = new ComentarioController();
 //clientes
 routes.post("/clientes", clienteController.create);
 routes.post("/clientess", clienteController.find);
+routes.post("/findclientebyid/:id", clienteController.findById);
 routes.post("/login", clienteController.login);
 
 //anuncios
@@ -36,6 +37,7 @@ routes.post("/denunciar", denunciaController.create);
 
 //comentarios
 routes.post("/comentar", comentarioController.create);
+routes.post("/encontrarcomentariosanuncio/:id", comentarioController.findCommentsByAnuncioId); 
 
 //propagandas
 routes.post("/propaganda", propagandaController.create);
