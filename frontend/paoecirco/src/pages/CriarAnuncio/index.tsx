@@ -17,17 +17,20 @@ import {
   Background,
   Container,
   Content,
+  InputCriarAnuncio,
+  SubTituloPagina,
   TituloPagina,
+  ButtonStyled
 } from "./styles";
 import Select from "../../components/Select";
 import SubText from "../../components/Subtext";
-import { BoxTitle, ButtonStyled } from "./styles";
 import Header from "../../components/Header";
 import ExibirPropaganda from "../../components/ExibirPropaganda";
+import getValidationErrors from "../../utils/getValidationErrors";
 
 interface CreateExchangeAdFormData {
   titulo: string;
-  objeto: string;
+  nomeObjeto: string;
   cliente: string;
   categoria: string;
   estadoConservacao: string;
@@ -35,7 +38,7 @@ interface CreateExchangeAdFormData {
   foto2: string;
   foto3: string;
   descricao: string;
-  itensDesejados: string;
+  itemDesejado: string;
   valorEstimado: number;
   destaque: boolean;
   destaqueExpira: Date;
@@ -62,36 +65,28 @@ const estadosConservacao = [
 const CreateExchangeAd: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const history = useHistory();
-
+  var update = 0; 
   //funções
   const handleSubmit = useCallback(
     async (data: CreateExchangeAdFormData) => {
       try {
+        data.cliente = localStorage.getItem("loginid") || "";
+        if(data.cliente == "") {
+          alert("Para criar um anuncio é necessário logar");
+          history.push("/signin");
+        }
         formRef.current?.setErrors({});
-
         const schema = yup.object().shape({
-          /*
-          titulo: yup.string().min(10).required("Título do anúncio obrigatório"),
-          
-          objeto: yup.string().min(2).required("Nome do objeto obrigatório"),
-          
-          categoria: yup.string().required("Categoria do objeto obrigatória"),
-          
-          estadoConservacao: yup.string().required("Estado de conservação do objeto obrigatória"),
-          /*
-          imageInput1: yup.mixed().test('fileSize', "File Size is too large", value => value.size <= fileSize)
-            .test('fileType', "Unsupported File Format", value => fileType.includes(value.type) ),
-          imageInput2: yup.mixed().test('fileSize', "File Size is too large", value => value.size <= fileSize)
-            .test('fileType', "Unsupported File Format", value => fileType.includes(value.type) ),
-          imageInput3: yup.mixed().test('fileSize', "File Size is too large", value => value.size <= fileSize)
-            .test('fileType', "Unsupported File Format", value => fileType.includes(value.type) ),
-          
-          descricaoObjeto: yup.string().min(6).required("Descrição obrigatória"),
-          
-          itensDesejados: yup.string().min(6).required("Itens desejados em troca obrigatório"),
-
-          valorEstimado: yup.number().min(0).max(10000).required("Valor estimado obrigatório"),
-          */
+          titulo: yup.string().min(7, "Deve ter pelo menos 7 caracteres.").required("Campo obrigatório."),
+          nomeObjeto: yup.string().ensure().min(2, "Deve ter pelo menos 2 caracteres.").required("Campo obrigatório."),
+          categoria: yup.string().ensure(),
+          estadoConservacao: yup.string().ensure(),  
+          foto1: yup.string().min(5, "Link muito curto.").required("Campo obrigatório."),
+          foto2: yup.string().min(5, "Link muito curto.").required("Campo obrigatório."),
+          foto3: yup.string().min(5, "Link muito curto.").required("Campo obrigatório."),
+          descricao: yup.string().min(10, "Deve ter pelo menos 10 caracteres.").required("Campo obrigatório."),
+          itemDesejado: yup.string().min(6, "Deve ter pelo menos 6 caracteres. ").required("Campo obrigatório."),
+          valorEstimado: yup.number().min(0, "Deve ter valor maior que 0").max(10000, "Deve ter valor menor que 10000").required("Campo obrigatório.").typeError("O valor informado deve ser um número"),    
         });
 
         await schema.validate(data, {
@@ -100,108 +95,119 @@ const CreateExchangeAd: React.FC = () => {
 
         data.destaque = false;
         data.destaqueExpira = new Date("01/01/2099");
-        data.cliente = localStorage.getItem("loginid") || "";
 
         await api.post("/anuncios", data);
-        alert("Anuncio criado com sucesso");
+        alert("Anuncio criado com successo!");
         history.push("/");
-        console.log(data);
       } catch (err) {
-        console.log("erro no yup!");
-
-        //se for um erro do yup, tipo não digitou senha, email inválido, etc
-
-        if (err instanceof yup.ValidationError) {
-          return;
+        console.log(err)
+        
+        
+        if(err instanceof yup.ValidationError) {
+          console.log(err)
+          const errors = getValidationErrors(err);
+          formRef.current?.setErrors(errors);
+          update = update + 1;
+          return; 
         }
       }
     },
-    [history]
+    [history, update]
   );
 
   return (
     <div>
       <Header />
+
       <Container>
         <Background />
         <Content>
           <AnimationContainer>
             <Form ref={formRef} onSubmit={handleSubmit}>
               <TituloPagina>Cadastre seu item </TituloPagina>
-
-              <Input
+              <SubTituloPagina> Titulo do anúncio * </SubTituloPagina>
+              <InputCriarAnuncio
                 name="titulo"
                 icon={FiType}
-                placeholder="Titulo do anúncio *"
+                placeholder=" Ex: Bumerangue dourado novo, Bolsa em bom estado, ... "
               />
-              <SubText text="Título que será exibido no site. Ex: 'Bumerangue dourado novo'." />
+              <SubText text="Título que será exibido no site. Pelo menos 7 caracteres."/>
 
+              <SubTituloPagina> Nome do objeto * </SubTituloPagina>
               <Input
                 name="nomeObjeto"
                 icon={FiSquare}
-                placeholder="Nome do objeto *"
+                placeholder=" Ex: Bumerangue, Bolsa, ..."
               />
-              <SubText text="Nome do objeto ofertado. Ex: 'Bumerangue Dourado'." />
+              <SubText text="Nome do objeto ofertado. Pelo menos 2 caracteres." />
 
+              <SubTituloPagina> Categoria * </SubTituloPagina>
               <Select
                 name="categoria"
                 icon={FiSquare}
-                placeholder="Categoria *"
+                placeholder=""
                 options={categorias}
+                defaultValue={categorias[0]}
               ></Select>
               <SubText text="Categoria a qual pertence seu objeto." />
 
+              <SubTituloPagina> Estado de conservação * </SubTituloPagina>
               <Select
                 name="estadoConservacao"
                 icon={FiSquare}
-                placeholder="Estado de conservação *"
                 options={estadosConservacao}
+                defaultValue={estadosConservacao[0]}
               ></Select>
               <SubText text="Estado de conservação em qual se encontra seu objeto." />
 
-              <BoxTitle> Fotos </BoxTitle>
-
+              <SubTituloPagina> Fotos * </SubTituloPagina>
+              
               <Input
                 name="foto1"
                 icon={FiAlignJustify}
-                placeholder="URL da foto 1*"
+                placeholder="URL da foto 1. Ex: http://imgur.com/gallery/imagem1"
               ></Input>
 
               <Input
                 name="foto2"
                 icon={FiAlignJustify}
-                placeholder="URL da foto 2*"
+                placeholder="URL da foto 2. Ex: http://imgur.com/gallery/imagem2"
               ></Input>
 
               <Input
                 name="foto3"
                 icon={FiAlignJustify}
-                placeholder="URL da foto 3*"
+                placeholder="URL da foto 3. Ex: http://imgur.com/gallery/imagem3"
               ></Input>
 
               <SubText text="Link para as fotos do objeto. Mínimo três." />
 
+              <SubTituloPagina> Descrição * </SubTituloPagina>
               <Input
                 name="descricao"
                 icon={FiAlignJustify}
-                placeholder="Descrição do objeto *"
+                placeholder=" Ex: 'Altura: 30cm, Largura: ...'"
               ></Input>
-              <SubText text="Informações sobre o objeto. Ex: 'Altura: 30cm, Largura: ...'." />
+              <SubText text="Informações sobre o objeto. Pelo menos 10 caracteres."/>
 
+              <SubTituloPagina> Itens desejados em troca * </SubTituloPagina>
               <Input
                 name="itemDesejado"
                 icon={FiBox}
-                placeholder="Itens desejados em troca *"
+                placeholder="Ex: Tênis, Estilingue, ..."
               ></Input>
-              <SubText text="Itens que gostaria de receber em troca. Ex: 'Tênis, Estilingue'." />
+              <SubText text="Itens que gostaria de receber em troca. Mínimo 6 caracteres."/>
 
+              <SubTituloPagina> Valor estimado * </SubTituloPagina>
+              
               <Input
                 name="valorEstimado"
                 icon={FiDollarSign}
-                placeholder="Valor estimado*"
+                placeholder="Ex: 30"
               ></Input>
-              <SubText text="Valor estimado do seu objeto em reais. Ex: '30'." />
+              <SubText text="Valor estimado do seu objeto em reais. Entre 0,01 e 10000 reais"/>
               <br />
+              
               <b>
                 <SubText text="Campos com um * no nome são obrigatórios." />
               </b>
@@ -209,10 +215,12 @@ const CreateExchangeAd: React.FC = () => {
               <ButtonStyled name="submitButton" type="submit">
                 Criar anúncio
               </ButtonStyled>
+
             </Form>
           </AnimationContainer>
         </Content>
       </Container>
+
       <ExibirPropaganda />
     </div>
   );

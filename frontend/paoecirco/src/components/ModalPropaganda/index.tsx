@@ -34,8 +34,6 @@ const ModalReact: React.FC<NewModalProps> = ({
           abortEarly: false,
         });
 
-        console.log("oi");
-
         await api.put(`propagandaimage/${id}`, data);
         alert("A propaganda foi alterada com sucesso");
       } catch {}
@@ -55,8 +53,6 @@ const ModalReact: React.FC<NewModalProps> = ({
         await schema.validate(data, {
           abortEarly: false,
         });
-
-        console.log(data);
 
         await api.put(`propagandaempresa/${id}`, data);
         alert("A propaganda foi alterada com sucesso");
@@ -79,7 +75,7 @@ const ModalReact: React.FC<NewModalProps> = ({
         });
 
         formRefImagem.current?.setErrors({});
-        console.log(id);
+        
         await api.put(`propagandadata/${id}`, data);
         alert("A propaganda foi alterada com sucesso");
       } catch (err) {}

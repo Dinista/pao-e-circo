@@ -8,6 +8,8 @@ import React, {
 import { IconBaseProps } from "react-icons";
 import { useField } from "@unform/core";
 import { Container } from "./styles";
+import "./styles.css";
+import { BsExclamationCircle } from "react-icons/bs";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -34,6 +36,8 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
     setIsFocused(true);
   }, []);
 
+  
+
   // useeffects
   useEffect(() => {
     registerField({
@@ -44,6 +48,7 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
   }, [fieldName, registerField]);
 
   return (
+    <div>
     <Container isFilled={isFilled} isFocused={isFocused} isErrored={!!error}>
       {Icon && <Icon size={20} />}
       <input
@@ -53,8 +58,10 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
         ref={inputRef}
         {...rest}
       />
-      {error && <div className="erro">{error}</div>}
+      {error && <BsExclamationCircle className = "iconeErro"></BsExclamationCircle>}
     </Container>
+    {error && <div className="erro">{error}</div>}
+    </div>
   );
 };
 

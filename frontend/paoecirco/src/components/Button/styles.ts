@@ -2,19 +2,23 @@ import styled from "styled-components";
 import { shade } from "polished";
 
 export const Container = styled.button`
-  background: #fd5c7f;
-  height: 56px;
-  border: 0;
-  color: #312e38;
-  font-weight: bold;
-  font-size: 18px;
-  margin-top: 16px;
-  border-radius: 10px;
-  padding: 0 16px;
-  width: 80%; 
-  transition: background-color 0.2s;
+  margin-top: 2vh;
+  box-shadow: 0 5px 0 #c72060;
+  background-color: #ff587c;
+  border-color: rgb(255, 50, 94);
+  width: 100%;
+  height: 45px;
+  border-radius: 4px;
+  color: white;
+  border: 0px;
+  font-weight: 600;
+  cursor: pointer;
 
   &:hover {
-    background: ${shade(0.2, "#ff9000")};
+  box-shadow: 0 5px 0 #0e0e0e;
+  background-color: rgb(53, 53, 53);
+  border-color: rgb(0, 0, 0);
+  border-width: 1px;
+  color: white;
   }
 `;

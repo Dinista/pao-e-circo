@@ -1,21 +1,27 @@
-
-
+import { Link, useHistory } from "react-router-dom";
 import { FormHandles } from "@unform/core";
 import { Form } from "@unform/web";
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import * as yup from "yup";
 import Modal from "react-modal";
 import Input from "../Input";
-// import { ButtonPropaganda, Container, ImagemContainer } from "./styles";
+import { ButtonPropaganda, Container, ImagemContainer } from "./styles";
 import api from "../../services/api";
 import Select from "../Select";
 import SubText from "../Subtext";
 import { parse } from "path";
-/*
+import { debug } from "console";
+
+const objetosUsuarioLogado:any = [];
+
 interface NewModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
-  id: string | undefined;
+  id: string | null;
+}
+
+interface Ad {
+  objeto: string
 }
 
 const ModalReactRealizarOferta: React.FC<NewModalProps> = ({
@@ -23,19 +29,48 @@ const ModalReactRealizarOferta: React.FC<NewModalProps> = ({
   onRequestClose,
   id,
 }: NewModalProps) => {
-  { const formRefData = useRef<FormHandles>(null);
+  const history = useHistory();
+  const formRef = useRef<FormHandles>(null);
+  
 
-    const handleSubmitData = useCallback(
-      async (planoDias: any) => {
-        try {
-          
-          await api.put(`anunciodestaque/${id}`, time);
-          alert("O anuncio foi destacado com sucesso");
-        } catch (err) {}
-    }, 
-    [id]
-  );
+  useEffect(() => {
+    objetosUsuarioLogado.length = 0;
+
+    api.post(`/anunciosall/${id}`).then((response) => {
+      objetosUsuarioLogado.push({value: "", label: ""}); // Coloca a 1a opção vazia
+      for(let i = 0; i < response.data.length; i++) {
+        objetosUsuarioLogado.push({
+          value: response.data[i].id,
+          label: response.data[i].titulo
+        });
+      }
+    });
+  }, [isOpen]);
+
+  { 
+    const formRefData = useRef<FormHandles>(null);
     
+    const handleSubmitData = useCallback(
+      async (itemOferecidoId: any) => {
+        try {
+          formRef.current?.setErrors({});
+        
+          const schema = yup.object().shape({ 
+            objeto: yup.string().required("Selecione um item!")
+          });
+         
+          await schema.validate(itemOferecidoId, {
+            abortEarly: false,
+          });
+
+          alert("A oferta foi realizada com sucesso");
+          // Ainda precisa enviar a informação pra algum lugar
+          history.push("/");
+        } catch(err) {
+          alert(err);
+        }
+    }, []
+  );
 
     return (
       <Modal
@@ -49,16 +84,16 @@ const ModalReactRealizarOferta: React.FC<NewModalProps> = ({
           <h2>Realizar oferta</h2>         
           <Form ref={formRefData} onSubmit={handleSubmitData}>
             <Select
-                name="plano"
-                placeholder="Plano"
-                options={planos}
+                name="objeto"
+                placeholder="Selecione um objeto seu para oferecer"
+                options={objetosUsuarioLogado}
             ></Select>
+            <SubText text="O item ainda estará disponível até que o outro usuário aceite a proposta de troca." />
             
-            <SubText text="Escolha o plano que prefere para o destaque de seu anúncio." />
-            
-            <ButtonPropaganda type="submit" onClick={handleSubmitData}>
-              Destacar
+            <ButtonPropaganda name="submitButton" type="submit">
+              Oferecer item selecionado
             </ButtonPropaganda>
+
           </Form>
         </Container>
       </Modal>
@@ -67,4 +102,4 @@ const ModalReactRealizarOferta: React.FC<NewModalProps> = ({
 };
 
 export default ModalReactRealizarOferta;
-*/
+

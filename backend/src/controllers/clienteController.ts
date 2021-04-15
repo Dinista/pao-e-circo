@@ -15,6 +15,8 @@ class ClienteController {
       dataNasc,
     } = request.body;
 
+    var crypto = require("crypto");
+
     const clienteRepository = getRepository(Cliente);
 
     const checkClienteExists = await clienteRepository.findOne({
@@ -22,8 +24,13 @@ class ClienteController {
     });
 
     if (checkClienteExists) {
-      return response.status(400).send({ Erro: "E-mail já cadastrado" });
+      return response.status(400).json({ Erro: "E-mail já cadastrado" });
     }
+
+    const passwaordHash = crypto
+      .createHash("sha256")
+      .update(senha)
+      .digest("hex");
 
     const cliente = clienteRepository.create({
       name,
@@ -33,20 +40,28 @@ class ClienteController {
       endereco,
       cidade,
       email,
-      senha,
+      senha, //passwaordHash,
     });
-    console.log("ue");
     await clienteRepository.save(cliente);
 
     return response.json("funfou se pa em");
   }
 
   async login(request: Request, response: Response) {
-    const { email, senha } = request.body;
+    const { name, senha } = request.body;
+    var crypto = require("crypto");
+
     const clienteRepository = getRepository(Cliente);
-    const cliente = await clienteRepository.find({ email: email });
-    const isRight = cliente[0].senha == senha ? true : false;
-    return response.json({ logou: isRight, cliente });
+    try {
+      //const senhaHash = crypto.createHash("sha256").update(senha).digest("hex");
+      const cliente = await clienteRepository.find({ email: name });
+      const isRight = cliente[0].senha == senha ? true : false;
+      return response.json({ logou: isRight, cliente });
+    } catch (err) {
+      console.log("erro login back-end: " + err);
+      
+      return response.json({ logou: false });
+    }
   }
 
   async find(request: Request, response: Response) {
@@ -54,6 +69,12 @@ class ClienteController {
 
     const clienteRepository = getRepository(Cliente);
     const cliente = await clienteRepository.find({ name: name });
+    return response.json(cliente[0]);
+  }
+
+  async findById(request: Request, response: Response) {
+    const clienteRepository = getRepository(Cliente);
+    const cliente = await clienteRepository.find({ id: request.params.id });
     return response.json(cliente[0]);
   }
 }
