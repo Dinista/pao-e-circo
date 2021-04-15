@@ -35,7 +35,6 @@ const ModalReactDestaque: React.FC<NewModalProps> = ({
         await schema.validate(planoDias, {
           abortEarly: false,
         });
-        console.log(planoDias);
         await api.put(`anunciodestaque/${id}`, planoDias);
         alert("O anuncio foi destacado com sucesso");
       } catch (err) {}

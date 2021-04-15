@@ -1,20 +1,36 @@
 import styled, { keyframes } from "styled-components";
 import { shade } from "polished";
+import Button from "../../components/Button";
+import Input from "../../components/Input";
+
+export const TituloPagina = styled.h1`
+  color: #93130d;
+  margin-top: 70px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 30px;
+  text-shadow: 3px 3px 3px pink;
+`;
+
 export const Container = styled.div`
-  display: grid;
-  place-items: center;
+  margin: 0 auto;
+  overflow: hidden;
+  max-width: 500px;
+  margin-top: -100px;
+`;
+
+export const ButtonStyled = styled(Button)`
+  width: 110%;
 `;
 
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+
   justify-content: center;
 
   width: 100%;
   max-width: 700px;
 `;
-
 
 export const AppearFromLeft = keyframes`
   from {
@@ -36,21 +52,19 @@ export const AnimationContainer = styled.div`
   animation: ${AppearFromLeft} 1s;
 
   form {
-    margin: 30px 0;
+    margin: 80px 0;
     width: 340px;
-    text-align: center;
   }
 
   h1 {
     margin-bottom: 24px;
+    text-align: center;
   }
-  .dataNasc{
-    color: grey;
-  }
+
   a {
     color: #f4ede8;
     display: block;
-    margin-top: 0px;
+    margin-top: 24px;
     text-decoration: none;
     transition: 02s;
 
@@ -62,7 +76,7 @@ export const AnimationContainer = styled.div`
   > a {
     color: #ff9000;
     display: block;
-    margin-top: 0px;
+    margin-top: 24px;
     text-decoration: none;
     transition: 02s;
 
@@ -77,4 +91,22 @@ export const AnimationContainer = styled.div`
       color: ${shade(0.2, "#ff9000")};
     }
   }
+`;
+
+export const InputCriarAnuncio = styled(Input)`
+  size: 1000px;
+
+`
+
+export const Background = styled.div`
+  flex: 1;
+  background-size: cover;
+`;
+
+export const SubTituloPagina = styled.p`
+  color: #000000;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 10px;
+  margin-bottom: -5px;
+  text-shadow: 0px 0.5px gray;
 `;

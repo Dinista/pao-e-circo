@@ -4,7 +4,7 @@ import { FormHandles } from "@unform/core";
 import { FiArrowLeft, FiMail, FiLock, FiUser } from "react-icons/fi";
 import { HiOutlineIdentification } from "react-icons/hi";
 import { FaBirthdayCake, FaCity } from "react-icons/fa";
-import { GiMailbox } from "react-icons/gi";
+import { GiConsoleController, GiMailbox } from "react-icons/gi";
 import Input from "../../components/Input/index";
 import Button from "../../components/Button/index";
 import api from "../../services/api";
@@ -35,31 +35,70 @@ const SignUp: React.FC = () => {
       try {
         formRef.current?.setErrors({});
         const schema = yup.object().shape({
-          name: yup.string().required("Nome origatório"),
+          name: yup.string().required("Nome origatório."),
           cpf: yup
-            .string()
-            .required("CPF obrigatório")
-            .min(11, "No mínimo 11 dígitos"),
+            .number().typeError("Apenas digitos.")
+            .required("CPF obrigatório.")
+            .min(11, "No mínimo 11 dígitos."),
 
-          email: yup.string().required("E-mail obrigatório").email(),
-          dataNasc: yup.string().required("Data de nascimento necessária"),
-          senha: yup.string().min(6, "No mínimo 6 dígitos"),
-          endereco: yup.string().required("Endereço obrigatório"),
-          estado: yup.string().required("Estado obrigatório"),
-          cidade: yup.string().required("Cidade obrigatória"),
+          email: yup.string().required("E-mail obrigatório.").email("E-mail inválido."),
+          dataNasc: yup.string().required("Data de nascimento necessária."),
+          senha: yup.string().min(6, "No mínimo 6 dígitos."),
+          endereco: yup.string().required("Endereço obrigatório."),
+          estado: yup.string().required("Estado obrigatório."),
+          cidade: yup.string().required("Cidade obrigatória."),
         });
 
         await schema.validate(data, {
           abortEarly: false,
         });
-        console.log("bugou");
-        await api.post("/clientes", data);
-
-        history.push("/signin");
+        //console.log("bugou");
+        try {
+          await api.post("/clientes", data);
+          history.push("/signin");
+        } catch (e) {
+          console.log(e.response.data.Erro)
+          formRef.current?.setErrors({email: e.response.data.Erro});
+        };
       } catch (err) {
+        const listaError = {
+          name: "",
+          email: "",
+          cpf: "",
+          endereco: "",
+          estado: "",
+          cidade: "",
+          senha: "",
+          dataNasc: "" }
         //se for um erro do yup, tipo não digitou titulo, escolheu categoria, etc
         if (err instanceof yup.ValidationError) {
-          return;
+          err.inner.forEach(erro =>{
+            if(erro.path === "name"){
+              listaError["name"] = erro.message
+            }
+            if(erro.path === "email"){
+              listaError["email"] = erro.message
+            }
+            if(erro.path === "cpf"){
+              listaError["cpf"] = erro.message
+            }
+            if(erro.path === "endereco"){
+              listaError["endereco"] = erro.message
+            }
+            if(erro.path === "estado"){
+              listaError["estado"] = erro.message
+            }
+            if(erro.path === "cidade"){
+              listaError["cidade"] = erro.message
+            }
+            if(erro.path === "senha"){
+              listaError["senha"] = erro.message
+            }
+            if(erro.path === "dataNasc"){
+              listaError["dataNasc"] = erro.message
+            }
+          });
+          formRef.current?.setErrors(listaError);
         }
       }
     },
@@ -86,6 +125,7 @@ const SignUp: React.FC = () => {
                 icon={FaBirthdayCake}
                 placeholder="Data de nascimento"
                 type="date"
+                className = "dataNasc"
               ></Input>
               <Input
                 name="endereco"
@@ -107,8 +147,8 @@ const SignUp: React.FC = () => {
             </Form>
 
             <Link to="/signin">
-              Já tem uma conta?
-              <FiArrowLeft />
+            <FiArrowLeft />
+            Já tem uma conta?
             </Link>
           </AnimationContainer>
         </Content>
