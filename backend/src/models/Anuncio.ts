@@ -2,6 +2,7 @@ import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany, ManyToMan
 import Cliente from "./Cliente";
 import Comentario from "./Comentario";
 import Denuncia from "./Denuncia";
+import NotificacaoTroca from "./NotificacaoTroca";
 
 @Entity("anuncios")
 class Anuncio {
@@ -61,6 +62,11 @@ class Anuncio {
   @JoinTable()
   seguidores: Cliente[];
   
+  @OneToMany(() => NotificacaoTroca, notificacao => notificacao.anuncio, {
+    nullable: true
+  })
+  notificacoesTroca: NotificacaoTroca[];
+
 }
 
 export default Anuncio;

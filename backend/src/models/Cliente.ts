@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 import Anuncio from "./Anuncio";
-import Notificacoes from "./Notificacoes";
+import NotificacaoTroca from "./NotificacaoTroca";
 
 @Entity("clientes")
 class Cliente {
@@ -53,6 +53,18 @@ class Cliente {
 
   @ManyToMany(() => Anuncio, (anuncio) => anuncio.seguidores)
   anunciosSeguidos: Anuncio[];
+
+  @OneToMany(() => NotificacaoTroca, notificacao => notificacao.anunciante, {
+    nullable: true
+  })
+  notificacoesTrocaAnunciante: NotificacaoTroca[];
+
+  @OneToMany(() => NotificacaoTroca, notificacao => notificacao.ofertante, {
+    nullable: true
+  })
+  notificacoesTrocaOfertante: NotificacaoTroca[];
+  
 }
+
 
 export default Cliente;

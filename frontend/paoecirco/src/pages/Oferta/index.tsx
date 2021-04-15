@@ -11,7 +11,6 @@ import {
 import { useHistory } from "react-router-dom";
 import Header from "../../components/Header";
 import ExibirPropaganda from "../../components/ExibirPropaganda";
-
 import Button from "../../components/Button";
 import ModalReactDestaque from "../../components/ModalDestaque";
 import ModalReactRealizarOferta from "../../components/ModalRealizarOferta";
@@ -26,8 +25,8 @@ import getValidationErrors from "../../utils/getValidationErrors";
 import SubText from "../../components/Subtext";
 import Input from "../../components/Input";
 import { FiAlignJustify } from "react-icons/fi";
-import { ButtonStyled } from "../CriarAnuncio/styles";
 import InvisibleInput from "../../components/InvisibleInput";
+import { ButtonStyled } from "../CriarAnuncio/styles";
 
 const Oferta: React.FC = (props: any) => {
   const { id } = (props.location && props.location.state);

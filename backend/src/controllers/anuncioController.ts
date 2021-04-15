@@ -86,6 +86,13 @@ class AnuncioController {
     return response.json(anuncio[0]);
   }
 
+  
+  async findAll(request: Request, response: Response) {
+    const anuncioRepository = getRepository(Anuncio);
+    const anuncio = await anuncioRepository.find();    
+    return response.json(anuncio[0]);
+  }
+
   async findAllByUserId(request: Request, response: Response) {
     const anuncio = await getConnection()
     .getRepository(Anuncio)
