@@ -1,17 +1,10 @@
 import { Request, Response } from "express";
 import { getConnection, getRepository } from "typeorm";
-import Anuncio  from "../models/Anuncio";
+import Anuncio from "../models/Anuncio";
 import Comentario from "../models/Comentario";
-
 class ComentarioController {
   async create(request: Request, response: Response) {
-    
-    const {
-      anuncio,
-      comentador,
-      texto,
-      data
-    } = request.body;
+    const { anuncio, comentador, texto, data } = request.body;
 
     const comentarioRepository = getRepository(Comentario);
 
@@ -19,7 +12,7 @@ class ComentarioController {
       anuncio,
       comentador,
       texto,
-      data
+      data,
     });
     await comentarioRepository.save(comentario);
 
@@ -28,21 +21,24 @@ class ComentarioController {
 
   async find(request: Request, response: Response) {
     const comentarioRepository = getRepository(Comentario);
-    
-    const comentario = await comentarioRepository.find({ idComentario : request.params.id});
-    
-    return response.json(comentario[0]);
 
+    const comentario = await comentarioRepository.find({
+      idComentario: request.params.id,
+    });
+
+    return response.json(comentario[0]);
   }
-  
+
   async findCommentsByAnuncioId(request: Request, response: Response) {
     const anuncio = await getConnection()
-    .getRepository(Anuncio)
-    .createQueryBuilder("anuncio")
-    .leftJoinAndSelect("anuncio.comentarios", "comentario")
-    .where("comentario.anuncio = :idAnuncio", {idAnuncio : request.params.id})
-    .leftJoinAndSelect("comentario.comentador", "comentador")
-    .getMany();   
+      .getRepository(Anuncio)
+      .createQueryBuilder("anuncio")
+      .leftJoinAndSelect("anuncio.comentarios", "comentario")
+      .where("comentario.anuncio = :idAnuncio", {
+        idAnuncio: request.params.id,
+      })
+      .leftJoinAndSelect("comentario.comentador", "comentador")
+      .getMany();
     return response.json(anuncio);
   }
 

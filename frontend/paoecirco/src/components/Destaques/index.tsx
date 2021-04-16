@@ -1,37 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./styles.css";
-import { SliderData } from "../SliderData";
 import { MdSubtitles } from "react-icons/md";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
 import { BsPersonFill } from "react-icons/bs";
-import { AiFillStar } from "react-icons/ai";
+import api from "../../services/api";
+import { Link } from "react-router-dom";
 
-const Destaques: React.FC = ({ slides }: any) => {
+interface Data {
+  titulo: string;
+  foto1: string;
+  descricao: string;
+  id: string;
+  valorEstimado: string;
+}
+
+const Destaques: React.FC = () => {
+  const [data, setData] = useState<Data[]>([]);
+
+  useEffect(() => {
+    api.get("/findallanuncios").then((response) => {
+      setData(response.data.anuncios);
+    });
+  }, []);
+
   return (
     <div className="containerDestaque">
       <h1 className="tituloDestaque">DESTAQUES</h1>
-      {SliderData.map((data) => (
-        <div key={data.titulo}>
+      {data.map((data) => (
+        <div key={data.id}>
           <div className="containerItemDestaque">
-            <img src={data.image} alt="dataimg" className="cardAvatar" />
+            <img src={data.foto1} alt="dataimg" className="cardAvatar" />
             <div className="container2">
-              <div className="tituloCard">
-                <MdSubtitles className="iconCardContainer" />
-                {data.titulo}
-              </div>
+              <Link
+                className="linkContainerDestaques"
+                to={{
+                  pathname: "/makeanoffer",
+                  state: {
+                    id: data.id,
+                  },
+                }}
+              >
+                <div className="tituloCard">
+                  <MdSubtitles className="iconCardContainer" />
+                  {data.titulo}
+                </div>
+              </Link>
               <p className="descricaoCardContainer">{data.descricao}</p>
               <div className="valorContainer">
                 <RiMoneyDollarCircleLine className="iconeDolar" />
-                Valor: {data.valor}
+                Valor: {data.valorEstimado}
                 R$
-              </div>
-              <div className="vendedorContainer">
-                <BsPersonFill className="iconePessoa" /> Vendedor:{" "}
-                {data.anunciante}
-              </div>
-              <div className="avaliacaoContainer">
-                <AiFillStar className="iconeEstrela" /> Avaliação:{" "}
-                {data.avaliacao}
               </div>
             </div>
           </div>

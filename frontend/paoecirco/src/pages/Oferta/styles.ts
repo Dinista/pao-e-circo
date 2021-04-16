@@ -1,6 +1,4 @@
-import { MdVisibility } from "react-icons/md";
 import styled from "styled-components";
-import Input from "../../components/Input";
 
 export const ExternalContainer = styled.div`
   display: flex;
