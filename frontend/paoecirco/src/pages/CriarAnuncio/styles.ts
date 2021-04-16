@@ -1,6 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import { shade } from "polished";
 import Button from "../../components/Button";
+import Input from "../../components/Input";
 
 export const TituloPagina = styled.h1`
   color: #93130d;
@@ -11,9 +12,10 @@ export const TituloPagina = styled.h1`
 `;
 
 export const Container = styled.div`
-  height: 90vh;
-  display: flex;
-  width: 70vw;
+  margin: 0 auto;
+  overflow: hidden;
+  max-width: 500px;
+  margin-top: -100px;
 `;
 
 export const ButtonStyled = styled(Button)`
@@ -91,26 +93,20 @@ export const AnimationContainer = styled.div`
   }
 `;
 
+export const InputCriarAnuncio = styled(Input)`
+  size: 1000px;
+
+`
+
 export const Background = styled.div`
   flex: 1;
   background-size: cover;
 `;
 
-export const CustomDiv = styled.div`
-  border-radius: 10px;
-  border: 2px solid black;
-  padding: 8px;
-  width: 105%;
-  margin-top: 6px;
-  margin-bottom: -7px;
-`;
-
-export const BoxTitle = styled.p`
-  text-justify: center;
-
-  margin-top: 0.7rem;
-  margin-bottom: -0.3rem;
-  margin-left: 0.5rem;
-  text-align: left;
-  font-weight: 600;
+export const SubTituloPagina = styled.p`
+  color: #000000;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 10px;
+  margin-bottom: -5px;
+  text-shadow: 0px 0.5px gray;
 `;

@@ -1,5 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany, ManyToMany, JoinTable } from "typeorm";
 import Cliente from "./Cliente";
+import Comentario from "./Comentario";
+import Denuncia from "./Denuncia";
+import NotificacaoTroca from "./NotificacaoTroca";
 
 @Entity("anuncios")
 class Anuncio {
@@ -47,10 +50,24 @@ class Anuncio {
   @Column()
   destaqueExpira: string;
 
-  @Column({
+  @OneToMany(() => Denuncia, denuncia => denuncia.anuncio)
+  denuncias: Denuncia[];
+
+  @OneToMany(() => Comentario, comentario => comentario.anuncio)
+  comentarios: Comentario[];
+
+  @ManyToMany(() => Cliente, cliente => cliente.anunciosSeguidos, {
+    cascade: true
+  })
+  @JoinTable()
+  seguidores: Cliente[];
+  
+  @OneToMany(() => NotificacaoTroca, notificacao => notificacao.anuncio, {
     nullable: true
   })
-  denuncias: string;
+  notificacoesTroca: NotificacaoTroca[];
+
 }
 
 export default Anuncio;
+

@@ -1,23 +1,22 @@
-
 @keyframes formappear {
   from {
     opacity: 0;
-    transform: translateX(50px)
+    transform: translateX(50px);
   }
-  to{
+  to {
     opacity: 1;
-    transform: translateX(0)
+    transform: translateX(0);
   }
 }
 
 @keyframes logoappear {
   from {
     opacity: 0;
-    transform: scale(0.5)
+    transform: scale(0.5);
   }
-  to{
+  to {
     opacity: 1;
-    transform: scale(1.0);
+    transform: scale(1);
   }
 }
 
@@ -28,7 +27,7 @@
 
 .loginLogoContainer {
   width: 100%;
-  background: #eeeeee;
+  background: #f0f0f0;
   display: flex;
   justify-content: center;
 }
@@ -46,7 +45,7 @@
   margin-right: 10px;
 }
 
-.Form{
+.Form {
   text-align: center;
   width: 400px;
   margin-top: 70px;
@@ -82,20 +81,20 @@
   width: 400px;
 }
 
-.inputLoginSignin:focus{
+.inputLoginSignin:focus {
   border: 0px;
   outline: 0px;
 }
-.inputLoginSignin:hover{
-  border: 13px solid #990000;;
+.inputLoginSignin:hover {
+  border: 13px solid #990000;
 }
 
-
-.inputLoginSignin::placeholder, .inputLogin::placeholder{
+.inputLoginSignin::placeholder,
+.inputLogin::placeholder {
   opacity: 0.6;
 }
 
-.inputLogin:focus{
+.inputLogin:focus {
   outline: 0px;
 }
 textarea {
@@ -132,7 +131,7 @@ input[type="submit"] {
   box-shadow: 0 5px 0 #c72060;
   background-color: #ff587c;
   border-color: rgb(255, 50, 94);
-  width: 400px;
+  width: 100%;
   height: 35px;
   border-radius: 4px;
   color: white;
@@ -140,7 +139,7 @@ input[type="submit"] {
   font-weight: 600;
   cursor: pointer;
 }
-.buttonLogin:hover{
+.buttonLogin:hover {
   box-shadow: 0 5px 0 #0e0e0e;
   background-color: rgb(53, 53, 53);
   border-color: rgb(0, 0, 0);
@@ -149,7 +148,7 @@ input[type="submit"] {
   color: white;
 }
 
-.buttonLogin:focus{
+.buttonLogin:focus {
   outline: 0px;
   box-shadow: 0 0px 0 #0e0e0e;
   background-color: rgb(53, 53, 53);
@@ -161,28 +160,38 @@ input[type="submit"] {
   font-weight: bold;
 }
 
-.Error{
+.Error {
   text-align: left;
   color: #ff0000;
 }
 
-.ErrorLogin{
+.ErrorLogin {
   display: none;
   margin-bottom: 2vh;
   color: #ff0000;
   font-weight: 700;
 }
 
-.linkEsqueciASenha, .linkSignupSignin, .Form{
+.linkEsqueciASenha,
+.linkSignupSignin,
+.Form {
   animation-name: formappear;
   animation-duration: 1s;
 }
 
-.logoanim{
+.logoanim {
   animation-name: logoappear;
   animation-duration: 1s;
 }
 
-.focus-visible{
+.focus-visible {
   outline: 0px;
 }
+
+/*.Div-Input{
+  width: 83%;
+}
+
+Input{
+  width: 100%;
+}*/

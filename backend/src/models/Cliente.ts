@@ -1,20 +1,20 @@
 import {
   Column,
   Entity,
-  JoinColumn,
-  ManyToOne,
+  JoinTable,
+  ManyToMany,
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import Anuncio from "./Anuncio";
-import Notificacoes from "./Notificacoes";
+import NotificacaoTroca from "./NotificacaoTroca";
 
 @Entity("clientes")
 class Cliente {
   @PrimaryGeneratedColumn("uuid")
   id: string;
-  
-  @OneToMany(() => Anuncio, cliente => Cliente)
+
+  @OneToMany(() => Anuncio, (cliente) => Cliente)
   anuncios: Anuncio[];
 
   @Column()
@@ -25,11 +25,6 @@ class Cliente {
 
   @Column()
   cpf: string;
-
-  @Column("simple-array", {
-    nullable: true
-  })
-  notificacoes: string;
 
   @Column()
   cidade: string;
@@ -46,15 +41,30 @@ class Cliente {
   @Column()
   senha: string;
 
-  @Column( {
-    nullable: true
+  @Column({
+    nullable: true,
   })
   nota: number;
 
   @Column({
-    nullable: true
+    nullable: true,
   })
   numTrocas: number;
+
+  @ManyToMany(() => Anuncio, (anuncio) => anuncio.seguidores)
+  anunciosSeguidos: Anuncio[];
+
+  @OneToMany(() => NotificacaoTroca, notificacao => notificacao.anunciante, {
+    nullable: true
+  })
+  notificacoesTrocaAnunciante: NotificacaoTroca[];
+
+  @OneToMany(() => NotificacaoTroca, notificacao => notificacao.ofertante, {
+    nullable: true
+  })
+  notificacoesTrocaOfertante: NotificacaoTroca[];
+  
 }
 
+//
 export default Cliente;

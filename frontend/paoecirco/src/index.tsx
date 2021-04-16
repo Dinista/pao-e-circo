@@ -5,15 +5,16 @@ import App from "./App";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
-import CreateExchangeAd from "./pages/CreateExchangeAd";
+import CreateExchangeAd from "./pages/CriarAnuncio";
 import BuscaUsuario from "./pages/BuscaAnuncio";
 import GerenciarPropaganda from "./pages/GerenciarPropagandas";
 
 import CriarPropaganda from "./pages/CriarPropaganda";
 import BuscaAnuncio from "./pages/BuscaAnuncio";
 
-import MakeAnOffer from "./pages/MakeAnOffer";
+import MakeAnOffer from "./pages/Oferta";
 import Perfil from "./pages/Perfil";
+import EditarAnuncio from "./pages/EditarAnuncio";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -29,6 +30,7 @@ ReactDOM.render(
         <Route path="/perfil/:id" component={Perfil} />
 
         <Route path="/criarpropaganda" component={CriarPropaganda} />
+        <Route path="/editaranuncio" component={EditarAnuncio} />
 
         <Route path="/makeanoffer" component={MakeAnOffer} />
       </Switch>

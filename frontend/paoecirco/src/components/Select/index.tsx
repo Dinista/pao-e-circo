@@ -31,7 +31,7 @@ export default function Select({ name, icon: Icon, ...rest }: any) {
     <CustomSelect
       defaultValue={defaultValue}
       ref={selectRef}
-      classNamePrefix="react-select"
+      classNamePrefix="react-se lect"
       {...rest}
     />
   );

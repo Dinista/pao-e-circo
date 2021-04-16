@@ -5,4 +5,5 @@ export const SubtextStyled = styled.sub`
   font-style: italic;
   font-size: 12px;
   margin-left: 10px;
+  margin-top: 50px;
 `;

@@ -32,7 +32,7 @@ const SignIn: React.FC = () => {
         await schema.validate(data, {
           abortEarly: false,
         });
-
+        
         const teste = await api.post("/login", data);
         if (teste.data.logou) {
           localStorage.setItem("loginid", teste.data.cliente[0].id);
@@ -76,14 +76,15 @@ const SignIn: React.FC = () => {
               <FaEnvelope className="emailLoginIcon" />
               E-mail
             </div>
-
-            <Input
-              type="text"
-              name="name"
-              id="inputLogin"
-              placeholder="exemplo@email.com"
-              className="inputLoginSignin"
-            />
+            <div className = "Div-Input">
+              <Input
+                type="text"
+                name="name"
+                id="inputLogin"
+                placeholder="exemplo@email.com"
+                className="inputLoginSignin"
+              />
+            </div>
           </div>
         </div>
 
@@ -93,15 +94,15 @@ const SignIn: React.FC = () => {
               <FaLock className="senhaLoginIcon" />
               Senha
             </div>
-
-            <Input
-              type="password"
-              name="senha"
-              id="inputLogin"
-              placeholder="•••••••••••"
-              className="inputLogin"
-            />
-
+            <div className = "Div-Input">
+              <Input
+                type="password"
+                name="senha"
+                id="inputLogin"
+                placeholder="•••••••••••"
+                className="inputLogin"
+              />
+            </div>
           </div>
         </div>
         <button className="buttonLogin" name="submitButton" type="submit">

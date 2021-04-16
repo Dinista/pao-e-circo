@@ -42,7 +42,7 @@ const Perfil: React.FC = () => {
   const [perfilData, setperfilData] = useState<cliente>()
   const [isOwner, setIsOwner] = useState <boolean>(false)
   const urlParams = useParams() as object;
-  const dataUser = perfilData?.dataNasc.split("-") as any || 0
+  const dataUser = perfilData?.dataNasc?.split("-") as any || 0
 
   function idade(anoAniversario: number, mesAniversario: number, diaAniversario: number) {
     var d = new Date,
@@ -82,7 +82,8 @@ useEffect(() =>{
 
   useEffect(()=> {
     api.get(`/perfil/${(urlParams as any).id}`).then((response) => {
-      const picked = (({ id, name,  dataNasc, estado, cidade }) => ({ id, name,  dataNasc, estado, cidade }))(response.data);
+      const picked = (({ id, name,  dataNasc, estado, cidade }) => ({ id, name,  dataNasc, estado, cidade }))(response.data[0]);
+      console.log(picked)
       setperfilData(picked);
       setIsOwner(loginId == picked.id);
     })
@@ -171,7 +172,7 @@ useEffect(() =>{
       <div className = "bg"><img src ="" alt=""/></div>
       <div onClick = {clickAtivos}>
       <Cabecalho
-      nome = {perfilData?.name.split(" ")[0]}
+      nome = {perfilData?.name?.split(" ")[0]}
       idade = {idade(parseInt(dataUser[0], 10), parseInt(dataUser[1], 10), parseInt(dataUser[2], 10))}
       cidade = {perfilData?.cidade} 
       estado = {perfilData?.estado} 
