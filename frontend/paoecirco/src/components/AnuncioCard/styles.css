@@ -33,6 +33,10 @@
     opacity: 1;
 }
 
+#Anuncio-img{
+    max-width: 135%;
+}
+
 .Item-CardAnuncio-Desc{
     grid-row-start: 2;
     grid-row-end: 4;

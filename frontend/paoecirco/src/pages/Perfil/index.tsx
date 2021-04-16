@@ -28,6 +28,13 @@ interface cliente{
   cidade : string,
 }
 
+interface anuncio {
+  id: string,
+  foto1: string,
+  titulo: string,
+  valorEstimado: number
+}
+
 
 const Perfil: React.FC = () => {
   // Perfil handle
@@ -81,14 +88,18 @@ useEffect(() =>{
     })
   }, []);
   
-  useEffect(()=> {
-    api.get(`/anunciosall/${(urlParams as any).id}`).then((response) => {
-      console.log(response)
-    })
-  }, []);
-  
+  //const [anuncio, setAnuncios] = useState<anuncio>();
   var json = require('./data.json');
   const [anuncio, setAnuncios] = useState(json);
+
+
+  useEffect(()=> {
+    api.post(`/anunciosall/${(urlParams as any).id}`).then((response) => {
+    setAnuncios(response.data)
+    })
+  }, []);
+
+
   const [pageNumber, setPageNumber] = useState(0);
   const numberPerPage = 12;
   const visitedPages = pageNumber * numberPerPage;
@@ -123,7 +134,7 @@ useEffect(() =>{
       if( HTMLAtivo > 0){
         HTMLnext.style.display = "none"
       }
-      setDis(() => {return (<div className = 'semAnuncio'>Você ainda não tem anúncios &#128546;</div>)})
+      setDis(() => {return (<div className = 'semAnuncio'>Ainda não tem anúncios &#128546;</div>)})
     }else if( HTMLAtivo > 0){
       if (totalPages == 1 ){
         HTMLnext.style.display = "none"
@@ -144,14 +155,14 @@ useEffect(() =>{
         return(
           <AnuncioCard
             key = {"Anuncio-Ativo" + i}
-            Img = {anuncio.img}
-            Titulo = {anuncio.Titulo}
-            Valor = {anuncio.Valor}
+            Img = {anuncio.foto1}
+            Titulo = {anuncio.titulo}
+            Valor = {anuncio.valorEstimado}
           />
         )
       }))
   }
-  },[pageNumber, isclicked]);
+  },[pageNumber, isclicked, anuncio]);
   console.log(isOwner)
   return (
     <>

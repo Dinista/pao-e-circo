@@ -15,7 +15,7 @@ const AnuncioCard: React.FC<AnuncioCard> = ({Img, Titulo, Valor}) => {
     return (
         <div id = "CardConteiner">
             <ul className = "gridCard">
-                <li className = "Item-CardAnuncio-Img">{Img}</li>
+                <li className = "Item-CardAnuncio-Img"><img id = "Anuncio-img" src= {Img} alt= {Titulo}/></li>
                 <li className = "Item-CardAnuncio-Edit"><button className="btn-edit"><BsPencil/></button></li>
                 <li className = "Item-CardAnuncio-Desc">
                     <div className="sub-grid-desc">

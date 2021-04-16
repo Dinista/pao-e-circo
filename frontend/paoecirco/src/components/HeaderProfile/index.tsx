@@ -1,7 +1,8 @@
 import React from "react";
 import "./styles.css";
 import Avatar from "../../assets/avatar-pic.jpg";
-import {AiOutlineSetting} from "react-icons/ai"
+import {AiOutlineSetting} from "react-icons/ai";
+import {RiMapPinLine} from "react-icons/ri"
 
 interface cabecalho {
     idade: any,
@@ -20,7 +21,7 @@ const Cabecalho: React.FC<cabecalho> = ({idade, nome, cidade, estado}) => {
                     <li className="cabecalho-titulo"><h1 className="titulo">Lojinha de trocas do {nome}</h1></li>
                     <div className="cabecalho-info">
                         <li className="cabecalho-texto"><div className="idade">{idade} anos</div></li>
-                        <li className="cabecalho-texto"><div className="localizacao">{cidade}, {estado}</div></li>
+                        <li className="cabecalho-texto"><div className="localizacao"><RiMapPinLine/> {cidade}, {estado}</div></li>
                         <li className="cabecalho-texto"><div className="temp-cadastro">Usuário desde 2018</div></li>
                     </div>
                 </div>
