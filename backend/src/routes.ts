@@ -31,14 +31,17 @@ routes.put("/anunciodestaque/:id", anuncioController.destacar);
 routes.post("/verificaseguidor/", anuncioController.verificaSeguidor);
 routes.put("/seguir", anuncioController.seguir);
 routes.put("/deixardeseguir", anuncioController.deixarDeSeguir);
-routes.post("/findallanuncios", anuncioController.findAll);
+routes.get("/findallanuncios", anuncioController.findAll);
 
 //denuncias
 routes.post("/denunciar", denunciaController.create);
 
 //comentarios
 routes.post("/comentar", comentarioController.create);
-routes.post("/encontrarcomentariosanuncio/:id", comentarioController.findCommentsByAnuncioId); 
+routes.post(
+  "/encontrarcomentariosanuncio/:id",
+  comentarioController.findCommentsByAnuncioId
+);
 
 //propagandas
 routes.post("/propaganda", propagandaController.create);

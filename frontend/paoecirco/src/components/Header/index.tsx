@@ -29,7 +29,7 @@ const Header: React.FC = () => {
   const loginId = localStorage.getItem("loginid") || "";
 
   const propsValid = (loginId: any) => {
-    if (loginId == "") return false;
+    if (loginId === "") return false;
     else return true;
   };
 

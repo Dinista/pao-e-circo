@@ -4,7 +4,7 @@ import { FormHandles } from "@unform/core";
 import { FiArrowLeft, FiMail, FiLock, FiUser } from "react-icons/fi";
 import { HiOutlineIdentification } from "react-icons/hi";
 import { FaBirthdayCake, FaCity } from "react-icons/fa";
-import { GiConsoleController, GiMailbox } from "react-icons/gi";
+import { GiMailbox } from "react-icons/gi";
 import Input from "../../components/Input/index";
 import Button from "../../components/Button/index";
 import api from "../../services/api";
@@ -22,7 +22,7 @@ interface SignUpFormData {
   estado: string;
   cidade: string;
   senha: string;
-  dataNasc: string; 
+  dataNasc: string;
 }
 
 const SignUp: React.FC = () => {
@@ -37,11 +37,15 @@ const SignUp: React.FC = () => {
         const schema = yup.object().shape({
           name: yup.string().required("Nome origatório."),
           cpf: yup
-            .number().typeError("Apenas digitos.")
+            .number()
+            .typeError("Apenas digitos.")
             .required("CPF obrigatório.")
             .min(11, "No mínimo 11 dígitos."),
 
-          email: yup.string().required("E-mail obrigatório.").email("E-mail inválido."),
+          email: yup
+            .string()
+            .required("E-mail obrigatório.")
+            .email("E-mail inválido."),
           dataNasc: yup.string().required("Data de nascimento necessária."),
           senha: yup.string().min(6, "No mínimo 6 dígitos."),
           endereco: yup.string().required("Endereço obrigatório."),
@@ -57,9 +61,9 @@ const SignUp: React.FC = () => {
           await api.post("/clientes", data);
           history.push("/signin");
         } catch (e) {
-          console.log(e.response.data.Erro)
-          formRef.current?.setErrors({email: e.response.data.Erro});
-        };
+          console.log(e.response.data.Erro);
+          formRef.current?.setErrors({ email: e.response.data.Erro });
+        }
       } catch (err) {
         const listaError = {
           name: "",
@@ -69,33 +73,34 @@ const SignUp: React.FC = () => {
           estado: "",
           cidade: "",
           senha: "",
-          dataNasc: "" }
+          dataNasc: "",
+        };
         //se for um erro do yup, tipo não digitou titulo, escolheu categoria, etc
         if (err instanceof yup.ValidationError) {
-          err.inner.forEach(erro =>{
-            if(erro.path === "name"){
-              listaError["name"] = erro.message
+          err.inner.forEach((erro) => {
+            if (erro.path === "name") {
+              listaError["name"] = erro.message;
             }
-            if(erro.path === "email"){
-              listaError["email"] = erro.message
+            if (erro.path === "email") {
+              listaError["email"] = erro.message;
             }
-            if(erro.path === "cpf"){
-              listaError["cpf"] = erro.message
+            if (erro.path === "cpf") {
+              listaError["cpf"] = erro.message;
             }
-            if(erro.path === "endereco"){
-              listaError["endereco"] = erro.message
+            if (erro.path === "endereco") {
+              listaError["endereco"] = erro.message;
             }
-            if(erro.path === "estado"){
-              listaError["estado"] = erro.message
+            if (erro.path === "estado") {
+              listaError["estado"] = erro.message;
             }
-            if(erro.path === "cidade"){
-              listaError["cidade"] = erro.message
+            if (erro.path === "cidade") {
+              listaError["cidade"] = erro.message;
             }
-            if(erro.path === "senha"){
-              listaError["senha"] = erro.message
+            if (erro.path === "senha") {
+              listaError["senha"] = erro.message;
             }
-            if(erro.path === "dataNasc"){
-              listaError["dataNasc"] = erro.message
+            if (erro.path === "dataNasc") {
+              listaError["dataNasc"] = erro.message;
             }
           });
           formRef.current?.setErrors(listaError);
@@ -125,7 +130,7 @@ const SignUp: React.FC = () => {
                 icon={FaBirthdayCake}
                 placeholder="Data de nascimento"
                 type="date"
-                className = "dataNasc"
+                className="dataNasc"
               ></Input>
               <Input
                 name="endereco"
@@ -147,8 +152,8 @@ const SignUp: React.FC = () => {
             </Form>
 
             <Link to="/signin">
-            <FiArrowLeft />
-            Já tem uma conta?
+              <FiArrowLeft />
+              Já tem uma conta?
             </Link>
           </AnimationContainer>
         </Content>

@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React from "react";
 import Header from "../../components/Header";
 
 const Perfil: React.FC = () => {

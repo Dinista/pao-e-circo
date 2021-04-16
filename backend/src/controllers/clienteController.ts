@@ -59,7 +59,7 @@ class ClienteController {
       return response.json({ logou: isRight, cliente });
     } catch (err) {
       console.log("erro login back-end: " + err);
-      
+
       return response.json({ logou: false });
     }
   }
