@@ -13,7 +13,6 @@ import CriarPropaganda from "./pages/CriarPropaganda";
 import BuscaAnuncio from "./pages/BuscaAnuncio";
 
 import MakeAnOffer from "./pages/Oferta";
-import Profile from "./pages/UserProfile";
 import Perfil from "./pages/Perfil";
 import EditarAnuncio from "./pages/EditarAnuncio";
 
@@ -28,8 +27,7 @@ ReactDOM.render(
         <Route path="/buscausuario" component={BuscaUsuario} />
         <Route path="/buscaanuncio" component={BuscaAnuncio} />
         <Route path="/gerenciarpropaganda" component={GerenciarPropaganda} />
-        <Route path="/profile" component={Profile} />
-        <Route path="/perfil" component={Perfil} />
+        <Route path="/perfil/:id" component={Perfil} />
 
         <Route path="/criarpropaganda" component={CriarPropaganda} />
         <Route path="/editaranuncio" component={EditarAnuncio} />

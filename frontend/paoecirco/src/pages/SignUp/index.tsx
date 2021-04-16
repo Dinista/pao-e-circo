@@ -17,7 +17,7 @@ import ExibirPropaganda from "../../components/ExibirPropaganda";
 interface SignUpFormData {
   name: string;
   email: string;
-  cpf: number;
+  cpf: string;
   endereco: string;
   estado: string;
   cidade: string;
@@ -28,7 +28,6 @@ interface SignUpFormData {
 const SignUp: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const history = useHistory();
-
   //funções
   const handleSubmit = useCallback(
     async (data: SignUpFormData) => {
@@ -36,16 +35,9 @@ const SignUp: React.FC = () => {
         formRef.current?.setErrors({});
         const schema = yup.object().shape({
           name: yup.string().required("Nome origatório."),
-          cpf: yup
-            .number()
-            .typeError("Apenas digitos.")
-            .required("CPF obrigatório.")
-            .min(11, "No mínimo 11 dígitos."),
 
-          email: yup
-            .string()
-            .required("E-mail obrigatório.")
-            .email("E-mail inválido."),
+          cpf: yup.string().matches(/^\d+$/, 'Apenas digitos.').min(11, "No mínimo 11 dígitos."),
+          email: yup.string().required("E-mail obrigatório.").email("E-mail inválido."),
           dataNasc: yup.string().required("Data de nascimento necessária."),
           senha: yup.string().min(6, "No mínimo 6 dígitos."),
           endereco: yup.string().required("Endereço obrigatório."),

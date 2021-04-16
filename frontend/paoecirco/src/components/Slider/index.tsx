@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, ContainerImg, Imagem } from "./styles";
 import { Link } from "react-router-dom";
+
 import api from "../../services/api";
 
 interface SliderDataa {
@@ -32,6 +33,7 @@ const ImageSlider = () => {
     );
     return () => {};
   }, [index]);
+
 
   return (
     <Container>
