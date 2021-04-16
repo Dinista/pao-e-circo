@@ -1,5 +1,7 @@
+
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import "./styles.css";
+
 import Header from "../../components/Header";
 import Cabecalho from "../../components/HeaderProfile";
 import Tabs from "../../components/Tabs";
