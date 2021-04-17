@@ -20,15 +20,10 @@ const BuscaAnuncio: React.FC = (props: any) => {
     itemDesejado,
     anunciante,
     foto1,
-    descricao,
     id,
+    descricao,
   } = (props.location && props.location.state) || {};
 
-  console.log(id);
-
-  var identificacao: string = id;
-
-  console.log("id: " + identificacao);
   return (
     <>
       <Header />
@@ -49,7 +44,7 @@ const BuscaAnuncio: React.FC = (props: any) => {
                   to={{
                     pathname: "/makeanoffer",
                     state: {
-                      id: identificacao,
+                      id: id,
                     },
                   }}
                 >

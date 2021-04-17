@@ -42,6 +42,7 @@ const Header: React.FC = () => {
   );
 
   const formRef = useRef<FormHandles>(null);
+  const formRef1 = useRef<FormHandles>(null);
 
   const [stateUsuario, setStateUsuario] = useState<StateBuscaUsuario>({
     name: "",
@@ -65,9 +66,13 @@ const Header: React.FC = () => {
     setIsLoggedIn(false);
   }
 
-  const handleSubmitUsuario = useCallback(async (data: any) => {
+  interface NameFormData {
+    anuncio: string;
+  }
+
+  const handleSubmitUsuario = useCallback(async (data: NameFormData) => {
     try {
-      formRef.current?.setErrors({});
+      formRef1.current?.setErrors({});
       const schema = yup.object().shape({
         name: yup.string().required("Campo obrigatório"),
       });
@@ -75,9 +80,20 @@ const Header: React.FC = () => {
       await schema.validate(data, {
         abortEarly: false,
       });
-      const resultado = await api.post("clientess", data);
 
-      setStateUsuario(resultado.data);
+      const resultado = await api.post("findbynameusuario", data);
+
+      history.push({
+        pathname: "/buscausuario",
+        state: {
+          foto:
+            "https://www.ahnegao.com.br/wp-content/uploads/2015/04/capa.jpg",
+          nome: resultado.data[0].name,
+          cidade: resultado.data[0].cidade,
+          id: resultado.data[0].id,
+          estado: resultado.data[0].estado,
+        },
+      });
     } catch (err) {
       //se for um erro do yup, tipo não digitou senha, email inválido, etc
       if (err instanceof yup.ValidationError) {
@@ -100,18 +116,17 @@ const Header: React.FC = () => {
       await schema.validate(data, {
         abortEarly: false,
       });
+
       const resultado = await api.post("/findbyname", data);
       const dono = await api.post(
         `/findclientebyid/${resultado.data[0].clienteId}`
       );
 
-      console.log(resultado.data[0].clienteId);
-
       history.push({
         pathname: "/buscaanuncio",
         state: {
           foto1: resultado.data[0].foto1,
-          id: resultado.data[0].clienteId,
+          id: resultado.data[0].id,
           descricao: resultado.data[0].descricao,
           titulo: resultado.data[0].titulo,
           anunciante: dono.data[0].name,
@@ -136,7 +151,7 @@ const Header: React.FC = () => {
 
         <div className="containerAleatorio">
           <Form
-            ref={formRef}
+            ref={formRef1}
             onSubmit={handleSubmitUsuario}
             className="containerAleatorio"
           >
@@ -144,7 +159,7 @@ const Header: React.FC = () => {
               type="text"
               icon={FiSearch}
               name="name"
-              onSubmit={handleSubmitUsuario}
+              onSubmit={() => handleSubmitUsuario}
               placeholder="Buscar um usuário..."
               className="inputText"
             ></Input>
@@ -162,7 +177,7 @@ const Header: React.FC = () => {
               type="text"
               icon={FiSearch}
               name="anuncio"
-              onSubmit={handleSubmitAnuncio}
+              onSubmit={() => handleSubmitAnuncio}
               placeholder="Buscar um anúncio..."
               className="inputText"
             ></Input>

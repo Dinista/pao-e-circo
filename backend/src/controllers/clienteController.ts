@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import Notificacoes from "models/NotificacaoTroca";
-import { getConnection, getRepository } from "typeorm";
+import { getConnection, getManager, getRepository } from "typeorm";
 import Cliente from "../models/Cliente";
 
 class ClienteController {
@@ -48,6 +48,20 @@ class ClienteController {
     return response.json("funfou se pa em");
   }
 
+  async findbyname(request: Request, response: Response) {
+    const { name } = request.body;
+    const entityManager = getManager();
+    const someQuery = await entityManager.query(
+      `
+      SELECT id, name, endereco, cpf, cidade, estado, "dataNasc", email, senha, nota, "numTrocas"
+      FROM 	clientes where name = '` +
+        name +
+        `'
+  `
+    );
+    return response.json(someQuery);
+  }
+
   async login(request: Request, response: Response) {
     const { name, senha } = request.body;
     var crypto = require("crypto");
@@ -74,12 +88,13 @@ class ClienteController {
   }
 
   async findById(request: Request, response: Response) {
-    try{
+    console.log(request.params.id);
+    try {
       const clienteRepository = getRepository(Cliente);
       const cliente = await clienteRepository.find({ id: request.params.id });
       return response.json(cliente);
-    }catch{
-      return response.json({error: "Não existe"})
+    } catch {
+      return response.json({ error: "Não existe" });
     }
   }
 }

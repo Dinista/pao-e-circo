@@ -18,6 +18,7 @@ const comentarioController = new ComentarioController();
 //clientes
 routes.post("/clientes", clienteController.create);
 routes.post("/clientess", clienteController.find);
+routes.post("/findbynameusuario", clienteController.findbyname);
 routes.post("/findclientebyid/:id", clienteController.findById);
 routes.get("/perfil/:id", clienteController.findById);
 routes.post("/login", clienteController.login);

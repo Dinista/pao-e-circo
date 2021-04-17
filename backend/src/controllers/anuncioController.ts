@@ -86,7 +86,7 @@ class AnuncioController {
     const entityManager = getManager();
     const someQuery = await entityManager.query(
       `
-  SELECT titulo, foto1, descricao, "itemDesejado", "valorEstimado", "clienteId"
+  SELECT id, titulo, foto1, descricao, "itemDesejado", "valorEstimado", "clienteId"
 	FROM anuncios where titulo = '` +
         anuncio +
         `'
