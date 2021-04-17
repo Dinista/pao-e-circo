@@ -175,7 +175,10 @@ const Oferta: React.FC = (props: any) => {
         <ModalReactRealizarOferta
           isOpen={isModalRealizarOfertaOpen}
           onRequestClose={handleCloseModalRealizarOferta}
-          id={localStorage.getItem("loginid" || "")}
+          ofertante={localStorage.getItem("loginid" || "")}
+          anuncio={adData?.id}
+          anunciante={adData?.cliente.id}
+          texto="bora trocar aí po"
         />
 
         <ModalReactDenuncia
