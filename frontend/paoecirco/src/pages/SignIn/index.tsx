@@ -15,18 +15,19 @@ interface SignInFormData {
   senha: string;
 }
 
-
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const history = useHistory();
   const handleSubmit = useCallback(
     async (data: SignInFormData) => {
-      console.log(data)
       try {
         formRef.current?.setErrors({});
         const schema = yup.object().shape({
-          name: yup.string().email("E-mail inválido.").required("Insira um e-mail."),
-          senha: yup.string().required("Insira a senha.")
+          name: yup
+            .string()
+            .email("E-mail inválido.")
+            .required("Insira um e-mail."),
+          senha: yup.string().required("Insira a senha."),
         });
 
         await schema.validate(data, {
@@ -38,7 +39,7 @@ const SignIn: React.FC = () => {
           localStorage.setItem("loginid", teste.data.cliente[0].id);
           alert("Login efetuado com sucesso");
           history.push({
-            pathname: "/perfil/" + localStorage.getItem('loginid'),
+            pathname: "/perfil/" + localStorage.getItem("loginid"),
           });
         } else {
           const element = document.getElementById("errorLogin");

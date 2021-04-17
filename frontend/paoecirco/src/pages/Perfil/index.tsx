@@ -1,4 +1,3 @@
-
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import "./styles.css";
 
@@ -19,8 +18,7 @@ import TrocasCard from "../../components/TrocasCard";
 
 //import BG from "../../assets/bg-perfil.jpg";
 
-
-declare module 'react' {
+declare module "react" {
   interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
     // extends React's HTMLAttributes
     label?: string;
@@ -36,14 +34,13 @@ interface cliente {
   nota: any,
 }
 
-
 const Perfil: React.FC = () => {
 
   // Perfil data handle
 
   const loginId = localStorage.getItem("loginid");
-  const [perfilData, setperfilData] = useState<cliente>()
-  const [isOwner, setIsOwner] = useState<boolean>(false)
+  const [perfilData, setperfilData] = useState<cliente>();
+  const [isOwner, setIsOwner] = useState<boolean>(false);
   const urlParams = useParams() as object;
   const dataUser = perfilData?.dataNasc?.split("-") as any || 0
   const [perfilExist, setPerfilExist] = useState(true)
@@ -55,14 +52,15 @@ const Perfil: React.FC = () => {
       ano_atual = d.getFullYear(),
       mes_atual = d.getMonth() + 1,
       dia_atual = d.getDate(),
-
       anoAniversario = +anoAniversario,
       mesAniversario = +mesAniversario,
       diaAniversario = +diaAniversario,
-
       quantos_anos = ano_atual - anoAniversario;
 
-    if (mes_atual < mesAniversario || mes_atual == mesAniversario && dia_atual < diaAniversario) {
+    if (
+      mes_atual < mesAniversario ||
+      (mes_atual == mesAniversario && dia_atual < diaAniversario)
+    ) {
       quantos_anos--;
     }
 
@@ -79,13 +77,13 @@ const Perfil: React.FC = () => {
     return ref.current;
   }
 
-  const prevURL = usePrevious((urlParams as any).id)
+  const prevURL = usePrevious((urlParams as any).id);
 
   useEffect(() => {
     if ((urlParams as any).id != prevURL && prevURL != undefined) {
-      window.location.reload()
+      window.location.reload();
     }
-  }, [urlParams])
+  }, [urlParams]);
 
   // perfil tratamento
 
@@ -109,8 +107,8 @@ const Perfil: React.FC = () => {
   const [anuncio, setAnuncios] = useState(json);
   useEffect(() => {
     api.post(`/anunciosall/${(urlParams as any).id}`).then((response) => {
-      setAnuncios(response.data)
-    })
+      setAnuncios(response.data);
+    });
   }, []);
 
   // Paginação estados
@@ -120,7 +118,7 @@ const Perfil: React.FC = () => {
   const visitedPages = pageNumber * numberPerPage;
   const totalPages = Math.ceil(anuncio.length / numberPerPage);
   const a = "";
-  const [display, setDis] = useState(a as any)
+  const [display, setDis] = useState(a as any);
   const [isclicked, setclicked] = useState(false);
 
   // Paginação
@@ -128,7 +126,7 @@ const Perfil: React.FC = () => {
     if ((pageNumber + 1) < totalPages) {
       setPageNumber(pageNumber + 1)
     }
-  }
+  };
 
   // Carrega conteúdo entre as tabs
   const clickAtivos = () => {
@@ -138,7 +136,7 @@ const Perfil: React.FC = () => {
   // Paginação
   const setprev = () => {
     if (pageNumber > 0) {
-      setPageNumber(pageNumber - 1)
+      setPageNumber(pageNumber - 1);
     }
   }
 
@@ -150,23 +148,27 @@ const Perfil: React.FC = () => {
 
     if (anuncio.length <= 0) {
       if (HTMLAtivo > 0) {
-        HTMLnext.style.display = "none"
+        HTMLnext.style.display = "none";
       }
-      setDis(() => { return (<div className='semAnuncio'>Ainda não tem anúncios &#128546;</div>) })
+      setDis(() => {
+        return (
+          <div className="semAnuncio">Ainda não tem anúncios &#128546;</div>
+        );
+      });
     } else if (HTMLAtivo > 0) {
       if (totalPages == 1) {
-        HTMLnext.style.display = "none"
-        HTMLprev.style.display = "none"
+        HTMLnext.style.display = "none";
+        HTMLprev.style.display = "none";
       }
       if (pageNumber + 1 == totalPages) {
-        HTMLnext.style.display = "none"
+        HTMLnext.style.display = "none";
       } else {
-        HTMLnext.style.display = "block"
+        HTMLnext.style.display = "block";
       }
       if (pageNumber == 0) {
-        HTMLprev.style.display = "none"
+        HTMLprev.style.display = "none";
       } else {
-        HTMLprev.style.display = "block"
+        HTMLprev.style.display = "block";
       }
       setDis(anuncio.slice(visitedPages, visitedPages + numberPerPage)
         .map((anuncio: any, i: any) => {
@@ -272,11 +274,17 @@ if (perfilExist === false) {
     <>
       <div className="PerfilContainer">
         <Header />
-        <div className="bg"><img src="" alt="" /></div>
+        <div className="bg">
+          <img src="" alt="" />
+        </div>
         <div onClick={clickAtivos}>
           <Cabecalho
             nome={perfilData?.name?.split(" ")[0]}
-            idade={idade(parseInt(dataUser[0], 10), parseInt(dataUser[1], 10), parseInt(dataUser[2], 10))}
+            idade={idade(
+              parseInt(dataUser[0], 10),
+              parseInt(dataUser[1], 10),
+              parseInt(dataUser[2], 10)
+            )}
             cidade={perfilData?.cidade}
             estado={perfilData?.estado}
             nota={perfilData?.nota}
@@ -284,12 +292,14 @@ if (perfilExist === false) {
           <Tabs>
             <div label="Anúncios Ativos">
               <div className="Conteiner-Anuncios-Ativos">
-                <div className="Paginate">
-                  {display}
-                </div>
+                <div className="Paginate">{display}</div>
                 <div className="controls">
-                  <button onClick={() => setprev()} className="prev">Anterior</button>
-                  <button onClick={() => setnext()} className="next">Próxima</button>
+                  <button onClick={() => setprev()} className="prev">
+                    Anterior
+                  </button>
+                  <button onClick={() => setnext()} className="next">
+                    Próxima
+                  </button>
                 </div>
               </div>
             </div>
@@ -306,10 +316,10 @@ if (perfilExist === false) {
             </div>
             <div label="Seguindo">
               Nothing to see here, this tab is <em>extinct</em>!
-        </div>
+            </div>
           </Tabs>
         </div>
-        <div>{ }</div>
+        <div>{}</div>
       </div>
     </>
   );

@@ -3,12 +3,13 @@ import "./styles.css";
 import Logo from "../../assets/logo.png";
 import Avatar from "../../assets/avatar-mini.jpg";
 import { FiSearch } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { FormHandles } from "@unform/core";
 import * as yup from "yup";
 import api from "../../services/api";
 import { Form } from "@unform/web";
 import Input from "../Input";
+import Dropdown from "../DropDownNotificacao";
 
 interface StateBuscaUsuario {
   name: string;
@@ -21,11 +22,14 @@ interface StateBuscaUsuario {
 interface StateBuscaAnuncio {
   titulo: string;
   valorEstimado: string;
+  foto1: string;
+  descricao: string;
   itemDesejado: string;
-  anunciante: string;
+  clienteId: string;
 }
 
 const Header: React.FC = () => {
+  const history = useHistory();
   const loginId = localStorage.getItem("loginid") || "";
 
   const propsValid = (loginId: any) => {
@@ -38,6 +42,7 @@ const Header: React.FC = () => {
   );
 
   const formRef = useRef<FormHandles>(null);
+  const formRef1 = useRef<FormHandles>(null);
 
   const [stateUsuario, setStateUsuario] = useState<StateBuscaUsuario>({
     name: "",
@@ -49,9 +54,11 @@ const Header: React.FC = () => {
 
   const [stateAnuncio, setStateAnuncio] = useState<StateBuscaAnuncio>({
     titulo: "",
+    descricao: "",
+    foto1: "",
     valorEstimado: "",
     itemDesejado: "",
-    anunciante: "flavin do pneu",
+    clienteId: "flavin do pneu",
   });
 
   function handleLogout() {
@@ -60,9 +67,13 @@ const Header: React.FC = () => {
     window.location.reload()
   }
 
-  const handleSubmitUsuario = useCallback(async (data: any) => {
+  interface NameFormData {
+    anuncio: string;
+  }
+
+  const handleSubmitUsuario = useCallback(async (data: NameFormData) => {
     try {
-      formRef.current?.setErrors({});
+      formRef1.current?.setErrors({});
       const schema = yup.object().shape({
         name: yup.string().required("Campo obrigatório"),
       });
@@ -70,9 +81,20 @@ const Header: React.FC = () => {
       await schema.validate(data, {
         abortEarly: false,
       });
-      const resultado = await api.post("clientess", data);
 
-      setStateUsuario(resultado.data);
+      const resultado = await api.post("findbynameusuario", data);
+
+      history.push({
+        pathname: "/buscausuario",
+        state: {
+          foto:
+            "https://www.ahnegao.com.br/wp-content/uploads/2015/04/capa.jpg",
+          nome: resultado.data[0].name,
+          cidade: resultado.data[0].cidade,
+          id: resultado.data[0].id,
+          estado: resultado.data[0].estado,
+        },
+      });
     } catch (err) {
       //se for um erro do yup, tipo não digitou senha, email inválido, etc
       if (err instanceof yup.ValidationError) {
@@ -81,7 +103,11 @@ const Header: React.FC = () => {
     }
   }, []);
 
-  const handleSubmitAnuncio = useCallback(async (data: any) => {
+  interface AnuncioFormData {
+    anuncio: string;
+  }
+
+  const handleSubmitAnuncio = useCallback(async (data: AnuncioFormData) => {
     try {
       formRef.current?.setErrors({});
       const schema = yup.object().shape({
@@ -91,9 +117,24 @@ const Header: React.FC = () => {
       await schema.validate(data, {
         abortEarly: false,
       });
-      const resultado = await api.post("anuncioss", data);
 
-      setStateAnuncio(resultado.data);
+      const resultado = await api.post("/findbyname", data);
+      const dono = await api.post(
+        `/findclientebyid/${resultado.data[0].clienteId}`
+      );
+
+      history.push({
+        pathname: "/buscaanuncio",
+        state: {
+          foto1: resultado.data[0].foto1,
+          id: resultado.data[0].id,
+          descricao: resultado.data[0].descricao,
+          titulo: resultado.data[0].titulo,
+          anunciante: dono.data[0].name,
+          itemDesejado: resultado.data[0].itemDesejado,
+          valorEstimado: resultado.data[0].valorEstimado,
+        },
+      });
     } catch (err) {
       //se for um erro do yup, tipo não digitou senha, email inválido, etc
       if (err instanceof yup.ValidationError) {
@@ -111,7 +152,7 @@ const Header: React.FC = () => {
 
         <div className="containerAleatorio">
           <Form
-            ref={formRef}
+            ref={formRef1}
             onSubmit={handleSubmitUsuario}
             className="containerAleatorio"
           >
@@ -119,26 +160,13 @@ const Header: React.FC = () => {
               type="text"
               icon={FiSearch}
               name="name"
-              onSubmit={handleSubmitUsuario}
+              onSubmit={() => handleSubmitUsuario}
               placeholder="Buscar um usuário..."
               className="inputText"
             ></Input>
 
-            <button className="iconContainer" type="submit">
-              <Link
-                to={{
-                  pathname: "/buscausuario",
-                  state: {
-                    name: stateUsuario.name,
-                    avaliacao: stateUsuario.avaliacao,
-                    cidade: stateUsuario.cidade,
-                    estado: stateUsuario.estado,
-                  },
-                }}
-                className="linkContainerHeader"
-              >
-                Buscar usuário
-              </Link>
+            <button className="iconContainer" type="submit" name="submitButton">
+              Buscar usuário
             </button>
           </Form>
           <Form
@@ -150,25 +178,12 @@ const Header: React.FC = () => {
               type="text"
               icon={FiSearch}
               name="anuncio"
-              onSubmit={handleSubmitAnuncio}
+              onSubmit={() => handleSubmitAnuncio}
               placeholder="Buscar um anúncio..."
               className="inputText"
             ></Input>
-            <button className="iconContainer" type="submit">
-              <Link
-                to={{
-                  pathname: "/buscaanuncio",
-                  state: {
-                    titulo: stateAnuncio.titulo,
-                    anunciante: "Flavin do pneu",
-                    itemDesejado: stateAnuncio.itemDesejado,
-                    valorEstimado: stateAnuncio.valorEstimado,
-                  },
-                }}
-                className="linkContainerHeader"
-              >
-                Buscar anúncio
-              </Link>
+            <button className="iconContainer" type="submit" name="submitButton">
+              Buscar anúncio
             </button>
           </Form>
         </div>
@@ -176,7 +191,7 @@ const Header: React.FC = () => {
 
       {isLoggedIn ? (
         <div className="loggedContainer">
-          <Link to={{ pathname: `/perfil/${loginId}`,  state: { id: loginId } } }>
+          <Link to={{ pathname: `/perfil/${loginId}`, state: { id: loginId } }}>
             <img src={Avatar} className="avatar" alt="avatar" />
           </Link>
 
@@ -186,8 +201,8 @@ const Header: React.FC = () => {
           <Link to="/createexchangead" className="linkLogged">
             ANUNCIAR
           </Link>
+          <Dropdown />
 
-          <Link to={`/usuario/ae`} className="link"></Link>
           <button onClick={handleLogout} className="sair">
             SAIR
           </button>

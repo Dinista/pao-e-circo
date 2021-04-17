@@ -1,24 +1,35 @@
-import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToMany,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import Anuncio from "./Anuncio";
 import Cliente from "./Cliente";
 
 @Entity("notificacoes")
 class Notificacoes {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn("uuid")
   idNotificacao: string;
 
-  @ManyToOne(() => Anuncio, anuncio => anuncio.notificacoesTroca)
+  @ManyToOne(() => Anuncio, (anuncio) => anuncio.notificacoesTroca)
   @JoinColumn()
   anuncio: Anuncio;
 
-  @ManyToOne(() => Cliente, Cliente => Cliente.notificacoesTrocaOfertante)
+  @ManyToOne(() => Anuncio, (anuncio) => anuncio.notificacoesTroca)
+  @JoinColumn()
+  ofertaTroca: Anuncio;
+
+  @ManyToOne(() => Cliente, (Cliente) => Cliente.notificacoesTrocaOfertante)
   @JoinColumn()
   ofertante: Cliente;
 
-  @ManyToOne(() => Cliente, Cliente => Cliente.notificacoesTrocaAnunciante)
+  @ManyToOne(() => Cliente, (Cliente) => Cliente.notificacoesTrocaAnunciante)
   @JoinColumn()
   anunciante: Cliente;
-  
+
   @Column()
   texto: string;
 }
