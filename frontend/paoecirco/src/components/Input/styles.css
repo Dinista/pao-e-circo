@@ -1,18 +1,22 @@
-.erro{
-    text-align: left;
-    font-size: smaller;
-    color: red;
+.erro {
+  text-align: left;
+  font-size: smaller;
+  color: red;
 }
 
-.iconeErro{
-    color: red;
-    font-size: 17px;
+.iconeErro {
+  color: red;
+  font-size: 17px;
 }
 
-input::placeholder{
-    opacity: 0.6;
+input::placeholder {
+  opacity: 0.6;
 }
 
-input:focus{
-    opacity: 1;
+input:focus {
+  opacity: 1;
+}
+
+.issoai {
+  width: 90%;
 }

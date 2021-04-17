@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
-import { getRepository } from "typeorm";
+import Notificacoes from "models/NotificacaoTroca";
+import { getConnection, getRepository } from "typeorm";
 import Cliente from "../models/Cliente";
 
 class ClienteController {

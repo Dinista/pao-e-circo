@@ -1,9 +1,6 @@
 import { Request, Response } from "express";
-import { createConnection } from "net";
-import { Connection, getConnection, getRepository } from "typeorm";
+import { getConnection, getManager, getRepository } from "typeorm";
 import Anuncio from "../../src/models/Anuncio";
-import Cliente from "../models/Cliente";
-import ClienteController from "./clienteController";
 
 class AnuncioController {
   async create(request: Request, response: Response) {
@@ -81,6 +78,22 @@ class AnuncioController {
     const anuncio = await anuncioRepository.find({ id: request.params.id });
 
     return response.json(anuncio[0]);
+  }
+
+  async findByName(request: Request, response: Response) {
+    const { anuncio } = request.body;
+    console.log(anuncio);
+    const entityManager = getManager();
+    const someQuery = await entityManager.query(
+      `
+  SELECT titulo, foto1, descricao, "itemDesejado", "valorEstimado", "clienteId"
+	FROM anuncios where titulo = '` +
+        anuncio +
+        `'
+  `
+    );
+    console.log(someQuery);
+    return response.json(someQuery);
   }
 
   async findAll(request: Request, response: Response) {

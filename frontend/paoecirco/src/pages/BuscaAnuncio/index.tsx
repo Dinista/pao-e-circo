@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { BsPersonFill } from "react-icons/bs";
-import { MdAttachMoney } from "react-icons/md";
+import { MdAttachMoney, MdDescription } from "react-icons/md";
 import {
   Container,
   TituloDestaque,
@@ -10,11 +10,25 @@ import {
 } from "./styles";
 import Header from "../../components/Header";
 import ExibirPropaganda from "../../components/ExibirPropaganda";
+import api from "../../services/api";
+import { Link } from "react-router-dom";
 
 const BuscaAnuncio: React.FC = (props: any) => {
-  const { titulo, valorEstimado, itemDesejado, anunciante } =
-    (props.location && props.location.state) || {};
+  const {
+    titulo,
+    valorEstimado,
+    itemDesejado,
+    anunciante,
+    foto1,
+    descricao,
+    id,
+  } = (props.location && props.location.state) || {};
 
+  console.log(id);
+
+  var identificacao: string = id;
+
+  console.log("id: " + identificacao);
   return (
     <>
       <Header />
@@ -25,12 +39,27 @@ const BuscaAnuncio: React.FC = (props: any) => {
           <div>
             <ContainerItemDestaque>
               <ImageContainer
-                src="https://cdn-images.win.gg/resize/w/1200/h/678/format/jpg/type/progressive/fit/cover/path/news/43207fd5e34f87c48d584fc5c11befb8/a5781441559308f9a8ec02269ff2dfba/original.jpg"
+                src={foto1}
                 alt="dataimg"
                 className="cardAvatar"
               />
               <div className="container2">
-                <h1 className="descricaoCardContainer">{titulo}</h1>
+                <Link
+                  className="linkContainerDestaques"
+                  to={{
+                    pathname: "/makeanoffer",
+                    state: {
+                      id: identificacao,
+                    },
+                  }}
+                >
+                  <h1 className="descricaoCardContainer">{titulo}</h1>
+                </Link>
+
+                <div className="avaliacaoContainer">
+                  <MdDescription className="iconeEstrela" /> Valor estimado:{" "}
+                  {descricao}
+                </div>
                 <div className="vendedorContainer">
                   <BsPersonFill className="iconePessoa" /> Vendedor:{" "}
                   {anunciante}

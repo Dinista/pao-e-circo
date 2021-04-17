@@ -33,6 +33,7 @@ routes.post("/verificaseguidor/", anuncioController.verificaSeguidor);
 routes.put("/seguir", anuncioController.seguir);
 routes.put("/deixardeseguir", anuncioController.deixarDeSeguir);
 routes.get("/findallanuncios", anuncioController.findAll);
+routes.post("/findbyname", anuncioController.findByName);
 
 //denuncias
 routes.post("/denunciar", denunciaController.create);
@@ -54,4 +55,5 @@ routes.put("/propagandaimage/:id", propagandaController.updateImagem);
 
 //notificações
 routes.post("/notificacoes", notificacoesTrocaController.create);
+routes.get("/notificacoes", notificacoesTrocaController.findAllNotifications);
 export default routes;
