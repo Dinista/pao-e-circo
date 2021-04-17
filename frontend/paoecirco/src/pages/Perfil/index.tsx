@@ -201,13 +201,13 @@ const Perfil: React.FC = () => {
 
   const setnext_Trocas = () => {
     if ((pageNumber_Trocas + 1) < totalPages_Trocas) {
-      setPageNumber(pageNumber_Trocas + 1)
+      setPageNumber_Trocas(pageNumber_Trocas + 1)
     }
   }
 
   const setprev_Trocas = () => {
     if (pageNumber_Trocas > 0) {
-      setPageNumber(pageNumber_Trocas - 1)
+      setPageNumber_Trocas(pageNumber_Trocas - 1)
     }
   }
 
@@ -220,7 +220,7 @@ const Perfil: React.FC = () => {
       if (HTMLAtivo_troca > 0) {
         HTMLnext_troca.style.display = "none"
       }
-      setDis_Trocas(() => { return (<div className='semAnuncio'>Ainda não tem anúncios &#128546;</div>) })
+      setDis_Trocas(() => { return (<div className='semAnuncio'>Ainda não relaizou nenhuma troca &#128546;</div>) })
     } else if (HTMLAtivo_troca > 0) {
       if (totalPages_Trocas == 1) {
         HTMLnext_troca.style.display = "none"

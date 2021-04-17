@@ -107,9 +107,9 @@ const SignIn: React.FC = () => {
             </div>
           </div>
         </div>
-        <button className="buttonLogin" name="submitButton" type="submit">
+        <div className= "btn-align"><button className="buttonLogin" name="submitButton" type="submit">
           Entrar
-        </button>
+        </button></div>
       </Form>
 
       <Link to="/forgot" className="linkEsqueciASenha">
