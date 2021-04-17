@@ -202,20 +202,17 @@ const Oferta: React.FC = (props: any) => {
             slides={[adData?.foto1, adData?.foto2, adData?.foto3]}
           ></ImageSliderAnuncio>
 
-          <ContainerComments>
-            <h2> Comentários </h2>
-            {/* MAP*/}
-            {comentarios.map((comentario) => (
-              <div key={comentario.texto}>
-                <p>{comentario.comentador?.name}</p>
-                <p>{comentario.data}</p>
-                <p>{comentario.texto}</p>
-              </div>
-            ))}
-          </ContainerComments>
         </ContainerFlexVerticalWider>
 
         <ContainerFlexVertical className="VerticalContainerRight">
+          <h2> Informações do anúncio </h2>
+          <p> Objeto: {adData?.nomeObjeto} </p>
+          <p> Categoria: {adData?.categoria} </p>
+          <p> Estado: {adData?.estadoConservacao} </p>
+          <p> Descricao: {adData?.descricao} </p>
+          <p> Itens desejados em troca: {adData?.itemDesejado} </p>
+          <p> Valor estimado: {adData?.valorEstimado} </p>
+          
           {ehDonoAnuncio ? (
             <div>
               <Button onClick={() => handleDelete(adData?.id)}>
@@ -232,25 +229,6 @@ const Oferta: React.FC = (props: any) => {
               >
                 <Button>Editar anúncio</Button>
               </Link>
-
-              <Form ref={formRef} onSubmit={handleCommentSubmit}>
-                <Input
-                  name="texto"
-                  icon={FiAlignJustify}
-                  placeholder=" Ex: 'Ele é pesado?'"
-                ></Input>
-                <SubText text="Comente ou responda dúvidas sobre seu anuncio. Pelo menos 5 caracteres." />
-
-                <InvisibleInput
-                  name="anuncio"
-                  defaultValue={adData?.id}
-                ></InvisibleInput>
-
-                <ButtonStyled name="submitButton" type="submit">
-                  Enviar comentário
-                </ButtonStyled>
-              </Form>
-
             </div>
           ) : (
             <>
@@ -272,7 +250,42 @@ const Oferta: React.FC = (props: any) => {
               <Button onClick={handleOpenModalDenuncia}>
                 Denunciar anúncio
               </Button>
+            </>
+          )}
 
+          
+        </ContainerFlexVertical>
+      </ExternalContainer>
+
+      <ContainerComments>
+            <h2> Comentários </h2>
+            {/* MAP*/}
+            {comentarios.map((comentario) => (
+              <div key={comentario.texto}>
+                <p>{comentario.comentador?.name}</p>
+                <p>{comentario.data}</p>
+                <p>{comentario.texto}</p>
+              </div>
+            ))}
+            {ehDonoAnuncio ? (
+              <Form ref={formRef} onSubmit={handleCommentSubmit}>
+                <Input
+                  name="texto"
+                  icon={FiAlignJustify}
+                  placeholder=" Ex: 'Ele é pesado?'"
+                ></Input>
+                <SubText text="Comente ou responda dúvidas sobre seu anuncio. Pelo menos 5 caracteres." />
+
+                <InvisibleInput
+                  name="anuncio"
+                  defaultValue={adData?.id}
+                ></InvisibleInput>
+
+                <ButtonStyled name="submitButton" type="submit">
+                  Enviar comentário
+                </ButtonStyled>
+              </Form>
+            ) : (
               <Form ref={formRef} onSubmit={handleCommentSubmit}>
                 <Input
                   name="texto"
@@ -290,20 +303,9 @@ const Oferta: React.FC = (props: any) => {
                   Enviar comentário
                 </ButtonStyled>
               </Form>
-            </>
-          )}
-
-          <h2> Informações do anúncio </h2>
-          <p> Objeto: {adData?.nomeObjeto} </p>
-          <p> Categoria: {adData?.categoria} </p>
-          <p> Estado: {adData?.estadoConservacao} </p>
-          <p> Descricao: {adData?.descricao} </p>
-          <p> Itens desejados em troca: {adData?.itemDesejado} </p>
-          <p> Valor estimado: {adData?.valorEstimado} </p>
-        </ContainerFlexVertical>
-      </ExternalContainer>
-
-      <ExibirPropaganda />
+            )}
+      </ContainerComments>
+      <ExibirPropaganda/>
     </>
   );
 };

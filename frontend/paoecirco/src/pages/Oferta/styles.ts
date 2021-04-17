@@ -1,39 +1,40 @@
 import styled from "styled-components";
 
 export const ExternalContainer = styled.div`
+  position: relative;
+  left: 10%;
   display: flex;
-  flex-direction: row;
+  
 `;
 
 export const ContainerFlexVertical = styled.div`
   background-color: pink;
-  height: 60rem;
   width: 20rem;
-  font-size: 0.9rem;
   margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.7rem;
   border-radius: 1rem;
   padding-top: 0.5rem;
   text-align: left;
+  padding-left: 0.7rem;
 `;
 
 export const ContainerFlexVerticalWider = styled.div`
   background-color: pink;
-  height: 60rem;
   width: 40rem;
-  font-size: 0.9rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  margin-left: 3rem;
-  margin-right: 3rem;
+  margin: 1rem 1rem 1rem 1rem;
   border-radius: 1rem;
   padding-top: 0.5rem;
   text-align: left;
+  padding-left: 0.7rem;
 `;
 
 export const ContainerComments = styled.div`
   background-color: green;
   text-align: center;
+  position: relative;
+  max-width: 34%;
+  left: 29.9%;
+  border-radius: 1rem;
 `;
 
 /*
