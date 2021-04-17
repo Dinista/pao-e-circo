@@ -57,6 +57,7 @@ const Header: React.FC = () => {
   function handleLogout() {
     localStorage.removeItem("loginid");
     setIsLoggedIn(false);
+    window.location.reload()
   }
 
   const handleSubmitUsuario = useCallback(async (data: any) => {

@@ -1,0 +1,134 @@
+.gridCard-troca{
+    width: 230px;
+    height: 300px;
+    display: grid;
+    grid-template-columns: 4fr 1fr 4fr;
+    grid-template-rows: 0.5fr 0.4fr 0.4fr 0fr 0fr 0fr;
+    padding: 0px;
+    grid-gap: 5px;
+    margin: 0px;
+    font-size: 14px;
+}
+
+.gridCard-troca>li{
+    list-style: none;
+}
+
+.Img1-troca{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:rgb(238, 238, 238);
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.troca-titulo1{
+    display: flex;
+    justify-content: center;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+.Icon-troca{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.Img2-troca{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:rgb(228, 228, 228);
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.troca-titulo2{
+    display: flex;
+    justify-content: center;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+.NumNota{
+    display: flex;
+    width: 25px;
+    height: 25px;
+    align-items: center;
+    justify-content: center;
+    color: rgb(255, 255, 255);
+    font-size: 13px;
+    background-color: rgb(238, 186, 15);
+    border-radius: 10%;
+    font-weight: 700;
+    margin-left: 10px;
+}
+
+.Estrelas-troca{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    color: rgb(238, 186, 15);
+    font-size: 20px;
+}
+
+.info-troca1{
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 4;
+    grid-row-end: 5;
+}
+
+.info-troca2{
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 5;
+    grid-row-end: 6;
+}
+
+.info-troca3{
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 6;
+    grid-row-end: 7;
+}
+
+.Container_class{
+    display: flex;
+    padding: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 0px 8px rgb(218, 218, 218);
+    -moz-box-shadow: 0 0px 8px rgb(207, 207, 207);
+    box-shadow: 0 0px 8px rgb(206, 206, 206);
+}
+
+.Destaque-troca{
+    color: #d6526c;
+}
+
+.img-product{
+    max-width: 140%;
+}

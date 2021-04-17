@@ -1,7 +1,7 @@
 import React, { useCallback, useRef } from "react";
 import logo from "../../assets/logo.png";
 import "./styles.css";
-import { FaEnvelope, FaLock} from "react-icons/fa";
+import { FaEnvelope, FaLock } from "react-icons/fa";
 import { Link, useHistory } from "react-router-dom";
 import * as yup from "yup";
 import ExibirPropaganda from "../../components/ExibirPropaganda";
@@ -28,11 +28,11 @@ const SignIn: React.FC = () => {
           name: yup.string().email("E-mail inválido.").required("Insira um e-mail."),
           senha: yup.string().required("Insira a senha.")
         });
-        
+
         await schema.validate(data, {
           abortEarly: false,
         });
-        
+
         const teste = await api.post("/login", data);
         if (teste.data.logou) {
           localStorage.setItem("loginid", teste.data.cliente[0].id);
@@ -41,20 +41,21 @@ const SignIn: React.FC = () => {
             pathname: "/perfil/" + localStorage.getItem('loginid'),
           });
         } else {
-        const element = document.getElementById("errorLogin");
-        if(element != null){
-          element.style.display = "flex";}
+          const element = document.getElementById("errorLogin");
+          if (element != null) {
+            element.style.display = "flex";
+          }
         }
       } catch (err) {
-        const lista = { name: "", senha: ""}
+        const lista = { name: "", senha: "" }
         if (err instanceof yup.ValidationError) {
-          err.inner.forEach(erro =>{
-            if(erro.path === "name"){
+          err.inner.forEach(erro => {
+            if (erro.path === "name") {
               lista["name"] = erro.message
-            }else{ lista["senha"] = erro.message}
-          
-            });
-          }
+            } else { lista["senha"] = erro.message }
+
+          });
+        }
         formRef.current?.setErrors(lista);
       }
     },
@@ -65,18 +66,18 @@ const SignIn: React.FC = () => {
     <div className="signinContainer">
       <Link className="loginLogoContainer" to="/">
         <div>
-          <img className = "logoanim" src={logo} alt="logo" />
+          <img className="logoanim" src={logo} alt="logo" />
         </div>
       </Link>
       <Form className="Form" ref={formRef} onSubmit={handleSubmit}>
         <div className="inputLoginContainer">
           <div className="emailLoginInputContainer">
-          <div  id="errorLogin" className="ErrorLogin" >E-mail ou senha incorretos.</div>
+            <div id="errorLogin" className="ErrorLogin" >E-mail ou senha incorretos.</div>
             <div className="somaisumcontainerlogin">
               <FaEnvelope className="emailLoginIcon" />
               E-mail
             </div>
-            <div className = "Div-Input">
+            <div className="Div-Input">
               <Input
                 type="text"
                 name="name"
@@ -94,7 +95,7 @@ const SignIn: React.FC = () => {
               <FaLock className="senhaLoginIcon" />
               Senha
             </div>
-            <div className = "Div-Input">
+            <div className="Div-Input">
               <Input
                 type="password"
                 name="senha"
@@ -106,7 +107,7 @@ const SignIn: React.FC = () => {
           </div>
         </div>
         <button className="buttonLogin" name="submitButton" type="submit">
-            Entrar
+          Entrar
         </button>
       </Form>
 
