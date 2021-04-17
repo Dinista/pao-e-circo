@@ -1,11 +1,16 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
 import api from "../../services/api";
-// import { Container, TituloDestaque, ContainerItemDestaque } from "./styles";
 import {
   ExternalContainer,
   ContainerFlexVertical,
   ContainerFlexVerticalWider,
   ContainerComments,
+  SliderBox,
+  StyledButton,
+  StyledButtonWider,
+  ContainerComment,
+  TextoComentario,
+  DataComentario,
 } from "./styles";
 
 import { useHistory } from "react-router-dom";
@@ -104,7 +109,10 @@ const Oferta: React.FC = (props: any) => {
   }, [id]);
 
   const handleDelete = useCallback(async (data: any) => {
-    await api.delete(`/anuncios/${data}`);
+    console.log(data);
+    await api.delete(`/anuncios/${data}`).then((response) => {
+      console.log(response); 
+    });
     alert("O anuncio foi apagado com sucesso");
   }, []);
 
@@ -191,37 +199,38 @@ const Oferta: React.FC = (props: any) => {
         <ContainerFlexVertical className="VerticalContainerLeft">
           <h2> Informações do Anunciante </h2>
 
-          <p> Nome: {adData?.cliente.name} </p>
-          <p> Cidade: {adData?.cliente.cidade} </p>
-          <p> Estado: {adData?.cliente.estado} </p>
-          <p> Avaliação: {adData?.cliente.nota} </p>
-          <p> Trocas concretizadas: {adData?.cliente.numTrocas} </p>
+          <p> <b>Nome:</b> {adData?.cliente.name} </p>
+          <p> <b>Cidade:</b> {adData?.cliente.cidade} </p>
+          <p> <b>Estado:</b> {adData?.cliente.estado} </p>
+          <p> <b>Avaliação</b>: {adData?.cliente.nota} </p>
+          <p> <b>Trocas concretizadas</b>: {adData?.cliente.numTrocas} </p>
         </ContainerFlexVertical>
 
         <ContainerFlexVerticalWider className="VerticalContainerMiddle">
           <h1> {adData?.titulo} </h1>
-
-          <ImageSliderAnuncio
-            slides={[adData?.foto1, adData?.foto2, adData?.foto3]}
-          ></ImageSliderAnuncio>
+          <SliderBox> 
+            <ImageSliderAnuncio
+              slides={[adData?.foto1, adData?.foto2, adData?.foto3]}
+            ></ImageSliderAnuncio>
+          </SliderBox>
 
         </ContainerFlexVerticalWider>
 
         <ContainerFlexVertical className="VerticalContainerRight">
           <h2> Informações do anúncio </h2>
-          <p> Objeto: {adData?.nomeObjeto} </p>
-          <p> Categoria: {adData?.categoria} </p>
-          <p> Estado: {adData?.estadoConservacao} </p>
-          <p> Descricao: {adData?.descricao} </p>
-          <p> Itens desejados em troca: {adData?.itemDesejado} </p>
-          <p> Valor estimado: {adData?.valorEstimado} </p>
+          <p> <b>Objeto:</b> {adData?.nomeObjeto} </p>
+          <p> <b>Categoria:</b> {adData?.categoria} </p>
+          <p> <b>Estado:</b> {adData?.estadoConservacao} </p>
+          <p> <b>Descricao:</b> {adData?.descricao} </p>
+          <p> <b>Itens desejados em troca:</b> {adData?.itemDesejado} </p>
+          <p> <b>Valor estimado:</b> {adData?.valorEstimado} </p>
           
           {ehDonoAnuncio ? (
             <div>
-              <Button onClick={() => handleDelete(adData?.id)}>
+              <StyledButton onClick={() => handleDelete(adData?.id)}>
                 Encerrar anuncio
-              </Button>
-              <Button onClick={handleOpenModalDestaque}>Destacar</Button>
+              </StyledButton>
+              <StyledButton onClick={handleOpenModalDestaque}>Destacar</StyledButton>
 
               <Link
                 to={{
@@ -230,16 +239,16 @@ const Oferta: React.FC = (props: any) => {
                 }}
                 className="linkContainer"
               >
-                <Button>Editar anúncio</Button>
+                <StyledButton>Editar anúncio</StyledButton>
               </Link>
             </div>
           ) : (
             <>
-              <Button onClick={handleOpenModalRealizarOferta}>
+              <StyledButton onClick={handleOpenModalRealizarOferta}>
                 Oferecer item
-              </Button>
+              </StyledButton>
 
-              <Button
+              <StyledButton
                 onClick={() =>
                   handleSeguirAnuncio({
                     idAnuncio: adData?.id,
@@ -248,11 +257,11 @@ const Oferta: React.FC = (props: any) => {
                 }
               >
                 Seguir anúncio
-              </Button>
+              </StyledButton>
 
-              <Button onClick={handleOpenModalDenuncia}>
+              <StyledButton onClick={handleOpenModalDenuncia}>
                 Denunciar anúncio
-              </Button>
+              </StyledButton>
             </>
           )}
 
@@ -262,13 +271,14 @@ const Oferta: React.FC = (props: any) => {
 
       <ContainerComments>
             <h2> Comentários </h2>
-            {/* MAP*/}
             {comentarios.map((comentario) => (
-              <div key={comentario.texto}>
-                <p>{comentario.comentador?.name}</p>
-                <p>{comentario.data}</p>
-                <p>{comentario.texto}</p>
-              </div>
+              <ContainerComment> 
+                <div key={comentario.texto}>
+                  <p><b>{comentario.comentador?.name}</b></p>
+                  <DataComentario>{comentario.data}</DataComentario>
+                  <TextoComentario>{comentario.texto}</TextoComentario>
+                </div>
+              </ContainerComment>
             ))}
             {ehDonoAnuncio ? (
               <Form ref={formRef} onSubmit={handleCommentSubmit}>
@@ -277,16 +287,16 @@ const Oferta: React.FC = (props: any) => {
                   icon={FiAlignJustify}
                   placeholder=" Ex: 'Ele é pesado?'"
                 ></Input>
-                <SubText text="Comente ou responda dúvidas sobre seu anuncio. Pelo menos 5 caracteres." />
+                <SubText text="Comente ou responda dúvidas sobre seu anuncio. Pelo menos 5 caracteres." /> <br/>
 
                 <InvisibleInput
                   name="anuncio"
                   defaultValue={adData?.id}
                 ></InvisibleInput>
 
-                <ButtonStyled name="submitButton" type="submit">
+                <StyledButtonWider name="submitButton" type="submit">
                   Enviar comentário
-                </ButtonStyled>
+                </StyledButtonWider>
               </Form>
             ) : (
               <Form ref={formRef} onSubmit={handleCommentSubmit}>
@@ -295,16 +305,17 @@ const Oferta: React.FC = (props: any) => {
                   icon={FiAlignJustify}
                   placeholder=" Ex: 'Ele é pesado?'"
                 ></Input>
-                <SubText text="Caso deseje, faça um comentário. Pelo menos 5 caracteres." />
 
+                <SubText text="Caso deseje, faça um comentário. Pelo menos 5 caracteres." /> <br/>
+                
                 <InvisibleInput
                   name="anuncio"
                   defaultValue={adData?.id}
                 ></InvisibleInput>
 
-                <ButtonStyled name="submitButton" type="submit">
+                <StyledButtonWider name="submitButton" type="submit">
                   Enviar comentário
-                </ButtonStyled>
+                </StyledButtonWider>
               </Form>
             )}
       </ContainerComments>
