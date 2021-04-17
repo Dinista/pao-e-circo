@@ -36,8 +36,6 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
     setIsFocused(true);
   }, []);
 
-  
-
   // useeffects
   useEffect(() => {
     registerField({
@@ -48,19 +46,21 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
   }, [fieldName, registerField]);
 
   return (
-    <div>
-    <Container isFilled={isFilled} isFocused={isFocused} isErrored={!!error}>
-      {Icon && <Icon size={20} />}
-      <input
-        onFocus={handleInputFocus}
-        onBlur={handleInputBlur}
-        defaultValue={defaultValue}
-        ref={inputRef}
-        {...rest}
-      />
-      {error && <BsExclamationCircle className = "iconeErro"></BsExclamationCircle>}
-    </Container>
-    {error && <div className="erro">{error}</div>}
+    <div className="issoai">
+      <Container isFilled={isFilled} isFocused={isFocused} isErrored={!!error}>
+        {Icon && <Icon size={20} />}
+        <input
+          onFocus={handleInputFocus}
+          onBlur={handleInputBlur}
+          defaultValue={defaultValue}
+          ref={inputRef}
+          {...rest}
+        />
+        {error && (
+          <BsExclamationCircle className="iconeErro"></BsExclamationCircle>
+        )}
+      </Container>
+      {error && <div className="erro">{error}</div>}
     </div>
   );
 };

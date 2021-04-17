@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import CreateExchangeAd from "./pages/CriarAnuncio";
-import BuscaUsuario from "./pages/BuscaAnuncio";
+import BuscaUsuario from "./pages/BuscaUsuario";
 import GerenciarPropaganda from "./pages/GerenciarPropagandas";
 
 import CriarPropaganda from "./pages/CriarPropaganda";
