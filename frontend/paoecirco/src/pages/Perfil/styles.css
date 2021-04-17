@@ -89,3 +89,15 @@
     grid-column-end: last;
     margin: auto;
 }
+
+.User-Not-Found{
+    text-align: center;
+    margin: 30px;
+    color: rgb(65, 65, 65);
+}
+
+.icon{
+    margin: 30px;
+    font-size: 100px;
+    color: rgb(235, 235, 235);
+}

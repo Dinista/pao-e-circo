@@ -14,6 +14,7 @@ import BuscaAnuncio from "./pages/BuscaAnuncio";
 
 import MakeAnOffer from "./pages/Oferta";
 import Perfil from "./pages/Perfil";
+import PerfilError from "./pages/PerfilError";
 import EditarAnuncio from "./pages/EditarAnuncio";
 
 ReactDOM.render(
@@ -28,7 +29,7 @@ ReactDOM.render(
         <Route path="/buscaanuncio" component={BuscaAnuncio} />
         <Route path="/gerenciarpropaganda" component={GerenciarPropaganda} />
         <Route path="/perfil/:id" component={Perfil} />
-
+        <Route path="/perfil" component={PerfilError} />
         <Route path="/criarpropaganda" component={CriarPropaganda} />
         <Route path="/editaranuncio" component={EditarAnuncio} />
 

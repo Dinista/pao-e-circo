@@ -97,8 +97,9 @@ const Oferta: React.FC = (props: any) => {
 
   useEffect(() => {
     api.post(`/encontrarcomentariosanuncio/${id}`).then((response) => {
-      console.log("id" + id);
-      setComentarios(response.data[0].comentarios);
+     if(response.data[0] !== undefined){
+        setComentarios(response.data[0].comentarios);
+      }
     });
   }, [id]);
 
@@ -234,6 +235,25 @@ const Oferta: React.FC = (props: any) => {
               >
                 <Button>Editar anúncio</Button>
               </Link>
+
+              <Form ref={formRef} onSubmit={handleCommentSubmit}>
+                <Input
+                  name="texto"
+                  icon={FiAlignJustify}
+                  placeholder=" Ex: 'Ele é pesado?'"
+                ></Input>
+                <SubText text="Comente ou responda dúvidas sobre seu anuncio. Pelo menos 5 caracteres." />
+
+                <InvisibleInput
+                  name="anuncio"
+                  defaultValue={adData?.id}
+                ></InvisibleInput>
+
+                <ButtonStyled name="submitButton" type="submit">
+                  Enviar comentário
+                </ButtonStyled>
+              </Form>
+
             </div>
           ) : (
             <>
