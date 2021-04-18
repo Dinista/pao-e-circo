@@ -80,6 +80,14 @@ class AnuncioController {
     return response.json(anuncio[0]);
   }
 
+  async findName(request: Request, response: Response) {
+    const anuncioRepository = getRepository(Anuncio);
+
+    const anuncio = await anuncioRepository.find({ id: request.params.id });
+
+    return response.json(anuncio[0].nomeObjeto);
+  }
+
   async findByName(request: Request, response: Response) {
     const { anuncio } = request.body;
     console.log(anuncio);

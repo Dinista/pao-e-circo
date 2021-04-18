@@ -15,7 +15,6 @@ interface NewModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
   anuncio: string | null | undefined;
-  anunciante: string | null | undefined;
   ofertante: string | null | undefined;
   texto: string;
   ofertaTroca?: string;
@@ -25,19 +24,12 @@ const ModalReactRealizarOferta: React.FC<NewModalProps> = ({
   isOpen,
   onRequestClose,
   anuncio,
-  anunciante,
   ofertante,
   texto,
 }: NewModalProps) => {
   const history = useHistory();
   const formRef = useRef<FormHandles>(null);
-  const [formState, setFormState] = useState({
-    anuncio,
-    anunciante,
-    ofertante,
-    texto,
-    ofertaTroca: "",
-  });
+
   useEffect(() => {
     objetosUsuarioLogado.length = 0;
 
@@ -65,17 +57,48 @@ const ModalReactRealizarOferta: React.FC<NewModalProps> = ({
       await schema.validate(itemOferecidoId, {
         abortEarly: false,
       });
-      let updatedValue = formState;
-      console.log("itemofe: " + itemOferecidoId.objeto);
-      updatedValue.ofertaTroca = itemOferecidoId.objeto;
 
-      setFormState({ ...updatedValue });
+      const anunciante3 = await api.post(`/anuncioss/${anuncio}`);
 
-      await api.post("/notificacoes", formState);
+      const anunciante = anunciante3.data.cliente.id;
+
+      const jorge = {
+        anuncio,
+        anunciante,
+        ofertante,
+        texto,
+        ofertaTroca: itemOferecidoId.objeto,
+      };
+
+      const notificacao = await api.post("/notificacoes", jorge);
+
+      const nomeOfertante = await api.get(`/perfil/${ofertante}`);
+      const nomeAnuncio = await api.get(`/findanuncionome/${anuncio}`);
+      const nomeAnuncioOfertado = await api.get(
+        `/findanuncionome/${itemOferecidoId.objeto}`
+      );
+
+      var verificanotificacao = JSON.parse(
+        localStorage.getItem(`${anunciante}`) || "[]"
+      );
+      // Adiciona pessoa ao cadastro
+      verificanotificacao.push({
+        anuncio: anuncio,
+        ofertaTroca: itemOferecidoId,
+        ofertante: ofertante,
+        nomeOfertante: nomeOfertante.data[0].name,
+        nomeAnuncioOfertado: nomeAnuncioOfertado.data,
+        nomeAnuncio: nomeAnuncio.data,
+        idNotificacao: notificacao.data.notificacao.idNotificacao,
+      });
+      localStorage.setItem(
+        `${anunciante}`,
+        JSON.stringify(verificanotificacao)
+      );
 
       alert("A oferta foi realizada com sucesso");
 
-      history.push("/");
+      //history.push("/");
     } catch (err) {
       alert(err);
     }

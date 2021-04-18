@@ -36,8 +36,14 @@ const SignUp: React.FC = () => {
         const schema = yup.object().shape({
           name: yup.string().required("Nome origatório."),
 
-          cpf: yup.string().matches(/^\d+$/, 'Apenas digitos.').min(11, "No mínimo 11 dígitos."),
-          email: yup.string().required("E-mail obrigatório.").email("E-mail inválido."),
+          cpf: yup
+            .string()
+            .matches(/^\d+$/, "Apenas digitos.")
+            .min(11, "No mínimo 11 dígitos."),
+          email: yup
+            .string()
+            .required("E-mail obrigatório.")
+            .email("E-mail inválido."),
           dataNasc: yup.string().required("Data de nascimento necessária."),
           senha: yup.string().min(6, "No mínimo 6 dígitos."),
           endereco: yup.string().required("Endereço obrigatório."),
@@ -48,12 +54,10 @@ const SignUp: React.FC = () => {
         await schema.validate(data, {
           abortEarly: false,
         });
-        //console.log("bugou");
         try {
           await api.post("/clientes", data);
           history.push("/signin");
         } catch (e) {
-          console.log(e.response.data.Erro);
           formRef.current?.setErrors({ email: e.response.data.Erro });
         }
       } catch (err) {

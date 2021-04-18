@@ -183,8 +183,8 @@ const Perfil: React.FC = () => {
           )
         }))
     }
-  }, [pageNumber, isclicked, anuncio, isOwner]);
 
+  }, [pageNumber, isclicked, anuncio, isOwner]);
 
   console.log(isOwner)
 

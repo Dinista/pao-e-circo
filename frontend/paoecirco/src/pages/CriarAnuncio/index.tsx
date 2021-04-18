@@ -20,7 +20,7 @@ import {
   InputCriarAnuncio,
   SubTituloPagina,
   TituloPagina,
-  ButtonStyled
+  ButtonStyled,
 } from "./styles";
 import Select from "../../components/Select";
 import SubText from "../../components/Subtext";
@@ -65,28 +65,55 @@ const estadosConservacao = [
 const CreateExchangeAd: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const history = useHistory();
-  var update = 0; 
+  var update = 0;
   //funções
   const handleSubmit = useCallback(
     async (data: CreateExchangeAdFormData) => {
       try {
         data.cliente = localStorage.getItem("loginid") || "";
-        if(data.cliente == "") {
+        if (data.cliente == "") {
           alert("Para criar um anuncio é necessário logar");
           history.push("/signin");
         }
         formRef.current?.setErrors({});
         const schema = yup.object().shape({
-          titulo: yup.string().min(7, "Deve ter pelo menos 7 caracteres.").required("Campo obrigatório."),
-          nomeObjeto: yup.string().ensure().min(2, "Deve ter pelo menos 2 caracteres.").required("Campo obrigatório."),
+          titulo: yup
+            .string()
+            .min(7, "Deve ter pelo menos 7 caracteres.")
+            .required("Campo obrigatório."),
+          nomeObjeto: yup
+            .string()
+            .ensure()
+            .min(2, "Deve ter pelo menos 2 caracteres.")
+            .required("Campo obrigatório."),
           categoria: yup.string().ensure(),
-          estadoConservacao: yup.string().ensure(),  
-          foto1: yup.string().min(5, "Link muito curto.").required("Campo obrigatório."),
-          foto2: yup.string().min(5, "Link muito curto.").required("Campo obrigatório."),
-          foto3: yup.string().min(5, "Link muito curto.").required("Campo obrigatório."),
-          descricao: yup.string().min(10, "Deve ter pelo menos 10 caracteres.").required("Campo obrigatório."),
-          itemDesejado: yup.string().min(6, "Deve ter pelo menos 6 caracteres. ").required("Campo obrigatório."),
-          valorEstimado: yup.number().min(0, "Deve ter valor maior que 0").max(10000, "Deve ter valor menor que 10000").required("Campo obrigatório.").typeError("O valor informado deve ser um número"),    
+          estadoConservacao: yup.string().ensure(),
+          foto1: yup
+            .string()
+            .min(5, "Link muito curto.")
+            .required("Campo obrigatório."),
+          foto2: yup
+            .string()
+            .min(5, "Link muito curto.")
+            .required("Campo obrigatório."),
+          foto3: yup
+            .string()
+            .min(5, "Link muito curto.")
+            .required("Campo obrigatório."),
+          descricao: yup
+            .string()
+            .min(10, "Deve ter pelo menos 10 caracteres.")
+            .required("Campo obrigatório."),
+          itemDesejado: yup
+            .string()
+            .min(6, "Deve ter pelo menos 6 caracteres. ")
+            .required("Campo obrigatório."),
+          valorEstimado: yup
+            .number()
+            .min(0, "Deve ter valor maior que 0")
+            .max(10000, "Deve ter valor menor que 10000")
+            .required("Campo obrigatório.")
+            .typeError("O valor informado deve ser um número"),
         });
 
         await schema.validate(data, {
@@ -100,15 +127,11 @@ const CreateExchangeAd: React.FC = () => {
         alert("Anuncio criado com successo!");
         history.push("/");
       } catch (err) {
-        console.log(err)
-        
-        
-        if(err instanceof yup.ValidationError) {
-          console.log(err)
+        if (err instanceof yup.ValidationError) {
           const errors = getValidationErrors(err);
           formRef.current?.setErrors(errors);
           update = update + 1;
-          return; 
+          return;
         }
       }
     },
@@ -131,7 +154,7 @@ const CreateExchangeAd: React.FC = () => {
                 icon={FiType}
                 placeholder=" Ex: Bumerangue dourado novo, Bolsa em bom estado, ... "
               />
-              <SubText text="Título que será exibido no site. Pelo menos 7 caracteres."/>
+              <SubText text="Título que será exibido no site. Pelo menos 7 caracteres." />
 
               <SubTituloPagina> Nome do objeto * </SubTituloPagina>
               <Input
@@ -161,7 +184,7 @@ const CreateExchangeAd: React.FC = () => {
               <SubText text="Estado de conservação em qual se encontra seu objeto." />
 
               <SubTituloPagina> Fotos * </SubTituloPagina>
-              
+
               <Input
                 name="foto1"
                 icon={FiAlignJustify}
@@ -188,7 +211,7 @@ const CreateExchangeAd: React.FC = () => {
                 icon={FiAlignJustify}
                 placeholder=" Ex: 'Altura: 30cm, Largura: ...'"
               ></Input>
-              <SubText text="Informações sobre o objeto. Pelo menos 10 caracteres."/>
+              <SubText text="Informações sobre o objeto. Pelo menos 10 caracteres." />
 
               <SubTituloPagina> Itens desejados em troca * </SubTituloPagina>
               <Input
@@ -196,18 +219,18 @@ const CreateExchangeAd: React.FC = () => {
                 icon={FiBox}
                 placeholder="Ex: Tênis, Estilingue, ..."
               ></Input>
-              <SubText text="Itens que gostaria de receber em troca. Mínimo 6 caracteres."/>
+              <SubText text="Itens que gostaria de receber em troca. Mínimo 6 caracteres." />
 
               <SubTituloPagina> Valor estimado * </SubTituloPagina>
-              
+
               <Input
                 name="valorEstimado"
                 icon={FiDollarSign}
                 placeholder="Ex: 30"
               ></Input>
-              <SubText text="Valor estimado do seu objeto em reais. Entre 0,01 e 10000 reais"/>
+              <SubText text="Valor estimado do seu objeto em reais. Entre 0,01 e 10000 reais" />
               <br />
-              
+
               <b>
                 <SubText text="Campos com um * no nome são obrigatórios." />
               </b>
@@ -215,7 +238,6 @@ const CreateExchangeAd: React.FC = () => {
               <ButtonStyled name="submitButton" type="submit">
                 Criar anúncio
               </ButtonStyled>
-
             </Form>
           </AnimationContainer>
         </Content>

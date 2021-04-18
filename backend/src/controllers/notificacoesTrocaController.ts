@@ -1,11 +1,13 @@
 import { Request, Response } from "express";
+import Notificacoes from "../models/NotificacaoTroca";
 import { getConnection, getRepository } from "typeorm";
 import Cliente from "../models/Cliente";
-import Notificacoes from "../models/NotificacaoTroca";
 
 class NotificacoesTrocaController {
   async create(request: Request, response: Response) {
     const { ofertante, anunciante, anuncio, texto, ofertaTroca } = request.body;
+
+    console.log(request.body);
 
     const notificacoesRepository = getRepository(Notificacoes);
 
@@ -22,10 +24,18 @@ class NotificacoesTrocaController {
     return response.json({ notificacao: notificacao });
   }
 
+  async delete(request: Request, response: Response) {
+    const notificacoesRepository = getRepository(Notificacoes);
+
+    const results = await notificacoesRepository.delete(request.params.id);
+
+    return response.json("tá deletado fião");
+  }
+
   async findAllNotifications(request: Request, response: Response) {
     const { id } = request.body;
     const notificacoes = await getConnection()
-      .getRepository(Notificacoes)
+      .getRepository(Cliente)
       .createQueryBuilder("notificacoes")
       .leftJoinAndSelect(
         "notificacoes.notificacoesTrocaAnunciante",
@@ -36,14 +46,6 @@ class NotificacoesTrocaController {
       })
       .getMany();
     return response.json(notificacoes);
-  }
-
-  async find(request: Request, response: Response) {
-    const { name } = request.body;
-
-    const clienteRepository = getRepository(Cliente);
-    const cliente = await clienteRepository.find({ name: name });
-    return response.json(cliente[0]);
   }
 }
 
