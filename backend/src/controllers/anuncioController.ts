@@ -131,7 +131,7 @@ class AnuncioController {
 
   async delete(request: Request, response: Response) {
     const anuncioRepository = getRepository(Anuncio);
-
+    console.log("cheguei")
     const results = await anuncioRepository.delete(request.params.id);
 
     return response.send(results);

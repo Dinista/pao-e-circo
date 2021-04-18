@@ -4,32 +4,51 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 
 export const TituloPagina = styled.h1`
-  color: #93130d;
-  margin-top: 70px;
+  color: #1e1e1e;
   font-family: Arial, Helvetica, sans-serif;
   margin-left: 30px;
-  text-shadow: 3px 3px 3px pink;
+  text-shadow: 3px 3px 3px whitesmoke;
+  margin-bottom: 24px;
+  text-align: center;
+  position: relative;
+  right: 31px;
+  
 `;
 
 export const Container = styled.div`
   margin: 0 auto;
   overflow: hidden;
-  max-width: 500px;
-  margin-top: -100px;
+  max-width: 450px;
+  border-radius: 1rem;
+  background-color: #dbebfb;
+  position: relative;
+  top: 20px;
+  margin-bottom: 10px;
 `;
 
 export const ButtonStyled = styled(Button)`
-  width: 110%;
+  width: 90%;
 `;
 
 export const Content = styled.div`
-  display: flex;
+  position: relative;
+  top: -70px;
+  left: 12px;
   flex-direction: column;
 
   justify-content: center;
-
+  
   width: 100%;
   max-width: 700px;
+  max-height: 1350px;
+  .AWcrW { // Select
+    width: 90%;
+  }
+
+  .efEsQO { // Input area
+    background: white;
+    margin-bottom: -5px;
+  }
 `;
 
 export const AppearFromLeft = keyframes`
@@ -48,7 +67,6 @@ export const AnimationContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   animation: ${AppearFromLeft} 1s;
 
   form {
@@ -56,10 +74,7 @@ export const AnimationContainer = styled.div`
     width: 340px;
   }
 
-  h1 {
-    margin-bottom: 24px;
-    text-align: center;
-  }
+
 
   a {
     color: #f4ede8;

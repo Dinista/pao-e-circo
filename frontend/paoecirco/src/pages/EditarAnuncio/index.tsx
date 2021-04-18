@@ -175,7 +175,7 @@ const EditarAnuncio: React.FC = (props: any) => {
         <Content>
           <AnimationContainer>
             <Form ref={formRef} onSubmit={handleSubmit}>
-              <TituloPagina>Cadastre seu item </TituloPagina>
+              <TituloPagina>Edite seu anuncio </TituloPagina>
               <SubTituloPagina> Titulo do anúncio * </SubTituloPagina>
               <InputCriarAnuncio
                 name="titulo"
