@@ -93,11 +93,12 @@ const Oferta: React.FC = (props: any) => {
         localStorage.getItem("loginid" || "") === adData?.cliente.id
       );
     });
-  }, [id, adData?.cliente.id]);
+  }, []);
 
+  console.log("HOASUIFHASDIUDH " + adData?.id);
   useEffect(() => {
     api.post(`/encontrarcomentariosanuncio/${id}`).then((response) => {
-     if(response.data[0] !== undefined){
+      if (response.data[0] !== undefined) {
         setComentarios(response.data[0].comentarios);
       }
     });
@@ -110,7 +111,6 @@ const Oferta: React.FC = (props: any) => {
 
   const handleSeguirAnuncio = useCallback(async (data: any) => {
     const segue = await api.post("/verificaseguidor", data);
-    console.log("SEGUE: " + segue);
 
     if (segue.data === "") {
       // nao segue, então insere na lista de seguidores!
@@ -152,7 +152,6 @@ const Oferta: React.FC = (props: any) => {
         history.push("/");
       } catch (err) {
         if (err instanceof yup.ValidationError) {
-          console.log(err);
           const errors = getValidationErrors(err);
           formRef.current?.setErrors(errors);
           return;
@@ -176,8 +175,7 @@ const Oferta: React.FC = (props: any) => {
           isOpen={isModalRealizarOfertaOpen}
           onRequestClose={handleCloseModalRealizarOferta}
           ofertante={localStorage.getItem("loginid" || "")}
-          anuncio={adData?.id}
-          anunciante={adData?.cliente.id}
+          anuncio={id}
           texto="bora trocar aí po"
         />
 
@@ -253,7 +251,6 @@ const Oferta: React.FC = (props: any) => {
                   Enviar comentário
                 </ButtonStyled>
               </Form>
-
             </div>
           ) : (
             <>

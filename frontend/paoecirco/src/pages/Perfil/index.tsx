@@ -181,7 +181,6 @@ const Perfil: React.FC = () => {
       );
     }
   }, [pageNumber, isclicked, anuncio]);
-  console.log(isOwner);
 
   if (perfilExist == false) {
     return (

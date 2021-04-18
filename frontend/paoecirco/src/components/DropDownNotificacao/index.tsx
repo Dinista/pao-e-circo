@@ -1,4 +1,7 @@
 import * as React from "react";
+import { useCallback } from "react";
+import api from "../../services/api";
+import Button from "../Button";
 import { Wrapper, ActivatorButton, DropdownList } from "./styles";
 
 interface IDropdownItem {
@@ -18,21 +21,6 @@ const dropdownItems = [
     url: "myLink",
     text: "option",
   },
-  {
-    id: 2,
-    url: "myLink2",
-    text: "option2",
-  },
-  {
-    id: 3,
-    url: "myLink3",
-    text: "option3",
-  },
-  {
-    id: 4,
-    url: "myLink4",
-    text: "option4",
-  },
 ];
 
 const Dropdown = ({
@@ -44,7 +32,40 @@ const Dropdown = ({
   const [isOpen, setIsOpen] = React.useState(false);
   const [activeIndex, setActiveIndex] = React.useState(-1);
 
-  let id = localStorage.getItem("loginid" || "");
+  let id: any = localStorage.getItem("loginid" || "");
+  let notificacoes;
+
+  if (localStorage.hasOwnProperty(id)) {
+    notificacoes = JSON.parse(localStorage.getItem(id) || "{}");
+  }
+
+  const propsValid = (notificacoes: any) => {
+    if (notificacoes === "" || notificacoes === undefined) return false;
+    else return true;
+  };
+
+  const ehounao = propsValid(notificacoes);
+
+  const handleAceitar = async (idOfertante: string, idNotificacao: string) => {
+    // @ts-ignore: Unreachable code error
+    const email = await api.get(`/perfil/${idOfertante}`);
+
+    alert(
+      "Parabens! Você aceitou a troca! Entre em contato com o usuário através do email " +
+        email.data[0].email
+    );
+
+    await api.delete(`/notificacoes/${idNotificacao}`);
+
+    localStorage.removeItem(id);
+  };
+  const handleRecusar = async (idNotificacao: string) => {
+    alert("Droga! Você recusou a troca!");
+
+    await api.delete(`/notificacoes/${idNotificacao}`);
+
+    localStorage.removeItem(id);
+  };
 
   const handleClick = () => {
     setIsOpen(!isOpen);
@@ -103,26 +124,77 @@ const Dropdown = ({
   };
 
   return (
-    <Wrapper onKeyUp={keyHandler}>
-      <ActivatorButton
-        aria-haspopup="true"
-        aria-controls="dropdown1"
-        onClick={handleClick}
-        ref={activatorRef}
-        onFocus={() => setActiveIndex(-1)}
-      >
-        {activatorText}
-      </ActivatorButton>
-      <DropdownList id="dropdown1" ref={listRef} active={isOpen} role="list">
-        {items.map((item, index) => (
-          <li key={item.id}>
-            <a href={item.url} onFocus={() => focusHandler(index)}>
-              {item.text}
-            </a>
-          </li>
-        ))}
-      </DropdownList>
-    </Wrapper>
+    <>
+      {ehounao ? (
+        <Wrapper onKeyUp={keyHandler}>
+          <ActivatorButton
+            aria-haspopup="true"
+            aria-controls="dropdown1"
+            onClick={handleClick}
+            ref={activatorRef}
+            onFocus={() => setActiveIndex(-1)}
+          >
+            {activatorText}
+          </ActivatorButton>
+          <DropdownList
+            id="dropdown1"
+            ref={listRef}
+            active={isOpen}
+            role="list"
+          >
+            {notificacoes.map((item: any, index: any) => (
+              <li key={index}>
+                <a href={item.url} onFocus={() => focusHandler(index)}>
+                  {"O usuario " +
+                    item.nomeOfertante +
+                    " deseja trocar " +
+                    item.nomeAnuncioOfertado +
+                    " por " +
+                    item.nomeAnuncio +
+                    ". Deseja aceitar?"}
+                  <Button
+                    onClick={() =>
+                      handleAceitar(item.ofertante, item.idNotificacao)
+                    }
+                  >
+                    Aceitar
+                  </Button>
+                  <Button onClick={() => handleRecusar(item.idNotificacao)}>
+                    Recusar
+                  </Button>
+                </a>
+              </li>
+            ))}
+          </DropdownList>
+        </Wrapper>
+      ) : (
+        <Wrapper onKeyUp={keyHandler}>
+          <ActivatorButton
+            aria-haspopup="true"
+            aria-controls="dropdown1"
+            onClick={handleClick}
+            ref={activatorRef}
+            onFocus={() => setActiveIndex(-1)}
+          >
+            {activatorText}
+          </ActivatorButton>
+          <DropdownList
+            id="dropdown1"
+            ref={listRef}
+            active={isOpen}
+            role="list"
+          >
+            {items.map((item, index) => (
+              <li key={item.id}>
+                <a href={item.url} onFocus={() => focusHandler(index)}>
+                  {item.text}
+                </a>
+              </li>
+            ))}
+          </DropdownList>
+        </Wrapper>
+      )}
+    </>
   );
 };
 

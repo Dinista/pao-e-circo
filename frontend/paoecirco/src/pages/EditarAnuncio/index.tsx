@@ -156,10 +156,7 @@ const EditarAnuncio: React.FC = (props: any) => {
         alert("Anuncio editado com successo!");
         history.push("/");
       } catch (err) {
-        console.log(err);
-
         if (err instanceof yup.ValidationError) {
-          console.log(err);
           const errors = getValidationErrors(err);
           formRef.current?.setErrors(errors);
           update = update + 1;
