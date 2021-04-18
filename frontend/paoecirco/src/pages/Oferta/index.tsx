@@ -38,6 +38,7 @@ const Oferta: React.FC = (props: any) => {
   const history = useHistory();
   const formRef = useRef<FormHandles>(null);
   const [ehDonoAnuncio, setEhDonoAnuncio] = useState<boolean | undefined>();
+  // const [ehSeguidor, setEhSeguidor] = useState<boolean | undefined>();
 
   const [isModalDestaqueOpen, setIsModalDestaqueOpen] = useState(false);
   function handleOpenModalDestaque() {
@@ -99,6 +100,10 @@ const Oferta: React.FC = (props: any) => {
       );
     });
   }, [id, adData?.cliente.id]);
+
+  // useEffect(() => {
+  //   api.post("/verificaseguidor", data);
+  // }, [id])
 
   useEffect(() => {
     api.post(`/encontrarcomentariosanuncio/${id}`).then((response) => {
