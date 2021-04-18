@@ -141,10 +141,11 @@ const SignUp: React.FC = () => {
                 placeholder="Senha"
                 type="password"
               ></Input>
-
+              <div style = {{width: "90%"}}>
               <Button name="submitButton" type="submit">
                 Cadastrar
               </Button>
+              </div>
             </Form>
 
             <Link to="/signin">

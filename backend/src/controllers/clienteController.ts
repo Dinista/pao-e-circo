@@ -87,13 +87,12 @@ class ClienteController {
   }
 
   async findById(request: Request, response: Response) {
-    console.log(request.params.id);
     try {
       const clienteRepository = getRepository(Cliente);
       const cliente = await clienteRepository.find({ id: request.params.id });
       return response.json(cliente);
     } catch {
-      return response.json({ error: "Não existe" });
+      return response.json({ error: "Não existe" })
     }
   }
 }

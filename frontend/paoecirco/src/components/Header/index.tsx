@@ -64,6 +64,7 @@ const Header: React.FC = () => {
   function handleLogout() {
     localStorage.removeItem("loginid");
     setIsLoggedIn(false);
+    window.location.reload()
   }
 
   interface NameFormData {

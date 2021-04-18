@@ -94,6 +94,12 @@
   transform: rotate(360deg) translateZ(0);
 }
 
-.fa-star{
+.rating-num{
+  color: #242424;
+  font-size: xx-large;
+}
+
+.Estrelas-cabecalho{
   color: #f0c15b;
+  font-size: large;
 }

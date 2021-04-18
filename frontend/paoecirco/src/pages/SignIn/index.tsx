@@ -48,14 +48,13 @@ const SignIn: React.FC = () => {
           }
         }
       } catch (err) {
-        const lista = { name: "", senha: "" };
+        const lista = { name: "", senha: "" }
         if (err instanceof yup.ValidationError) {
-          err.inner.forEach((erro) => {
+          err.inner.forEach(erro => {
             if (erro.path === "name") {
-              lista["name"] = erro.message;
-            } else {
-              lista["senha"] = erro.message;
-            }
+              lista["name"] = erro.message
+            } else { lista["senha"] = erro.message }
+
           });
         }
         formRef.current?.setErrors(lista);
@@ -74,9 +73,7 @@ const SignIn: React.FC = () => {
       <Form className="Form" ref={formRef} onSubmit={handleSubmit}>
         <div className="inputLoginContainer">
           <div className="emailLoginInputContainer">
-            <div id="errorLogin" className="ErrorLogin">
-              E-mail ou senha incorretos.
-            </div>
+            <div id="errorLogin" className="ErrorLogin" >E-mail ou senha incorretos.</div>
             <div className="somaisumcontainerlogin">
               <FaEnvelope className="emailLoginIcon" />
               E-mail
@@ -110,9 +107,9 @@ const SignIn: React.FC = () => {
             </div>
           </div>
         </div>
-        <button className="buttonLogin" name="submitButton" type="submit">
+        <div className= "btn-align"><button className="buttonLogin" name="submitButton" type="submit">
           Entrar
-        </button>
+        </button></div>
       </Form>
 
       <Link to="/forgot" className="linkEsqueciASenha">
