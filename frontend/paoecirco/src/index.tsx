@@ -17,6 +17,8 @@ import Profile from "./pages/UserProfile";
 import Perfil from "./pages/Perfil";
 import EditarAnuncio from "./pages/EditarAnuncio";
 
+import AvaliarDenuncia from "./pages/AvaliarDenuncia"
+
 ReactDOM.render(
   <React.StrictMode>
     <Router>
@@ -35,6 +37,8 @@ ReactDOM.render(
         <Route path="/editaranuncio" component={EditarAnuncio} />
 
         <Route path="/makeanoffer" component={MakeAnOffer} />
+
+        <Route path="/AvaliarDenunia" component={AvaliarDenuncia} />
       </Switch>
     </Router>
   </React.StrictMode>,
