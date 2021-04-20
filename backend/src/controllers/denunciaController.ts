@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getRepository } from "typeorm";
+import { getConnection, getRepository } from "typeorm";
 import Denuncia from "../models/Denuncia";
 
 
@@ -44,6 +44,25 @@ class DenunciaController {
     return response.json(anuncio);
   }
   */
+
+  async deleteDenunciasByAnuncioId(request: Request, response: Response) {
+    const denunciaRepository = getRepository(Denuncia);
+
+    const denuncias = await getConnection()
+    .getRepository(Denuncia)
+    .createQueryBuilder("denuncia")
+    .where("denuncia.anuncio = :idAnuncio", {
+      idAnuncio: request.params.id,
+    })
+    .getMany();
+    
+    for(let denuncia of denuncias){
+      await denunciaRepository.delete(denuncia.idDenuncia);
+    }
+
+    return response;
+  }
+
   async delete(request: Request, response: Response) {
     const denunciaRepository = getRepository(Denuncia);
 

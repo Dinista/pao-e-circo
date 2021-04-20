@@ -60,9 +60,7 @@ class Anuncio {
   })
   comentarios: Comentario[];
 
-  @ManyToMany(() => Cliente, cliente => cliente.anunciosSeguidos, {
-    cascade: true
-  })
+  @ManyToMany(() => Cliente, cliente => cliente.anunciosSeguidos)
   @JoinTable()
   seguidores: Cliente[];
   

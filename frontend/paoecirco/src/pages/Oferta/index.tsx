@@ -16,9 +16,9 @@ import {
 import { useHistory } from "react-router-dom";
 import Header from "../../components/Header";
 import ExibirPropaganda from "../../components/ExibirPropaganda";
-import Button from "../../components/Button";
 import ModalReactDestaque from "../../components/ModalDestaque";
 import ModalReactRealizarOferta from "../../components/ModalRealizarOferta";
+import ModalReactExcluirAnuncio from "../../components/ModalExcluirAnuncio";
 import ImageSliderAnuncio from "../../components/SliderAnuncio";
 import Cliente from "../../../../../backend/src/models/Cliente";
 import ModalReactDenuncia from "../../components/ModalDenuncia";
@@ -31,13 +31,15 @@ import SubText from "../../components/Subtext";
 import Input from "../../components/Input";
 import { FiAlignJustify } from "react-icons/fi";
 import InvisibleInput from "../../components/InvisibleInput";
-import { ButtonStyled } from "../CriarAnuncio/styles";
+
 
 const Oferta: React.FC = (props: any) => {
   const { id } = props.location && props.location.state;
   const history = useHistory();
   const formRef = useRef<FormHandles>(null);
   const [ehDonoAnuncio, setEhDonoAnuncio] = useState<boolean | undefined>();
+  // const [isLoggedIn, setIsLoggedIn] = useState<boolean | undefined>();
+  
   // const [ehSeguidor, setEhSeguidor] = useState<boolean | undefined>();
 
   const [isModalDestaqueOpen, setIsModalDestaqueOpen] = useState(false);
@@ -64,6 +66,17 @@ const Oferta: React.FC = (props: any) => {
   }
   function handleCloseModalDenuncia() {
     setIsModalDenunciaOpen(false);
+  }
+
+  
+  const [isModalExcluirAnuncioOpen, setIsModalExcluirAnuncioOpen] = useState(
+    false
+  );
+  function handleOpenModalExcluirAnuncio() {
+    setIsModalExcluirAnuncioOpen(true);
+  }
+  function handleCloseModalExcluirAnuncio() {
+    setIsModalExcluirAnuncioOpen(false);
   }
 
   interface Ad {
@@ -101,6 +114,13 @@ const Oferta: React.FC = (props: any) => {
     });
   }, [id, adData?.cliente.id]);
 
+
+  // useEffect(() => {    
+  //   if(localStorage.getItem("loginid" || "") == "") {
+  //     setIsLoggedIn(false);
+  //   }
+  // }, []);
+
   // useEffect(() => {
   //   api.post("/verificaseguidor", data);
   // }, [id])
@@ -113,24 +133,22 @@ const Oferta: React.FC = (props: any) => {
     });
   }, [id]);
 
-  const handleDelete = useCallback(async (data: any) => {
-    console.log(data);
-    await api.delete(`/anuncios/${data}`).then((response) => {
-      console.log(response); 
-    });
-    alert("O anuncio foi apagado com sucesso");
-  }, []);
-
   const handleSeguirAnuncio = useCallback(async (data: any) => {
-    const segue = await api.post("/verificaseguidor", data);
-    console.log("SEGUE: " + segue);
-
-    if (segue.data === "") {
-      // nao segue, então insere na lista de seguidores!
-      await api.put("/seguir", data);
-    } else {
-      await api.put("/deixardeseguir", data);
+    if(localStorage.getItem("loginid") || "" == "") {
+      alert("Para seguir um anúncio é necessário fazer login!");
+      history.push("/signin");
     }
+
+    api.post("/verificaseguidor", data).then((response) => {
+      if (response.data == "") {
+        console.log("Não seguia!");
+        // nao segue, então insere na lista de seguidores!
+        api.put("/seguir", data);
+      } else {
+        console.log("Seguia!");
+        api.put("/deixardeseguir", data);
+      }
+    });
   }, []);
 
   const handleCommentSubmit = useCallback(
@@ -138,7 +156,7 @@ const Oferta: React.FC = (props: any) => {
       try {
         const cliente = localStorage.getItem("loginid") || "";
         if (cliente === "") {
-          alert("Para comentar em um anuncio é necessário logar");
+          alert("Para comentar em um anuncio é necessário logar!");
           history.push("/signin");
         }
         formRef.current?.setErrors({});
@@ -177,7 +195,6 @@ const Oferta: React.FC = (props: any) => {
   return (
     <>
       <Header />
-
       <ExternalContainer className="ExternalContainer">
         <ModalReactDestaque
           isOpen={isModalDestaqueOpen}
@@ -198,6 +215,12 @@ const Oferta: React.FC = (props: any) => {
           isOpen={isModalDenunciaOpen}
           onRequestClose={handleCloseModalDenuncia}
           idDenunciante={localStorage.getItem("loginid" || "")}
+          idAnuncio={adData?.id}
+        />
+
+        <ModalReactExcluirAnuncio
+          isOpen={isModalExcluirAnuncioOpen}
+          onRequestClose={handleCloseModalExcluirAnuncio}
           idAnuncio={adData?.id}
         />
 
@@ -232,9 +255,8 @@ const Oferta: React.FC = (props: any) => {
           
           {ehDonoAnuncio ? (
             <div>
-              <StyledButton onClick={() => handleDelete(adData?.id)}>
-                Encerrar anuncio
-              </StyledButton>
+              <StyledButton onClick={handleOpenModalExcluirAnuncio}>Encerrar anuncio</StyledButton>
+
               <StyledButton onClick={handleOpenModalDestaque}>Destacar</StyledButton>
 
               <Link
@@ -278,7 +300,7 @@ const Oferta: React.FC = (props: any) => {
             <h2> Comentários </h2>
             {comentarios.map((comentario) => (
               <ContainerComment> 
-                <div key={comentario.texto}>
+                <div key={comentario.id}>
                   <p><b>{comentario.comentador?.name}</b></p>
                   <DataComentario>{comentario.data}</DataComentario>
                   <TextoComentario>{comentario.texto}</TextoComentario>
