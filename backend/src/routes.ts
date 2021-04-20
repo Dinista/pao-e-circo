@@ -59,4 +59,6 @@ routes.put("/propagandaimage/:id", propagandaController.updateImagem);
 //notificações
 routes.post("/notificacoes", notificacoesTrocaController.create);
 routes.get("/notificacoes", notificacoesTrocaController.findAllNotifications);
+routes.delete("/notificacoesanuncios/:id", notificacoesTrocaController.deleteNotificacoesByAnuncioId);
+routes.delete("/notificacoesanunciosofertados/:id", notificacoesTrocaController.deleteNotificacoesByAnuncioOfertadoId);
 export default routes;

@@ -42,6 +42,12 @@ class AnuncioRepository {
     return findAnuncio?.nomeObjeto;
   }
 
+  public findByCategoria(nameCategory: string) {
+    const findAnuncio = this.anuncios.find((anuncio) => anuncio.categoria === nameCategory);
+    return findAnuncio?.categoria;
+  }
+
+
   public async create(anuncioData: ICreateAnuncioDTO): Promise<Anuncio> {
     const anuncio = new Anuncio();
 
