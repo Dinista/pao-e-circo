@@ -55,6 +55,11 @@ const ModalReactRealizarOferta: React.FC<NewModalProps> = ({
   const formRefData = useRef<FormHandles>(null);
 
   const handleSubmitData = useCallback(async (itemOferecidoId: any) => {
+    if(localStorage.getItem("loginid") || "" == "") {
+      alert("Necessário estar logado para realizar uma oferta!");
+      return history.push("/signin");
+    }
+    
     try {
       formRef.current?.setErrors({});
 
