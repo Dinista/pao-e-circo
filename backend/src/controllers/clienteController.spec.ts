@@ -5,13 +5,13 @@ describe("Cliente controller", () => {
     const clienteRepository = new ClienteRepository();
 
     const User = await clienteRepository.create({
-      name: "flavin do pneu",
+      name: "Felipe Diniz",
       cpf: "12345678910",
-      cidade: "maringay",
+      cidade: "maringa",
       dataNasc: "12/12/2014",
       email: "flavindopneu@gmail.com",
-      endereco: "rua do shaolin matador de porco",
-      estado: "liquido",
+      endereco: "Avenida Brasil",
+      estado: "Paraná",
       senha: "jorgejuca.123",
     });
     expect(User).toHaveProperty("id");
@@ -21,26 +21,26 @@ describe("Cliente controller", () => {
     const clienteRepository = new ClienteRepository();
 
     await clienteRepository.create({
-      name: "flavin do pneu",
-      cpf: "12345678910",
-      cidade: "maringay",
+      name: "Outro nome",
+      cpf: "12385674900",
+      cidade: "Florianópolis",
       dataNasc: "12/12/2012",
       email: "flavindopneu@gmail.com",
-      endereco: "rua do shaolin matador de porco",
-      estado: "solido",
-      senha: "jorgejuca.123",
+      endereco: "Rua do desbravador",
+      estado: "São Paulo",
+      senha: "123456",
     });
 
     expect(
       clienteRepository.create({
-        name: "flavin do pneu",
+        name: "Felipe Diniz",
         cpf: "12345678910",
-        cidade: "maringay",
+        cidade: "maringa",
         dataNasc: "12/12/2012",
         email: "flavindopneu@gmail.com",
-        endereco: "rua do shaolin matador de porco",
-        estado: "solido",
-        senha: "jorgejuca.123",
+        endereco: "rua desbravador",
+        estado: "liquido",
+        senha: "jorgejuca.123"
       })
     ).rejects.toBeInstanceOf(Error);
   });
@@ -49,9 +49,9 @@ describe("Cliente controller", () => {
     const clienteRepository = new ClienteRepository();
 
     const cliente = await clienteRepository.create({
-      name: "flavin do pneu",
+      name: "Felipe Diniz",
       cpf: "12345678910",
-      cidade: "maringay",
+      cidade: "maringa",
       dataNasc: "12/12/2012",
       email: "flavindopneu@gmail.com",
       endereco: "rua do shaolin matador de porco",

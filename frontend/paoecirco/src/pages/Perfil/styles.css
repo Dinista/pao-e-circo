@@ -39,7 +39,7 @@
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
 }
 
-.Conteiner-Anuncios-Ativos{
+.Conteiner-Anuncios-Ativos, .Conteiner-Trocas{
     display: grid;
     width: 80vw;
     grid-gap: 35px;
@@ -51,7 +51,7 @@
     grid-template-columns: 1fr 1fr;
 }
 
-.prev, .next{
+.prev, .next, .prev-troca, .next-troca{
     background-color: white;
     outline: none;
     border: 1px solid rgba(128, 128, 128, 0.349);
@@ -65,20 +65,20 @@
     user-select: none;
 }
 
-.prev{
+.prev, .prev-troca{
     display: none;
     grid-column-start: 1;
     grid-column-end: 2;
 }
 
-.next{
+.next, .next-troca{
     grid-column-start: 2;
     grid-column-end: 3;
     justify-self: end;
 }
 
 
-.prev:active, .next:active{
+.prev:active, .next:active, .prev-troca:active, .next-troca:active{
     border: 1px solid rgba(128, 128, 128, 0.349);
 }
 

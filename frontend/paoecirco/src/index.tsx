@@ -16,6 +16,7 @@ import MakeAnOffer from "./pages/Oferta";
 import Perfil from "./pages/Perfil";
 import PerfilError from "./pages/PerfilError";
 import EditarAnuncio from "./pages/EditarAnuncio";
+import EditarPerfil from "./pages/EditarPerfil";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -29,10 +30,10 @@ ReactDOM.render(
         <Route path="/buscaanuncio" component={BuscaAnuncio} />
         <Route path="/gerenciarpropaganda" component={GerenciarPropaganda} />
         <Route path="/perfil/:id" component={Perfil} />
-        <Route path="/perfil" component={PerfilError} />
+        <Route path="/perfil" compoenent={PerfilError}></Route>
         <Route path="/criarpropaganda" component={CriarPropaganda} />
         <Route path="/editaranuncio" component={EditarAnuncio} />
-
+        <Route path="/editarPerfil" component={EditarPerfil} />
         <Route path="/makeanoffer" component={MakeAnOffer} />
       </Switch>
     </Router>

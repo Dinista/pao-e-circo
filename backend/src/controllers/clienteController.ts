@@ -88,15 +88,42 @@ class ClienteController {
   }
 
   async findById(request: Request, response: Response) {
-    console.log(request.params.id);
     try {
       const clienteRepository = getRepository(Cliente);
       const cliente = await clienteRepository.find({ id: request.params.id });
       return response.json(cliente);
     } catch {
-      return response.json({ error: "Não existe" });
+      return response.json({ error: "Não existe" })
     }
   }
+
+  async UpdateAvatar(request: Request, response: Response) {
+    const{
+      avatar
+    } = request.body
+      const clienteRepository = getRepository(Cliente);
+      const cliente = await clienteRepository.createQueryBuilder()
+      .update(Cliente).set({avatar : avatar})
+      .where("id = :id", { id: request.params.id })
+      .execute();
+      
+      return response.send({ resultado: cliente });
+  }
+
+  async UpdateCapa(request: Request, response: Response) {
+    const{
+      capa
+    } = request.body
+      const clienteRepository = getRepository(Cliente);
+      const cliente = await clienteRepository.createQueryBuilder()
+      .update(Cliente).set({capa : capa})
+      .where("id = :id", { id: request.params.id })
+      .execute();
+      
+      return response.send({ resultado: cliente });
+  }
+
+
 }
 
 export default ClienteController;

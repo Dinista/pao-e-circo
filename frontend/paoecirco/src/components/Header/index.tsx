@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState } from "react";
 import "./styles.css";
 import Logo from "../../assets/logo.png";
-import Avatar from "../../assets/avatar-mini.jpg";
+import Avatar from "../../assets/avatar-default.jpg";
 import { FiSearch } from "react-icons/fi";
 import { Link, useHistory } from "react-router-dom";
 import { FormHandles } from "@unform/core";
@@ -64,6 +64,7 @@ const Header: React.FC = () => {
   function handleLogout() {
     localStorage.removeItem("loginid");
     setIsLoggedIn(false);
+    window.location.reload()
   }
 
   interface NameFormData {

@@ -1,0 +1,322 @@
+[
+    {
+        "Anuncio1": {
+            "id": "d4b08c1b-e2e8-411a-8929-dbb8a358937c",
+            "nomeOdjeto": "Panela de pressão",
+            "foto1": "https://a-static.mlcdn.com.br/618x463/panela-de-pressao-panelux-prata-4l-classic/magazineluiza/144307900/376d9c8de54f62fe02e90246973a280d.jpg"
+        },
+        "Anuncio2": {
+            "id": "d4b08c1b-e2e8-411a-8929-dbb8a358937c",
+            "nomeOdjeto": "Panela de pressão",
+            "foto1": "https://static3.tcdn.com.br/img/img_prod/577735/roupa_do_poderoso_chefinho_18942817_1_ce9945e95fcfcd39c59f79a421d8f2b6.jpeg"
+        },
+        "Cliente1": {
+            "id": "d63ccf4d-539a-4a77-9d0d-876510c5914d",
+            "nome": "Homer jay Simpson"
+        },
+        "Avaliação_Cliente1": 3.2,
+        "Cliente2": {
+            "id": "b7f7d014-f95a-490c-9dfc-92729158ff1c",
+            "nome": "Felipe Diniz"
+        },
+        "Avaliação_Cliente2": 3.5,
+        "dataTroca": "21-05-2009"
+    },
+    {
+        "Anuncio1": {
+            "id": "d4b08c1b-e2e8-411a-8929-dbb8a358937c",
+            "nomeOdjeto": "Panela de pressão",
+            "foto1": "https://a-static.mlcdn.com.br/618x463/panela-de-pressao-panelux-prata-4l-classic/magazineluiza/144307900/376d9c8de54f62fe02e90246973a280d.jpg"
+        },
+        "Anuncio2": {
+            "id": "d4b08c1b-e2e8-411a-8929-dbb8a358937c",
+            "nomeOdjeto": "Panela de pressão",
+            "foto1": "https://static3.tcdn.com.br/img/img_prod/577735/roupa_do_poderoso_chefinho_18942817_1_ce9945e95fcfcd39c59f79a421d8f2b6.jpeg"
+        },
+        "Cliente1": {
+            "id": "d63ccf4d-539a-4a77-9d0d-876510c5914d",
+            "nome": "Homer jay Simpson"
+        },
+        "Avaliação_Cliente1": 3.2,
+        "Cliente2": {
+            "id": "b7f7d014-f95a-490c-9dfc-92729158ff1c",
+            "nome": "Felipe Diniz"
+        },
+        "Avaliação_Cliente2": 3.5,
+        "dataTroca": "21-05-2009"
+    },
+    {
+        "Anuncio1": {
+            "id": "d4b08c1b-e2e8-411a-8929-dbb8a358937c",
+            "nomeOdjeto": "Panela de pressão",
+            "foto1": "https://a-static.mlcdn.com.br/618x463/panela-de-pressao-panelux-prata-4l-classic/magazineluiza/144307900/376d9c8de54f62fe02e90246973a280d.jpg"
+        },
+        "Anuncio2": {
+            "id": "d4b08c1b-e2e8-411a-8929-dbb8a358937c",
+            "nomeOdjeto": "Panela de pressão",
+            "foto1": "https://static3.tcdn.com.br/img/img_prod/577735/roupa_do_poderoso_chefinho_18942817_1_ce9945e95fcfcd39c59f79a421d8f2b6.jpeg"
+        },
+        "Cliente1": {
+            "id": "d63ccf4d-539a-4a77-9d0d-876510c5914d",
+            "nome": "Homer jay Simpson"
+        },
+        "Avaliação_Cliente1": 3.2,
+        "Cliente2": {
+            "id": "b7f7d014-f95a-490c-9dfc-92729158ff1c",
+            "nome": "Felipe Diniz"
+        },
+        "Avaliação_Cliente2": 3.5,
+        "dataTroca": "21-05-2009"
+    },
+    {
+        "Anuncio1": {
+            "id": "d4b08c1b-e2e8-411a-8929-dbb8a358937c",
+            "nomeOdjeto": "Panela de pressão",
+            "foto1": "https://a-static.mlcdn.com.br/618x463/panela-de-pressao-panelux-prata-4l-classic/magazineluiza/144307900/376d9c8de54f62fe02e90246973a280d.jpg"
+        },
+        "Anuncio2": {
+            "id": "d4b08c1b-e2e8-411a-8929-dbb8a358937c",
+            "nomeOdjeto": "Panela de pressão",
+            "foto1": "https://static3.tcdn.com.br/img/img_prod/577735/roupa_do_poderoso_chefinho_18942817_1_ce9945e95fcfcd39c59f79a421d8f2b6.jpeg"
+        },
+        "Cliente1": {
+            "id": "d63ccf4d-539a-4a77-9d0d-876510c5914d",
+            "nome": "Homer jay Simpson"
+        },
+        "Avaliação_Cliente1": 3.2,
+        "Cliente2": {
+            "id": "b7f7d014-f95a-490c-9dfc-92729158ff1c",
+            "nome": "Felipe Diniz"
+        },
+        "Avaliação_Cliente2": 3.5,
+        "dataTroca": "21-05-2009"
+    },
+    {
+        "Anuncio1": {
+            "id": "d4b08c1b-e2e8-411a-8929-dbb8a358937c",
+            "nomeOdjeto": "Panela de pressão",
+            "foto1": "https://a-static.mlcdn.com.br/618x463/panela-de-pressao-panelux-prata-4l-classic/magazineluiza/144307900/376d9c8de54f62fe02e90246973a280d.jpg"
+        },
+        "Anuncio2": {
+            "id": "d4b08c1b-e2e8-411a-8929-dbb8a358937c",
+            "nomeOdjeto": "Panela de pressão",
+            "foto1": "https://static3.tcdn.com.br/img/img_prod/577735/roupa_do_poderoso_chefinho_18942817_1_ce9945e95fcfcd39c59f79a421d8f2b6.jpeg"
+        },
+        "Cliente1": {
+            "id": "d63ccf4d-539a-4a77-9d0d-876510c5914d",
+            "nome": "Homer jay Simpson"
+        },
+        "Avaliação_Cliente1": 3.2,
+        "Cliente2": {
+            "id": "b7f7d014-f95a-490c-9dfc-92729158ff1c",
+            "nome": "Felipe Diniz"
+        },
+        "Avaliação_Cliente2": 3.5,
+        "dataTroca": "21-05-2009"
+    },
+    {
+        "Anuncio1": {
+            "id": "d4b08c1b-e2e8-411a-8929-dbb8a358937c",
+            "nomeOdjeto": "Panela de pressão",
+            "foto1": "https://a-static.mlcdn.com.br/618x463/panela-de-pressao-panelux-prata-4l-classic/magazineluiza/144307900/376d9c8de54f62fe02e90246973a280d.jpg"
+        },
+        "Anuncio2": {
+            "id": "d4b08c1b-e2e8-411a-8929-dbb8a358937c",
+            "nomeOdjeto": "Panela de pressão",
+            "foto1": "https://static3.tcdn.com.br/img/img_prod/577735/roupa_do_poderoso_chefinho_18942817_1_ce9945e95fcfcd39c59f79a421d8f2b6.jpeg"
+        },
+        "Cliente1": {
+            "id": "d63ccf4d-539a-4a77-9d0d-876510c5914d",
+            "nome": "Homer jay Simpson"
+        },
+        "Avaliação_Cliente1": 3.2,
+        "Cliente2": {
+            "id": "b7f7d014-f95a-490c-9dfc-92729158ff1c",
+            "nome": "Felipe Diniz"
+        },
+        "Avaliação_Cliente2": 3.5,
+        "dataTroca": "21-05-2009"
+    },{
+        "Anuncio1": {
+            "id": "d4b08c1b-e2e8-411a-8929-dbb8a358937c",
+            "nomeOdjeto": "Panela de pressão",
+            "foto1": "https://a-static.mlcdn.com.br/618x463/panela-de-pressao-panelux-prata-4l-classic/magazineluiza/144307900/376d9c8de54f62fe02e90246973a280d.jpg"
+        },
+        "Anuncio2": {
+            "id": "d4b08c1b-e2e8-411a-8929-dbb8a358937c",
+            "nomeOdjeto": "Panela de pressão",
+            "foto1": "https://static3.tcdn.com.br/img/img_prod/577735/roupa_do_poderoso_chefinho_18942817_1_ce9945e95fcfcd39c59f79a421d8f2b6.jpeg"
+        },
+        "Cliente1": {
+            "id": "d63ccf4d-539a-4a77-9d0d-876510c5914d",
+            "nome": "Homer jay Simpson"
+        },
+        "Avaliação_Cliente1": 3.2,
+        "Cliente2": {
+            "id": "b7f7d014-f95a-490c-9dfc-92729158ff1c",
+            "nome": "Felipe Diniz"
+        },
+        "Avaliação_Cliente2": 3.5,
+        "dataTroca": "21-05-2009"
+    },
+    {
+        "Anuncio1": {
+            "id": "d4b08c1b-e2e8-411a-8929-dbb8a358937c",
+            "nomeOdjeto": "Panela de pressão",
+            "foto1": "https://a-static.mlcdn.com.br/618x463/panela-de-pressao-panelux-prata-4l-classic/magazineluiza/144307900/376d9c8de54f62fe02e90246973a280d.jpg"
+        },
+        "Anuncio2": {
+            "id": "d4b08c1b-e2e8-411a-8929-dbb8a358937c",
+            "nomeOdjeto": "Panela de pressão",
+            "foto1": "https://static3.tcdn.com.br/img/img_prod/577735/roupa_do_poderoso_chefinho_18942817_1_ce9945e95fcfcd39c59f79a421d8f2b6.jpeg"
+        },
+        "Cliente1": {
+            "id": "d63ccf4d-539a-4a77-9d0d-876510c5914d",
+            "nome": "Homer jay Simpson"
+        },
+        "Avaliação_Cliente1": 3.2,
+        "Cliente2": {
+            "id": "b7f7d014-f95a-490c-9dfc-92729158ff1c",
+            "nome": "Felipe Diniz"
+        },
+        "Avaliação_Cliente2": 3.5,
+        "dataTroca": "21-05-2009"
+    },
+    {
+        "Anuncio1": {
+            "id": "d4b08c1b-e2e8-411a-8929-dbb8a358937c",
+            "nomeOdjeto": "Panela de pressão",
+            "foto1": "https://a-static.mlcdn.com.br/618x463/panela-de-pressao-panelux-prata-4l-classic/magazineluiza/144307900/376d9c8de54f62fe02e90246973a280d.jpg"
+        },
+        "Anuncio2": {
+            "id": "d4b08c1b-e2e8-411a-8929-dbb8a358937c",
+            "nomeOdjeto": "Panela de pressão",
+            "foto1": "https://static3.tcdn.com.br/img/img_prod/577735/roupa_do_poderoso_chefinho_18942817_1_ce9945e95fcfcd39c59f79a421d8f2b6.jpeg"
+        },
+        "Cliente1": {
+            "id": "d63ccf4d-539a-4a77-9d0d-876510c5914d",
+            "nome": "Homer jay Simpson"
+        },
+        "Avaliação_Cliente1": 3.2,
+        "Cliente2": {
+            "id": "b7f7d014-f95a-490c-9dfc-92729158ff1c",
+            "nome": "Felipe Diniz"
+        },
+        "Avaliação_Cliente2": 3.5,
+        "dataTroca": "21-05-2009"
+    },
+    {
+        "Anuncio1": {
+            "id": "d4b08c1b-e2e8-411a-8929-dbb8a358937c",
+            "nomeOdjeto": "Panela de pressão",
+            "foto1": "https://a-static.mlcdn.com.br/618x463/panela-de-pressao-panelux-prata-4l-classic/magazineluiza/144307900/376d9c8de54f62fe02e90246973a280d.jpg"
+        },
+        "Anuncio2": {
+            "id": "d4b08c1b-e2e8-411a-8929-dbb8a358937c",
+            "nomeOdjeto": "Panela de pressão",
+            "foto1": "https://static3.tcdn.com.br/img/img_prod/577735/roupa_do_poderoso_chefinho_18942817_1_ce9945e95fcfcd39c59f79a421d8f2b6.jpeg"
+        },
+        "Cliente1": {
+            "id": "d63ccf4d-539a-4a77-9d0d-876510c5914d",
+            "nome": "Homer jay Simpson"
+        },
+        "Avaliação_Cliente1": 3.2,
+        "Cliente2": {
+            "id": "b7f7d014-f95a-490c-9dfc-92729158ff1c",
+            "nome": "Felipe Diniz"
+        },
+        "Avaliação_Cliente2": 3.5,
+        "dataTroca": "21-05-2009"
+    },
+    {
+        "Anuncio1": {
+            "id": "d4b08c1b-e2e8-411a-8929-dbb8a358937c",
+            "nomeOdjeto": "Panela de pressão",
+            "foto1": "https://a-static.mlcdn.com.br/618x463/panela-de-pressao-panelux-prata-4l-classic/magazineluiza/144307900/376d9c8de54f62fe02e90246973a280d.jpg"
+        },
+        "Anuncio2": {
+            "id": "d4b08c1b-e2e8-411a-8929-dbb8a358937c",
+            "nomeOdjeto": "Panela de pressão",
+            "foto1": "https://static3.tcdn.com.br/img/img_prod/577735/roupa_do_poderoso_chefinho_18942817_1_ce9945e95fcfcd39c59f79a421d8f2b6.jpeg"
+        },
+        "Cliente1": {
+            "id": "d63ccf4d-539a-4a77-9d0d-876510c5914d",
+            "nome": "Homer jay Simpson"
+        },
+        "Avaliação_Cliente1": 3.2,
+        "Cliente2": {
+            "id": "b7f7d014-f95a-490c-9dfc-92729158ff1c",
+            "nome": "Felipe Diniz"
+        },
+        "Avaliação_Cliente2": 3.5,
+        "dataTroca": "21-05-2009"
+    },
+    {
+        "Anuncio1": {
+            "id": "d4b08c1b-e2e8-411a-8929-dbb8a358937c",
+            "nomeOdjeto": "Panela de pressão",
+            "foto1": "https://a-static.mlcdn.com.br/618x463/panela-de-pressao-panelux-prata-4l-classic/magazineluiza/144307900/376d9c8de54f62fe02e90246973a280d.jpg"
+        },
+        "Anuncio2": {
+            "id": "d4b08c1b-e2e8-411a-8929-dbb8a358937c",
+            "nomeOdjeto": "Panela de pressão",
+            "foto1": "https://static3.tcdn.com.br/img/img_prod/577735/roupa_do_poderoso_chefinho_18942817_1_ce9945e95fcfcd39c59f79a421d8f2b6.jpeg"
+        },
+        "Cliente1": {
+            "id": "d63ccf4d-539a-4a77-9d0d-876510c5914d",
+            "nome": "Homer jay Simpson"
+        },
+        "Avaliação_Cliente1": 3.2,
+        "Cliente2": {
+            "id": "b7f7d014-f95a-490c-9dfc-92729158ff1c",
+            "nome": "Felipe Diniz"
+        },
+        "Avaliação_Cliente2": 3.5,
+        "dataTroca": "21-05-2009"
+    },
+    {
+        "Anuncio1": {
+            "id": "d4b08c1b-e2e8-411a-8929-dbb8a358937c",
+            "nomeOdjeto": "Panela de pressão",
+            "foto1": "https://a-static.mlcdn.com.br/618x463/panela-de-pressao-panelux-prata-4l-classic/magazineluiza/144307900/376d9c8de54f62fe02e90246973a280d.jpg"
+        },
+        "Anuncio2": {
+            "id": "d4b08c1b-e2e8-411a-8929-dbb8a358937c",
+            "nomeOdjeto": "Panela de pressão",
+            "foto1": "https://static3.tcdn.com.br/img/img_prod/577735/roupa_do_poderoso_chefinho_18942817_1_ce9945e95fcfcd39c59f79a421d8f2b6.jpeg"
+        },
+        "Cliente1": {
+            "id": "d63ccf4d-539a-4a77-9d0d-876510c5914d",
+            "nome": "Homer jay Simpson"
+        },
+        "Avaliação_Cliente1": 3.2,
+        "Cliente2": {
+            "id": "b7f7d014-f95a-490c-9dfc-92729158ff1c",
+            "nome": "Felipe Diniz"
+        },
+        "Avaliação_Cliente2": 3.5,
+        "dataTroca": "21-05-2009"
+    },{
+        "Anuncio1": {
+            "id": "d4b08c1b-e2e8-411a-8929-dbb8a358937c",
+            "nomeOdjeto": "Panela de pressão",
+            "foto1": "https://a-static.mlcdn.com.br/618x463/panela-de-pressao-panelux-prata-4l-classic/magazineluiza/144307900/376d9c8de54f62fe02e90246973a280d.jpg"
+        },
+        "Anuncio2": {
+            "id": "d4b08c1b-e2e8-411a-8929-dbb8a358937c",
+            "nomeOdjeto": "Panela de pressão",
+            "foto1": "https://static3.tcdn.com.br/img/img_prod/577735/roupa_do_poderoso_chefinho_18942817_1_ce9945e95fcfcd39c59f79a421d8f2b6.jpeg"
+        },
+        "Cliente1": {
+            "id": "d63ccf4d-539a-4a77-9d0d-876510c5914d",
+            "nome": "Homer jay Simpson"
+        },
+        "Avaliação_Cliente1": 3.2,
+        "Cliente2": {
+            "id": "b7f7d014-f95a-490c-9dfc-92729158ff1c",
+            "nome": "Felipe Diniz"
+        },
+        "Avaliação_Cliente2": 3.5,
+        "dataTroca": "21-05-2013"
+    }
+]
