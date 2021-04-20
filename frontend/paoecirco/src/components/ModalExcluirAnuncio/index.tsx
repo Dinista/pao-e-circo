@@ -19,23 +19,26 @@ const ModalReactExcluirAnuncio: React.FC<NewModalProps> = ({
   const history = useHistory();
 
   const handleDelete = useCallback(async (data: any) => {
-    console.log("Deletando comentários");
-    api.delete(`/deleteCommentsByAnuncioId/${data}`).then((response) => {
-      console.log("Response deletando comentarios: " + response); 
-    });
-    
-    console.log("Deletando denúncias");
-    api.delete(`/deleteDenunciasByAnuncioId/${data}`).then((response) => {
-      console.log("Response deletando anuncios: " + response); 
-    });
-    
-    console.log("Deletando anúncio");
-    api.delete(`/anuncios/${data}`).then((response) => {
-      console.log("Response deletando anuncio: " + response); 
-    });
+    try{
+      console.log("Deletando comentários");
+      api.delete(`/deleteCommentsByAnuncioId/${data}`).then((response) => {});
+      
+      console.log("Deletando denúncias");
+      api.delete(`/deleteDenunciasByAnuncioId/${data}`).then((response) => {});
+      
+      console.log("Deletando notifacoes");
+      api.delete(`/notificacoesanuncios/${data}`).then((response) => {})
+      api.delete(`/notificacoesanunciosofertados/${data}`).then((response) => {})
+      
+      console.log("Deletando anúncio");
+      api.delete(`/anuncios/${data}`).then((response) => {});
+      
+      alert("O anuncio foi apagado com sucesso");
+      history.push("/");
 
-    alert("O anuncio foi apagado com sucesso");
-    history.push("/");
+    } catch (err) {
+      console.log("ERRO EXCLUSAO ANUNCIO: " + err + "!");
+    }
   }, []);
 
   return (

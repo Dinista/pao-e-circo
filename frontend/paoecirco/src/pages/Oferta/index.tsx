@@ -18,6 +18,7 @@ import Header from "../../components/Header";
 import ExibirPropaganda from "../../components/ExibirPropaganda";
 import ModalReactDestaque from "../../components/ModalDestaque";
 import ModalReactRealizarOferta from "../../components/ModalRealizarOferta";
+import ModalReactAjudaOnline from "../../components/ModalAjudaOnline";
 import ModalReactExcluirAnuncio from "../../components/ModalExcluirAnuncio";
 import ImageSliderAnuncio from "../../components/SliderAnuncio";
 import Cliente from "../../../../../backend/src/models/Cliente";
@@ -68,7 +69,14 @@ const Oferta: React.FC = (props: any) => {
     setIsModalDenunciaOpen(false);
   }
 
-  
+  const [isModalAjudaOnlineOpen, setIsModalAjudaOnlineOpen] = useState(false);
+  function handleOpenModalAjudaOnline() {
+    setIsModalAjudaOnlineOpen(true);
+  }
+  function handleCloseModalAjudaOnline() {
+    setIsModalAjudaOnlineOpen(false);
+  }
+
   const [isModalExcluirAnuncioOpen, setIsModalExcluirAnuncioOpen] = useState(
     false
   );
@@ -202,6 +210,11 @@ const Oferta: React.FC = (props: any) => {
           id={adData?.id}
         />
 
+        <ModalReactAjudaOnline
+          isOpen={isModalAjudaOnlineOpen}
+          onRequestClose={handleCloseModalAjudaOnline}
+        />
+
         <ModalReactRealizarOferta
           isOpen={isModalRealizarOfertaOpen}
           onRequestClose={handleCloseModalRealizarOferta}
@@ -273,6 +286,10 @@ const Oferta: React.FC = (props: any) => {
             <>
               <StyledButton onClick={handleOpenModalRealizarOferta}>
                 Oferecer item
+              </StyledButton>
+
+              <StyledButton onClick={handleOpenModalAjudaOnline}>
+                Ajuda
               </StyledButton>
 
               <StyledButton
@@ -350,7 +367,5 @@ const Oferta: React.FC = (props: any) => {
     </>
   );
 };
-
-//styles
 
 export default Oferta;

@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { getConnection, getRepository } from "typeorm";
 import Cliente from "../models/Cliente";
+import NotificacaoTroca from "../models/NotificacaoTroca";
 import Notificacoes from "../models/NotificacaoTroca";
 
 class NotificacoesTrocaController {
@@ -44,6 +45,45 @@ class NotificacoesTrocaController {
     const clienteRepository = getRepository(Cliente);
     const cliente = await clienteRepository.find({ name: name });
     return response.json(cliente[0]);
+  }
+
+  
+  async deleteNotificacoesByAnuncioOfertadoId(request: Request, response: Response) {
+    const notificacaoTrocaRepository = getRepository(NotificacaoTroca);
+
+    const notificacoesTroca = await getConnection()
+    .getRepository(NotificacaoTroca)
+    .createQueryBuilder("notificacaoTroca")
+    .where("notificacaoTroca.ofertaTroca = :idAnuncio", {
+      idAnuncio: request.params.id,
+    })
+    .getMany();
+
+    console.log("Foram encontrados " + notificacoesTroca.length + " oferta de trocas vindo desse ID");
+
+    for(let notificacao of notificacoesTroca){
+      await notificacaoTrocaRepository.delete(notificacao.idNotificacao);
+    }
+    return response;
+  }
+
+  async deleteNotificacoesByAnuncioId(request: Request, response: Response) {
+    const notificacaoTrocaRepository = getRepository(NotificacaoTroca);
+
+    const notificacoesTroca = await getConnection()
+    .getRepository(NotificacaoTroca)
+    .createQueryBuilder("notificacaoTroca")
+    .where("notificacaoTroca.anuncio = :idAnuncio", {
+      idAnuncio: request.params.id,
+    })
+    .getMany();
+    
+    console.log("ESSE ANUNCIO RECEBEU " + notificacoesTroca.length + " OFERTAS!");
+
+    for(let notificacao of notificacoesTroca){
+      await notificacaoTrocaRepository.delete(notificacao.idNotificacao);
+    }
+    return response;
   }
 }
 

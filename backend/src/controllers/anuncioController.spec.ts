@@ -8,7 +8,7 @@ describe("Anuncio controller", () => {
       titulo: "carteira marrom linda",
       cliente: "62c79833-0265-4217-9eef-0e40a39b6c7e",
       nomeObjeto: "carteira",
-      categoria: "vestuario",
+      categoria: "outros",
       estadoConservacao: "usado",
       foto1: "https://images.vivara.com.br/Stores/Fotos/DI00003630-1.jpg",
       foto2: "https://images.vivara.com.br/Stores/Fotos/DI00003630-2.jpg",
@@ -29,7 +29,7 @@ describe("Anuncio controller", () => {
       titulo: "carteira marrom linda",
       cliente: "62c79833-0265-4217-9eef-0e40a39b6c7e",
       nomeObjeto: "carteira",
-      categoria: "vestuario",
+      categoria: "outros",
       estadoConservacao: "usado",
       foto1: "https://images.vivara.com.br/Stores/Fotos/DI00003630-1.jpg",
       foto2: "https://images.vivara.com.br/Stores/Fotos/DI00003630-2.jpg",
@@ -51,7 +51,7 @@ describe("Anuncio controller", () => {
       titulo: "carteira marrom linda",
       cliente: "62c79833-0265-4217-9eef-0e40a39b6c7e",
       nomeObjeto: "carteira",
-      categoria: "vestuario",
+      categoria: "outros",
       estadoConservacao: "usado",
       foto1: "https://images.vivara.com.br/Stores/Fotos/DI00003630-1.jpg",
       foto2: "https://images.vivara.com.br/Stores/Fotos/DI00003630-2.jpg",
@@ -63,6 +63,6 @@ describe("Anuncio controller", () => {
       destaqueExpira : "01/01/2099"
     });
 
-    expect(anuncioRepository.findByObject(anuncio.nomeObjeto)).toBe("carteira");
+    expect(anuncioRepository.findByCategoria(anuncio.categoria)).toBe("outros");
   });
 });

@@ -54,11 +54,25 @@ const ModalReactRealizarOferta: React.FC<NewModalProps> = ({
 
   const formRefData = useRef<FormHandles>(null);
 
+  const handleCadastrarNovoItem = useCallback(async() => {
+    const cliente = localStorage.getItem("loginid") || "";
+    if(cliente == "") {
+      alert("Necessário estar logado para cadastrar um novo item!");
+      return history.push("/signin");
+    } else {
+      return history.push("/createexchangead");
+    }
+
+    
+    
+  }, []);
+
   const handleSubmitData = useCallback(async (itemOferecidoId: any) => {
-    if(localStorage.getItem("loginid") || "" == "") {
+    const cliente = localStorage.getItem("loginid") || "";
+    if(cliente == "") {
       alert("Necessário estar logado para realizar uma oferta!");
       return history.push("/signin");
-    }
+    } 
     
     try {
       formRef.current?.setErrors({});
@@ -101,6 +115,7 @@ const ModalReactRealizarOferta: React.FC<NewModalProps> = ({
             name="objeto"
             placeholder="Selecione um objeto seu para oferecer"
             options={objetosUsuarioLogado}
+            defaultValue={objetosUsuarioLogado[1]}
           ></Select>
           <SubText text="O item ainda estará disponível até que o outro usuário aceite a proposta de troca." />
 
@@ -108,6 +123,8 @@ const ModalReactRealizarOferta: React.FC<NewModalProps> = ({
             Oferecer item selecionado
           </ButtonPropaganda>
         </Form>
+
+        <ButtonPropaganda onClick={handleCadastrarNovoItem}> Cadastrar novo item </ButtonPropaganda>
       </Container>
     </Modal>
   );

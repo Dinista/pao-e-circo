@@ -64,7 +64,6 @@ class ComentarioController {
     for(let comentario of comentarios){
       await comentarioRepository.delete(comentario.idComentario);
     }
-
     return response;
   }
 }
