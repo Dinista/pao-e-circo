@@ -11,14 +11,23 @@
   justify-content: center;
 }
 
+.linkContainerDestaques {
+  text-decoration: none;
+  color: black;
+}
+.linkContainerDestaques :hover {
+  text-decoration: underline;
+  color: brown;
+}
+
 .containerItemDestaque {
   box-shadow: 1px 1px 1px 1px blue;
   display: flex;
 }
 
 .cardAvatar {
-  height: 100px;
-  width: 100px;
+  height: 200px;
+  width: 200px;
 }
 
 .tituloCard {

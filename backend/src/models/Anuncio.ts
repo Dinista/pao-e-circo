@@ -2,6 +2,7 @@ import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany, ManyToMan
 import Cliente from "./Cliente";
 import Comentario from "./Comentario";
 import Denuncia from "./Denuncia";
+import NotificacaoTroca from "./NotificacaoTroca";
 
 @Entity("anuncios")
 class Anuncio {
@@ -49,10 +50,14 @@ class Anuncio {
   @Column()
   destaqueExpira: string;
 
-  @OneToMany(() => Denuncia, denuncia => denuncia.anuncio)
+  @OneToMany(() => Denuncia, denuncia => denuncia.anuncio, {
+    cascade: true
+  })
   denuncias: Denuncia[];
 
-  @OneToMany(() => Comentario, comentario => comentario.anuncio)
+  @OneToMany(() => Comentario, comentario => comentario.anuncio, {
+    cascade: true
+  })
   comentarios: Comentario[];
 
   @ManyToMany(() => Cliente, cliente => cliente.anunciosSeguidos, {
@@ -61,6 +66,12 @@ class Anuncio {
   @JoinTable()
   seguidores: Cliente[];
   
+  @OneToMany(() => NotificacaoTroca, notificacao => notificacao.anuncio, {
+    nullable: true,
+    cascade: true
+  })
+  notificacoesTroca: NotificacaoTroca[];
+
 }
 
 export default Anuncio;

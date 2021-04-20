@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getRepository } from "typeorm";
+import { getManager, getRepository } from "typeorm";
 import Cliente from "../models/Cliente";
 
 class ClienteController {
@@ -47,6 +47,20 @@ class ClienteController {
     return response.json("funfou se pa em");
   }
 
+  async findbyname(request: Request, response: Response) {
+    const { name } = request.body;
+    const entityManager = getManager();
+    const someQuery = await entityManager.query(
+      `
+      SELECT id, name, endereco, cpf, cidade, estado, "dataNasc", email, senha, nota, "numTrocas"
+      FROM 	clientes where name = '` +
+        name +
+        `'
+  `
+    );
+    return response.json(someQuery);
+  }
+
   async login(request: Request, response: Response) {
     const { name, senha } = request.body;
     var crypto = require("crypto");
@@ -59,7 +73,7 @@ class ClienteController {
       return response.json({ logou: isRight, cliente });
     } catch (err) {
       console.log("erro login back-end: " + err);
-      
+
       return response.json({ logou: false });
     }
   }
@@ -73,9 +87,13 @@ class ClienteController {
   }
 
   async findById(request: Request, response: Response) {
-    const clienteRepository = getRepository(Cliente);
-    const cliente = await clienteRepository.find({ id: request.params.id });
-    return response.json(cliente[0]);
+    try {
+      const clienteRepository = getRepository(Cliente);
+      const cliente = await clienteRepository.find({ id: request.params.id });
+      return response.json(cliente);
+    } catch {
+      return response.json({ error: "Não existe" })
+    }
   }
 }
 

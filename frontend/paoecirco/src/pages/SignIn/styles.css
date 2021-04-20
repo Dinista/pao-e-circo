@@ -27,7 +27,7 @@
 
 .loginLogoContainer {
   width: 100%;
-  background: #0e4781;
+  background: #f0f0f0;
   display: flex;
   justify-content: center;
 }
@@ -125,13 +125,16 @@ input[type="submit"] {
   text-decoration: none;
   color: #0e4781;
 }
-
+.btn-align{
+  display:flex;
+}
 .buttonLogin {
+  align-self: left;
   margin-top: 2vh;
   box-shadow: 0 5px 0 #c72060;
   background-color: #ff587c;
   border-color: rgb(255, 50, 94);
-  width: 400px;
+  width: 90%;
   height: 35px;
   border-radius: 4px;
   color: white;
@@ -144,7 +147,6 @@ input[type="submit"] {
   background-color: rgb(53, 53, 53);
   border-color: rgb(0, 0, 0);
   border-width: 1px;
-  width: 400px;
   color: white;
 }
 
@@ -187,3 +189,8 @@ input[type="submit"] {
 .focus-visible {
   outline: 0px;
 }
+
+/*.Div-Input{
+  width: 83%;
+}
+*/

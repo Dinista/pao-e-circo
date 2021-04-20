@@ -15,14 +15,14 @@ interface NewModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
   idDenunciante: string | null;
-  idAnuncio: string | undefined
+  idAnuncio: string | undefined;
 }
 
 interface Denuncia {
-  categoria: string,
-  comentario: string,
-  idDenunciante: string | null,
-  anuncio: string | undefined
+  categoria: string;
+  comentario: string;
+  idDenunciante: string | null;
+  anuncio: string | undefined;
 }
 
 const categorias = [
@@ -37,7 +37,7 @@ const ModalReactDenuncia: React.FC<NewModalProps> = ({
   isOpen,
   onRequestClose,
   idDenunciante,
-  idAnuncio
+  idAnuncio,
 }: NewModalProps) => {
   const formRefData = useRef<FormHandles>(null);
   const history = useHistory();
@@ -46,8 +46,8 @@ const ModalReactDenuncia: React.FC<NewModalProps> = ({
     async (data: Denuncia) => {
       try {
         const schema = yup.object().shape({
-           categoria : yup.string().required("Selecione uma categoria"),
-           comentario: yup.string()
+          categoria: yup.string().required("Selecione uma categoria"),
+          comentario: yup.string(),
         });
 
         await schema.validate(data, {
@@ -56,14 +56,12 @@ const ModalReactDenuncia: React.FC<NewModalProps> = ({
 
         data.anuncio = idAnuncio;
         data.idDenunciante = idDenunciante;
-        
-        console.log(data);
 
         await api.post("/denunciar", data);
         alert("O anuncio foi denunciado com sucesso");
         history.push("/");
       } catch (err) {
-        alert(err)
+        alert(err);
       }
     },
     [idAnuncio]
@@ -81,11 +79,18 @@ const ModalReactDenuncia: React.FC<NewModalProps> = ({
         <h2>Denunciar anúncio</h2>
         <Form ref={formRefData} onSubmit={handleSubmitData}>
           <p> Qual o problema com esse anúncio? </p>
-          <Select name="categoria" placeholder="Categoria da denúncia" options={categorias}></Select>
+          <Select
+            name="categoria"
+            placeholder="Categoria da denúncia"
+            options={categorias}
+          ></Select>
 
           <p>Deseja acrescentar um comentário sobre a denúncia? </p>
-          <Input name="comentario" placeholder="Insira um comentário... "></Input>
-          
+          <Input
+            name="comentario"
+            placeholder="Insira um comentário... "
+          ></Input>
+
           <ButtonPropaganda name="submitButton" type="submit">
             Denunciar
           </ButtonPropaganda>

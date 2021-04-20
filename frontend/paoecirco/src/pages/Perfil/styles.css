@@ -1,0 +1,103 @@
+.PerfilContainer{
+    display: grid;
+    place-items: center;
+}
+
+.bg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80vw;
+    height: 24.5vh;
+    margin: 30px 0px 30px 0px;
+    background-image: linear-gradient(rgba(255, 230, 0, 0.164), rgba(255, 0, 76, 0.26));
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.MenuContainer{
+    margin: 30px 0px 30px 0px;
+    display: inline-flex;
+    grid-gap: 0px;
+    width: 80vw;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.MenuContainer li{
+    list-style-type: none;
+    margin-right: 10px;
+    padding: 15px;
+    border-top: 1px solid #dee2e6;
+    border-left: 1px solid #dee2e6;
+    border-right: 1px solid #dee2e6;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.Paginate{
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+
+.Conteiner-Anuncios-Ativos, .Conteiner-Trocas{
+    display: grid;
+    width: 80vw;
+    grid-gap: 35px;
+    user-select: none;
+}
+
+.controls{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.prev, .next, .prev-troca, .next-troca{
+    background-color: white;
+    outline: none;
+    border: 1px solid rgba(128, 128, 128, 0.349);
+    border-radius: 2px;
+    font-weight: 600;
+    height: 40px;
+    width: 90px;
+    color: #f05b78;
+    cursor:pointer;
+    border-bottom: 3px solid rgba(148, 148, 148, 0.39);
+    user-select: none;
+}
+
+.prev, .prev-troca{
+    display: none;
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+.next, .next-troca{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    justify-self: end;
+}
+
+
+.prev:active, .next:active, .prev-troca:active, .next-troca:active{
+    border: 1px solid rgba(128, 128, 128, 0.349);
+}
+
+.semAnuncio{
+    color: rgb(0, 0, 0);
+    opacity: 0.7;
+    grid-column-start: 1;
+    grid-column-end: last;
+    margin: auto;
+}
+
+.User-Not-Found{
+    text-align: center;
+    margin: 30px;
+    color: rgb(65, 65, 65);
+}
+
+.icon{
+    margin: 30px;
+    font-size: 100px;
+    color: rgb(235, 235, 235);
+}

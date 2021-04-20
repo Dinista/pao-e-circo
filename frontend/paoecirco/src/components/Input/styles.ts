@@ -12,7 +12,6 @@ export const Container = styled.div<ContainerProps>`
   padding: 16px;
   margin-top: 10px;
   margin-bottom: 7px;
-  width: 110%;
   height: 10px;
   color: #666360;
   transition: all 1s;

@@ -6,15 +6,15 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import CreateExchangeAd from "./pages/CriarAnuncio";
-import BuscaUsuario from "./pages/BuscaAnuncio";
+import BuscaUsuario from "./pages/BuscaUsuario";
 import GerenciarPropaganda from "./pages/GerenciarPropagandas";
 
 import CriarPropaganda from "./pages/CriarPropaganda";
 import BuscaAnuncio from "./pages/BuscaAnuncio";
 
 import MakeAnOffer from "./pages/Oferta";
-import Profile from "./pages/UserProfile";
 import Perfil from "./pages/Perfil";
+import PerfilError from "./pages/PerfilError";
 import EditarAnuncio from "./pages/EditarAnuncio";
 
 import AvaliarDenuncia from "./pages/AvaliarDenuncia"
@@ -30,9 +30,8 @@ ReactDOM.render(
         <Route path="/buscausuario" component={BuscaUsuario} />
         <Route path="/buscaanuncio" component={BuscaAnuncio} />
         <Route path="/gerenciarpropaganda" component={GerenciarPropaganda} />
-        <Route path="/profile" component={Profile} />
-        <Route path="/perfil" component={Perfil} />
-
+        <Route path="/perfil/:id" component={Perfil} />
+        <Route path="/perfil" component={PerfilError} />
         <Route path="/criarpropaganda" component={CriarPropaganda} />
         <Route path="/editaranuncio" component={EditarAnuncio} />
 

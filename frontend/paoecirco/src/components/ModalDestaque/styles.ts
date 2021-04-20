@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  position: relative;
+  z-index: 5;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -27,12 +29,16 @@ export const Container = styled.div`
 `;
 
 export const ImagemContainer = styled.div`
+  position: relative;
   display: flex;
   width: 32vw;
   align-items: center;
+  z-index: 5;
 `;
 
 export const ButtonPropaganda = styled.button`
+  position: relative;   
+  z-index: 5;
   height: 50px;
   display: flex;
   width: 34px;

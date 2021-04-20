@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap');
 
 .cabecalho-perfil-area{
+  display: inline-block;
   align-content: center;
   justify-content: center;
+  width: 80vw;
 }
 
 .cabecalho-user-img{
@@ -12,9 +14,18 @@
 }
 
 .cabecalho{
-  position: absolute;
-  top:20%;
+  display: grid;
+  grid-template-columns: 0.05fr 5fr 1fr 0.3fr;
+  grid-template-rows: 1fr;
   padding-left: 0px;
+  align-items: center;
+}
+
+.subGrid{
+  display: grid;
+  grid-auto-flow: dense;
+  grid-template-columns: 5fr;
+  grid-template-rows: 0.2fr 0.1fr;
 }
 
 .cabecalho li{
@@ -31,10 +42,11 @@
   font-weight: bold;
   font-size: 28px;
   line-height: 220%;
+  margin: 0px;
 }
 
 .cabecalho-info{
-  position: absolute;
+  position: flex;
   left: 26%;
   top: 60%;
 }
@@ -44,10 +56,6 @@
 }
 
 .ranting{
-  position: absolute;
-  top: 15%;
-  left: 180%;
-  width: 20%;
   text-align: center;
   font-size: 12px;
   line-height: 150%;
@@ -58,19 +66,40 @@
 }
 
 .cabecalho-config{
-  position: absolute;
-  top: 20%;
-  left: 210%;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
   font-size: 25px;
   color: #f05b78;
 }
 
+
+@keyframes rotate {
+  100% {
+      transform: rotate(1turn);
+  }
+}
+
 .fa-cog{
   color: #f05b78;
+  -webkit-transition: -webkit-transform 1s;
+  transition: 1s;
+  height: 28px;
 }
 
-.fa-star{
+.fa-cog:hover{
+  -webkit-transform: rotate(360deg) translateZ(0);
+  transform: rotate(360deg) translateZ(0);
+}
+
+.rating-num{
+  color: #242424;
+  font-size: xx-large;
+}
+
+.Estrelas-cabecalho{
   color: #f0c15b;
+  font-size: large;
 }
-
-

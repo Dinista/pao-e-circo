@@ -1,9 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import "./styles.css";
-
 import ImageSlider from "../../components/Slider";
-import { SliderData } from "../../components/SliderData";
 import Categorias from "../../components/Categorias";
 import Destaques from "../../components/Destaques";
 import ExibirPropaganda from "../../components/ExibirPropaganda";
@@ -14,7 +12,7 @@ const Landing: React.FC = () => {
       <div className="container">
         <Header />
         <Categorias />
-        <ImageSlider slides={SliderData} />
+        <ImageSlider />
         <Destaques />
         <ExibirPropaganda />
       </div>

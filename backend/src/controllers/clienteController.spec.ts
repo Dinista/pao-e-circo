@@ -8,7 +8,7 @@ describe("Cliente controller", () => {
       name: "flavin do pneu",
       cpf: "12345678910",
       cidade: "maringay",
-      dataNasc: "12/12/2012",
+      dataNasc: "12/12/2014",
       email: "flavindopneu@gmail.com",
       endereco: "rua do shaolin matador de porco",
       estado: "liquido",
@@ -27,7 +27,7 @@ describe("Cliente controller", () => {
       dataNasc: "12/12/2012",
       email: "flavindopneu@gmail.com",
       endereco: "rua do shaolin matador de porco",
-      estado: "liquido",
+      estado: "solido",
       senha: "jorgejuca.123",
     });
 
@@ -39,7 +39,7 @@ describe("Cliente controller", () => {
         dataNasc: "12/12/2012",
         email: "flavindopneu@gmail.com",
         endereco: "rua do shaolin matador de porco",
-        estado: "liquido",
+        estado: "solido",
         senha: "jorgejuca.123",
       })
     ).rejects.toBeInstanceOf(Error);
