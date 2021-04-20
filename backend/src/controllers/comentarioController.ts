@@ -34,9 +34,7 @@ class ComentarioController {
       .getRepository(Anuncio)
       .createQueryBuilder("anuncio")
       .leftJoinAndSelect("anuncio.comentarios", "comentario")
-      .where("comentario.anuncio = :idAnuncio", {
-        idAnuncio: request.params.id,
-      })
+      .where("comentario.anuncio = :idAnuncio", {idAnuncio: request.params.id,})
       .leftJoinAndSelect("comentario.comentador", "comentador")
       .getMany();
     return response.json(anuncio);

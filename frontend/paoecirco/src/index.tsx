@@ -18,6 +18,9 @@ import PerfilError from "./pages/PerfilError";
 import EditarAnuncio from "./pages/EditarAnuncio";
 
 import AvaliarDenuncia from "./pages/AvaliarDenuncia"
+import RelatorioAnuncios from "./pages/RelatorioAnuncios";
+import RelatorioPropagandas from "./pages/RelatorioPropagandas";
+import RelatorioUsuarioCadastrados from "./pages/RelatorioCliente";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -38,6 +41,11 @@ ReactDOM.render(
         <Route path="/makeanoffer" component={MakeAnOffer} />
 
         <Route path="/AvaliarDenunia" component={AvaliarDenuncia} />
+        <Route path="/RelatorioAnuncios" component={RelatorioAnuncios} />
+        <Route path="/RelatorioPropagandas" component={RelatorioPropagandas} />
+        <Route path="/RelatorioCliente" component={RelatorioUsuarioCadastrados} />
+        
+
       </Switch>
     </Router>
   </React.StrictMode>,

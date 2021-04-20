@@ -7,6 +7,8 @@ const AvaliarDenuncia: React.FC = () => {
   return (
     <>
       <Header />
+      <div style = {{margin:16}}> 
+    <h1>Avaliar Denúncias</h1>
         <AvaliarDenunciaCard
       anunciante = ""
       categoria = ""
@@ -16,7 +18,8 @@ const AvaliarDenuncia: React.FC = () => {
       imagem = "https://images.unsplash.com/photo-1546768292-fb12f6c92568?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
       nomeAnuncio = ""
       numDenuncias = {1234}
-        />
+      />
+      </div>
     </>
   );
 };
