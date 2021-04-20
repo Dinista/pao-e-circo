@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Input from "../Input";
 
 export const SubtextStyled = styled.sub`
   color: gray;

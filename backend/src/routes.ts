@@ -40,6 +40,7 @@ routes.post("/findbyname", anuncioController.findByName);
 
 //denuncias
 routes.post("/denunciar", denunciaController.create);
+routes.delete("/deleteDenunciasByAnuncioId/:id", denunciaController.deleteDenunciasByAnuncioId);
 
 //comentarios
 routes.post("/comentar", comentarioController.create);
@@ -47,6 +48,7 @@ routes.post(
   "/encontrarcomentariosanuncio/:id",
   comentarioController.findCommentsByAnuncioId
 );
+routes.delete("/deleteCommentsByAnuncioId/:id", comentarioController.deleteCommentsByAnuncioId);
 
 //propagandas
 routes.post("/propaganda", propagandaController.create);

@@ -1,7 +1,7 @@
 import {MigrationInterface, QueryRunner} from "typeorm";
 
-export class migChanges1618615654124 implements MigrationInterface {
-    name = 'migChanges1618615654124'
+export class a1618693863342 implements MigrationInterface {
+    name = 'a1618693863342'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`ALTER TABLE "notificacoes" ADD "ofertaTrocaId" uuid`);

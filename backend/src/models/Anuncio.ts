@@ -50,20 +50,23 @@ class Anuncio {
   @Column()
   destaqueExpira: string;
 
-  @OneToMany(() => Denuncia, denuncia => denuncia.anuncio)
-  denuncias: Denuncia[];
-
-  @OneToMany(() => Comentario, comentario => comentario.anuncio)
-  comentarios: Comentario[];
-
-  @ManyToMany(() => Cliente, cliente => cliente.anunciosSeguidos, {
+  @OneToMany(() => Denuncia, denuncia => denuncia.anuncio, {
     cascade: true
   })
+  denuncias: Denuncia[];
+
+  @OneToMany(() => Comentario, comentario => comentario.anuncio, {
+    cascade: true
+  })
+  comentarios: Comentario[];
+
+  @ManyToMany(() => Cliente, cliente => cliente.anunciosSeguidos)
   @JoinTable()
   seguidores: Cliente[];
   
   @OneToMany(() => NotificacaoTroca, notificacao => notificacao.anuncio, {
-    nullable: true
+    nullable: true,
+    cascade: true
   })
   notificacoesTroca: NotificacaoTroca[];
 
