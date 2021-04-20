@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./styles.css";
-import Avatar from "../../assets/avatar-pic.jpg";
+import { Link } from "react-router-dom";
 import { AiOutlineSetting } from "react-icons/ai";
 import { RiMapPinLine } from "react-icons/ri"
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
@@ -11,10 +11,12 @@ interface cabecalho {
     cidade: any,
     estado: any,
     nota: any,
+    avatar: any,
+    data: any
 }
 
 
-const Cabecalho: React.FC<cabecalho> = ({ idade, nome, cidade, estado, nota }) => {
+const Cabecalho: React.FC<cabecalho> = ({ idade, nome, cidade, estado, nota, avatar, data }) => {
 
     function notaVerification(): any {
         if (nota === null || nota == undefined) {
@@ -64,13 +66,13 @@ const Cabecalho: React.FC<cabecalho> = ({ idade, nome, cidade, estado, nota }) =
     return (
         <div className="cabecalho-perfil-area">
             <ul className="cabecalho">
-                <li className="cabecalho-item"><a className="cabecalho-link"><img className="cabecalho-user-img" src={Avatar} alt=""></img></a></li>
+                <li className="cabecalho-item"><div className="cabecalho-user-img img-resize" style={{backgroundImage : `url(${avatar})`}}></div></li>
                 <div className="subGrid">
                     <li className="cabecalho-titulo"><h1 className="titulo">Lojinha de trocas do {nome}</h1></li>
                     <div className="cabecalho-info">
                         <li className="cabecalho-texto"><div className="idade">{idade} anos</div></li>
                         <li className="cabecalho-texto"><div className="localizacao"><RiMapPinLine /> {cidade}, {estado}</div></li>
-                        <li className="cabecalho-texto"><div className="temp-cadastro">Usuário desde 2018</div></li>
+                        <li className="cabecalho-texto"><div className="temp-cadastro">Usuário desde {data?.split("-")[0]}</div></li>
                     </div>
                 </div>
                 <div className="cabecalho-ranking">
@@ -80,7 +82,7 @@ const Cabecalho: React.FC<cabecalho> = ({ idade, nome, cidade, estado, nota }) =
                         <div className="qntAvaliação">{ massageVerification()}</div>
                     </div>
                 </div>
-                <div className="cabecalho-config"><a className="fa-cog" title="Editar perfil"><AiOutlineSetting /></a></div>
+                <div className="cabecalho-config"><Link to = "/editarperfil" className="fa-cog" title="Editar perfil"><AiOutlineSetting /></Link></div>
             </ul>
         </div>
     )

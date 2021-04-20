@@ -8,9 +8,10 @@
 }
 
 .cabecalho-user-img{
-  width: 80%;
-  height: auto;
+  width: 100px;
+  height: 100px;
   border-radius: 70px;
+  margin: auto;
 }
 
 .cabecalho{

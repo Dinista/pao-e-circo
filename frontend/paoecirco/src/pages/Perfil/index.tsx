@@ -16,6 +16,10 @@ import { FaSadTear } from "react-icons/fa"
 
 import TrocasCard from "../../components/TrocasCard";
 
+import bg_default from "../../assets/bg-default.jpg";
+
+import avatar_default from "../../assets/avatar-default.jpg";
+
 //import BG from "../../assets/bg-perfil.jpg";
 
 declare module "react" {
@@ -32,6 +36,9 @@ interface cliente {
   estado: string,
   cidade: string,
   nota: any,
+  avatar: string,
+  capa: string,
+  data: string,
 }
 
 const Perfil: React.FC = () => {
@@ -44,6 +51,8 @@ const Perfil: React.FC = () => {
   const urlParams = useParams() as object;
   const dataUser = perfilData?.dataNasc?.split("-") as any || 0
   const [perfilExist, setPerfilExist] = useState(true)
+  const [Cardimgcapa, setCardCapa] = useState(bg_default);
+  const [Cardimgavatar, setCardAvatar] = useState(avatar_default);
 
   // Calcula idade
 
@@ -92,13 +101,21 @@ const Perfil: React.FC = () => {
       if (response.data.error != undefined) {
         setPerfilExist(false)
       } else {
-        const picked = (({ id, name, dataNasc, estado, cidade, nota }) => ({ id, name, dataNasc, estado, cidade, nota }))(response.data[0]);
+        const picked = (({ id, name, dataNasc, estado, cidade, nota, avatar, capa, data }) => ({ id, name, dataNasc, estado, cidade, nota, avatar, capa, data}))(response.data[0]);
         setperfilData(picked);
         setIsOwner(loginId == picked.id);
       }
     })
   }, []);
 
+  useEffect(() => {
+    if (perfilData?.avatar) {
+      setCardAvatar(perfilData.avatar);
+    }
+    if (perfilData?.capa) {
+      setCardCapa(perfilData.capa);
+    }
+  });
 
   // --------------------------- Anuncios Ativos-----------------------
 
@@ -240,15 +257,15 @@ const Perfil: React.FC = () => {
         .map((trocas: any, i: any) => {
           return (
             <TrocasCard
-            id_1 = {trocas.Cliente1.id}
-            nome1 ={trocas.Cliente1.nome}
-            nomeObjeto1 = {trocas.Anuncio1.nomeOdjeto}
-            foto1 = {trocas.Anuncio1.foto1}
-            Avaliação_Cliente1 = {trocas.Avaliação_Cliente1}
-            SeuObj = {trocas.Anuncio2.nomeOdjeto}
-            fotoDoSeuObj = {trocas.Anuncio2.foto1}
-            dataTroca = {trocas.dataTroca}
-            
+              id_1={trocas.Cliente1.id}
+              nome1={trocas.Cliente1.nome}
+              nomeObjeto1={trocas.Anuncio1.nomeOdjeto}
+              foto1={trocas.Anuncio1.foto1}
+              Avaliação_Cliente1={trocas.Avaliação_Cliente1}
+              SeuObj={trocas.Anuncio2.nomeOdjeto}
+              fotoDoSeuObj={trocas.Anuncio2.foto1}
+              dataTroca={trocas.dataTroca}
+
             />
           )
         }))
@@ -256,26 +273,25 @@ const Perfil: React.FC = () => {
   }, [pageNumber_Trocas, isclicked, trocas]);
 
 
-// Display Perfil não existe
-if (perfilExist === false) {
-  return (
-    <>
-      <Header />
-      <div className="User-Not-Found">
-        <h1>Erro (404) - Page Not Found</h1>
-        <h3>Usuário não encontrado!</h3>
+  // Display Perfil não existe
+  if (perfilExist === false) {
+    return (
+      <>
+        <Header />
+        <div className="User-Not-Found">
+          <h1>Erro (404) - Page Not Found</h1>
+          <h3>Usuário não encontrado!</h3>
       O usuário que você porcura não existe.
       <div className="icon"><FaSadTear /></div>
-      </div>
-    </>
-  );
-}
+        </div>
+      </>
+    );
+  }
   return (
     <>
       <div className="PerfilContainer">
         <Header />
-        <div className="bg">
-          <img src="" alt="" />
+        <div className="bg img-resize" style={{ backgroundImage: `url(${Cardimgcapa})` }}>
         </div>
         <div onClick={clickAtivos}>
           <Cabecalho
@@ -288,6 +304,8 @@ if (perfilExist === false) {
             cidade={perfilData?.cidade}
             estado={perfilData?.estado}
             nota={perfilData?.nota}
+            avatar={Cardimgavatar}
+            data = {perfilData?.data}
           />
           <Tabs>
             <div label="Anúncios Ativos">
@@ -319,7 +337,7 @@ if (perfilExist === false) {
             </div>
           </Tabs>
         </div>
-        <div>{}</div>
+        <div>{ }</div>
       </div>
     </>
   );
