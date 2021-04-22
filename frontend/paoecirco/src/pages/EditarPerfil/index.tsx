@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import Header from "../../components/Header";
 import "./styles.css";
 import { FaCogs, FaExclamationTriangle, FaPencilAlt } from "react-icons/fa"
@@ -8,6 +8,16 @@ import api from "../../services/api";
 import { useHistory } from "react-router-dom";
 import bg_default from "../../assets/bg-default.jpg";
 import avatar_default from "../../assets/avatar-default.jpg";
+import * as yup from "yup";
+import { Form } from "@unform/web";
+import { FormHandles } from "@unform/core";
+import { FiArrowLeft, FiMail, FiLock, FiUser } from "react-icons/fi";
+import { HiOutlineIdentification } from "react-icons/hi";
+import { FaBirthdayCake, FaCity } from "react-icons/fa";
+import { GiMailbox } from "react-icons/gi";
+import Input from "../../components/Input/index";
+import Button from "../../components/Button/index";
+import { BsEnvelope } from "react-icons/bs"
 
 interface cliente {
     name: string,
@@ -20,6 +30,17 @@ interface cliente {
     avatar: string,
     capa: string,
     data: string,
+}
+
+interface UpdateFormData {
+    name: string;
+    email: string;
+    cpf: string;
+    endereco: string;
+    estado: string;
+    cidade: string;
+    senha: string;
+    dataNasc: string;
 }
 
 
@@ -36,38 +57,39 @@ const EditarPerfil: React.FC = () => {
     const loadingImg = document.getElementById("carregar-img");
     const history = useHistory();
 
-    useEffect(() =>{
+    useEffect(() => {
         if (loginId == null) {
             return history.push("/signin");
-        }    
+        }
     }, [loginId]);
 
 
     useEffect(() => {
-        if(loginId){
-        api.get(`/perfil/${loginId}`).then((response) => {
-            const picked = (({ name, cpf, endereco, dataNasc, estado, cidade, email, avatar, capa, data }) => ({ name, cpf, endereco, dataNasc, estado, cidade, email, avatar, capa, data }))(response.data[0]);
-            setperfilData(picked);
-        })}
+        if (loginId) {
+            api.get(`/perfil/${loginId}`).then((response) => {
+                const picked = (({ name, cpf, endereco, dataNasc, estado, cidade, email, avatar, capa, data }) => ({ name, cpf, endereco, dataNasc, estado, cidade, email, avatar, capa, data }))(response.data[0]);
+                setperfilData(picked);
+            })
+        }
     }, []);
 
     // Carregando do banco de dados
     const [Cardimgcapa, setCardCapa] = useState(bg_default);
     const [Cardimgavatar, setCardAvatar] = useState(avatar_default);
 
-    useEffect(()=>{
-        if(perfilData?.avatar){
+    useEffect(() => {
+        if (perfilData?.avatar) {
             setRenderAvatar(perfilData.avatar);
             setCardAvatar(perfilData.avatar);
         }
-        if(perfilData?.capa){
+        if (perfilData?.capa) {
             setRenderCapa(perfilData.capa);
             setCardCapa(perfilData.capa);
         }
     }, [perfilData?.avatar, perfilData?.capa]);
-    
-    
-    
+
+
+
     //Tratamento de imagem
 
     if (btn_salvarImg != undefined && carregouimg) {
@@ -75,8 +97,8 @@ const EditarPerfil: React.FC = () => {
     }
 
     async function getUrlImgs() {
-        console.log( "capa:" + imgcapa)
-        console.log( "avatar:" + imgavatar)
+        console.log("capa:" + imgcapa)
+        console.log("avatar:" + imgavatar)
         const formdata_Avatar = new FormData
         const formdata_Capa = new FormData
         loadingImg?.classList.add("loading");
@@ -145,9 +167,9 @@ const EditarPerfil: React.FC = () => {
             <div className="container-Editperfil">
                 <div className="Editar-perfil-grid">
                     <div className="Card-Editar-perfil">
-                        <div className="bg-editar img-resize" style={{backgroundImage : `url(${Cardimgcapa})`}}></div>
+                        <div className="bg-editar img-resize" style={{ backgroundImage: `url(${Cardimgcapa})` }}></div>
                         <div className="Pai-avatar">
-                            <div className="avatar-editar img-resize" style={{backgroundImage : `url(${Cardimgavatar})`}}></div>
+                            <div className="avatar-editar img-resize" style={{ backgroundImage: `url(${Cardimgavatar})` }}></div>
                             <div className="nome-editar">{perfilData?.name.split(" ")[0]}</div>
                             <div className="info-editar">usuário desde {perfilData?.data.split("-")[0]}</div>
                         </div>
@@ -189,32 +211,38 @@ const EditarPerfil: React.FC = () => {
                                 </li>
                                 <li>
                                     <div className="titulo-edit-dados">email</div>
-                                    <div className="info-edit-dados" id="email">ra••••@•••.br</div>
+                                    <div className="info-edit-dados" id="email">{perfilData?.email.replace(/.{1,4}(?=\@.*?)/, "••••")}</div>
                                 </li>
                                 <li>
                                     <div className="titulo-edit-dados">senha</div>
-                                    <div className="info-edit-dados" id="senha">••••••••••</div>
+                                    <div className="info-edit-dados" id="senha">•••••••••</div>
                                 </li>
                                 <li>
                                     <div className="titulo-edit-dados">aniversário</div>
-                                    <div className="info-edit-dados" id="niver">21/10/1999</div>
+                                    <div className="info-edit-dados" id="niver">{perfilData?.dataNasc.replace(/(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}</div>
                                 </li>
                                 <li>
                                     <div className="titulo-edit-dados">cpf</div>
-                                    <div className="info-edit-dados" id="cpf">{perfilData?.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")}</div>
-                                </li>
-                                <li>
-                                    <div className="titulo-edit-dados">telefone</div>
-                                    <div className="info-edit-dados" id="tel">(44)••••-0000</div>
+                                    <div className="info-edit-dados" id="cpf">{perfilData?.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "•••.$2.•••-$4")}</div>
                                 </li>
                             </ul>
+                            <Form ref={()=>{}} onSubmit={()=>{}} className= "form-edit">
+                                <Input name="name" icon={FiUser} placeholder="Nome" className= "input-edit"/>
+                                <Input name="email" icon={BsEnvelope} placeholder="E-mail" style={{width: "100%!important"}}/>
+                                <Input name="senha" icon={FiLock} placeholder="Senha" type="password" style={{width: "100%"}}/>
+                                <div style={{ width: "100%" , paddingTop : "10px" }}>
+                                    <button name="submitButton" type="submit" className= "btn-carregar">
+                                        salvar dados
+                                    </button>
+                                </div>
+                            </Form>
                         </div>
                         <div className="campo-edit-endereço">
                             <div className="Edit-label">endereço </div>
                             <div className="endereco-edit-info">
                                 <ul>
-                                    <div className="Endereço-edit">Av. G••o Vi••al, 23•6, apt ••• </div>
-                                    <div className="cidade/estado-edit">ma•••-pr</div>
+                                    <div className="Endereço-edit">{perfilData?.endereco.replace(/.{2}(?=\s.*?)/g, "••")}</div>
+                                    <div className="cidade/estado-edit">{perfilData?.cidade.replace(/.{2,3}(?= .)*/, "••") + ", " + perfilData?.estado.replace(/.{2,5}(?= .)*/, "••")}</div>
                                 </ul>
                                 <button className="btn-edit-dados"><FaPencilAlt /></button>
                             </div>

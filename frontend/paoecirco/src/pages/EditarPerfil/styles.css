@@ -11,7 +11,7 @@
     height: fit-content;
     background-color: rgba(250, 0, 0, 0);
     grid-template-columns: 0.35fr 1fr;
-    grid-template-rows: 0.1fr 0.25fr 1fr;
+    grid-template-rows: 65px 200px 1fr;
     width: 90vw;
     justify-self: center;
     grid-gap: 20px;
@@ -356,4 +356,17 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
+}
+
+.issoai{
+    width: 100% !important;
+}
+
+
+.form-edit{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding-top: 30px;
 }

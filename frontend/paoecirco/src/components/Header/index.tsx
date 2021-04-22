@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import "./styles.css";
 import Logo from "../../assets/logo.png";
 import Avatar from "../../assets/avatar-default.jpg";
@@ -10,6 +10,9 @@ import api from "../../services/api";
 import { Form } from "@unform/web";
 import Input from "../Input";
 import Dropdown from "../DropDownNotificacao";
+import { Background } from "../../pages/CriarAnuncio/styles";
+import { backgroundImages } from "polished";
+import { PassThrough } from "stream";
 
 interface StateBuscaUsuario {
   name: string;
@@ -18,6 +21,7 @@ interface StateBuscaUsuario {
   cidade: string;
   estado: string;
 }
+
 
 interface StateBuscaAnuncio {
   titulo: string;
@@ -31,11 +35,19 @@ interface StateBuscaAnuncio {
 const Header: React.FC = () => {
   const history = useHistory();
   const loginId = localStorage.getItem("loginid") || "";
-
+  const [avatar, setAvatar] = useState(Avatar)
   const propsValid = (loginId: any) => {
     if (loginId === "") return false;
     else return true;
   };
+
+  useEffect(()=> {
+    if(loginId){
+    api.get(`/perfil/${loginId}`).then(async (response)=>{
+      if(response.data[0]){setAvatar(response.data[0].avatar)}
+    })
+  }
+  }, [loginId]);
 
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | undefined>(
     propsValid(loginId) ? true : false
@@ -192,7 +204,7 @@ const Header: React.FC = () => {
       {isLoggedIn ? (
         <div className="loggedContainer">
           <Link to={{ pathname: `/perfil/${loginId}`, state: { id: loginId } }}>
-            <img src={Avatar} className="avatar" alt="avatar" />
+            <div style = {{backgroundImage : `url(${avatar})`}} className="aaas img-resize"/>
           </Link>
 
           <Link to="/destaques" className="destaques">
