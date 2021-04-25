@@ -150,6 +150,8 @@
     gap: 10px;
     justify-self: center;
     width: 90%;
+    animation-name: photoshowUp;
+    animation-duration: 2s;
 }
 
 .Aling{
@@ -369,4 +371,38 @@
     flex-direction: column;
     margin: auto;
     padding-top: 30px;
+    animation-name: showUp;
+    animation-duration: 1s;
+    transition : all 3s;
+}
+
+
+@keyframes showUp {
+    0%{
+        width: 50%;
+        opacity: 0%;
+    }
+    100%{
+        width: 90%;
+        opacity: 100%;
+    }
+}
+
+@keyframes photoshowUp {
+    0%{
+        width: 80%;
+        opacity: 0%;
+    }
+    100%{
+        width: 90%;
+        opacity: 100%;
+    }
+}
+
+.endereco-edit{
+    width: 90%;
+    margin: auto;
+    animation-name: showUp;
+    animation-duration: 1s;
+    transition : all 3s;
 }

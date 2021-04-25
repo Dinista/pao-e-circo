@@ -18,6 +18,7 @@ import { GiMailbox } from "react-icons/gi";
 import Input from "../../components/Input/index";
 import Button from "../../components/Button/index";
 import { BsEnvelope } from "react-icons/bs"
+import { RiMapPinLine } from "react-icons/ri"
 
 interface cliente {
     name: string,
@@ -56,6 +57,8 @@ const EditarPerfil: React.FC = () => {
     const btn_salvarImg = document.getElementById("btn-salvar-alterações");
     const loadingImg = document.getElementById("carregar-img");
     const history = useHistory();
+    const formRef = useRef<FormHandles>(null);
+    const formEditRef = useRef<FormHandles>(null);
 
     useEffect(() => {
         if (loginId == null) {
@@ -161,6 +164,120 @@ const EditarPerfil: React.FC = () => {
         }
     }
 
+    //tratamento de dados pessoais
+    const [editDadosAble, seteditDadosAble] = useState(false)
+
+    function EditDadosClick() {
+        seteditDadosAble(!editDadosAble);
+    }
+
+    const handleSubmit = useCallback(
+        async (data: UpdateFormData) => {
+            try {
+                formRef.current?.setErrors({});
+                const schema = yup.object().shape({
+                    name: yup.string().required("Nome origatório."),
+                    email: yup.string().required("E-mail obrigatório.").email("E-mail inválido."),
+                    senha: yup.string().min(6, "No mínimo 6 dígitos."),
+                });
+
+                await schema.validate(data, {
+                    abortEarly: false,
+                });
+
+                console.log(data)
+                //console.log("bugou");
+                //try {
+                // await api.post("/clientes", data);
+                // history.push("/signin");
+                //} catch (e) {
+                //console.log(e.response.data.Erro);
+                //ormRef.current?.setErrors({ email: e.response.data.Erro });
+                //}
+            } catch (err) {
+                const listaError = {
+                    name: "",
+                    email: "",
+                    senha: "",
+                };
+                //se for um erro do yup, tipo não digitou titulo, escolheu categoria, etc
+                if (err instanceof yup.ValidationError) {
+                    err.inner.forEach((erro) => {
+                        if (erro.path === "name") {
+                            listaError["name"] = erro.message;
+                        }
+                        if (erro.path === "email") {
+                            listaError["email"] = erro.message;
+                        }
+                        if (erro.path === "senha") {
+                            listaError["senha"] = erro.message;
+                        }
+                    });
+                    formRef.current?.setErrors(listaError);
+                }
+            }
+        },
+        [history]
+    );
+        
+    //Tratamento endereço
+    
+    const [MudouEndereço, setMudouEnde] = useState(false);
+
+    function EditEnderOnclick () {
+        setMudouEnde(!MudouEndereço);
+    }
+
+    const handleSubmitEnder = useCallback(
+        async (data: UpdateFormData) => {
+            try {
+                formEditRef.current?.setErrors({});
+                const schema = yup.object().shape({
+                    endereco: yup.string().required("Endereço obrigatório."),
+                    estado: yup.string().required("Estado obrigatório."),
+                    cidade: yup.string().required("Cidade obrigatória."),
+                });
+
+                await schema.validate(data, {
+                    abortEarly: false,
+                });
+
+                console.log(data)
+                //console.log("bugou");
+                //try {
+                // await api.post("/clientes", data);
+                // history.push("/signin");
+                //} catch (e) {
+                //console.log(e.response.data.Erro);
+                //ormRef.current?.setErrors({ email: e.response.data.Erro });
+                //}
+            } catch (err) {
+                const listaError = {
+                    endereco: "",
+                    cidade: "",
+                    estado: "",
+                };
+                //se for um erro do yup, tipo não digitou titulo, escolheu categoria, etc
+                if (err instanceof yup.ValidationError) {
+                    err.inner.forEach((erro) => {
+                        if (erro.path === "endereco") {
+                            listaError["endereco"] = erro.message;
+                        }
+                        if (erro.path === "cidade") {
+                            listaError["cidade"] = erro.message;
+                        }
+                        if (erro.path === "estado") {
+                            listaError["estado"] = erro.message;
+                        }
+                    });
+                    formEditRef.current?.setErrors(listaError);
+                }
+            }
+        },
+        [history]
+        
+    );
+
     return (
         <>
             <Header />
@@ -202,7 +319,7 @@ const EditarPerfil: React.FC = () => {
                         <div className="campo-edit-dadosPessoais">
                             <div className="Edit-label">
                                 <div>dados pessoais</div>
-                                <button className="btn-edit-dados"><FaPencilAlt /></button>
+                                <button className="btn-edit-dados" onClick={EditDadosClick}><FaPencilAlt /></button>
                             </div>
                             <ul className="dados-edit-perfil">
                                 <li>
@@ -226,16 +343,16 @@ const EditarPerfil: React.FC = () => {
                                     <div className="info-edit-dados" id="cpf">{perfilData?.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "•••.$2.•••-$4")}</div>
                                 </li>
                             </ul>
-                            <Form ref={()=>{}} onSubmit={()=>{}} className= "form-edit">
-                                <Input name="name" icon={FiUser} placeholder="Nome" className= "input-edit"/>
-                                <Input name="email" icon={BsEnvelope} placeholder="E-mail" style={{width: "100%!important"}}/>
-                                <Input name="senha" icon={FiLock} placeholder="Senha" type="password" style={{width: "100%"}}/>
-                                <div style={{ width: "100%" , paddingTop : "10px" }}>
-                                    <button name="submitButton" type="submit" className= "btn-carregar">
+                            {editDadosAble && <Form ref={formRef} onSubmit={handleSubmit} className="form-edit">
+                                <Input name="name" icon={FiUser} placeholder="Nome" className="input-edit" />
+                                <Input name="email" icon={BsEnvelope} placeholder="E-mail" style={{ width: "100%!important" }} />
+                                <Input name="senha" icon={FiLock} placeholder="Senha" type="password" style={{ width: "100%" }} />
+                                <div style={{ width: "100%", paddingTop: "10px" }}>
+                                    <button name="submitButton" type="submit" className="btn-carregar">
                                         salvar dados
                                     </button>
                                 </div>
-                            </Form>
+                            </Form>}
                         </div>
                         <div className="campo-edit-endereço">
                             <div className="Edit-label">endereço </div>
@@ -244,8 +361,18 @@ const EditarPerfil: React.FC = () => {
                                     <div className="Endereço-edit">{perfilData?.endereco.replace(/.{2}(?=\s.*?)/g, "••")}</div>
                                     <div className="cidade/estado-edit">{perfilData?.cidade.replace(/.{2,3}(?= .)*/, "••") + ", " + perfilData?.estado.replace(/.{2,5}(?= .)*/, "••")}</div>
                                 </ul>
-                                <button className="btn-edit-dados"><FaPencilAlt /></button>
+                                <button className="btn-edit-dados" onClick = {EditEnderOnclick}><FaPencilAlt /></button>
                             </div>
+                            {MudouEndereço && <Form ref = {formEditRef} onSubmit = {handleSubmitEnder} className= "endereco-edit">
+                                    <Input name="endereco" icon={GiMailbox} placeholder="Endereço"></Input>
+                                    <Input name="cidade" icon={FaCity} placeholder="Cidade"></Input>
+                                    <Input name="estado" icon={RiMapPinLine} placeholder="Estado"></Input>
+                                    <div style={{ width: "100%", paddingTop: "10px" }}>
+                                    <button name="submitButton" type="submit" className="btn-carregar">
+                                        salvar dados
+                                    </button>
+                                    </div>
+                            </Form>}
                             <div className="campo-edit-conta">
                                 <div className="Edit-label">conta</div>
                                 <div className="texto-conta">
