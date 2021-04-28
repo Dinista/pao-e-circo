@@ -19,6 +19,7 @@ import Input from "../../components/Input/index";
 import Button from "../../components/Button/index";
 import { BsEnvelope } from "react-icons/bs"
 import { RiMapPinLine } from "react-icons/ri"
+import ModalReactExcluirConta from "../../components/ModalExcluirPerfil"
 
 interface cliente {
     name: string,
@@ -278,6 +279,13 @@ const EditarPerfil: React.FC = () => {
         
     );
 
+    // excluir conta tratamento
+    const [ExcluirContaModal, setExcluirconta] = useState(false)
+    
+    function ExcluirContaOnclick () {
+        setExcluirconta(!ExcluirContaModal);
+    }
+
     return (
         <>
             <Header />
@@ -380,8 +388,9 @@ const EditarPerfil: React.FC = () => {
                                         <b>sempre lembrando</b>:
                                     ao excluir sua conta, torna-se impossível reativá-la depois. É, portanto, decisão definitiva.
                                     </div>
-                                    <button className="btn-excluir-conta">excluir conta</button>
+                                    <button className="btn-excluir-conta" onClick = {ExcluirContaOnclick}>excluir conta</button>
                                 </div>
+                                <ModalReactExcluirConta isOpen = {ExcluirContaModal} onRequestClose= {()=> {}} idCliente = {loginId}/>
                             </div>
                         </div>
                     </div>
