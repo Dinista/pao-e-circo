@@ -11,12 +11,10 @@ import avatar_default from "../../assets/avatar-default.jpg";
 import * as yup from "yup";
 import { Form } from "@unform/web";
 import { FormHandles } from "@unform/core";
-import { FiArrowLeft, FiMail, FiLock, FiUser } from "react-icons/fi";
-import { HiOutlineIdentification } from "react-icons/hi";
-import { FaBirthdayCake, FaCity } from "react-icons/fa";
+import { FiLock, FiUser } from "react-icons/fi";
+import { FaCity } from "react-icons/fa";
 import { GiMailbox } from "react-icons/gi";
 import Input from "../../components/Input/index";
-import Button from "../../components/Button/index";
 import { BsEnvelope } from "react-icons/bs"
 import { RiMapPinLine } from "react-icons/ri"
 import ModalReactExcluirConta from "../../components/ModalExcluirPerfil"
@@ -181,20 +179,20 @@ const EditarPerfil: React.FC = () => {
                     email: yup.string().required("E-mail obrigatório.").email("E-mail inválido."),
                     senha: yup.string().min(6, "No mínimo 6 dígitos."),
                 });
-
+                console.log(data);
                 await schema.validate(data, {
                     abortEarly: false,
                 });
 
                 console.log(data)
                 //console.log("bugou");
-                //try {
-                // await api.post("/clientes", data);
-                // history.push("/signin");
-                //} catch (e) {
-                //console.log(e.response.data.Erro);
-                //ormRef.current?.setErrors({ email: e.response.data.Erro });
-                //}
+                try {
+                    await api.put(`/perfilUpdateDados/${loginId}`, data);
+                    window.location.reload();
+                } catch (e) {
+                    console.log(e.response.data.Erro);
+                    formRef.current?.setErrors({ email: e.response.data.Erro });
+                }
             } catch (err) {
                 const listaError = {
                     name: "",
@@ -220,12 +218,12 @@ const EditarPerfil: React.FC = () => {
         },
         [history]
     );
-        
+
     //Tratamento endereço
-    
+
     const [MudouEndereço, setMudouEnde] = useState(false);
 
-    function EditEnderOnclick () {
+    function EditEnderOnclick() {
         setMudouEnde(!MudouEndereço);
     }
 
@@ -245,13 +243,12 @@ const EditarPerfil: React.FC = () => {
 
                 console.log(data)
                 //console.log("bugou");
-                //try {
-                // await api.post("/clientes", data);
-                // history.push("/signin");
-                //} catch (e) {
-                //console.log(e.response.data.Erro);
-                //ormRef.current?.setErrors({ email: e.response.data.Erro });
-                //}
+                try {
+                    await api.put(`/perfilUpdateAdress/${loginId}`, data);
+                    window.location.reload();
+                } catch (e) {
+                    console.log(e);
+                }
             } catch (err) {
                 const listaError = {
                     endereco: "",
@@ -276,13 +273,13 @@ const EditarPerfil: React.FC = () => {
             }
         },
         [history]
-        
+
     );
 
     // excluir conta tratamento
     const [ExcluirContaModal, setExcluirconta] = useState(false)
-    
-    function ExcluirContaOnclick () {
+
+    function ExcluirContaOnclick() {
         setExcluirconta(!ExcluirContaModal);
     }
 
@@ -369,17 +366,17 @@ const EditarPerfil: React.FC = () => {
                                     <div className="Endereço-edit">{perfilData?.endereco.replace(/.{2}(?=\s.*?)/g, "••")}</div>
                                     <div className="cidade/estado-edit">{perfilData?.cidade.replace(/.{2,3}(?= .)*/, "••") + ", " + perfilData?.estado.replace(/.{2,5}(?= .)*/, "••")}</div>
                                 </ul>
-                                <button className="btn-edit-dados" onClick = {EditEnderOnclick}><FaPencilAlt /></button>
+                                <button className="btn-edit-dados" onClick={EditEnderOnclick}><FaPencilAlt /></button>
                             </div>
-                            {MudouEndereço && <Form ref = {formEditRef} onSubmit = {handleSubmitEnder} className= "endereco-edit">
-                                    <Input name="endereco" icon={GiMailbox} placeholder="Endereço"></Input>
-                                    <Input name="cidade" icon={FaCity} placeholder="Cidade"></Input>
-                                    <Input name="estado" icon={RiMapPinLine} placeholder="Estado"></Input>
-                                    <div style={{ width: "100%", paddingTop: "10px" }}>
+                            {MudouEndereço && <Form ref={formEditRef} onSubmit={handleSubmitEnder} className="endereco-edit">
+                                <Input name="endereco" icon={GiMailbox} placeholder="Endereço"></Input>
+                                <Input name="cidade" icon={FaCity} placeholder="Cidade"></Input>
+                                <Input name="estado" icon={RiMapPinLine} placeholder="Estado"></Input>
+                                <div style={{ width: "100%", paddingTop: "10px" }}>
                                     <button name="submitButton" type="submit" className="btn-carregar">
                                         salvar dados
                                     </button>
-                                    </div>
+                                </div>
                             </Form>}
                             <div className="campo-edit-conta">
                                 <div className="Edit-label">conta</div>
@@ -388,9 +385,9 @@ const EditarPerfil: React.FC = () => {
                                         <b>sempre lembrando</b>:
                                     ao excluir sua conta, torna-se impossível reativá-la depois. É, portanto, decisão definitiva.
                                     </div>
-                                    <button className="btn-excluir-conta" onClick = {ExcluirContaOnclick}>excluir conta</button>
+                                    <button className="btn-excluir-conta" onClick={ExcluirContaOnclick}>excluir conta</button>
                                 </div>
-                                <ModalReactExcluirConta isOpen = {ExcluirContaModal} onRequestClose= {()=> {}} idCliente = {loginId}/>
+                                <ModalReactExcluirConta isOpen={ExcluirContaModal} onRequestClose={ExcluirContaOnclick} idCliente={loginId} />
                             </div>
                         </div>
                     </div>

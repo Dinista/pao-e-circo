@@ -25,7 +25,7 @@ class ClienteController {
     });
 
     if (checkClienteExists) {
-      return response.status(400).json({ Erro: "E-mail já cadastrado" });
+      return response.status(400).json({ Erro: "E-mail já cadastrado!" });
     }
 
     const passwaordHash = crypto
@@ -55,8 +55,8 @@ class ClienteController {
       `
       SELECT id, name, endereco, cpf, cidade, estado, "dataNasc", email, senha, nota, "numTrocas"
       FROM 	clientes where name = '` +
-        name +
-        `'
+      name +
+      `'
   `
     );
     return response.json(someQuery);
@@ -98,29 +98,51 @@ class ClienteController {
   }
 
   async UpdateAvatar(request: Request, response: Response) {
-    const{
+    const {
       avatar
     } = request.body
-      const clienteRepository = getRepository(Cliente);
-      const cliente = await clienteRepository.createQueryBuilder()
-      .update(Cliente).set({avatar : avatar})
+    const clienteRepository = getRepository(Cliente);
+    const cliente = await clienteRepository.createQueryBuilder()
+      .update(Cliente).set({ avatar: avatar })
       .where("id = :id", { id: request.params.id })
       .execute();
-      
-      return response.send({ resultado: cliente });
+
+    return response.send({ resultado: cliente });
   }
 
   async UpdateCapa(request: Request, response: Response) {
-    const{
+    const {
       capa
     } = request.body
-      const clienteRepository = getRepository(Cliente);
-      const cliente = await clienteRepository.createQueryBuilder()
-      .update(Cliente).set({capa : capa})
+    const clienteRepository = getRepository(Cliente);
+    const cliente = await clienteRepository.createQueryBuilder()
+      .update(Cliente).set({ capa: capa })
       .where("id = :id", { id: request.params.id })
       .execute();
-      
-      return response.send({ resultado: cliente });
+
+    return response.send({ resultado: cliente });
+  }
+
+  async UpdateDados(request: Request, response: Response) {
+    const { name, email, senha } = request.body
+    const clienteRepository = getRepository(Cliente);
+    const cliente = await clienteRepository.createQueryBuilder()
+      .update(Cliente).set({ name: name, email: email, senha: senha })
+      .where("id = :id", { id: request.params.id })
+      .execute();
+
+    return response.send({ resultado: cliente });
+  }
+
+  async UpdateAdress(request: Request, response: Response) {
+    const { endereco, estado, cidade} = request.body
+    const clienteRepository = getRepository(Cliente);
+    const cliente = await clienteRepository.createQueryBuilder()
+      .update(Cliente).set({ endereco: endereco, estado: estado, cidade: cidade })
+      .where("id = :id", { id: request.params.id })
+      .execute();
+
+    return response.send({ resultado: cliente });
   }
 
 

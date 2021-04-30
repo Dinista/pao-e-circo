@@ -24,8 +24,10 @@ routes.get("/perfil/:id", clienteController.findById);
 routes.post("/login", clienteController.login);
 routes.put("/perfilUpdateAvatar/:id", clienteController.UpdateAvatar);
 routes.put("/perfilUpdateCapa/:id", clienteController.UpdateCapa);
-//anuncios
+routes.put("/perfilUpdateDados/:id", clienteController.UpdateDados);
+routes.put("/perfilUpdateAdress/:id", clienteController.UpdateAdress);
 
+//anuncios
 routes.post("/anuncios", anuncioController.create);
 routes.put("/editaranuncio/:id", anuncioController.editar);
 routes.post("/anuncioss/:id", anuncioController.find);
