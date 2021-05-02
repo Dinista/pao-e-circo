@@ -321,7 +321,7 @@ const Perfil: React.FC = () => {
               Avaliação_Cliente1={0}
               SeuObj={""}
               fotoDoSeuObj={""}
-              dataTroca={""}
+              dataTroca={data.split("T")[0].replace(/(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}
 
             />
           )
