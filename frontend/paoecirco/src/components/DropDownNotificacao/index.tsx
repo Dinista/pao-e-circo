@@ -46,19 +46,29 @@ const Dropdown = ({
 
   const ehounao = propsValid(notificacoes);
 
-  const handleAceitar = async (idOfertante: string, idNotificacao: string) => {
+  const handleAceitar = async (idOfertante: string, idNotificacao: string, idAnuncioCliente1: string, idAnuncioCliente2: string) => {
     // @ts-ignore: Unreachable code error
     const email = await api.get(`/perfil/${idOfertante}`);
 
     alert(
       "Parabens! Você aceitou a troca! Entre em contato com o usuário através do email " +
-        email.data[0].email
+      email.data[0].email
     );
+
+    const dataTroca = {
+      idCliente1: localStorage.getItem("loginid"),
+      idAnuncioCliente1 :idAnuncioCliente1,
+      idCliente2: idOfertante, 
+      idAnuncioCliente2: idAnuncioCliente2,
+    }
+
+    api.post("/troca", dataTroca);
 
     await api.delete(`/notificacoes/${idNotificacao}`);
 
     localStorage.removeItem(id);
   };
+
   const handleRecusar = async (idNotificacao: string) => {
     alert("Droga! Você recusou a troca!");
 
@@ -154,7 +164,7 @@ const Dropdown = ({
                     ". Deseja aceitar?"}
                   <Button
                     onClick={() =>
-                      handleAceitar(item.ofertante, item.idNotificacao)
+                      handleAceitar(item.ofertante, item.idNotificacao, item.anuncio, item.ofertaTroca.objeto)
                     }
                   >
                     Aceitar

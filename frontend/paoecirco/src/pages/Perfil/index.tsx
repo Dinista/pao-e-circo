@@ -233,6 +233,13 @@ const Perfil: React.FC = () => {
 
   var json_trocas = require('./data-trocas.json');
   const [trocas, setTrocas] = useState(json_trocas);
+
+  useEffect(() => {
+    api.get(`/findAllTrocas/${(urlParams as any).id}`).then((response) => {
+      setTrocas(response.data);
+    });
+  }, []);
+
   const [pageNumber_Trocas, setPageNumber_Trocas] = useState(0);
   const numberPerPage_Trocas = 12;
   const visitedPages_Trocas = pageNumber_Trocas * numberPerPage_Trocas;
@@ -251,6 +258,10 @@ const Perfil: React.FC = () => {
       setPageNumber_Trocas(pageNumber_Trocas - 1)
     }
   }
+
+  const [IdDono, setIdDono] = useState("")
+  const [IdNaoDono, setIdNaoDono] = useState("")
+  const [Nome, setNome] = useState("")
 
   useEffect(() => {
     const HTMLAtivo_troca = document.getElementsByClassName("Conteiner-Trocas").length
@@ -279,23 +290,44 @@ const Perfil: React.FC = () => {
       }
       setDis_Trocas(trocas.slice(visitedPages_Trocas, visitedPages_Trocas + numberPerPage_Trocas)
         .map((trocas: any, i: any) => {
+
+          const data = trocas.data;
+          const idAnuncioCliente1 = trocas.idAnuncioCliente1;
+          const idAnuncioCliente2 = trocas.idAnuncioCliente2;
+          const idCliente1 = trocas.idCliente1;
+          const idCliente2 = trocas.idCliente2;
+
+          if ((urlParams as any).id == idCliente1) {
+            setIdDono(idCliente1);
+            setIdNaoDono(idCliente2);
+          } else if ((urlParams as any).id == idCliente2) {
+            setIdDono(idCliente2);
+            setIdNaoDono(idCliente1);
+          }
+
+          if (IdNaoDono) {
+            api.get(`/perfil/${IdNaoDono}`).then((response) => {
+              setNome(response.data[0].name)
+            })
+          }
+
+
           return (
             <TrocasCard
-              id_1={trocas.Cliente1.id}
-              nome1={trocas.Cliente1.nome}
-              nomeObjeto1={trocas.Anuncio1.nomeOdjeto}
-              foto1={trocas.Anuncio1.foto1}
-              Avaliação_Cliente1={trocas.Avaliação_Cliente1}
-              SeuObj={trocas.Anuncio2.nomeOdjeto}
-              fotoDoSeuObj={trocas.Anuncio2.foto1}
-              dataTroca={trocas.dataTroca}
+              id_1={""}
+              nome1={Nome}
+              nomeObjeto1={""}
+              foto1={""}
+              Avaliação_Cliente1={0}
+              SeuObj={""}
+              fotoDoSeuObj={""}
+              dataTroca={""}
 
             />
           )
         }))
     }
-  }, [pageNumber_Trocas, isclicked, trocas]);
-
+  }, [pageNumber_Trocas, isclicked, trocas, IdNaoDono, IdDono, Nome]);
 
 
   //------------------------ Seguindo --------------------------

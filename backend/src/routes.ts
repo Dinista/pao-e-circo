@@ -5,6 +5,7 @@ import PropagandaController from "./controllers/propagandaController";
 import NotificacoesTrocaController from "./controllers/notificacoesTrocaController";
 import DenunciaController from "./controllers/denunciaController";
 import ComentarioController from "./controllers/comentarioController";
+import trocaController from "./controllers/trocasController";
 
 const routes = express.Router();
 
@@ -14,6 +15,7 @@ const anuncioController = new AnuncioController();
 const notificacoesTrocaController = new NotificacoesTrocaController();
 const denunciaController = new DenunciaController();
 const comentarioController = new ComentarioController();
+const TrocaController = new trocaController();
 
 //clientes
 routes.post("/clientes", clienteController.create);
@@ -73,4 +75,8 @@ routes.delete("/notificacoes/:id", notificacoesTrocaController.delete);
 routes.get("/notificacoes", notificacoesTrocaController.findAllNotifications);
 routes.delete("/notificacoesanuncios/:id", notificacoesTrocaController.deleteNotificacoesByAnuncioId);
 routes.delete("/notificacoesanunciosofertados/:id", notificacoesTrocaController.deleteNotificacoesByAnuncioOfertadoId);
+routes.post("/troca", TrocaController.createTroca);
+routes.get("/findAllTrocas/:id", TrocaController.findAllTrocas);
+
+
 export default routes;
