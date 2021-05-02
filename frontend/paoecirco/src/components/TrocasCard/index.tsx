@@ -44,15 +44,15 @@ const TrocasCard: React.FC<TrocasCard> = ({ id_1, nome1, nomeObjeto1, foto1, Ava
     return (
         <div className="Container_class">
             <ul className="gridCard-troca">
-                <li className="Img1-troca"><img className = "img-product"src={fotoDoSeuObj} alt={SeuObj}/></li>
+                <li className="Img1-troca img-resize" style={{ backgroundImage: `url(${fotoDoSeuObj})` }}></li>
                 <li className="troca-titulo1">{SeuObj}</li>
                 <li className="Icon-troca"><FaExchangeAlt /></li>
-                <li className="Img2-troca"><img className = "img-product"src={foto1} alt={nomeObjeto1}/></li>
+                <li className="Img2-troca img-resize" style={{ backgroundImage: `url(${foto1})` }}></li>
                 <li className="troca-titulo2">{nomeObjeto1}</li>
-                <li className="Estrelas-troca">{estrelas()}<li className= "NumNota">{numNota.toFixed(1)}</li></li>
+                {/*<li className="Estrelas-troca">{estrelas()}<li className= "NumNota">{numNota.toFixed(1)}</li></li>*/}
                 <li className="info-troca1">Data da troca: <b className="Destaque-troca">{dataTroca}</b></li>
                 <li className="info-troca2"> Com o usuário: <b className="Destaque-troca">{nome1}</b> </li>
-                <li className="info-troca3"> Avaliação: <b className="Destaque-troca">{numNota.toFixed(1)}</b> </li>
+                {/*<li className="info-troca3"> Avaliação: <b className="Destaque-troca">{numNota.toFixed(1)}</b> </li>*/}
             </ul>
         </div>
     )

@@ -44,7 +44,7 @@ const Header: React.FC = () => {
   useEffect(()=> {
     if(loginId){
     api.get(`/perfil/${loginId}`).then(async (response)=>{
-      if(response.data[0]){setAvatar(response.data[0].avatar)}
+      if(response.data[0].avatar){setAvatar(response.data[0].avatar)}
     })
   }
   }, [loginId]);

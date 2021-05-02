@@ -19,6 +19,7 @@ import TrocasCard from "../../components/TrocasCard";
 import bg_default from "../../assets/bg-default.jpg";
 
 import avatar_default from "../../assets/avatar-default.jpg";
+import { GiConsoleController } from "react-icons/gi";
 
 //import BG from "../../assets/bg-perfil.jpg";
 
@@ -117,6 +118,30 @@ const Perfil: React.FC = () => {
     }
   });
 
+  // Tramento nota
+  const [notaFeed, setNota] = useState(0);
+  const [NotasLength, setNotaslength] = useState(0);
+  const Notas : number[] = [];
+  
+  function somar(total, number) {
+    return total + number
+  }
+  
+  useEffect(() =>{
+    api.get(`/findAllNotas/${(urlParams as any).id}`).then((response) => {
+      if (response.data.error != undefined) {
+        setNota(0)
+      } else {
+        response.data.map((dado : any, i: number)=>{
+        Notas.push(parseInt(dado.nota));
+        })
+      }
+      setNota(Notas.reduce(somar, 0)/Notas.length);
+      setNotaslength(Notas.length);
+    })
+  }, [notaFeed]);
+
+
   // --------------------------- Anuncios Ativos-----------------------
 
 
@@ -192,6 +217,7 @@ const Perfil: React.FC = () => {
           return (
             <AnuncioCard
               key={"Anuncio-Ativo" + i}
+              id = {anuncio.id}
               Img={anuncio.foto1}
               Titulo={anuncio.titulo}
               Valor={anuncio.valorEstimado}
@@ -287,6 +313,8 @@ const Perfil: React.FC = () => {
       </>
     );
   }
+
+
   return (
     <>
       <div className="PerfilContainer">
@@ -303,9 +331,11 @@ const Perfil: React.FC = () => {
             )}
             cidade={perfilData?.cidade}
             estado={perfilData?.estado}
-            nota={perfilData?.nota}
+            nota={notaFeed}
+            numAv = {NotasLength}
             avatar={Cardimgavatar}
             data = {perfilData?.data}
+            isOwner = {isOwner}
           />
           <Tabs>
             <div label="Anúncios Ativos">

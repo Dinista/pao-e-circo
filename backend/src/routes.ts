@@ -26,6 +26,11 @@ routes.put("/perfilUpdateAvatar/:id", clienteController.UpdateAvatar);
 routes.put("/perfilUpdateCapa/:id", clienteController.UpdateCapa);
 routes.put("/perfilUpdateDados/:id", clienteController.UpdateDados);
 routes.put("/perfilUpdateAdress/:id", clienteController.UpdateAdress);
+routes.post("/createNota", clienteController.createNota);
+routes.post("/findNota", clienteController.findNota);
+routes.put("/updateNota", clienteController.UpdateNota);
+routes.get("/findAllNotas/:id", clienteController.findAllNotas);
+
 
 //anuncios
 routes.post("/anuncios", anuncioController.create);

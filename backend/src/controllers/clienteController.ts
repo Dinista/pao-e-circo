@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import Notificacoes from "models/NotificacaoTroca";
 import { getConnection, getManager, getRepository } from "typeorm";
 import Cliente from "../models/Cliente";
+import ClienteNotas from "../models/ClienteNota";
 
 class ClienteController {
   async create(request: Request, response: Response) {
@@ -145,6 +146,56 @@ class ClienteController {
     return response.send({ resultado: cliente });
   }
 
+  async createNota(request: Request, response: Response) {
+    const { idClienteReceiver, nota, idClienteGiver } = request.body
+    const clienteNotasRepository = getRepository(ClienteNotas);
+    const clienteNota = clienteNotasRepository.create({
+      idClienteReceiver,
+      nota,
+      idClienteGiver
+    });
+    await clienteNotasRepository.save(clienteNota);
+
+    return response.json("funfou se pa em");
+  }
+
+
+  async findNota(request: Request, response: Response) {
+    const { idClienteReceiver, idClienteGiver} = request.body
+    const clienteNotasRepository = getRepository(ClienteNotas);
+    try{
+    const nota = await clienteNotasRepository.find(
+      { idClienteReceiver: idClienteReceiver,
+        idClienteGiver: idClienteGiver});
+        return response.send(nota);
+    }catch{
+      return response.status(404).json({ Erro: "Nota não encontrada" });
+    }
+  }
+
+
+  async findAllNotas(request: Request, response: Response) {
+    //const { idClienteReceiver} = request.body
+    const clienteNotasRepository = getRepository(ClienteNotas);
+    try{
+    const nota = await clienteNotasRepository.find(
+      { idClienteReceiver: request.params.id});
+        return response.send(nota);
+    }catch{
+      return response.status(404).json({ error: "Nota não encontrada" });
+    }
+  }
+
+  async UpdateNota(request: Request, response: Response) {
+    const  { idClienteReceiver, nota, idClienteGiver } = request.body
+    const clienteRepository = getRepository(ClienteNotas);
+    const clienteNota = await clienteRepository.createQueryBuilder()
+      .update(ClienteNotas).set({ nota: nota })
+      .where("idClienteReceiver  = :idClienteReceiver", { idClienteReceiver: idClienteReceiver })
+      .andWhere("idClienteGiver = :idClienteGiver", { idClienteGiver:  idClienteGiver})
+      .execute();
+    return response.send({ resultado: "it Worked!" });
+  }
 
 }
 
