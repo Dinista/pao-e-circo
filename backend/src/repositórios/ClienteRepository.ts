@@ -27,9 +27,9 @@ class ClienteRepository {
 
   public async findById(id: string): Promise<Cliente | undefined> {
     const findCliente = this.clientes.find((Cliente) => Cliente.id === id);
-
     return findCliente;
   }
+
   public async findByEmail(email: string): Promise<Cliente | undefined> {
     const findCliente = this.clientes.find(
       (cliente) => cliente.email === email

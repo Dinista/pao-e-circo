@@ -16,6 +16,11 @@ import { FaSadTear } from "react-icons/fa"
 
 import TrocasCard from "../../components/TrocasCard";
 
+import bg_default from "../../assets/bg-default.jpg";
+
+import avatar_default from "../../assets/avatar-default.jpg";
+import { GiConsoleController } from "react-icons/gi";
+
 //import BG from "../../assets/bg-perfil.jpg";
 
 declare module "react" {
@@ -32,6 +37,9 @@ interface cliente {
   estado: string,
   cidade: string,
   nota: any,
+  avatar: string,
+  capa: string,
+  data: string,
 }
 
 const Perfil: React.FC = () => {
@@ -44,6 +52,8 @@ const Perfil: React.FC = () => {
   const urlParams = useParams() as object;
   const dataUser = perfilData?.dataNasc?.split("-") as any || 0
   const [perfilExist, setPerfilExist] = useState(true)
+  const [Cardimgcapa, setCardCapa] = useState(bg_default);
+  const [Cardimgavatar, setCardAvatar] = useState(avatar_default);
 
   // Calcula idade
 
@@ -92,12 +102,44 @@ const Perfil: React.FC = () => {
       if (response.data.error != undefined) {
         setPerfilExist(false)
       } else {
-        const picked = (({ id, name, dataNasc, estado, cidade, nota }) => ({ id, name, dataNasc, estado, cidade, nota }))(response.data[0]);
+        const picked = (({ id, name, dataNasc, estado, cidade, nota, avatar, capa, data }) => ({ id, name, dataNasc, estado, cidade, nota, avatar, capa, data }))(response.data[0]);
         setperfilData(picked);
         setIsOwner(loginId == picked.id);
       }
     })
   }, []);
+
+  useEffect(() => {
+    if (perfilData?.avatar) {
+      setCardAvatar(perfilData.avatar);
+    }
+    if (perfilData?.capa) {
+      setCardCapa(perfilData.capa);
+    }
+  });
+
+  // Tramento nota
+  const [notaFeed, setNota] = useState(0);
+  const [NotasLength, setNotaslength] = useState(0);
+  const Notas: number[] = [];
+
+  function somar(total, number) {
+    return total + number
+  }
+
+  useEffect(() => {
+    api.get(`/findAllNotas/${(urlParams as any).id}`).then((response) => {
+      if (response.data.error != undefined) {
+        setNota(0)
+      } else {
+        response.data.map((dado: any, i: number) => {
+          Notas.push(parseInt(dado.nota));
+        })
+      }
+      setNota(Notas.reduce(somar, 0) / Notas.length);
+      setNotaslength(Notas.length);
+    })
+  }, [notaFeed]);
 
 
   // --------------------------- Anuncios Ativos-----------------------
@@ -175,6 +217,7 @@ const Perfil: React.FC = () => {
           return (
             <AnuncioCard
               key={"Anuncio-Ativo" + i}
+              id={anuncio.id}
               Img={anuncio.foto1}
               Titulo={anuncio.titulo}
               Valor={anuncio.valorEstimado}
@@ -185,8 +228,6 @@ const Perfil: React.FC = () => {
     }
 
   }, [pageNumber, isclicked, anuncio, isOwner]);
-
-  console.log(isOwner)
 
   //------------------------ Trocas --------------------------
 
@@ -240,15 +281,15 @@ const Perfil: React.FC = () => {
         .map((trocas: any, i: any) => {
           return (
             <TrocasCard
-            id_1 = {trocas.Cliente1.id}
-            nome1 ={trocas.Cliente1.nome}
-            nomeObjeto1 = {trocas.Anuncio1.nomeOdjeto}
-            foto1 = {trocas.Anuncio1.foto1}
-            Avaliação_Cliente1 = {trocas.Avaliação_Cliente1}
-            SeuObj = {trocas.Anuncio2.nomeOdjeto}
-            fotoDoSeuObj = {trocas.Anuncio2.foto1}
-            dataTroca = {trocas.dataTroca}
-            
+              id_1={trocas.Cliente1.id}
+              nome1={trocas.Cliente1.nome}
+              nomeObjeto1={trocas.Anuncio1.nomeOdjeto}
+              foto1={trocas.Anuncio1.foto1}
+              Avaliação_Cliente1={trocas.Avaliação_Cliente1}
+              SeuObj={trocas.Anuncio2.nomeOdjeto}
+              fotoDoSeuObj={trocas.Anuncio2.foto1}
+              dataTroca={trocas.dataTroca}
+
             />
           )
         }))
@@ -256,26 +297,108 @@ const Perfil: React.FC = () => {
   }, [pageNumber_Trocas, isclicked, trocas]);
 
 
-// Display Perfil não existe
-if (perfilExist === false) {
-  return (
-    <>
-      <Header />
-      <div className="User-Not-Found">
-        <h1>Erro (404) - Page Not Found</h1>
-        <h3>Usuário não encontrado!</h3>
+
+  //------------------------ Seguindo --------------------------
+
+  const [seguindo, setseguindo] = useState(json);
+
+  useEffect(() => {
+    api.get(`/findAllSeguindo/${(urlParams as any).id}`).then((response) => {
+      //console.log(response.data)
+      setseguindo(response.data);
+    });
+  }, []);
+
+  // Paginação estados
+
+  const [pageNumber_seguindo, setPageNumber_seguindo] = useState(0);
+  const numberPerPage_seguindo = 12;
+  const visitedPages_seguindo = pageNumber_seguindo * numberPerPage_seguindo;
+  const totalPages_seguindo = Math.ceil(seguindo.length / numberPerPage_seguindo);
+  const a_seguindo = "";
+  const [display_seguindo, setDis_seguindo] = useState(a_seguindo as any);
+
+  // Paginação
+  const setnext_seguindo = () => {
+    if ((pageNumber_seguindo + 1) < totalPages_seguindo) {
+      setPageNumber_seguindo(pageNumber_seguindo + 1)
+    }
+  };
+
+  // Paginação
+  const setprev_seguindo = () => {
+    if (pageNumber_seguindo > 0) {
+      setPageNumber_seguindo(pageNumber_seguindo - 1);
+    }
+  }
+
+  // Pagination render Anuncio Ativos
+  useEffect(() => {
+    const HTMLAtivo = document.getElementsByClassName("Conteiner-Seguindo").length
+    const HTMLprev = document.getElementsByClassName("prev_seguindo")[0] as HTMLElement
+    const HTMLnext = document.getElementsByClassName("next_seguindo")[0] as HTMLElement
+
+    if (seguindo.length <= 0) {
+      if (HTMLAtivo > 0) {
+        HTMLnext.style.display = "none";
+      }
+      setDis_seguindo(() => {
+        return (
+          <div className="semAnuncio">Ainda não segue ninguém &#128546;</div>
+        );
+      });
+    } else if (HTMLAtivo > 0) {
+      if (totalPages_seguindo == 1) {
+        HTMLnext.style.display = "none";
+        HTMLprev.style.display = "none";
+      }
+      if (pageNumber_seguindo + 1 == totalPages_seguindo) {
+        HTMLnext.style.display = "none";
+      } else {
+        HTMLnext.style.display = "block";
+      }
+      if (pageNumber_seguindo == 0) {
+        HTMLprev.style.display = "none";
+      } else {
+        HTMLprev.style.display = "block";
+      }
+      setDis_seguindo(seguindo.slice(visitedPages_seguindo, visitedPages_seguindo + numberPerPage_seguindo)
+        .map((anuncio: any, i: any) => {
+          return (
+            <AnuncioCard
+              key={"Anuncio-Ativo" + i}
+              id={anuncio.id}
+              Img={anuncio.foto1}
+              Titulo={anuncio.titulo}
+              Valor={anuncio.valorEstimado}
+              isOwner={false}
+            />
+          )
+        }))
+    }
+  }, [pageNumber_seguindo, isclicked, seguindo]);
+
+  // Display Perfil não existe
+  if (perfilExist === false) {
+    return (
+      <>
+        <Header />
+        <div className="User-Not-Found">
+          <h1>Erro (404) - Page Not Found</h1>
+          <h3>Usuário não encontrado!</h3>
       O usuário que você porcura não existe.
       <div className="icon"><FaSadTear /></div>
-      </div>
-    </>
-  );
-}
+        </div>
+      </>
+    );
+  }
+
+
   return (
     <>
       <div className="PerfilContainer">
         <Header />
-        <div className="bg">
-          <img src="" alt="" />
+        <div className="bg img-resize" style={{ backgroundImage: `url(${Cardimgcapa})` }}>
         </div>
         <div onClick={clickAtivos}>
           <Cabecalho
@@ -287,7 +410,11 @@ if (perfilExist === false) {
             )}
             cidade={perfilData?.cidade}
             estado={perfilData?.estado}
-            nota={perfilData?.nota}
+            nota={notaFeed}
+            numAv={NotasLength}
+            avatar={Cardimgavatar}
+            data={perfilData?.data}
+            isOwner={isOwner}
           />
           <Tabs>
             <div label="Anúncios Ativos">
@@ -315,11 +442,19 @@ if (perfilExist === false) {
               </div>
             </div>
             <div label="Seguindo">
-              Nothing to see here, this tab is <em>extinct</em>!
+              <div className="Conteiner-Seguindo">
+                <div className="Paginate">
+                  {display_seguindo}
+                </div>
+                <div className="controls">
+                  <button onClick={() => setprev_seguindo()} className="prev_seguindo">Anterior</button>
+                  <button onClick={() => setnext_seguindo()} className="next_seguindo">Próxima</button>
+                </div>
+              </div>
             </div>
           </Tabs>
         </div>
-        <div>{}</div>
+        <div>{ }</div>
       </div>
     </>
   );

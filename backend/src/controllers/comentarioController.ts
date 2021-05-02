@@ -49,6 +49,23 @@ class ComentarioController {
 
     return response.send(results);
   }
+
+  async deleteCommentsByAnuncioId(request: Request, response: Response) {
+    const comentarioRepository = getRepository(Comentario);
+
+    const comentarios = await getConnection()
+    .getRepository(Comentario)
+    .createQueryBuilder("comentario")
+    .where("comentario.anuncio = :idAnuncio", {
+      idAnuncio: request.params.id,
+    })
+    .getMany();
+    
+    for(let comentario of comentarios){
+      await comentarioRepository.delete(comentario.idComentario);
+    }
+    return response;
+  }
 }
 
 export default ComentarioController;

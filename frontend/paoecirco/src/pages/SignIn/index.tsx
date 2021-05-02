@@ -39,7 +39,7 @@ const SignIn: React.FC = () => {
           localStorage.setItem("loginid", teste.data.cliente[0].id);
           alert("Login efetuado com sucesso");
           history.push({
-            pathname: "/perfil/" + localStorage.getItem("loginid"),
+            pathname: "/",
           });
         } else {
           const element = document.getElementById("errorLogin");

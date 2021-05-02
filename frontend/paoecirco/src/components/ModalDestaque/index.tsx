@@ -7,6 +7,7 @@ import { ButtonPropaganda, Container, ImagemContainer } from "./styles";
 import api from "../../services/api";
 import Select from "../Select";
 import SubText from "../Subtext";
+import { useHistory } from "react-router";
 
 interface NewModalProps {
   isOpen: boolean;
@@ -26,6 +27,7 @@ const ModalReactDestaque: React.FC<NewModalProps> = ({
   id,
 }: NewModalProps) => {
   const formRefData = useRef<FormHandles>(null);
+  const history = useHistory();
 
   const handleSubmitData = useCallback(
     async (planoDias: any) => {
@@ -37,6 +39,7 @@ const ModalReactDestaque: React.FC<NewModalProps> = ({
         });
         await api.put(`anunciodestaque/${id}`, planoDias);
         alert("O anuncio foi destacado com sucesso");
+        history.push("/");
       } catch (err) {}
     },
     [id]
@@ -53,7 +56,7 @@ const ModalReactDestaque: React.FC<NewModalProps> = ({
       <Container>
         <h2>Destacar anúncio</h2>
         <Form ref={formRefData} onSubmit={handleSubmitData}>
-          <Select name="plano" placeholder="Plano" options={planos}></Select>
+          <Select name="plano" placeholder="Plano" defaultValue={planos[0]} options={planos}></Select>
 
           <SubText text="Escolha o plano que prefere para o destaque de seu anúncio." />
 

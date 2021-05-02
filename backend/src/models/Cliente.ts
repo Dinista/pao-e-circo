@@ -44,6 +44,22 @@ class Cliente {
   @Column({
     nullable: true,
   })
+  avatar: string;
+
+  @Column({
+    nullable: true,
+  })
+  capa: string;
+
+  @Column({
+    type: "timestamp",
+    default: "now()"
+  })
+  data: Date;
+
+  @Column({
+    nullable: true,
+  })
   nota: number;
 
   @Column({

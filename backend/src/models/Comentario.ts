@@ -13,7 +13,7 @@ class Comentario {
 
   @ManyToOne(type => Cliente, {
     eager: true,
-    nullable: true
+    nullable: true,
   })
   comentador: Cliente;
 

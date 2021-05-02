@@ -1,3 +1,7 @@
+body{
+    padding-bottom: 10px;
+}
+
 .PerfilContainer{
     display: grid;
     place-items: center;
@@ -51,7 +55,7 @@
     grid-template-columns: 1fr 1fr;
 }
 
-.prev, .next, .prev-troca, .next-troca{
+.prev, .next, .prev-troca, .next-troca, .prev_seguindo, .next_seguindo{
     background-color: white;
     outline: none;
     border: 1px solid rgba(128, 128, 128, 0.349);
@@ -65,7 +69,7 @@
     user-select: none;
 }
 
-.prev, .prev-troca{
+.prev, .prev-troca, .prev_seguindo{
     display: none;
     grid-column-start: 1;
     grid-column-end: 2;

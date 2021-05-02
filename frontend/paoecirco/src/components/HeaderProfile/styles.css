@@ -8,9 +8,10 @@
 }
 
 .cabecalho-user-img{
-  width: 80%;
-  height: auto;
+  width: 100px;
+  height: 100px;
   border-radius: 70px;
+  margin: auto;
 }
 
 .cabecalho{
@@ -63,6 +64,10 @@
 .rating-num{
   line-height: 60%;
   font-size: 35px;
+  margin-bottom: 12px;
+}
+.qntAvaliação{
+  font-size: 10px;
 }
 
 .cabecalho-config{
@@ -102,4 +107,75 @@
 .Estrelas-cabecalho{
   color: #f0c15b;
   font-size: large;
+}
+
+.feedback-User{
+  display: flex;
+  font-size : 24px;
+  margin: auto;
+  cursor: pointer;
+  position: relative;
+  min-height: 50px;
+  place-items: center;
+}
+
+.feedBack-DropMenu{
+  padding: 0px 5px 5px 5px;
+  width: max-content;
+  font-size: larger;
+  top: -47px;
+  left: -64px;
+  border-radius: 5px;
+  position: absolute;
+}
+
+.feedBack-DropMenu::after{
+  content: '';
+  position: absolute;
+  background-color: #f05b79;
+  width: 10px;
+  height: 10px;
+  display: block;
+  z-index: -1;
+  transform: rotate(45deg);
+  top: 90%;
+  left: 50%;
+}
+
+.feedBack-DropMenu > *,
+.feedBack-DropMenu::after,
+.feedBack-DropMenu{
+  visibility: hidden;  
+}
+
+.feedback-User:hover > .feedBack-DropMenu::after,
+.feedback-User:hover > .feedBack-DropMenu > *,
+.feedback-User:hover > .feedBack-DropMenu{
+  visibility: visible;
+  animation: appear-feedBack 0.3s ease-in;
+}
+
+.feedback-User:hover > .feedBack-DropMenu{
+  display: flex;
+  position: absolute;
+  background-color: #f05b78;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.164);
+}
+
+@keyframes appear-feedBack {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity:100;
+  }
+}
+
+@keyframes appear-feedBack2 {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity:100;
+  }
 }

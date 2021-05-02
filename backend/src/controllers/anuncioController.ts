@@ -96,8 +96,8 @@ class AnuncioController {
       `
   SELECT id, titulo, foto1, descricao, "itemDesejado", "valorEstimado", "clienteId"
 	FROM anuncios where titulo = '` +
-        anuncio +
-        `'
+      anuncio +
+      `'
   `
     );
     console.log(someQuery);
@@ -131,7 +131,7 @@ class AnuncioController {
 
   async delete(request: Request, response: Response) {
     const anuncioRepository = getRepository(Anuncio);
-
+    console.log("cheguei")
     const results = await anuncioRepository.delete(request.params.id);
 
     return response.send(results);
@@ -170,6 +170,21 @@ class AnuncioController {
 
     return response.send(segue);
   }
+
+  async findAllSeguindo(request: Request, response: Response) {
+    try {
+      const anuncio = await getConnection()
+        .getRepository(Anuncio)
+        .createQueryBuilder("anuncio")
+        .leftJoinAndSelect("anuncio.seguidores", "seguidor")
+        .where("seguidor.id = :idCliente", { idCliente: request.params.id })
+        .getMany();
+      return response.json(anuncio);
+    }catch(e){
+      return response.json({});
+    }
+  }
+
 
   async seguir(request: Request, response: Response) {
     const { idCliente, idAnuncio } = request.body;
