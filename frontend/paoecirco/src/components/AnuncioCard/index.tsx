@@ -30,14 +30,14 @@ const AnuncioCard: React.FC<AnuncioCard> = ({ id, Img, Titulo, Valor, isOwner })
                 <li className="Item-CardAnuncio-Img img-resize" style={{ backgroundImage: `url(${Img})` }}>
                     <Link className="linkContainerDestaques" to={{ pathname: "/makeanoffer", state: { id: id } }} />
                 </li>
-                {isOwner && <li className="Item-CardAnuncio-Edit"><button className="btn-edit" onClick={EditOnclick}><BsPencil /></button></li>}
+                {isOwner && <li className="Item-CardAnuncio-Edit"><button className="btn-edit" title="Editar Anúncio" onClick={EditOnclick}><BsPencil /></button></li>}
                 <li className="Item-CardAnuncio-Desc">
                     <div className="sub-grid-desc">
                         <div id="Valor-estimado">Valor estimado: <b id="valor">R${Valor}</b></div>
                         <div id="Titulo-anuncio">{Titulo}</div>
                     </div>
                 </li>
-                {isOwner && <li className="Item-CardAnuncio-Dest"><button className="btn-destaque" onClick={destaqueOnclick}>Destacar</button></li>}
+                {isOwner && <li className="Item-CardAnuncio-Dest"><button className="btn-destaque" title="Destacar Anúncio" onClick={destaqueOnclick}>Destacar</button></li>}
             </ul>
         </div>
     )

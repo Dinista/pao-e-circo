@@ -142,7 +142,10 @@ const Oferta: React.FC = (props: any) => {
   }, [id]);
 
   const handleSeguirAnuncio = useCallback(async (data: any) => {
-    if(localStorage.getItem("loginid") || "" == "") {
+    
+    console.log(localStorage.getItem("loginid"))
+    
+    if(localStorage.getItem("loginid") == null) {
       alert("Para seguir um anúncio é necessário fazer login!");
       history.push("/signin");
     }
@@ -296,7 +299,7 @@ const Oferta: React.FC = (props: any) => {
                 onClick={() =>
                   handleSeguirAnuncio({
                     idAnuncio: adData?.id,
-                    idCliente: localStorage.getItem("loginid" || ""),
+                    idCliente: localStorage.getItem("loginid"),
                   })
                 }
               >

@@ -102,7 +102,7 @@ const Perfil: React.FC = () => {
       if (response.data.error != undefined) {
         setPerfilExist(false)
       } else {
-        const picked = (({ id, name, dataNasc, estado, cidade, nota, avatar, capa, data }) => ({ id, name, dataNasc, estado, cidade, nota, avatar, capa, data}))(response.data[0]);
+        const picked = (({ id, name, dataNasc, estado, cidade, nota, avatar, capa, data }) => ({ id, name, dataNasc, estado, cidade, nota, avatar, capa, data }))(response.data[0]);
         setperfilData(picked);
         setIsOwner(loginId == picked.id);
       }
@@ -121,22 +121,22 @@ const Perfil: React.FC = () => {
   // Tramento nota
   const [notaFeed, setNota] = useState(0);
   const [NotasLength, setNotaslength] = useState(0);
-  const Notas : number[] = [];
-  
+  const Notas: number[] = [];
+
   function somar(total, number) {
     return total + number
   }
-  
-  useEffect(() =>{
+
+  useEffect(() => {
     api.get(`/findAllNotas/${(urlParams as any).id}`).then((response) => {
       if (response.data.error != undefined) {
         setNota(0)
       } else {
-        response.data.map((dado : any, i: number)=>{
-        Notas.push(parseInt(dado.nota));
+        response.data.map((dado: any, i: number) => {
+          Notas.push(parseInt(dado.nota));
         })
       }
-      setNota(Notas.reduce(somar, 0)/Notas.length);
+      setNota(Notas.reduce(somar, 0) / Notas.length);
       setNotaslength(Notas.length);
     })
   }, [notaFeed]);
@@ -217,7 +217,7 @@ const Perfil: React.FC = () => {
           return (
             <AnuncioCard
               key={"Anuncio-Ativo" + i}
-              id = {anuncio.id}
+              id={anuncio.id}
               Img={anuncio.foto1}
               Titulo={anuncio.titulo}
               Valor={anuncio.valorEstimado}
@@ -228,8 +228,6 @@ const Perfil: React.FC = () => {
     }
   }, [pageNumber, isclicked, anuncio, isOwner]);
 
-
-  console.log(isOwner)
 
   //------------------------ Trocas --------------------------
 
@@ -299,6 +297,87 @@ const Perfil: React.FC = () => {
   }, [pageNumber_Trocas, isclicked, trocas]);
 
 
+
+  //------------------------ Seguindo --------------------------
+
+  const [seguindo, setseguindo] = useState(json);
+
+  useEffect(() => {
+    api.get(`/findAllSeguindo/${(urlParams as any).id}`).then((response) => {
+      //console.log(response.data)
+      setseguindo(response.data);
+    });
+  }, []);
+
+  // Paginação estados
+
+  const [pageNumber_seguindo, setPageNumber_seguindo] = useState(0);
+  const numberPerPage_seguindo = 12;
+  const visitedPages_seguindo = pageNumber_seguindo * numberPerPage_seguindo;
+  const totalPages_seguindo = Math.ceil(seguindo.length / numberPerPage_seguindo);
+  const a_seguindo = "";
+  const [display_seguindo, setDis_seguindo] = useState(a_seguindo as any);
+
+  // Paginação
+  const setnext_seguindo = () => {
+    if ((pageNumber_seguindo + 1) < totalPages_seguindo) {
+      setPageNumber_seguindo(pageNumber_seguindo + 1)
+    }
+  };
+
+  // Paginação
+  const setprev_seguindo = () => {
+    if (pageNumber_seguindo > 0) {
+      setPageNumber_seguindo(pageNumber_seguindo - 1);
+    }
+  }
+
+  // Pagination render Anuncio Ativos
+  useEffect(() => {
+    const HTMLAtivo = document.getElementsByClassName("Conteiner-Seguindo").length
+    const HTMLprev = document.getElementsByClassName("prev_seguindo")[0] as HTMLElement
+    const HTMLnext = document.getElementsByClassName("next_seguindo")[0] as HTMLElement
+
+    if (seguindo.length <= 0) {
+      if (HTMLAtivo > 0) {
+        HTMLnext.style.display = "none";
+      }
+      setDis_seguindo(() => {
+        return (
+          <div className="semAnuncio">Ainda não segue ninguém &#128546;</div>
+        );
+      });
+    } else if (HTMLAtivo > 0) {
+      if (totalPages_seguindo == 1) {
+        HTMLnext.style.display = "none";
+        HTMLprev.style.display = "none";
+      }
+      if (pageNumber_seguindo + 1 == totalPages_seguindo) {
+        HTMLnext.style.display = "none";
+      } else {
+        HTMLnext.style.display = "block";
+      }
+      if (pageNumber_seguindo == 0) {
+        HTMLprev.style.display = "none";
+      } else {
+        HTMLprev.style.display = "block";
+      }
+      setDis_seguindo(seguindo.slice(visitedPages_seguindo, visitedPages_seguindo + numberPerPage_seguindo)
+        .map((anuncio: any, i: any) => {
+          return (
+            <AnuncioCard
+              key={"Anuncio-Ativo" + i}
+              id={anuncio.id}
+              Img={anuncio.foto1}
+              Titulo={anuncio.titulo}
+              Valor={anuncio.valorEstimado}
+              isOwner={false}
+            />
+          )
+        }))
+    }
+  }, [pageNumber_seguindo, isclicked, seguindo]);
+
   // Display Perfil não existe
   if (perfilExist === false) {
     return (
@@ -332,10 +411,10 @@ const Perfil: React.FC = () => {
             cidade={perfilData?.cidade}
             estado={perfilData?.estado}
             nota={notaFeed}
-            numAv = {NotasLength}
+            numAv={NotasLength}
             avatar={Cardimgavatar}
-            data = {perfilData?.data}
-            isOwner = {isOwner}
+            data={perfilData?.data}
+            isOwner={isOwner}
           />
           <Tabs>
             <div label="Anúncios Ativos">
@@ -363,7 +442,15 @@ const Perfil: React.FC = () => {
               </div>
             </div>
             <div label="Seguindo">
-              Nothing to see here, this tab is <em>extinct</em>!
+              <div className="Conteiner-Seguindo">
+                <div className="Paginate">
+                  {display_seguindo}
+                </div>
+                <div className="controls">
+                  <button onClick={() => setprev_seguindo()} className="prev_seguindo">Anterior</button>
+                  <button onClick={() => setnext_seguindo()} className="next_seguindo">Próxima</button>
+                </div>
+              </div>
             </div>
           </Tabs>
         </div>

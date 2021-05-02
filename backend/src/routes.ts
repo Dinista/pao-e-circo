@@ -44,6 +44,7 @@ routes.put("/seguir", anuncioController.seguir);
 routes.put("/deixardeseguir", anuncioController.deixarDeSeguir);
 routes.get("/findallanuncios", anuncioController.findAll);
 routes.post("/findbyname", anuncioController.findByName);
+routes.get("/findAllSeguindo/:id", anuncioController.findAllSeguindo);
 
 //denuncias
 routes.post("/denunciar", denunciaController.create);

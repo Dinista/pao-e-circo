@@ -42,7 +42,6 @@ const Cabecalho: React.FC<cabecalho> = ({ isOwner, idade, nome, cidade, estado, 
 
             if (response.data.length < 1) {
                 setHasNote(false);
-                console.log("comprimento", response.data.length)
             }
 
             const newNota = await response?.data[0]?.nota;
@@ -62,7 +61,6 @@ const Cabecalho: React.FC<cabecalho> = ({ isOwner, idade, nome, cidade, estado, 
 
     // tratamento create/put nota
     function AtualizaNota(nota: number) {
-        console.log("Olha", hasNote)
 
         if (loginId == null) {
             history.push(`/signin`);
