@@ -39,9 +39,9 @@ const Oferta: React.FC = (props: any) => {
   const history = useHistory();
   const formRef = useRef<FormHandles>(null);
   const [ehDonoAnuncio, setEhDonoAnuncio] = useState<boolean | undefined>();
-  // const [isLoggedIn, setIsLoggedIn] = useState<boolean | undefined>();
-  
-  // const [ehSeguidor, setEhSeguidor] = useState<boolean | undefined>();
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean | undefined>();
+
+  const [ehSeguidor, setEhSeguidor] = useState<boolean | undefined>();
 
   const [isModalDestaqueOpen, setIsModalDestaqueOpen] = useState(false);
   function handleOpenModalDestaque() {
@@ -114,20 +114,21 @@ const Oferta: React.FC = (props: any) => {
   const [comentarios, setComentarios] = useState<Comentario[]>([]);
 
   useEffect(() => {
+    console.log("FUI CHAMADO");
     api.post(`/anuncioss/${id}`).then((response) => {
       setAdData(response.data);
       setEhDonoAnuncio(
         localStorage.getItem("loginid" || "") === adData?.cliente.id
       );
     });
+  }, [id, ehDonoAnuncio]);
+
+
+  useEffect(() => {    
+    if(localStorage.getItem("loginid" || "") == "") {
+      setIsLoggedIn(false);
+    }
   }, []);
-
-
-  // useEffect(() => {    
-  //   if(localStorage.getItem("loginid" || "") == "") {
-  //     setIsLoggedIn(false);
-  //   }
-  // }, []);
 
   // useEffect(() => {
   //   api.post("/verificaseguidor", data);
