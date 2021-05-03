@@ -117,10 +117,10 @@ const Oferta: React.FC = (props: any) => {
     api.post(`/anuncioss/${id}`).then((response) => {
       setAdData(response.data);
       setEhDonoAnuncio(
-        localStorage.getItem("loginid" || "") === adData?.cliente.id
+        localStorage.getItem("loginid") == adData?.cliente.id
       );
     });
-  }, []);
+  }, [ehDonoAnuncio]);
 
 
   // useEffect(() => {    
@@ -143,9 +143,9 @@ const Oferta: React.FC = (props: any) => {
 
   const handleSeguirAnuncio = useCallback(async (data: any) => {
     
-    console.log(localStorage.getItem("loginid"))
+    console.log(localStorage.getItem("loginid"|| ""))
     
-    if(localStorage.getItem("loginid") == null) {
+    if(localStorage.getItem("loginid") == null || "") {
       alert("Para seguir um anúncio é necessário fazer login!");
       history.push("/signin");
     }
