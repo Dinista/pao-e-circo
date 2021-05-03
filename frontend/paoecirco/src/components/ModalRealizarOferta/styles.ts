@@ -1,5 +1,6 @@
 
 import styled from "styled-components";
+import Select from "../Select";
 
 export const Container = styled.div`
   display: flex;
@@ -11,6 +12,7 @@ export const Container = styled.div`
     margin-bottom: 2rem;
   }
 
+
   form {
     & + form {
       margin-top: 1rem;
@@ -19,10 +21,11 @@ export const Container = styled.div`
 
   button {
     width: 25rem;
-    justify-self: center;
+    margin: 1rem;
 
     & input {
       margin-top: 10rem;
+      padding-right: -2rem;
     }
   }
 `;
@@ -45,3 +48,7 @@ export const ButtonPropaganda = styled.button`
   font-size: 15px;
   border-radius: 5px;
 `;
+
+export const StyledSelect = styled(Select)`
+  width: auto;
+`

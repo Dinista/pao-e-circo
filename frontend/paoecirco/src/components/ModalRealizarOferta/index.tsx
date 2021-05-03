@@ -4,7 +4,7 @@ import { Form } from "@unform/web";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import * as yup from "yup";
 import Modal from "react-modal";
-import { ButtonPropaganda, Container } from "./styles";
+import { ButtonPropaganda, Container, StyledSelect } from "./styles";
 import api from "../../services/api";
 import Select from "../Select";
 import SubText from "../Subtext";
@@ -134,12 +134,12 @@ const ModalReactRealizarOferta: React.FC<NewModalProps> = ({
       <Container>
         <h2>Realizar oferta</h2>
         <Form ref={formRefData} onSubmit={handleSubmitData}>
-          <Select
+          <StyledSelect
             name="objeto"
             placeholder="Selecione um objeto seu para oferecer"
             options={objetosUsuarioLogado}
             defaultValue={objetosUsuarioLogado[1]}
-          ></Select>
+          ></StyledSelect>
           <SubText text="O item ainda estará disponível até que o outro usuário aceite a proposta de troca." />
 
           <ButtonPropaganda name="submitButton" type="submit">
