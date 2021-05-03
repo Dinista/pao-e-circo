@@ -98,7 +98,6 @@ const EditarPerfil: React.FC = () => {
     }
 
     async function getUrlImgs() {
-        console.log("FUI CHAMADO");
         console.log("capa:" + imgcapa)
         console.log("avatar:" + imgavatar)
         const formdata_Avatar = new FormData
@@ -128,7 +127,6 @@ const EditarPerfil: React.FC = () => {
             formdata_Capa.append("file", imgcapa);
             formdata_Capa.append("upload_preset", "nh3ml3mu");
             await axios.post("https://api.cloudinary.com/v1_1/dxklaxr7g/image/upload", formdata_Capa).then(async (response) => {
-                console.log("RESPONSEEEEEEEE: " + response.data.url);
                 await api.put(`perfilUpdateCapa/${loginId}`, { capa: response.data.url });
             });
 
