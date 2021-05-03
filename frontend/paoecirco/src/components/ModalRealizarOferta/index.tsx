@@ -117,7 +117,7 @@ const ModalReactRealizarOferta: React.FC<NewModalProps> = ({
 
       alert("A oferta foi realizada com sucesso");
 
-      //history.push("/");
+      history.push("/");
     } catch (err) {
       alert(err);
     }

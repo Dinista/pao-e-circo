@@ -36,6 +36,7 @@ import SubText from "../../components/Subtext";
 import Input from "../../components/Input";
 import { FiAlignJustify } from "react-icons/fi";
 import InvisibleInput from "../../components/InvisibleInput";
+import avatar_default from "../../assets/avatar-default.jpg";
 
 
 const Oferta: React.FC = (props: any) => {
@@ -244,7 +245,7 @@ const Oferta: React.FC = (props: any) => {
 
         <ContainerFlexVertical className="VerticalContainerLeft">
           <h2> Informações do Anunciante </h2>
-          <ImageContainer src={adData?.cliente.avatar}/>
+          <ImageContainer src={adData?.cliente.avatar == null ? avatar_default : adData?.cliente.avatar}/>
           <p> <b>Nome:</b> {adData?.cliente.name} </p>
           <p> <b>Cidade:</b> {adData?.cliente.cidade} </p>
           <p> <b>Estado:</b> {adData?.cliente.estado} </p>
@@ -324,11 +325,11 @@ const Oferta: React.FC = (props: any) => {
               <ContainerComment> 
                 <div key={comentario.id}>
                 <ComentarioHeader>
-                  <ImageContainerComment src={comentario.comentador?.avatar} width="50px" height="50px"/> 
+                  <ImageContainerComment src={comentario.comentador?.avatar == null ? avatar_default : comentario.comentador?.avatar } width="50px" height="50px"/> 
                   <b>{comentario.comentador?.name}</b>
                   
                 </ComentarioHeader>
-                <b><DataComentario>{comentario.data}</DataComentario></b>
+                <DataComentario>{comentario.data}</DataComentario>
                 <TextoComentario>{comentario.texto}</TextoComentario>
                 </div>
               </ContainerComment>

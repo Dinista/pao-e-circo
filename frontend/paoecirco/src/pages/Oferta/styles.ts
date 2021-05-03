@@ -89,8 +89,9 @@ export const ContainerComment = styled.div`
 
 export const DataComentario = styled.p`
   font-size: 0.9rem;
-  margin-top: -0.3rem;
+  margin-top: -0.8rem;
   padding-left: 3rem;
+  margin-left: 0.8rem;
 
 `
 
