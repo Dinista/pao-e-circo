@@ -180,7 +180,8 @@ const EditarPerfil: React.FC = () => {
             try {
                 formRef.current?.setErrors({});
                 const schema = yup.object().shape({
-                    name: yup.string().required("Nome origatório."),
+                    name: yup.string().matches(/^[A-Za-zÀ-ú ]*$/, "Nome inválido.")
+                        .min(3, "No mínimo 3 letras.").max(40, "Máximo 40 caracteres.").required("Nome obrigatório."),
                     email: yup.string().required("E-mail obrigatório.").email("E-mail inválido."),
                     senha: yup.string().min(6, "No mínimo 6 dígitos."),
                 });
@@ -237,9 +238,9 @@ const EditarPerfil: React.FC = () => {
             try {
                 formEditRef.current?.setErrors({});
                 const schema = yup.object().shape({
-                    endereco: yup.string().required("Endereço obrigatório."),
-                    estado: yup.string().required("Estado obrigatório."),
-                    cidade: yup.string().required("Cidade obrigatória."),
+                    endereco: yup.string().min(5, "Mínimo 5 caracteres").max(80, "Excedeu o número de caracteres").required("Endereço obrigatório."),
+                    estado: yup.string().matches(/^[A-Za-zÀ-ú]*$/, "Estado inválido.").min(4, "Mínimo 4 caracteres").max(15, "Excedeu o número de caracteres").required("Estado obrigatório."),
+                    cidade: yup.string().matches(/^[A-Za-zÀ-ú]*$/, "Cidade inválida.").min(4, "Mínimo 4 caracteres").max(15, "Excedeu o número de caracteres").required("Cidade obrigatória."),
                 });
 
                 await schema.validate(data, {
@@ -307,7 +308,7 @@ const EditarPerfil: React.FC = () => {
                         <div className="campo-edit-perfil">
                             <div className="Edit-label">
                                 <text>perfil</text>
-                                <text className = "ajuda-icon"><FiHelpCircle title="Ajuda"/></text>
+                                <text className="ajuda-icon"><FiHelpCircle title="Ajuda" /></text>
                             </div>
                             <div className="content-edit-perfil-grid">
                                 <li className="Foto">
