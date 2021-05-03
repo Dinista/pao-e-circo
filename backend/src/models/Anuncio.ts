@@ -10,7 +10,8 @@ class Anuncio {
   id: string;
  
   @ManyToOne(() => Cliente, anuncios => Anuncio, {
-    eager: true
+    eager: true,
+    onDelete: "CASCADE"
   }) 
   cliente: Cliente;
 

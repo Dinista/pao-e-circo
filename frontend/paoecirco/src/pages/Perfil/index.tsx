@@ -133,15 +133,13 @@ const Perfil: React.FC = () => {
         setNota(0)
       } else {
         response.data.map((dado: any, i: number) => {
-          Notas.push(parseInt(dado.nota));
+          Notas.push(dado.nota);
         })
       }
       setNota(Notas.reduce(somar, 0) / Notas.length);
       setNotaslength(Notas.length);
     })
   }, [notaFeed]);
-
-
   // --------------------------- Anuncios Ativos-----------------------
 
 
@@ -259,9 +257,14 @@ const Perfil: React.FC = () => {
     }
   }
 
-  const [IdDono, setIdDono] = useState("")
-  const [IdNaoDono, setIdNaoDono] = useState("")
-  const [Nome, setNome] = useState("")
+  const [IdDono, setIdDono] = useState("");
+  const [IdNaoDono, setIdNaoDono] = useState("");
+  const [Nome, setNome] = useState("");
+  const [nomeObjeto1, setnomeObjeto1] = useState("");
+  const [foto1, setfoto1] = useState("");
+  const [SeuObj, setSeuObj] = useState("");
+  const [fotoDoSeuObj, setfotoDoSeuObj] = useState("");
+
 
   useEffect(() => {
     const HTMLAtivo_troca = document.getElementsByClassName("Conteiner-Trocas").length
@@ -272,7 +275,7 @@ const Perfil: React.FC = () => {
       if (HTMLAtivo_troca > 0) {
         HTMLnext_troca.style.display = "none"
       }
-      setDis_Trocas(() => { return (<div className='semAnuncio'>Ainda não relaizou nenhuma troca &#128546;</div>) })
+      setDis_Trocas(() => { return (<div className='semAnuncio'>Ainda não realizou nenhuma troca &#128546;</div>) })
     } else if (HTMLAtivo_troca > 0) {
       if (totalPages_Trocas == 1) {
         HTMLnext_troca.style.display = "none"
@@ -290,7 +293,6 @@ const Perfil: React.FC = () => {
       }
       setDis_Trocas(trocas.slice(visitedPages_Trocas, visitedPages_Trocas + numberPerPage_Trocas)
         .map((trocas: any, i: any) => {
-
           const data = trocas.data;
           const idAnuncioCliente1 = trocas.idAnuncioCliente1;
           const idAnuncioCliente2 = trocas.idAnuncioCliente2;
@@ -308,26 +310,37 @@ const Perfil: React.FC = () => {
           if (IdNaoDono) {
             api.get(`/perfil/${IdNaoDono}`).then((response) => {
               setNome(response.data[0].name)
+              
             })
           }
 
+          if (idAnuncioCliente2 && idAnuncioCliente1){
+            api.post(`/anuncioss/${idAnuncioCliente2}`).then((response) => {
+              setnomeObjeto1(response.data.titulo);
+              setfoto1(response.data.foto1);
+            });
 
+            api.post(`/anuncioss/${idAnuncioCliente1}`).then((response) => {
+              setSeuObj(response.data.titulo);
+              setfotoDoSeuObj(response.data.foto1);
+            });
+          }
           return (
             <TrocasCard
-              id_1={""}
+              id_1={IdNaoDono}
               nome1={Nome}
-              nomeObjeto1={""}
-              foto1={""}
+              nomeObjeto1={nomeObjeto1}
+              foto1={foto1}
               Avaliação_Cliente1={0}
-              SeuObj={""}
-              fotoDoSeuObj={""}
+              SeuObj={SeuObj}
+              fotoDoSeuObj={fotoDoSeuObj}
               dataTroca={data.split("T")[0].replace(/(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1")}
 
             />
           )
         }))
     }
-  }, [pageNumber_Trocas, isclicked, trocas, IdNaoDono, IdDono, Nome]);
+  }, [pageNumber_Trocas, isclicked, trocas, IdDono, Nome]);
 
 
   //------------------------ Seguindo --------------------------

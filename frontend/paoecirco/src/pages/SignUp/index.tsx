@@ -141,7 +141,7 @@ const SignUp: React.FC = () => {
                 placeholder="Senha"
                 type="password"
               ></Input>
-              <div style = {{width: "90%"}}>
+              <div style = {{width: "100%"}}>
               <Button name="submitButton" type="submit">
                 Cadastrar
               </Button>

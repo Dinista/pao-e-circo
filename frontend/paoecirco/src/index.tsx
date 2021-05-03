@@ -17,6 +17,8 @@ import Perfil from "./pages/Perfil";
 import PerfilError from "./pages/PerfilError";
 import EditarAnuncio from "./pages/EditarAnuncio";
 import EditarPerfil from "./pages/EditarPerfil";
+import Esqueceu from "./pages/Forgot";
+
 
 ReactDOM.render(
   <React.StrictMode>
@@ -34,7 +36,9 @@ ReactDOM.render(
         <Route path="/criarpropaganda" component={CriarPropaganda} />
         <Route path="/editaranuncio" component={EditarAnuncio} />
         <Route path="/editarPerfil" component={EditarPerfil} />
+        <Route path="/forgot" component={Esqueceu} />
         <Route path="/makeanoffer" component={MakeAnOffer} />
+
       </Switch>
     </Router>
   </React.StrictMode>,

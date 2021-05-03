@@ -17,7 +17,7 @@ class ClienteNotas {
     @Column()
     idClienteReceiver: string;
 
-    @Column()
+    @Column({ nullable: true, type: "float" })
     nota: number;
 
     @Column()

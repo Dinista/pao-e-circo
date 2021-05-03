@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import Header from "../../components/Header";
 import "./styles.css";
-import { FaCogs, FaExclamationTriangle, FaPencilAlt } from "react-icons/fa"
+import { FaCogs, FaExclamationTriangle, FaPencilAlt, FaCity } from "react-icons/fa"
 import { Redirect } from "react-router-dom";
 import axios from "axios"
 import api from "../../services/api";
@@ -11,8 +11,7 @@ import avatar_default from "../../assets/avatar-default.jpg";
 import * as yup from "yup";
 import { Form } from "@unform/web";
 import { FormHandles } from "@unform/core";
-import { FiLock, FiUser } from "react-icons/fi";
-import { FaCity } from "react-icons/fa";
+import { FiLock, FiUser, FiHelpCircle } from "react-icons/fi";
 import { GiMailbox } from "react-icons/gi";
 import Input from "../../components/Input/index";
 import { BsEnvelope } from "react-icons/bs"
@@ -140,6 +139,12 @@ const EditarPerfil: React.FC = () => {
                 window.location.reload();
             });
         }
+    }
+
+    // btn perfil
+
+    function onClickMeuperfil() {
+        history.push(`/perfil/${loginId}`);
     }
 
     //tratamento de formulário
@@ -295,12 +300,15 @@ const EditarPerfil: React.FC = () => {
                             <div className="nome-editar">{perfilData?.name.split(" ")[0]}</div>
                             <div className="info-editar">usuário desde {perfilData?.data.split("-")[0]}</div>
                         </div>
-                        <button className="btn-meuPerfil-editar btn-carregar">meu perfil</button>
+                        <button className="btn-meuPerfil-editar btn-carregar" onClick={onClickMeuperfil}>meu perfil</button>
                     </div>
                     <div className="header-Editar-perfil"><FaCogs /> Configurações</div>
                     <div className="Content-Editar-perfil">
                         <div className="campo-edit-perfil">
-                            <div className="Edit-label">perfil</div>
+                            <div className="Edit-label">
+                                <text>perfil</text>
+                                <text className = "ajuda-icon"><FiHelpCircle title="Ajuda"/></text>
+                            </div>
                             <div className="content-edit-perfil-grid">
                                 <li className="Foto">
                                     <div className="igm-Capa img-resize" style={{ backgroundImage: `url(${renderimgavatar})` }}></div>
@@ -324,7 +332,7 @@ const EditarPerfil: React.FC = () => {
                         <div className="campo-edit-dadosPessoais">
                             <div className="Edit-label">
                                 <div>dados pessoais</div>
-                                <button className="btn-edit-dados" onClick={EditDadosClick}><FaPencilAlt /></button>
+                                <button className="btn-edit-dados" onClick={EditDadosClick} title="Editar dados"><FaPencilAlt /></button>
                             </div>
                             <ul className="dados-edit-perfil">
                                 <li>
@@ -366,7 +374,7 @@ const EditarPerfil: React.FC = () => {
                                     <div className="Endereço-edit">{perfilData?.endereco.replace(/.{2}(?=\s.*?)/g, "••")}</div>
                                     <div className="cidade/estado-edit">{perfilData?.cidade.replace(/.{2,3}(?= .)*/, "••") + ", " + perfilData?.estado.replace(/.{2,5}(?= .)*/, "••")}</div>
                                 </ul>
-                                <button className="btn-edit-dados" onClick={EditEnderOnclick}><FaPencilAlt /></button>
+                                <button className="btn-edit-dados" onClick={EditEnderOnclick} title="Editar endereço" ><FaPencilAlt /></button>
                             </div>
                             {MudouEndereço && <Form ref={formEditRef} onSubmit={handleSubmitEnder} className="endereco-edit">
                                 <Input name="endereco" icon={GiMailbox} placeholder="Endereço"></Input>

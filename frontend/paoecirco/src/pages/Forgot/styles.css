@@ -1,0 +1,73 @@
+.signinContainer {
+    display: grid;
+    place-items: center;
+  }
+  
+  .loginLogoContainer {
+    width: 100%;
+    background: #f0f0f0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .Forgot-Content{
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    place-items: center;
+    margin-top: 50px;
+    gap: 10px;
+  }
+
+  .Forgot-Content > h4{
+    align-self: flex-start;
+  }
+
+  .form-forgot{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #iput-forgot{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid rgb(192, 192, 192)
+  }
+
+  #iput-forgot:focus{
+    border: 1px solid rgb(228, 164, 2)
+  }
+
+  .msg-envio-icon{
+    font-size: 52px;
+    color: rgb(61, 92, 31);
+  }
+
+  .msg-envio-div{
+    display: flex;
+    background-color: rgb(144, 211, 77);
+    padding: 12px;
+    border-radius: 5px;
+    color: #182c0a;
+    gap:10px;
+  }
+
+  .erro-msg-envio{
+    display: flex;
+    width: 380px;
+    background-color: rgb(211, 77, 77);
+    padding: 12px;
+    border-radius: 5px;
+    color: #fafafa;
+    gap:10px;
+    place-items: center;
+  }
+
+  .erro-msg-envio-icon{
+    font-size: 36px;
+    color: rgb(92, 31, 31);
+  }

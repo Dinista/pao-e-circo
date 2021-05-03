@@ -95,7 +95,7 @@ const Cabecalho: React.FC<cabecalho> = ({ isOwner, idade, nome, cidade, estado, 
 
     // tratamento get nota
     function notaVerification(): any {
-        if (nota === null || nota == undefined || nota == 0 || nota?.toString() == "NaN") {
+        if (nota === null || nota == undefined || nota < 0.5 || nota?.toString() == "NaN") {
             return ("N/A")
         } else {
             return (nota.toFixed(1))

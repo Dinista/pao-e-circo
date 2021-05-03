@@ -21,24 +21,12 @@ const ModalReactExcluirConta: React.FC<NewModalProps> = ({
 
   const handleDelete = useCallback(async (data: any) => {
     try {
-      console.log("Deletando comentários");
-      api.delete(`/deleteCommentsByAnuncioId/${data}`).then((response) => { });
-
-      console.log("Deletando denúncias");
-      api.delete(`/deleteDenunciasByAnuncioId/${data}`).then((response) => { });
-
-      console.log("Deletando notifacoes");
-      api.delete(`/notificacoesanuncios/${data}`).then((response) => { })
-      api.delete(`/notificacoesanunciosofertados/${data}`).then((response) => { })
-
-      console.log("Deletando anúncio");
-      api.delete(`/anuncios/${data}`).then((response) => { });
-
-      alert("O anuncio foi apagado com sucesso");
+      api.delete(`/clienteDelete/${idCliente}`);
       history.push("/");
+      localStorage.removeItem("loginid");
 
     } catch (err) {
-      console.log("ERRO EXCLUSAO ANUNCIO: " + err + "!");
+      console.log("ERRO EXCLUSAO Perfil: " + err + "!");
     }
   }, []);
 

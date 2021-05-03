@@ -44,7 +44,7 @@ const ModalReactDenuncia: React.FC<NewModalProps> = ({
 
   const handleSubmitData = useCallback(
     async (data: Denuncia) => {
-      if(localStorage.getItem("loginid") || "" == "") {
+      if(localStorage.getItem("loginid") == null) {
         alert("Necessário estar logado para realizar uma denúncia!");
         return history.push("/signin");
       }

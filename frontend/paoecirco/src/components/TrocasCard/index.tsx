@@ -51,7 +51,7 @@ const TrocasCard: React.FC<TrocasCard> = ({ id_1, nome1, nomeObjeto1, foto1, Ava
                 <li className="troca-titulo2">{nomeObjeto1}</li>
                 {/*<li className="Estrelas-troca">{estrelas()}<li className= "NumNota">{numNota.toFixed(1)}</li></li>*/}
                 <li className="info-troca1">Data da troca: <b className="Destaque-troca">{dataTroca}</b></li>
-                <li className="info-troca2"> Com o usuário: <b className="Destaque-troca">{nome1}</b> </li>
+                <li className="info-troca2"> Com o usuário: <Link className="Destaque-troca" to = {`/perfil/${id_1}`}>{nome1}</Link> </li>
                 {/*<li className="info-troca3"> Avaliação: <b className="Destaque-troca">{numNota.toFixed(1)}</b> </li>*/}
             </ul>
         </div>

@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import { getManager, getRepository } from "typeorm";
 import Cliente from "../models/Cliente";
 import ClienteNotas from "../models/ClienteNota";
+import Denuncia from "../models/Denuncia";
+import Trocas from "../models/Trocas";
 
 class ClienteController {
   async create(request: Request, response: Response) {
@@ -48,6 +50,21 @@ class ClienteController {
     return response.json("funfou se pa em");
   }
 
+  async findbyEmail(request: Request, response: Response) {
+    const clienteRepository = getRepository(Cliente);
+    const email = request.params.email;
+    const checkClienteExists = await clienteRepository.findOne({
+      where: { email },
+    });
+
+    if(checkClienteExists){
+      return response.json({ passou: "E-mail cadastrado!" });
+    }else{
+      return response.json({erro: "E-mail não existe!"})
+    }
+  }
+
+
   async findbyname(request: Request, response: Response) {
     const { name } = request.body;
     const entityManager = getManager();
@@ -91,6 +108,9 @@ class ClienteController {
     try {
       const clienteRepository = getRepository(Cliente);
       const cliente = await clienteRepository.find({ id: request.params.id });
+      if (cliente.length == 0) {
+        return response.json({ error: "Não existe" })
+      }
       return response.json(cliente);
     } catch {
       return response.json({ error: "Não existe" })
@@ -183,7 +203,7 @@ class ClienteController {
         { idClienteReceiver: request.params.id });
       return response.send(nota);
     } catch {
-      return response.status(404).json({ error: "Nota não encontrada" });
+      return response.status(404).json({ error: "Notas não encontrada" });
     }
   }
 
@@ -198,6 +218,45 @@ class ClienteController {
     return response.send({ resultado: "it Worked!" });
   }
 
+  async delete(request: Request, response: Response) {
+    const NotasRepository = getRepository(ClienteNotas);
+    const DenunciasRepository = getRepository(Denuncia);
+    const TrocasRepository = getRepository(Trocas);
+    const clienteRepository = getRepository(Cliente);
+
+    //exluindo todas as notas
+    const notas = await NotasRepository.find({ where: [{ idClienteGiver: request.params.id }, { idClienteReceiver: request.params.id }] });
+    
+    if (notas.length > 0) {
+      for (let nota of notas) {
+        await NotasRepository.delete(nota.idNota);
+      }
+    }
+
+    //exluindo denuncias
+    
+    const denuncias = await DenunciasRepository.find({ idDenunciante: request.params.id });
+
+    if (denuncias.length > 0) {
+      for (let denuncia of denuncias) {
+        await DenunciasRepository.delete(denuncia.idDenuncia);
+      }
+    }
+
+    //exluindo trocas
+    
+    const trocas = await TrocasRepository.find({ where: [{ idCliente1: request.params.id }, { idCliente2: request.params.id }] });
+
+    if (trocas.length > 0) {
+      for (let troca of trocas) {
+        await TrocasRepository.delete(troca.idTroca);
+      }
+    }
+
+    //excluindo clientes e dependentes
+    const results = await clienteRepository.delete(request.params.id);
+    return response.send(results);
+  }
 }
 
 export default ClienteController;

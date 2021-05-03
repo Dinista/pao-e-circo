@@ -32,7 +32,8 @@ routes.post("/createNota", clienteController.createNota);
 routes.post("/findNota", clienteController.findNota);
 routes.put("/updateNota", clienteController.UpdateNota);
 routes.get("/findAllNotas/:id", clienteController.findAllNotas);
-
+routes.delete("/clienteDelete/:id", clienteController.delete);
+routes.get("/findByemail/:email", clienteController.findbyEmail);
 
 //anuncios
 routes.post("/anuncios", anuncioController.create);

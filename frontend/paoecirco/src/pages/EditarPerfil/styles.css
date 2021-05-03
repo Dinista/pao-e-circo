@@ -404,3 +404,27 @@
     animation-duration: 1s;
     transition : all 3s;
 }
+
+.ajuda-icon{
+    color: rgb(252, 76, 105);
+    font-size: 18px;
+    position : relative;
+    cursor: pointer;
+}
+
+.ajuda-icon:hover::before{
+    width: max-content;
+    background-color: rgb(97, 97, 97);
+    color: rgb(255, 255, 255);
+    top: 500%;
+    left: 50%;
+    transform: translate(-100%, -50%);
+    position: absolute;
+    content : "Aqui você pode alterar tanto sua foto, sua capa ou ambas!\a    1. Clique em carregar foto e/ou capa; \a    2. Selecione uma imagem no formato jpg ou png;\a            • Será carregado uma prévia da imagem.\a    3. Clique em 'salvar alterações' para salvar as imagens escolhidas.";
+    white-space: pre;
+    padding: 15px;
+    line-height: 35px;
+    border-radius: 5px;
+    cursor: auto;
+    font-weight: 400;
+}
