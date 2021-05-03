@@ -46,7 +46,7 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
   }, [fieldName, registerField]);
 
   return (
-    <div className="issoai">
+    <div className="divInput">
       <Container isFilled={isFilled} isFocused={isFocused} isErrored={!!error}>
         {Icon && <Icon size={20} />}
         <input

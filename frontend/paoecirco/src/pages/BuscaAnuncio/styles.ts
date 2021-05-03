@@ -20,3 +20,4 @@ export const ImageContainer = styled.img`
   width: 250px;
   height: 200px;
 `;
+

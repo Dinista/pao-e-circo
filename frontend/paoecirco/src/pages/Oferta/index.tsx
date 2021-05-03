@@ -11,6 +11,10 @@ import {
   ContainerComment,
   TextoComentario,
   DataComentario,
+  ComentarioHeader,
+  ImageContainer,
+  ImageContainerComment,
+  InputComment,
 } from "./styles";
 
 import { useHistory } from "react-router-dom";
@@ -240,12 +244,12 @@ const Oferta: React.FC = (props: any) => {
 
         <ContainerFlexVertical className="VerticalContainerLeft">
           <h2> Informações do Anunciante </h2>
-
+          <ImageContainer src={adData?.cliente.avatar}/>
           <p> <b>Nome:</b> {adData?.cliente.name} </p>
           <p> <b>Cidade:</b> {adData?.cliente.cidade} </p>
           <p> <b>Estado:</b> {adData?.cliente.estado} </p>
-          <p> <b>Avaliação</b>: {adData?.cliente.nota} </p>
-          <p> <b>Trocas concretizadas</b>: {adData?.cliente.numTrocas} </p>
+          <p> <b>Avaliação</b>: {(adData?.cliente.nota || 0)}/5.0 </p>
+          <p> <b>Trocas concretizadas</b>: {adData?.cliente.numTrocas || 0} </p>
         </ContainerFlexVertical>
 
         <ContainerFlexVerticalWider className="VerticalContainerMiddle">
@@ -319,19 +323,23 @@ const Oferta: React.FC = (props: any) => {
             {comentarios.map((comentario) => (
               <ContainerComment> 
                 <div key={comentario.id}>
-                  <p><b>{comentario.comentador?.name}</b></p>
-                  <DataComentario>{comentario.data}</DataComentario>
-                  <TextoComentario>{comentario.texto}</TextoComentario>
+                <ComentarioHeader>
+                  <ImageContainerComment src={comentario.comentador?.avatar} width="50px" height="50px"/> 
+                  <b>{comentario.comentador?.name}</b>
+                  
+                </ComentarioHeader>
+                <b><DataComentario>{comentario.data}</DataComentario></b>
+                <TextoComentario>{comentario.texto}</TextoComentario>
                 </div>
               </ContainerComment>
             ))}
             {ehDonoAnuncio ? (
               <Form ref={formRef} onSubmit={handleCommentSubmit}>
-                <Input
+                <InputComment
                   name="texto"
                   icon={FiAlignJustify}
                   placeholder=" Ex: 'Ele é pesado?'"
-                ></Input>
+                ></InputComment>
                 <SubText text="Comente ou responda dúvidas sobre seu anuncio. Pelo menos 5 caracteres." /> <br/>
 
                 <InvisibleInput
