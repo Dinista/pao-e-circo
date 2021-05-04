@@ -9,6 +9,7 @@ import { FormHandles } from "@unform/core";
 import api from "../../services/api";
 import { Form } from "@unform/web";
 import Input from "../../components/Input";
+import {AiFillCloseCircle} from "react-icons/ai";
 
 interface SignInFormData {
   email: string;
@@ -39,7 +40,7 @@ const SignIn: React.FC = () => {
           localStorage.setItem("loginid", teste.data.cliente[0].id);
           alert("Login efetuado com sucesso");
           history.push({
-            pathname: "/perfil/" + localStorage.getItem("loginid"),
+            pathname: "/",
           });
         } else {
           const element = document.getElementById("errorLogin");
@@ -73,7 +74,7 @@ const SignIn: React.FC = () => {
       <Form className="Form" ref={formRef} onSubmit={handleSubmit}>
         <div className="inputLoginContainer">
           <div className="emailLoginInputContainer">
-            <div id="errorLogin" className="ErrorLogin" >E-mail ou senha incorretos.</div>
+            <div id="errorLogin" className="ErrorLogin erro-msg-envio" style={{display: "none"}}><AiFillCloseCircle className = "erro-msg-envio-icon" style= {{fontSize : "24px"}}/><div>E-mail ou senha incorretos.</div></div>
             <div className="somaisumcontainerlogin">
               <FaEnvelope className="emailLoginIcon" />
               E-mail

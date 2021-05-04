@@ -22,11 +22,15 @@ class Notificacoes {
   @JoinColumn()
   ofertaTroca: Anuncio;
 
-  @ManyToOne(() => Cliente, (Cliente) => Cliente.notificacoesTrocaOfertante)
+  @ManyToOne(() => Cliente, (Cliente) => Cliente.notificacoesTrocaOfertante, {
+    onDelete: "CASCADE"
+  })
   @JoinColumn()
   ofertante: Cliente;
 
-  @ManyToOne(() => Cliente, (Cliente) => Cliente.notificacoesTrocaAnunciante)
+  @ManyToOne(() => Cliente, (Cliente) => Cliente.notificacoesTrocaAnunciante, {
+    onDelete: "CASCADE"
+  })
   @JoinColumn()
   anunciante: Cliente;
 

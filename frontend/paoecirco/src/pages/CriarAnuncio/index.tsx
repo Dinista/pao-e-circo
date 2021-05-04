@@ -77,43 +77,16 @@ const CreateExchangeAd: React.FC = () => {
         }
         formRef.current?.setErrors({});
         const schema = yup.object().shape({
-          titulo: yup
-            .string()
-            .min(7, "Deve ter pelo menos 7 caracteres.")
-            .required("Campo obrigatório."),
-          nomeObjeto: yup
-            .string()
-            .ensure()
-            .min(2, "Deve ter pelo menos 2 caracteres.")
-            .required("Campo obrigatório."),
+          titulo: yup.string().min(7, "Deve ter pelo menos 7 caracteres.").max(40, "Deve ter no máximo 40 caracteres.").required("Campo obrigatório."),
+          nomeObjeto: yup.string().ensure().min(2, "Deve ter pelo menos 2 caracteres.").max(40, "Deve ter no máximo 40 caracteres.").required("Campo obrigatório."),
           categoria: yup.string().ensure(),
-          estadoConservacao: yup.string().ensure(),
-          foto1: yup
-            .string()
-            .min(5, "Link muito curto.")
-            .required("Campo obrigatório."),
-          foto2: yup
-            .string()
-            .min(5, "Link muito curto.")
-            .required("Campo obrigatório."),
-          foto3: yup
-            .string()
-            .min(5, "Link muito curto.")
-            .required("Campo obrigatório."),
-          descricao: yup
-            .string()
-            .min(10, "Deve ter pelo menos 10 caracteres.")
-            .required("Campo obrigatório."),
-          itemDesejado: yup
-            .string()
-            .min(6, "Deve ter pelo menos 6 caracteres. ")
-            .required("Campo obrigatório."),
-          valorEstimado: yup
-            .number()
-            .min(0, "Deve ter valor maior que 0")
-            .max(10000, "Deve ter valor menor que 10000")
-            .required("Campo obrigatório.")
-            .typeError("O valor informado deve ser um número"),
+          estadoConservacao: yup.string().ensure(),  
+          foto1: yup.string().min(5, "Link muito curto.").max(500, "O link deve ter no máximo 500 caracteres.").required("Campo obrigatório."),
+          foto2: yup.string().min(5, "Link muito curto.").max(500, "O link deve ter no máximo 500 caracteres.").required("Campo obrigatório."),
+          foto3: yup.string().min(5, "Link muito curto.").max(500, "O link deve ter no máximo 500 caracteres.").required("Campo obrigatório."),
+          descricao: yup.string().min(10, "Deve ter pelo menos 10 caracteres.").max(200, "Deve possuir no máximo 200 caracteres.").required("Campo obrigatório."),
+          itemDesejado: yup.string().min(6, "Deve ter pelo menos 6 caracteres. ").max(80, "Deve possuir no máximo 80 caracteres.").required("Campo obrigatório."),
+          valorEstimado: yup.number().min(0, "Deve ter valor maior que 0").max(10000, "Deve ter valor menor que 10000").required("Campo obrigatório.").typeError("O valor informado deve ser um número"),    
         });
 
         await schema.validate(data, {

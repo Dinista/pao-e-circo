@@ -44,6 +44,11 @@ const ModalReactDenuncia: React.FC<NewModalProps> = ({
 
   const handleSubmitData = useCallback(
     async (data: Denuncia) => {
+      if(localStorage.getItem("loginid") == null) {
+        alert("Necessário estar logado para realizar uma denúncia!");
+        return history.push("/signin");
+      }
+  
       try {
         const schema = yup.object().shape({
           categoria: yup.string().required("Selecione uma categoria"),

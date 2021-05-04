@@ -1,19 +1,29 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
 import api from "../../services/api";
-// import { Container, TituloDestaque, ContainerItemDestaque } from "./styles";
 import {
   ExternalContainer,
   ContainerFlexVertical,
   ContainerFlexVerticalWider,
   ContainerComments,
+  SliderBox,
+  StyledButton,
+  StyledButtonWider,
+  ContainerComment,
+  TextoComentario,
+  DataComentario,
+  ComentarioHeader,
+  ImageContainer,
+  ImageContainerComment,
+  InputComment,
 } from "./styles";
 
 import { useHistory } from "react-router-dom";
 import Header from "../../components/Header";
 import ExibirPropaganda from "../../components/ExibirPropaganda";
-import Button from "../../components/Button";
 import ModalReactDestaque from "../../components/ModalDestaque";
 import ModalReactRealizarOferta from "../../components/ModalRealizarOferta";
+import ModalReactAjudaOnline from "../../components/ModalAjudaOnline";
+import ModalReactExcluirAnuncio from "../../components/ModalExcluirAnuncio";
 import ImageSliderAnuncio from "../../components/SliderAnuncio";
 import Cliente from "../../../../../backend/src/models/Cliente";
 import ModalReactDenuncia from "../../components/ModalDenuncia";
@@ -26,13 +36,17 @@ import SubText from "../../components/Subtext";
 import Input from "../../components/Input";
 import { FiAlignJustify } from "react-icons/fi";
 import InvisibleInput from "../../components/InvisibleInput";
-import { ButtonStyled } from "../CriarAnuncio/styles";
+import avatar_default from "../../assets/avatar-default.jpg";
+
 
 const Oferta: React.FC = (props: any) => {
   const { id } = props.location && props.location.state;
   const history = useHistory();
   const formRef = useRef<FormHandles>(null);
   const [ehDonoAnuncio, setEhDonoAnuncio] = useState<boolean | undefined>();
+  // const [isLoggedIn, setIsLoggedIn] = useState<boolean | undefined>();
+  
+  // const [ehSeguidor, setEhSeguidor] = useState<boolean | undefined>();
 
   const [isModalDestaqueOpen, setIsModalDestaqueOpen] = useState(false);
   function handleOpenModalDestaque() {
@@ -58,6 +72,24 @@ const Oferta: React.FC = (props: any) => {
   }
   function handleCloseModalDenuncia() {
     setIsModalDenunciaOpen(false);
+  }
+
+  const [isModalAjudaOnlineOpen, setIsModalAjudaOnlineOpen] = useState(false);
+  function handleOpenModalAjudaOnline() {
+    setIsModalAjudaOnlineOpen(true);
+  }
+  function handleCloseModalAjudaOnline() {
+    setIsModalAjudaOnlineOpen(false);
+  }
+
+  const [isModalExcluirAnuncioOpen, setIsModalExcluirAnuncioOpen] = useState(
+    false
+  );
+  function handleOpenModalExcluirAnuncio() {
+    setIsModalExcluirAnuncioOpen(true);
+  }
+  function handleCloseModalExcluirAnuncio() {
+    setIsModalExcluirAnuncioOpen(false);
   }
 
   interface Ad {
@@ -90,12 +122,22 @@ const Oferta: React.FC = (props: any) => {
     api.post(`/anuncioss/${id}`).then((response) => {
       setAdData(response.data);
       setEhDonoAnuncio(
-        localStorage.getItem("loginid" || "") === adData?.cliente.id
+        localStorage.getItem("loginid") == adData?.cliente.id
       );
     });
-  }, []);
+  }, [ehDonoAnuncio]);
 
-  console.log("HOASUIFHASDIUDH " + adData?.id);
+
+  // useEffect(() => {    
+  //   if(localStorage.getItem("loginid" || "") == "") {
+  //     setIsLoggedIn(false);
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   api.post("/verificaseguidor", data);
+  // }, [id])
+
   useEffect(() => {
     api.post(`/encontrarcomentariosanuncio/${id}`).then((response) => {
       if (response.data[0] !== undefined) {
@@ -104,20 +146,25 @@ const Oferta: React.FC = (props: any) => {
     });
   }, [id]);
 
-  const handleDelete = useCallback(async (data: any) => {
-    await api.delete(`/anuncios/${data}`);
-    alert("O anuncio foi apagado com sucesso");
-  }, []);
-
   const handleSeguirAnuncio = useCallback(async (data: any) => {
-    const segue = await api.post("/verificaseguidor", data);
-
-    if (segue.data === "") {
-      // nao segue, então insere na lista de seguidores!
-      await api.put("/seguir", data);
-    } else {
-      await api.put("/deixardeseguir", data);
+    
+    console.log(localStorage.getItem("loginid"|| ""))
+    
+    if(localStorage.getItem("loginid") == null || "") {
+      alert("Para seguir um anúncio é necessário fazer login!");
+      history.push("/signin");
     }
+
+    api.post("/verificaseguidor", data).then((response) => {
+      if (response.data == "") {
+        console.log("Não seguia!");
+        // nao segue, então insere na lista de seguidores!
+        api.put("/seguir", data);
+      } else {
+        console.log("Seguia!");
+        api.put("/deixardeseguir", data);
+      }
+    });
   }, []);
 
   const handleCommentSubmit = useCallback(
@@ -125,7 +172,7 @@ const Oferta: React.FC = (props: any) => {
       try {
         const cliente = localStorage.getItem("loginid") || "";
         if (cliente === "") {
-          alert("Para comentar em um anuncio é necessário logar");
+          alert("Para comentar em um anuncio é necessário logar!");
           history.push("/signin");
         }
         formRef.current?.setErrors({});
@@ -163,12 +210,16 @@ const Oferta: React.FC = (props: any) => {
   return (
     <>
       <Header />
-
       <ExternalContainer className="ExternalContainer">
         <ModalReactDestaque
           isOpen={isModalDestaqueOpen}
           onRequestClose={handleCloseModalDestaque}
           id={adData?.id}
+        />
+
+        <ModalReactAjudaOnline
+          isOpen={isModalAjudaOnlineOpen}
+          onRequestClose={handleCloseModalAjudaOnline}
         />
 
         <ModalReactRealizarOferta
@@ -186,43 +237,46 @@ const Oferta: React.FC = (props: any) => {
           idAnuncio={adData?.id}
         />
 
+        <ModalReactExcluirAnuncio
+          isOpen={isModalExcluirAnuncioOpen}
+          onRequestClose={handleCloseModalExcluirAnuncio}
+          idAnuncio={adData?.id}
+        />
+
         <ContainerFlexVertical className="VerticalContainerLeft">
           <h2> Informações do Anunciante </h2>
-
-          <p> Nome: {adData?.cliente.name} </p>
-          <p> Cidade: {adData?.cliente.cidade} </p>
-          <p> Estado: {adData?.cliente.estado} </p>
-          <p> Avaliação: {adData?.cliente.nota} </p>
-          <p> Trocas concretizadas: {adData?.cliente.numTrocas} </p>
+          <ImageContainer src={adData?.cliente.avatar == null ? avatar_default : adData?.cliente.avatar}/>
+          <p> <b>Nome:</b> {adData?.cliente.name} </p>
+          <p> <b>Cidade:</b> {adData?.cliente.cidade} </p>
+          <p> <b>Estado:</b> {adData?.cliente.estado} </p>
+          <p> <b>Avaliação</b>: {(adData?.cliente.nota || 0)}/5.0 </p>
+          <p> <b>Trocas concretizadas</b>: {adData?.cliente.numTrocas || 0} </p>
         </ContainerFlexVertical>
 
         <ContainerFlexVerticalWider className="VerticalContainerMiddle">
           <h1> {adData?.titulo} </h1>
+          <SliderBox> 
+            <ImageSliderAnuncio
+              slides={[adData?.foto1, adData?.foto2, adData?.foto3]}
+            ></ImageSliderAnuncio>
+          </SliderBox>
 
-          <ImageSliderAnuncio
-            slides={[adData?.foto1, adData?.foto2, adData?.foto3]}
-          ></ImageSliderAnuncio>
-
-          <ContainerComments>
-            <h2> Comentários </h2>
-            {/* MAP*/}
-            {comentarios.map((comentario) => (
-              <div key={comentario.texto}>
-                <p>{comentario.comentador?.name}</p>
-                <p>{comentario.data}</p>
-                <p>{comentario.texto}</p>
-              </div>
-            ))}
-          </ContainerComments>
         </ContainerFlexVerticalWider>
 
         <ContainerFlexVertical className="VerticalContainerRight">
+          <h2> Informações do anúncio </h2>
+          <p> <b>Objeto:</b> {adData?.nomeObjeto} </p>
+          <p> <b>Categoria:</b> {adData?.categoria} </p>
+          <p> <b>Estado:</b> {adData?.estadoConservacao} </p>
+          <p> <b>Descricao:</b> {adData?.descricao} </p>
+          <p> <b>Itens desejados em troca:</b> {adData?.itemDesejado} </p>
+          <p> <b>Valor estimado:</b> {adData?.valorEstimado} </p>
+          
           {ehDonoAnuncio ? (
             <div>
-              <Button onClick={() => handleDelete(adData?.id)}>
-                Encerrar anuncio
-              </Button>
-              <Button onClick={handleOpenModalDestaque}>Destacar</Button>
+              <StyledButton onClick={handleOpenModalExcluirAnuncio}>Encerrar anuncio</StyledButton>
+
+              <StyledButton onClick={handleOpenModalDestaque}>Destacar</StyledButton>
 
               <Link
                 to={{
@@ -231,83 +285,97 @@ const Oferta: React.FC = (props: any) => {
                 }}
                 className="linkContainer"
               >
-                <Button>Editar anúncio</Button>
+                <StyledButton>Editar anúncio</StyledButton>
               </Link>
-
-              <Form ref={formRef} onSubmit={handleCommentSubmit}>
-                <Input
-                  name="texto"
-                  icon={FiAlignJustify}
-                  placeholder=" Ex: 'Ele é pesado?'"
-                ></Input>
-                <SubText text="Comente ou responda dúvidas sobre seu anuncio. Pelo menos 5 caracteres." />
-
-                <InvisibleInput
-                  name="anuncio"
-                  defaultValue={adData?.id}
-                ></InvisibleInput>
-
-                <ButtonStyled name="submitButton" type="submit">
-                  Enviar comentário
-                </ButtonStyled>
-              </Form>
             </div>
           ) : (
             <>
-              <Button onClick={handleOpenModalRealizarOferta}>
+              <StyledButton onClick={handleOpenModalRealizarOferta}>
                 Oferecer item
-              </Button>
+              </StyledButton>
 
-              <Button
+              <StyledButton onClick={handleOpenModalAjudaOnline}>
+                Ajuda
+              </StyledButton>
+
+              <StyledButton
                 onClick={() =>
                   handleSeguirAnuncio({
                     idAnuncio: adData?.id,
-                    idCliente: localStorage.getItem("loginid" || ""),
+                    idCliente: localStorage.getItem("loginid"),
                   })
                 }
               >
                 Seguir anúncio
-              </Button>
+              </StyledButton>
 
-              <Button onClick={handleOpenModalDenuncia}>
+              <StyledButton onClick={handleOpenModalDenuncia}>
                 Denunciar anúncio
-              </Button>
+              </StyledButton>
+            </>
+          )}
 
+          
+        </ContainerFlexVertical>
+      </ExternalContainer>
+
+      <ContainerComments>
+            <h2> Comentários </h2>
+            {comentarios.map((comentario) => (
+              <ContainerComment> 
+                <div key={comentario.id}>
+                <ComentarioHeader>
+                  <ImageContainerComment src={comentario.comentador?.avatar == null ? avatar_default : comentario.comentador?.avatar } width="50px" height="50px"/> 
+                  <b>{comentario.comentador?.name}</b>
+                  
+                </ComentarioHeader>
+                <DataComentario>{comentario.data}</DataComentario>
+                <TextoComentario>{comentario.texto}</TextoComentario>
+                </div>
+              </ContainerComment>
+            ))}
+            {ehDonoAnuncio ? (
               <Form ref={formRef} onSubmit={handleCommentSubmit}>
-                <Input
+                <InputComment
                   name="texto"
                   icon={FiAlignJustify}
                   placeholder=" Ex: 'Ele é pesado?'"
-                ></Input>
-                <SubText text="Caso deseje, faça um comentário. Pelo menos 5 caracteres." />
+                ></InputComment>
+                <SubText text="Comente ou responda dúvidas sobre seu anuncio. Pelo menos 5 caracteres." /> <br/>
 
                 <InvisibleInput
                   name="anuncio"
                   defaultValue={adData?.id}
                 ></InvisibleInput>
 
-                <ButtonStyled name="submitButton" type="submit">
+                <StyledButtonWider name="submitButton" type="submit">
                   Enviar comentário
-                </ButtonStyled>
+                </StyledButtonWider>
               </Form>
-            </>
-          )}
+            ) : (
+              <Form ref={formRef} onSubmit={handleCommentSubmit}>
+                <Input
+                  name="texto"
+                  icon={FiAlignJustify}
+                  placeholder=" Ex: 'Ele é pesado?'"
+                ></Input>
 
-          <h2> Informações do anúncio </h2>
-          <p> Objeto: {adData?.nomeObjeto} </p>
-          <p> Categoria: {adData?.categoria} </p>
-          <p> Estado: {adData?.estadoConservacao} </p>
-          <p> Descricao: {adData?.descricao} </p>
-          <p> Itens desejados em troca: {adData?.itemDesejado} </p>
-          <p> Valor estimado: {adData?.valorEstimado} </p>
-        </ContainerFlexVertical>
-      </ExternalContainer>
+                <SubText text="Caso deseje, faça um comentário. Pelo menos 5 caracteres." /> <br/>
+                
+                <InvisibleInput
+                  name="anuncio"
+                  defaultValue={adData?.id}
+                ></InvisibleInput>
 
-      <ExibirPropaganda />
+                <StyledButtonWider name="submitButton" type="submit">
+                  Enviar comentário
+                </StyledButtonWider>
+              </Form>
+            )}
+      </ContainerComments>
+      <ExibirPropaganda/>
     </>
   );
 };
-
-//styles
 
 export default Oferta;

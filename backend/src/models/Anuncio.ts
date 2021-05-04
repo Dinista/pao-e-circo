@@ -10,7 +10,8 @@ class Anuncio {
   id: string;
  
   @ManyToOne(() => Cliente, anuncios => Anuncio, {
-    eager: true
+    eager: true,
+    onDelete: "CASCADE"
   }) 
   cliente: Cliente;
 
@@ -60,9 +61,7 @@ class Anuncio {
   })
   comentarios: Comentario[];
 
-  @ManyToMany(() => Cliente, cliente => cliente.anunciosSeguidos, {
-    cascade: true
-  })
+  @ManyToMany(() => Cliente, cliente => cliente.anunciosSeguidos)
   @JoinTable()
   seguidores: Cliente[];
   

@@ -13,7 +13,8 @@ class Comentario {
 
   @ManyToOne(type => Cliente, {
     eager: true,
-    nullable: true
+    nullable: true,
+    onDelete: "CASCADE"
   })
   comentador: Cliente;
 

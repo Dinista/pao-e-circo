@@ -16,11 +16,15 @@ import MakeAnOffer from "./pages/Oferta";
 import Perfil from "./pages/Perfil";
 import PerfilError from "./pages/PerfilError";
 import EditarAnuncio from "./pages/EditarAnuncio";
+import EditarPerfil from "./pages/EditarPerfil";
+import Esqueceu from "./pages/Forgot";
+
 
 import AvaliarDenuncia from "./pages/AvaliarDenuncia"
 import RelatorioAnuncios from "./pages/RelatorioAnuncios";
 import RelatorioPropagandas from "./pages/RelatorioPropagandas";
 import RelatorioUsuarioCadastrados from "./pages/RelatorioCliente";
+import BuscaCategoria from "./pages/BuscaCategoria";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -34,16 +38,20 @@ ReactDOM.render(
         <Route path="/buscaanuncio" component={BuscaAnuncio} />
         <Route path="/gerenciarpropaganda" component={GerenciarPropaganda} />
         <Route path="/perfil/:id" component={Perfil} />
-        <Route path="/perfil" component={PerfilError} />
+        <Route path="/perfil" compoenent={PerfilError}></Route>
         <Route path="/criarpropaganda" component={CriarPropaganda} />
         <Route path="/editaranuncio" component={EditarAnuncio} />
-
+        <Route path="/editarPerfil" component={EditarPerfil} />
+        <Route path="/forgot" component={Esqueceu} />
         <Route path="/makeanoffer" component={MakeAnOffer} />
 
-        <Route path="/AvaliarDenunia" component={AvaliarDenuncia} />
+        <Route path="/AvaliarDenuncia" component={AvaliarDenuncia} />
         <Route path="/RelatorioAnuncios" component={RelatorioAnuncios} />
         <Route path="/RelatorioPropagandas" component={RelatorioPropagandas} />
         <Route path="/RelatorioCliente" component={RelatorioUsuarioCadastrados} />
+        <Route path="/BuscaCategoria" component={BuscaCategoria} />
+
+
         
 
       </Switch>

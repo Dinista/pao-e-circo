@@ -34,21 +34,22 @@ const SignUp: React.FC = () => {
       try {
         formRef.current?.setErrors({});
         const schema = yup.object().shape({
-          name: yup.string().required("Nome origatório."),
+          name: yup.string().matches(/^[A-Za-zÀ-ú ]*$/, "Nome inválido.")
+          .min(3, "No mínimo 3 letras.").max(40, "Máximo 40 caracteres.").required("Nome obrigatório."),
 
           cpf: yup
             .string()
             .matches(/^\d+$/, "Apenas digitos.")
-            .min(11, "No mínimo 11 dígitos."),
+            .min(11, "No mínimo 11 dígitos.").max(11, "No máximo 11 dígitos."),
           email: yup
             .string()
             .required("E-mail obrigatório.")
             .email("E-mail inválido."),
-          dataNasc: yup.string().required("Data de nascimento necessária."),
+          dataNasc: yup.date().max(Date(), "Antes da data atual").required("Data de nascimento necessária.").typeError("Data de nascimento necessária."),
           senha: yup.string().min(6, "No mínimo 6 dígitos."),
-          endereco: yup.string().required("Endereço obrigatório."),
-          estado: yup.string().required("Estado obrigatório."),
-          cidade: yup.string().required("Cidade obrigatória."),
+          endereco: yup.string().min(5, "Mínimo 5 caracteres").max(80, "Excedeu o número de caracteres").required("Endereço obrigatório."),
+          estado: yup.string().matches(/^[A-Za-zÀ-ú]*$/, "Estado inválido.").min(4, "Mínimo 4 caracteres").max(15, "Excedeu o número de caracteres").required("Estado obrigatório."),
+          cidade: yup.string().matches(/^[A-Za-zÀ-ú]*$/, "Cidade inválida.").min(4, "Mínimo 4 caracteres").max(15, "Excedeu o número de caracteres").required("Cidade obrigatória."),
         });
 
         await schema.validate(data, {
@@ -141,7 +142,7 @@ const SignUp: React.FC = () => {
                 placeholder="Senha"
                 type="password"
               ></Input>
-              <div style = {{width: "90%"}}>
+              <div style = {{width: "100%"}}>
               <Button name="submitButton" type="submit">
                 Cadastrar
               </Button>

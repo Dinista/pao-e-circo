@@ -1,0 +1,430 @@
+.container-Editperfil{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    height: fit-content;
+    
+}
+
+.Editar-perfil-grid{
+    display: grid;
+    height: fit-content;
+    background-color: rgba(250, 0, 0, 0);
+    grid-template-columns: 0.35fr 1fr;
+    grid-template-rows: 65px 200px 1fr;
+    width: 90vw;
+    justify-self: center;
+    grid-gap: 20px;
+    padding-bottom: 50px;
+}
+
+
+.Card-Editar-perfil{
+    display: inline-block;
+    background-color: rgb(255, 255, 255);
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.199);
+}
+
+.bg-editar{
+    background-color: rgb(207, 207, 207);
+    height: 27%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    image-rendering: auto;
+}
+.Pai-avatar{
+    top: -30px;
+    position: relative;
+    font-size: x-large;
+}
+.avatar-editar{
+    margin: auto;
+    background-color: rgb(207, 207, 207);
+    border-radius: 100%;
+    max-width: 80px;
+    min-height: 80px;
+    border: 3px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.nome-editar{
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.info-editar{
+    font-size: small;
+    display: flex;
+    justify-content: center;
+    color: rgb(100, 100, 100);
+    font-weight: 400;
+}
+
+.btn-meuPerfil-editar{
+    position: relative;
+    margin: auto;
+    display: flex;
+    height: 15%;
+    width: 50%;
+    top: -5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+
+}
+
+.header-Editar-perfil{
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.199);
+}
+
+.Content-Editar-perfil{
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 4;
+    box-shadow: 0 0 5px rgb(44, 44, 44, 21%);
+}
+
+.header-Editar-perfil{
+    display:flex;
+    gap: 10px;
+    padding-left: 5%;
+    align-items: center;
+    font-size: larger;
+    font-weight: 500;
+    border-radius: 5px;
+    color: rgb(252, 76, 105);
+}
+
+
+.Content-Editar-perfil{
+    display: block;
+}
+
+.campo-edit-perfil{
+    list-style: none;
+}
+
+.Edit-label{
+    margin: 15px;
+    background-color: rgb(247, 245, 245);
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 5px;
+    color: rgb(104, 104, 104);
+    display: flex;
+    justify-content: space-between;
+}
+
+.content-edit-perfil-grid{
+    display: grid;
+    grid-auto-rows: auto;
+    grid-gap: 7px
+}
+
+.Foto, .Capa{
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 3fr 1fr;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.089);
+    padding: 10px;
+    gap: 10px;
+    justify-self: center;
+    width: 90%;
+}
+
+.Aling{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.aling-center{
+    align-self: center;
+    padding: 0px;
+}
+
+.btn-carregar{
+    display: flex;
+    width: 120px;
+    height: 50px;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.103);
+    border-radius: 3px;
+    color: rgb(252, 76, 105);
+    font-weight: 700;
+    font-size: 13px;
+    border-bottom: 3px solid rgba(0, 0, 0, 0.123);
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all ease 0.5s;
+}
+
+.btn-carregar:focus{
+    outline: 0;
+}
+
+.btn-carregar:active{
+    border-bottom: 0px solid rgba(0, 0, 0, 0.418);
+}
+
+
+.loading{
+    margin-top: 10px;
+    font-size: 0px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border-left-color: transparent;
+    animation: rotate 1.4s ease 0.5s infinite;
+    pointer-events: none;
+}
+
+@keyframes rotate {
+    0%{
+        transform: rotate(360deg);
+    }
+}
+
+.igm-Capa{
+    background-color: rgb(240, 240, 240);
+    border-radius: 5px;
+    width: 90px;
+    height: 90px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.img-titulo{
+    font-weight: 700;
+    color: rgb(51, 51, 51);
+    list-style: none;
+}
+
+.img-desc{
+    font-size: 12px;
+    color: rgb(100, 100, 100);
+    list-style: none;
+}
+
+.dados-edit-perfil{
+    list-style: none;
+    padding: 0px;
+    width: 90%;
+    margin: auto;
+}
+
+.dados-edit-perfil>li{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.123);
+    display: grid;
+    padding: 15px 0px 15px 15px;
+    grid-template-columns: 0.4fr 1fr;
+
+}
+
+.titulo-edit-dados{
+    font-weight: 700;
+    color: rgb(44, 44, 44);
+}
+
+.info-edit-dados{
+    color: rgb(112, 112, 112);
+    font-weight: 500;
+}
+
+.btn-edit-dados{
+    border: 0px;
+    height: 25px;
+    color: rgb(252, 76, 105);
+    cursor: pointer;
+    background-color: white;
+    border-radius: 5px;
+    border-bottom: 2px solid rgb(197, 197, 197);
+}
+
+.btn-edit-dados:active{
+    outline: none;
+    border-bottom: 0px solid rgb(197, 197, 197);
+}
+
+.btn-edit-dados:focus{
+    outline: none;
+}
+
+
+.endereco-edit-info{
+    display: flex;
+    width: 90%;
+    margin: auto;
+    justify-content: space-between;
+}
+
+.endereco-edit-info>ul{
+    padding-left: 0px;
+    color: rgb(112, 112, 112);
+    font-weight: 500;
+}
+
+.endereco-edit-info>button{
+    align-self: center;
+    color: rgb(252, 76, 105);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgba(0, 0, 0, 0.075);
+    border-bottom: 2px solid rgb(197, 197, 197);
+}
+
+
+.texto-conta{
+    font-size: 12px;
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.aviso-delete-conta>h1{
+    font-size: 14px
+}
+
+.btn-excluir-conta{
+    display: flex;
+    align-self: center;
+    background-color: white;
+    border: 0px;
+    color: rgb(233, 15, 15);
+    font-weight: 700;
+    height: fit-content;
+    cursor: pointer;
+}
+
+.btn-excluir-conta:focus{
+    outline: none;
+
+}
+
+.aviso-delete-conta{
+    max-width: 400px;
+}
+
+.btn-meuPerfil-editar{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.103);
+}
+
+.btn-carregar>input{
+    display: none;
+}
+
+#pic1, #pic2{
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+#btn-salvar-alterações{
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-resize{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.issoai{
+    width: 100% !important;
+}
+
+
+.form-edit{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding-top: 30px;
+    animation-name: showUp;
+    animation-duration: 1s;
+    transition : all 3s;
+}
+
+
+@keyframes showUp {
+    0%{
+        width: 50%;
+        opacity: 0%;
+    }
+    100%{
+        width: 90%;
+        opacity: 100%;
+    }
+}
+
+@keyframes photoshowUp {
+    0%{
+        width: 80%;
+        opacity: 0%;
+    }
+    100%{
+        width: 90%;
+        opacity: 100%;
+    }
+}
+
+.endereco-edit{
+    width: 90%;
+    margin: auto;
+    animation-name: showUp;
+    animation-duration: 1s;
+    transition : all 3s;
+}
+
+.ajuda-icon{
+    color: rgb(252, 76, 105);
+    font-size: 18px;
+    position : relative;
+    cursor: pointer;
+}
+
+.ajuda-icon:hover::before{
+    width: max-content;
+    background-color: rgb(97, 97, 97);
+    color: rgb(255, 255, 255);
+    top: 500%;
+    left: 50%;
+    transform: translate(-100%, -50%);
+    position: absolute;
+    content : "Aqui você pode alterar tanto sua foto, sua capa ou ambas!\a    1. Clique em carregar foto e/ou capa; \a    2. Selecione uma imagem no formato jpg ou png;\a            • Será carregado uma prévia da imagem.\a    3. Clique em 'salvar alterações' para salvar as imagens escolhidas.";
+    white-space: pre;
+    padding: 15px;
+    line-height: 35px;
+    border-radius: 5px;
+    cursor: auto;
+    font-weight: 400;
+}
