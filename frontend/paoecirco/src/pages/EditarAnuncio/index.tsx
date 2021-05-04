@@ -28,6 +28,7 @@ import Header from "../../components/Header";
 import ExibirPropaganda from "../../components/ExibirPropaganda";
 import getValidationErrors from "../../utils/getValidationErrors";
 import axios from "axios";
+import InvisibleInput from "../../components/InvisibleInput";
 
 let indexCategoria = 0,
   indexEstadoConservacao = 0;
@@ -117,7 +118,6 @@ const EditarAnuncio: React.FC = (props: any) => {
     async (data: EditarAnuncioFormData) => {
       try {
         data.cliente = localStorage.getItem("loginid") || "";
-        console.log("DO FORMS:\nimg1: " + data.foto1 + "\nimg2: " + data.foto2);
         if (data.cliente === "") {
           alert("Para editar um anuncio é necessário logar");
           history.push("/signin");
@@ -200,7 +200,7 @@ const EditarAnuncio: React.FC = (props: any) => {
             .min(0, "Deve ter valor maior que 0")
             .max(10000, "Deve ter valor menor que 10000")
             .required("Campo obrigatório.")
-            .typeError("O valor informado deve ser um número"),
+            .typeError("O valor informado deve ser um número sem vírgula."),
         });
 
         await schema.validate(data, {
@@ -281,7 +281,6 @@ const EditarAnuncio: React.FC = (props: any) => {
                 name="foto1"
                 accept="image/*"
                 onChange={foto1Update}
-                defaultValue={adData?.foto1}
               />
 
               <Input
@@ -289,7 +288,6 @@ const EditarAnuncio: React.FC = (props: any) => {
                 name="foto2"
                 accept="image/*"
                 onChange={foto2Update}
-                defaultValue={adData?.foto2}
               />
 
               <Input
@@ -297,10 +295,13 @@ const EditarAnuncio: React.FC = (props: any) => {
                 name="foto3"
                 accept="image/*"
                 onChange={foto3Update}
-                defaultValue={adData?.foto3}
               />
 
-              <SubText text="Fotos do objeto. Só insira caso deseje alterar." />
+              <InvisibleInput name="foto1" defaultValue={adData?.foto1}/>
+              <InvisibleInput name="foto2" defaultValue={adData?.foto2}/>
+              <InvisibleInput name="foto3" defaultValue={adData?.foto3}/>
+
+              <SubText text="Fotos do objeto. Mínimo três. Tamanho máximo por foto: 5mb. Só insira caso deseje alterar." />
 
               <SubTituloPagina> Descrição * </SubTituloPagina>
               <Input
