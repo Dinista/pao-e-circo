@@ -119,6 +119,16 @@ class AnuncioController {
     return response.json({ anuncios: anuncios });
   }
 
+  async findAllDestaques(request: Request, response: Response) {
+    const anuncio = await getConnection()
+      .getRepository(Anuncio)
+      .createQueryBuilder("anuncio")
+      .where("destaque = true")
+      .getMany()
+    return response.json(anuncio);
+  }
+  
+
   async findAllByUserId(request: Request, response: Response) {
     const anuncio = await getConnection()
       .getRepository(Anuncio)
@@ -127,6 +137,19 @@ class AnuncioController {
       .where("cliente.id = :idCliente", { idCliente: request.params.id })
       .getMany();
     return response.json(anuncio);
+  }
+  
+  async findByCategoria(request: Request, response: Response) {
+    try {
+      const anuncioRepository = getRepository(Anuncio);
+      const anuncio = await anuncioRepository.find({ categoria: request.params.categoria });
+      if (anuncio.length == 0) {
+        return response.json("Nenhum resultado obtido")
+      }
+      return response.json(anuncio);
+    } catch {
+      return response.json("Nenhum resultado obtido")
+    }
   }
 
   async delete(request: Request, response: Response) {

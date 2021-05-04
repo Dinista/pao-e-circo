@@ -1,38 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useRef } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { BsPersonFill } from "react-icons/bs";
 import { MdAttachMoney, MdDescription } from "react-icons/md";
-import {
-  Container,
-  TituloDestaque,
-  ContainerItemDestaque,
-  ImageContainer,
-} from "./styles";
-import Header from "../../components/Header";
-import ExibirPropaganda from "../../components/ExibirPropaganda";
-import api from "../../services/api";
 import { Link } from "react-router-dom";
+import {
+    Container,
+    TituloDestaque,
+    ContainerItemDestaque,
+    ImageContainer,
+  } from "./styles";
 
-const BuscaAnuncio: React.FC = (props: any) => {
-  const {
-    titulo,
-    valorEstimado,
-    itemDesejado,
-    anunciante,
-    foto1,
-    id,
-    descricao,
-  } = (props.location && props.location.state) || {};
+interface DadosAnuncio {
+    titulo: string,
+    valorEstimado: number,
+    itemDesejado: string,
+    anunciante: string,
+    foto1: string,
+    id: string,
+    descricao: string,
+}
 
-  return (
-    <>
-      <Header />
+const Anuncio: React.FC<DadosAnuncio> = ({ titulo, valorEstimado, itemDesejado, anunciante,foto1,id,descricao }) => {
 
-      <Container>
-        <TituloDestaque>RESULTADOS DA BUSCA</TituloDestaque>
-        {
-          <div>
-            <ContainerItemDestaque>
+    return (
+        <ContainerItemDestaque>
               <ImageContainer
                 src={foto1}
                 alt="dataimg"
@@ -69,12 +60,9 @@ const BuscaAnuncio: React.FC = (props: any) => {
                 </div>
               </div>
             </ContainerItemDestaque>
-            <ExibirPropaganda />
-          </div>
-        }
-      </Container>
-    </>
-  );
+    );
 };
 
-export default BuscaAnuncio;
+//styles
+
+export default Anuncio;

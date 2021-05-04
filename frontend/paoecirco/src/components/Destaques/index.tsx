@@ -18,8 +18,9 @@ const Destaques: React.FC = () => {
   const [data, setData] = useState<Data[]>([]);
 
   useEffect(() => {
-    api.get("/findallanuncios").then((response) => {
-      setData(response.data.anuncios);
+    api.get("/findAllDestaques").then((response) => {
+      console.log("MANSDJHKBHDFOFKVDHJOJHVFJVFLJ");
+      setData(response.data);
     });
   }, []);
 

@@ -13,6 +13,7 @@ import Dropdown from "../DropDownNotificacao";
 import { Background } from "../../pages/CriarAnuncio/styles";
 import { backgroundImages } from "polished";
 import { PassThrough } from "stream";
+import MenuAdm from "../MenuAdm";
 
 interface StateBuscaUsuario {
   name: string;
@@ -53,6 +54,14 @@ const Header: React.FC = () => {
     propsValid(loginId) ? true : false
   );
 
+  const admValid = (loginId: any) => {
+    if (loginId === "1f410efb-8ae0-4747-8eae-2f919d3d4e69" ) return true;
+    else return false;
+  };
+  const [isAdmin, setIsAdmin] = useState<boolean | undefined>(
+    admValid (loginId) ? true : false
+  );
+
   const formRef = useRef<FormHandles>(null);
   const formRef1 = useRef<FormHandles>(null);
 
@@ -76,6 +85,7 @@ const Header: React.FC = () => {
   function handleLogout() {
     localStorage.removeItem("loginid");
     setIsLoggedIn(false);
+    setIsAdmin(false);
     window.location.reload()
   }
 
@@ -99,8 +109,7 @@ const Header: React.FC = () => {
       history.push({
         pathname: "/buscausuario",
         state: {
-          foto:
-            "https://www.ahnegao.com.br/wp-content/uploads/2015/04/capa.jpg",
+          foto: resultado.data[0].foto,
           nome: resultado.data[0].name,
           cidade: resultado.data[0].cidade,
           id: resultado.data[0].id,
@@ -214,6 +223,11 @@ const Header: React.FC = () => {
             ANUNCIAR
           </Link>
           <Dropdown />
+          {isAdmin ?(
+            <MenuAdm/>
+
+
+          ): <div></div> }
 
           <button onClick={handleLogout} className="sair">
             SAIR

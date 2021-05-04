@@ -20,6 +20,12 @@ import EditarPerfil from "./pages/EditarPerfil";
 import Esqueceu from "./pages/Forgot";
 
 
+import AvaliarDenuncia from "./pages/AvaliarDenuncia"
+import RelatorioAnuncios from "./pages/RelatorioAnuncios";
+import RelatorioPropagandas from "./pages/RelatorioPropagandas";
+import RelatorioUsuarioCadastrados from "./pages/RelatorioCliente";
+import BuscaCategoria from "./pages/BuscaCategoria";
+
 ReactDOM.render(
   <React.StrictMode>
     <Router>
@@ -38,6 +44,15 @@ ReactDOM.render(
         <Route path="/editarPerfil" component={EditarPerfil} />
         <Route path="/forgot" component={Esqueceu} />
         <Route path="/makeanoffer" component={MakeAnOffer} />
+
+        <Route path="/AvaliarDenuncia" component={AvaliarDenuncia} />
+        <Route path="/RelatorioAnuncios" component={RelatorioAnuncios} />
+        <Route path="/RelatorioPropagandas" component={RelatorioPropagandas} />
+        <Route path="/RelatorioCliente" component={RelatorioUsuarioCadastrados} />
+        <Route path="/BuscaCategoria" component={BuscaCategoria} />
+
+
+        
 
       </Switch>
     </Router>
