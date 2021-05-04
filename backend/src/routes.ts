@@ -49,7 +49,8 @@ routes.get("/findallanuncios", anuncioController.findAll);
 routes.post("/findbyname", anuncioController.findByName);
 routes.get("/findanuncionome/:id", anuncioController.findName);
 routes.get("/findAllSeguindo/:id", anuncioController.findAllSeguindo);
-
+routes.get("/findByCategoria/:categoria", anuncioController.findByCategoria);
+routes.get("/findAllDestaques", anuncioController.findAllDestaques);
 //denuncias
 routes.post("/denunciar", denunciaController.create);
 routes.delete("/deleteDenunciasByAnuncioId/:id", denunciaController.deleteDenunciasByAnuncioId);
