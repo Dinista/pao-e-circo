@@ -38,15 +38,14 @@ import { FiAlignJustify } from "react-icons/fi";
 import InvisibleInput from "../../components/InvisibleInput";
 import avatar_default from "../../assets/avatar-default.jpg";
 
-
 const Oferta: React.FC = (props: any) => {
   const { id } = props.location && props.location.state;
   const history = useHistory();
   const formRef = useRef<FormHandles>(null);
   const [ehDonoAnuncio, setEhDonoAnuncio] = useState<boolean | undefined>();
   // const [isLoggedIn, setIsLoggedIn] = useState<boolean | undefined>();
-  
-  // const [ehSeguidor, setEhSeguidor] = useState<boolean | undefined>();
+
+  const [ehSeguidor, setEhSeguidor] = useState<boolean | undefined>();
 
   const [isModalDestaqueOpen, setIsModalDestaqueOpen] = useState(false);
   function handleOpenModalDestaque() {
@@ -121,22 +120,29 @@ const Oferta: React.FC = (props: any) => {
   useEffect(() => {
     api.post(`/anuncioss/${id}`).then((response) => {
       setAdData(response.data);
-      setEhDonoAnuncio(
-        localStorage.getItem("loginid") == adData?.cliente.id
-      );
+      setEhDonoAnuncio(localStorage.getItem("loginid") == adData?.cliente.id);
     });
   }, [ehDonoAnuncio]);
 
-
-  // useEffect(() => {    
+  // useEffect(() => {
   //   if(localStorage.getItem("loginid" || "") == "") {
   //     setIsLoggedIn(false);
   //   }
   // }, []);
 
-  // useEffect(() => {
-  //   api.post("/verificaseguidor", data);
-  // }, [id])
+  useEffect(() => {
+    console.log("Verificando dados\n adData?.id = " + id + " e idCliente = " + localStorage.getItem("loginid"));
+    api.post("/verificaseguidor", {
+      idAnuncio: id,
+      idCliente: localStorage.getItem("loginid")
+    }).then((response) => {
+      if (response.data == "") {
+        setEhSeguidor(false);
+      } else {
+        setEhSeguidor(true);
+      }
+    });
+  }, [id, ehSeguidor]);
 
   useEffect(() => {
     api.post(`/encontrarcomentariosanuncio/${id}`).then((response) => {
@@ -147,10 +153,9 @@ const Oferta: React.FC = (props: any) => {
   }, [id]);
 
   const handleSeguirAnuncio = useCallback(async (data: any) => {
-    
-    console.log(localStorage.getItem("loginid"|| ""))
-    
-    if(localStorage.getItem("loginid") == null || "") {
+    console.log(localStorage.getItem("loginid" || ""));
+
+    if (localStorage.getItem("loginid") == null || "") {
       alert("Para seguir um anúncio é necessário fazer login!");
       history.push("/signin");
     }
@@ -160,9 +165,11 @@ const Oferta: React.FC = (props: any) => {
         console.log("Não seguia!");
         // nao segue, então insere na lista de seguidores!
         api.put("/seguir", data);
+        setEhSeguidor(true);
       } else {
         console.log("Seguia!");
         api.put("/deixardeseguir", data);
+        setEhSeguidor(false);
       }
     });
   }, []);
@@ -245,38 +252,80 @@ const Oferta: React.FC = (props: any) => {
 
         <ContainerFlexVertical className="VerticalContainerLeft">
           <h2> Informações do Anunciante </h2>
-          <ImageContainer src={adData?.cliente.avatar == null ? avatar_default : adData?.cliente.avatar}/>
-          <p> <b>Nome:</b> {adData?.cliente.name} </p>
-          <p> <b>Cidade:</b> {adData?.cliente.cidade} </p>
-          <p> <b>Estado:</b> {adData?.cliente.estado} </p>
-          <p> <b>Avaliação</b>: {(adData?.cliente.nota || 0)}/5.0 </p>
-          <p> <b>Trocas concretizadas</b>: {adData?.cliente.numTrocas || 0} </p>
+          <ImageContainer
+            src={
+              adData?.cliente.avatar == null
+                ? avatar_default
+                : adData?.cliente.avatar
+            }
+          />
+          <p>
+            {" "}
+            <b>Nome:</b> {adData?.cliente.name}{" "}
+          </p>
+          <p>
+            {" "}
+            <b>Cidade:</b> {adData?.cliente.cidade}{" "}
+          </p>
+          <p>
+            {" "}
+            <b>Estado:</b> {adData?.cliente.estado}{" "}
+          </p>
+          <p>
+            {" "}
+            <b>Avaliação</b>: {adData?.cliente.nota || 0}/5.0{" "}
+          </p>
+          <p>
+            {" "}
+            <b>Trocas concretizadas</b>: {adData?.cliente.numTrocas || 0}{" "}
+          </p>
         </ContainerFlexVertical>
 
         <ContainerFlexVerticalWider className="VerticalContainerMiddle">
           <h1> {adData?.titulo} </h1>
-          <SliderBox> 
+          <SliderBox>
             <ImageSliderAnuncio
               slides={[adData?.foto1, adData?.foto2, adData?.foto3]}
             ></ImageSliderAnuncio>
           </SliderBox>
-
         </ContainerFlexVerticalWider>
 
         <ContainerFlexVertical className="VerticalContainerRight">
           <h2> Informações do anúncio </h2>
-          <p> <b>Objeto:</b> {adData?.nomeObjeto} </p>
-          <p> <b>Categoria:</b> {adData?.categoria} </p>
-          <p> <b>Estado:</b> {adData?.estadoConservacao} </p>
-          <p> <b>Descricao:</b> {adData?.descricao} </p>
-          <p> <b>Itens desejados em troca:</b> {adData?.itemDesejado} </p>
-          <p> <b>Valor estimado:</b> {adData?.valorEstimado} </p>
-          
+          <p>
+            {" "}
+            <b>Objeto:</b> {adData?.nomeObjeto}{" "}
+          </p>
+          <p>
+            {" "}
+            <b>Categoria:</b> {adData?.categoria}{" "}
+          </p>
+          <p>
+            {" "}
+            <b>Estado:</b> {adData?.estadoConservacao}{" "}
+          </p>
+          <p>
+            {" "}
+            <b>Descricao:</b> {adData?.descricao}{" "}
+          </p>
+          <p>
+            {" "}
+            <b>Itens desejados em troca:</b> {adData?.itemDesejado}{" "}
+          </p>
+          <p>
+            {" "}
+            <b>Valor estimado:</b> {adData?.valorEstimado}{" "}
+          </p>
+
           {ehDonoAnuncio ? (
             <div>
-              <StyledButton onClick={handleOpenModalExcluirAnuncio}>Encerrar anuncio</StyledButton>
+              <StyledButton onClick={handleOpenModalExcluirAnuncio}>
+                Encerrar anuncio
+              </StyledButton>
 
-              <StyledButton onClick={handleOpenModalDestaque}>Destacar</StyledButton>
+              <StyledButton onClick={handleOpenModalDestaque}>
+                Destacar
+              </StyledButton>
 
               <Link
                 to={{
@@ -298,82 +347,97 @@ const Oferta: React.FC = (props: any) => {
                 Ajuda
               </StyledButton>
 
-              <StyledButton
-                onClick={() =>
-                  handleSeguirAnuncio({
-                    idAnuncio: adData?.id,
-                    idCliente: localStorage.getItem("loginid"),
-                  })
-                }
-              >
-                Seguir anúncio
-              </StyledButton>
+              {ehSeguidor ? (
+                <StyledButton
+                  onClick={() =>
+                    handleSeguirAnuncio({
+                      idAnuncio: adData?.id,
+                      idCliente: localStorage.getItem("loginid"),
+                    })
+                  }
+                >
+                  Deixar de seguir
+                </StyledButton>
+              ) : (
+                <StyledButton
+                  onClick={() =>
+                    handleSeguirAnuncio({
+                      idAnuncio: adData?.id,
+                      idCliente: localStorage.getItem("loginid"),
+                    })
+                  }
+                >
+                  Seguir anúncio
+                </StyledButton>
+              )}
 
               <StyledButton onClick={handleOpenModalDenuncia}>
                 Denunciar anúncio
               </StyledButton>
             </>
           )}
-
-          
         </ContainerFlexVertical>
       </ExternalContainer>
 
       <ContainerComments>
-            <h2> Comentários </h2>
-            {comentarios.map((comentario) => (
-              <ContainerComment> 
-                <div key={comentario.id}>
-                <ComentarioHeader>
-                  <ImageContainerComment src={comentario.comentador?.avatar == null ? avatar_default : comentario.comentador?.avatar } width="50px" height="50px"/> 
-                  <b>{comentario.comentador?.name}</b>
-                  
-                </ComentarioHeader>
-                <DataComentario>{comentario.data}</DataComentario>
-                <TextoComentario>{comentario.texto}</TextoComentario>
-                </div>
-              </ContainerComment>
-            ))}
-            {ehDonoAnuncio ? (
-              <Form ref={formRef} onSubmit={handleCommentSubmit}>
-                <InputComment
-                  name="texto"
-                  icon={FiAlignJustify}
-                  placeholder=" Ex: 'Ele é pesado?'"
-                ></InputComment>
-                <SubText text="Comente ou responda dúvidas sobre seu anuncio. Pelo menos 5 caracteres." /> <br/>
-
-                <InvisibleInput
-                  name="anuncio"
-                  defaultValue={adData?.id}
-                ></InvisibleInput>
-
-                <StyledButtonWider name="submitButton" type="submit">
-                  Enviar comentário
-                </StyledButtonWider>
-              </Form>
-            ) : (
-              <Form ref={formRef} onSubmit={handleCommentSubmit}>
-                <Input
-                  name="texto"
-                  icon={FiAlignJustify}
-                  placeholder=" Ex: 'Ele é pesado?'"
-                ></Input>
-
-                <SubText text="Caso deseje, faça um comentário. Pelo menos 5 caracteres." /> <br/>
-                
-                <InvisibleInput
-                  name="anuncio"
-                  defaultValue={adData?.id}
-                ></InvisibleInput>
-
-                <StyledButtonWider name="submitButton" type="submit">
-                  Enviar comentário
-                </StyledButtonWider>
-              </Form>
-            )}
+        <h2> Comentários </h2>
+        {comentarios.map((comentario) => (
+          <ContainerComment>
+            <div key={comentario.id}>
+              <ComentarioHeader>
+                <ImageContainerComment
+                  src={
+                    comentario.comentador?.avatar == null
+                      ? avatar_default
+                      : comentario.comentador?.avatar
+                  }
+                  width="50px"
+                  height="50px"
+                />
+                <b>{comentario.comentador?.name}</b>
+              </ComentarioHeader>
+              <DataComentario>{comentario.data}</DataComentario>
+              <TextoComentario>{comentario.texto}</TextoComentario>
+            </div>
+          </ContainerComment>
+        ))}
+        {ehDonoAnuncio ? (
+          <Form ref={formRef} onSubmit={handleCommentSubmit}>
+            <InputComment
+              name="texto"
+              icon={FiAlignJustify}
+              placeholder=" Ex: 'Ele é pesado?'"
+            ></InputComment>
+            <SubText text="Comente ou responda dúvidas sobre seu anuncio. Pelo menos 5 caracteres." />{" "}
+            <br />
+            <InvisibleInput
+              name="anuncio"
+              defaultValue={adData?.id}
+            ></InvisibleInput>
+            <StyledButtonWider name="submitButton" type="submit">
+              Enviar comentário
+            </StyledButtonWider>
+          </Form>
+        ) : (
+          <Form ref={formRef} onSubmit={handleCommentSubmit}>
+            <Input
+              name="texto"
+              icon={FiAlignJustify}
+              placeholder=" Ex: 'Ele é pesado?'"
+            ></Input>
+            <SubText text="Caso deseje, faça um comentário. Pelo menos 5 caracteres." />{" "}
+            <br />
+            <InvisibleInput
+              name="anuncio"
+              defaultValue={adData?.id}
+            ></InvisibleInput>
+            <StyledButtonWider name="submitButton" type="submit">
+              Enviar comentário
+            </StyledButtonWider>
+          </Form>
+        )}
       </ContainerComments>
-      <ExibirPropaganda/>
+      <ExibirPropaganda />
     </>
   );
 };

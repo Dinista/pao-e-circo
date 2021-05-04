@@ -27,9 +27,12 @@ import SubText from "../../components/Subtext";
 import Header from "../../components/Header";
 import ExibirPropaganda from "../../components/ExibirPropaganda";
 import getValidationErrors from "../../utils/getValidationErrors";
+import axios from "axios";
 
 let indexCategoria = 0,
   indexEstadoConservacao = 0;
+
+let foto1var, foto2var, foto3var;
 
 const EditarAnuncio: React.FC = (props: any) => {
   const { idAnuncio } = props.location && props.location.state;
@@ -99,14 +102,78 @@ const EditarAnuncio: React.FC = (props: any) => {
   const history = useHistory();
   var update = 0;
   //funções
+
+  const foto1Update = (event) => {
+    foto1var = event.target.files[0];
+  };
+  const foto2Update = (event) => {
+    foto2var = event.target.files[0];
+  };
+  const foto3Update = (event) => {
+    foto3var = event.target.files[0];
+  };
+
   const handleSubmit = useCallback(
     async (data: EditarAnuncioFormData) => {
       try {
         data.cliente = localStorage.getItem("loginid") || "";
+        console.log("DO FORMS:\nimg1: " + data.foto1 + "\nimg2: " + data.foto2);
         if (data.cliente === "") {
           alert("Para editar um anuncio é necessário logar");
           history.push("/signin");
         }
+
+        if (foto1var !== undefined) {
+          if (foto1var.size > 5097152) {
+            return alert("Imagem 1 maior que 5mb!");
+          }
+          const formdata_foto1 = new FormData();
+          formdata_foto1.append("file", foto1var);
+          formdata_foto1.append("upload_preset", "nh3ml3mu");
+          data.foto1 = (
+            await axios.post(
+              "https://api.cloudinary.com/v1_1/dxklaxr7g/image/upload",
+              formdata_foto1
+            )
+          ).data.url;
+        } else {
+          foto1var = data.foto1;
+        }
+
+        if (foto2var !== undefined) {
+          if (foto2var.size > 5097152) {
+            return alert("Imagem 2 maior que 5mb!");
+          }
+          const formdata_foto2 = new FormData();
+          formdata_foto2.append("file", foto2var);
+          formdata_foto2.append("upload_preset", "nh3ml3mu");
+          data.foto2 = (
+            await axios.post(
+              "https://api.cloudinary.com/v1_1/dxklaxr7g/image/upload",
+              formdata_foto2
+            )
+          ).data.url;
+        } else {
+          foto2var = data.foto2;
+        }
+
+        if (foto3var !== undefined) {
+          if (foto3var.size > 5097152) {
+            return alert("Imagem 3 maior que 5mb!");
+          }
+          const formdata_foto3 = new FormData();
+          formdata_foto3.append("file", foto3var);
+          formdata_foto3.append("upload_preset", "nh3ml3mu");
+          data.foto3 = (
+            await axios.post(
+              "https://api.cloudinary.com/v1_1/dxklaxr7g/image/upload",
+              formdata_foto3
+            )
+          ).data.url;
+        } else {
+          foto3var = data.foto3;
+        }
+        
         formRef.current?.setErrors({});
         const schema = yup.object().shape({
           titulo: yup
@@ -120,18 +187,6 @@ const EditarAnuncio: React.FC = (props: any) => {
             .required("Campo obrigatório."),
           categoria: yup.string().ensure(),
           estadoConservacao: yup.string().ensure(),
-          foto1: yup
-            .string()
-            .min(5, "Link muito curto.")
-            .required("Campo obrigatório."),
-          foto2: yup
-            .string()
-            .min(5, "Link muito curto.")
-            .required("Campo obrigatório."),
-          foto3: yup
-            .string()
-            .min(5, "Link muito curto.")
-            .required("Campo obrigatório."),
           descricao: yup
             .string()
             .min(10, "Deve ter pelo menos 10 caracteres.")
@@ -153,6 +208,11 @@ const EditarAnuncio: React.FC = (props: any) => {
         });
 
         await api.put(`/editaranuncio/${idAnuncio}`, data);
+
+        foto1var = undefined;
+        foto2var = undefined;
+        foto3var = undefined;
+
         alert("Anuncio editado com successo!");
         history.push("/");
       } catch (err) {
@@ -217,27 +277,30 @@ const EditarAnuncio: React.FC = (props: any) => {
               <SubTituloPagina> Fotos * </SubTituloPagina>
 
               <Input
+                type="file"
                 name="foto1"
-                icon={FiAlignJustify}
-                placeholder="URL da foto 1. Ex: http://imgur.com/gallery/imagem1"
+                accept="image/*"
+                onChange={foto1Update}
                 defaultValue={adData?.foto1}
-              ></Input>
+              />
 
               <Input
+                type="file"
                 name="foto2"
-                icon={FiAlignJustify}
-                placeholder="URL da foto 2. Ex: http://imgur.com/gallery/imagem2"
+                accept="image/*"
+                onChange={foto2Update}
                 defaultValue={adData?.foto2}
-              ></Input>
+              />
 
               <Input
+                type="file"
                 name="foto3"
-                icon={FiAlignJustify}
-                placeholder="URL da foto 3. Ex: http://imgur.com/gallery/imagem3"
+                accept="image/*"
+                onChange={foto3Update}
                 defaultValue={adData?.foto3}
-              ></Input>
+              />
 
-              <SubText text="Link para as fotos do objeto. Mínimo três." />
+              <SubText text="Fotos do objeto. Só insira caso deseje alterar." />
 
               <SubTituloPagina> Descrição * </SubTituloPagina>
               <Input
