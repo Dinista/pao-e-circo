@@ -8,8 +8,7 @@ export default function getValidationErrors(err: ValidationError): Errors {
   const validationErrors: Errors = {};
 
   err.inner.forEach((error) => {
-    if (error.path !== undefined) {
-
+    if(error.path != undefined) {
       validationErrors[error.path] = error.message;
     }
   });

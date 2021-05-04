@@ -41,7 +41,6 @@ export const ContainerFlexVerticalWider = styled.div`
   padding-top: 0.5rem;
   text-align: center;
   padding-left: 0.7rem;
-
   .h1 {
     font-size: px;
   }
@@ -55,19 +54,15 @@ export const ContainerComments = styled.div`
   border-radius: 1rem;
   padding-left: 2.7rem;
   padding-top: 0.3rem;
-
   .p {
     align-self: left;
   }
-
   .h2 {
     align-self: center;
   }
-
   .efEsQO {
     background-color: white;
   }
-
   .XspiS {
     position: relative;
     top: -12px;
@@ -92,7 +87,6 @@ export const DataComentario = styled.p`
   margin-top: -0.8rem;
   padding-left: 3rem;
   margin-left: 0.8rem;
-
 `
 
 export const TextoComentario = styled.p`
@@ -111,12 +105,10 @@ export const ComentarioHeader = styled.div`
   display: flex;
   align-items: center;
   padding-top: 1rem;
-
   .p {
     display: flex;
     padding-left: 10rem;
   }
-
 `;
 
 
@@ -135,5 +127,4 @@ export const ImageContainerComment = styled.img`
 export const InputComment = styled(Input) `     
         position: relative;
         width: 100.5rem;
-
 ` 

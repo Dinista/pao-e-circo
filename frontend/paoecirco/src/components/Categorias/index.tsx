@@ -11,36 +11,60 @@ import { GrTechnology } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import "./styles.css";
 
+
+
+
 const Categorias: React.FC = (props) => {
   return (
     <>
       <h1 className="categoriasText">CATEGORIAS</h1>
       <div className="categorias">
-        <Link to="/tecnologia" className="item">
+        <Link className="item"
+                to={{
+                  pathname: "/BuscaCategoria", state: { categoria: "eletronico"}
+                }}>
           <GrTechnology className="gravura" />
           <div className="textoDescricao">Eletrônicos</div>
         </Link>
-        <Link to="/instrumentos" className="item">
+        <Link className="item"
+                to={{
+                  pathname: "/BuscaCategoria", state: { categoria: "instrumentoMusical"}
+                }}>
           <GiMusicalKeyboard className="gravura" />
           <div className="textoDescricao">Instrumentos musicais</div>
         </Link>
-        <Link to="/roupas" className="item">
+        <Link className="item"
+                to={{
+                  pathname: "/BuscaCategoria", state: { categoria: "vestuario"}
+                }}>
           <GiClothes className="gravura" />
           <div className="textoDescricao">Roupas</div>
         </Link>
-        <Link to="/ferramentas" className="item">
+        <Link className="item"
+                to={{
+                  pathname: "/BuscaCategoria", state: { categoria: "ferramenta"}
+                }}>
           <GiToolbox className="gravura" />
           <div className="textoDescricao">Ferramentas</div>
         </Link>
-        <Link to="/brinquedos" className="item">
+        <Link className="item"
+                to={{
+                  pathname: "/BuscaCategoria", state: { categoria: "brinquedo"}
+                }}>
           <GiToyMallet className="gravura" />
           <div className="textoDescricao">Brinquedos</div>
         </Link>
-        <Link to="/material" className="item">
+        <Link className="item"
+                to={{
+                  pathname: "/BuscaCategoria", state: { categoria: "materialEscolar"}
+                }}>
           <GiSchoolBag className="gravura" />
           <div className="textoDescricao">Material escolar</div>
         </Link>
-        <Link to="/moveis" className="item">
+        <Link className="item"
+                to={{
+                  pathname: "/BuscaCategoria", state: { categoria: "movel"}
+                }}>
           <GiChest className="gravura" />
           <div className="textoDescricao">Moveis</div>
         </Link>
