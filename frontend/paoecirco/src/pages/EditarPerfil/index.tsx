@@ -239,8 +239,8 @@ const EditarPerfil: React.FC = () => {
                 formEditRef.current?.setErrors({});
                 const schema = yup.object().shape({
                     endereco: yup.string().min(5, "Mínimo 5 caracteres").max(80, "Excedeu o número de caracteres").required("Endereço obrigatório."),
-                    estado: yup.string().matches(/^[A-Za-zÀ-ú]*$/, "Estado inválido.").min(4, "Mínimo 4 caracteres").max(15, "Excedeu o número de caracteres").required("Estado obrigatório."),
-                    cidade: yup.string().matches(/^[A-Za-zÀ-ú]*$/, "Cidade inválida.").min(4, "Mínimo 4 caracteres").max(15, "Excedeu o número de caracteres").required("Cidade obrigatória."),
+                    estado: yup.string().matches(/^[A-Za-zÀ-ú ]*$/, "Estado inválido.").min(4, "Mínimo 4 caracteres").max(15, "Excedeu o número de caracteres").required("Estado obrigatório."),
+                    cidade: yup.string().matches(/^[A-Za-zÀ-ú ]*$/, "Cidade inválida.").min(4, "Mínimo 4 caracteres").max(15, "Excedeu o número de caracteres").required("Cidade obrigatória."),
                 });
 
                 await schema.validate(data, {
