@@ -3,7 +3,7 @@ import styled from "styled-components";
 import ReactSelect from "react-select";
 
 export const CustomSelect = styled(ReactSelect)`
-  width: 120%;
+  width: 90%;
   color: #666360;
   transition: all 1s;
   align-items: center;
