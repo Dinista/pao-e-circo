@@ -59,6 +59,6 @@ describe("Cliente controller", () => {
       senha: "jorgejuca.123",
     });
 
-    expect(clienteRepository.findByName(cliente.name)).toBe("flavin do pneu");
+    expect(clienteRepository.findByName(cliente.name)).toBe("Felipe Diniz");
   });
 });
